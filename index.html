@@ -8,14 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#0a0a0f;--bg2:#111118;--bg3:#16161f;--bg4:#1c1c28;
-    --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
-    --text:#f0f0f5;--text2:#8888a0;--text3:#55556a;
-    --accent:#7c6fff;--accent2:#a599ff;
-    --green:#3ecf8e;--green-bg:rgba(62,207,142,0.1);
-    --amber:#f5a623;--amber-bg:rgba(245,166,35,0.1);
-    --red:#f56565;--red-bg:rgba(245,101,101,0.08);
-    --blue:#60a5fa;--blue-bg:rgba(96,165,250,0.08);
+    --bg:#f5f5f7;--bg2:#ffffff;--bg3:#f0f0f4;--bg4:#e8e8ef;
+    --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+    --text:#1a1a2e;--text2:#4a4a6a;--text3:#9090aa;
+    --accent:#5b4fff;--accent2:#7c6fff;
+    --green:#0ea96e;--green-bg:rgba(14,169,110,0.08);
+    --amber:#d97706;--amber-bg:rgba(217,119,6,0.08);
+    --red:#dc2626;--red-bg:rgba(220,38,38,0.06);
+    --blue:#2563eb;--blue-bg:rgba(37,99,235,0.08);
     --font:'Pretendard',-apple-system,sans-serif;
     --mono:'DM Mono',monospace;
   }
@@ -79,9 +79,9 @@
   .pip-none{background:var(--bg4);color:var(--text3);}
 
   /* MATRIX */
-  .matrix-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);}
+  .matrix-wrap{overflow:auto;border-radius:12px;border:1px solid var(--border);max-height:600px;}
   table{width:100%;border-collapse:collapse;font-size:12px;}
-  thead th{background:var(--bg3);padding:10px 12px;text-align:center;font-weight:500;color:var(--text3);border-bottom:1px solid var(--border);white-space:nowrap;font-size:11px;}
+  thead th{background:var(--bg3);padding:10px 12px;text-align:center;font-weight:500;color:var(--text3);border-bottom:1px solid var(--border);white-space:nowrap;font-size:11px;position:sticky;top:0;z-index:2;}
   thead th.task-col{text-align:left;min-width:160px;}
   thead th.country-group{border-left:1px solid var(--border2);font-size:12px;color:var(--text2);}
   tbody tr{transition:background 0.1s;}
@@ -227,6 +227,7 @@
     </div>
     <div class="section">
       <div class="section-title" style="margin-bottom:16px">진단 기록</div>
+      <div id="geoFilterWrap"></div>
       <div class="history-list" id="geoHistory"></div>
     </div>
   </div>
@@ -235,7 +236,7 @@
 <script>
 // ==============================================
 // ★ 배포 전 여기만 수정하세요 (한 줄)
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_l0C9na2VG69CxfaqvhhzqeUoEDZqzdpDdn1UGOpkSFZbRQg4wkC_Qr58yVWcyDFv/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/여기에_웹앱_URL_붙여넣기/exec';
 // ==============================================
 
 const BRANDS = ['풀리','푸드올로지','95P','오브제','8APM','에이페'];
@@ -264,6 +265,16 @@ const GEO_HISTORY = [
    strengths:['Product 스키마 완벽','AggregateRating 374개','FAQPage 5개 구조화','Offer 4가지 옵션 상세'],
    warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']}
 ];
+
+function getStepStatus(val, date){
+  // 날짜 컬럼에 값 있으면 완료
+  const d=String(date||'').trim();
+  if(d&&d!=='-'&&d!=='·') return 'done';
+  // 값 컬럼에 뭔가 있으면 진행중
+  const v=String(val||'').trim();
+  if(v&&v!=='-'&&v!=='·') return 'partial';
+  return 'none';
+}
 
 function getStatus(v){
   if(!v||!v.trim())return'none';
@@ -301,7 +312,7 @@ async function loadData(){
 }
 
 function processAndRender(allData){
-  const brandSheet=allData['브랜드별 진행 상황']||[];
+  const brandSheet=allData['GEO 진행 상황']||allData['브랜드별 진행 상황']||[];
   const countryData={국내:[],대만:[],일본:[],미국:[]};
   let currentCountry=null;
 
@@ -317,10 +328,10 @@ function processAndRender(allData){
     if(!product)return;
     const normalBrand=BRANDS.find(b=>col0===b||col0.includes(b))||col0;
     if(!BRANDS.includes(normalBrand))return;
-    const s1=getStatus(String(row[6]||''));
-    const s2=getStatus(String(row[8]||''));
-    const s3=getStatus(String(row[10]||''));
-    const s4=getStatus(String(row[12]||''));
+    const s1=getStepStatus(row[6],row[7]);
+    const s2=getStepStatus(row[8],row[9]);
+    const s3=getStepStatus(row[10],row[11]);
+    const s4=getStepStatus(row[12],row[13]);
     countryData[currentCountry].push({brand:normalBrand,product,link,steps:[s1,s2,s3,s4],stepVals:[String(row[6]||''),String(row[8]||''),String(row[10]||''),String(row[12]||'')]});
   });
 
@@ -483,10 +494,54 @@ function renderTasks(){
     </div>`).join('');
 }
 
+let geoFilterBrands=new Set();
+
+function renderGeoFilter(){
+  const brands=[...new Set(GEO_HISTORY.map(h=>h.brand))];
+  const wrap=document.getElementById('geoFilterWrap');
+  if(!wrap)return;
+  wrap.innerHTML=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center">
+    <span style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.05em">브랜드</span>
+    ${brands.map(b=>`<button onclick="toggleGeoFilter('${b}')" id="gf-${b}"
+      style="padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);transition:all .15s"
+      >${b}</button>`).join('')}
+    <button onclick="clearGeoFilter()" style="padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text3)">전체</button>
+  </div>`;
+}
+
+function toggleGeoFilter(brand){
+  if(geoFilterBrands.has(brand))geoFilterBrands.delete(brand);
+  else geoFilterBrands.add(brand);
+  updateGeoFilterUI();
+  renderGeoHistory();
+}
+
+function clearGeoFilter(){
+  geoFilterBrands.clear();
+  updateGeoFilterUI();
+  renderGeoHistory();
+}
+
+function updateGeoFilterUI(){
+  const brands=[...new Set(GEO_HISTORY.map(h=>h.brand))];
+  brands.forEach(b=>{
+    const btn=document.getElementById('gf-'+b);
+    if(!btn)return;
+    const active=geoFilterBrands.has(b);
+    btn.style.background=active?'var(--accent)':'var(--bg3)';
+    btn.style.color=active?'white':'var(--text2)';
+    btn.style.borderColor=active?'var(--accent)':'var(--border2)';
+  });
+}
+
 function renderGeoHistory(){
   const el=document.getElementById('geoHistory');
-  if(!GEO_HISTORY.length){el.innerHTML='<div class="state-msg"><div class="icon">📋</div><div>진단 기록이 없습니다</div></div>';return;}
-  el.innerHTML=GEO_HISTORY.map((h,i)=>{
+  const filtered=geoFilterBrands.size>0?GEO_HISTORY.filter(h=>geoFilterBrands.has(h.brand)):GEO_HISTORY;
+  if(!filtered.length){
+    el.innerHTML='<div class="state-msg"><div class="icon">📋</div><div>해당 브랜드의 진단 기록이 없습니다</div></div>';
+    return;
+  }
+  el.innerHTML=filtered.map((h,i)=>{
     const gc=h.grade.toLowerCase();
     return`<div class="history-item">
       <div class="history-score score-${gc}">${h.score}</div>
@@ -494,7 +549,7 @@ function renderGeoHistory(){
       <span class="history-grade grade-${gc}">${h.grade}등급</span>
       <div class="history-date">${h.date}</div>
     </div>
-    ${i===0?`<div class="score-card" style="margin-top:-6px;margin-bottom:8px;border-top:none;border-top-left-radius:0;border-top-right-radius:0">
+    ${i===0&&h.items?`<div class="score-card" style="margin-top:-6px;margin-bottom:8px;border-top:none;border-top-left-radius:0;border-top-right-radius:0">
       <div class="score-bars">${h.items.map(([k,v,pct])=>`<div><div class="score-bar-header"><span class="score-bar-label">${k}</span><span class="score-bar-val">${v}</span></div><div class="score-bar-track"><div class="score-bar-fill" style="width:${pct}%"></div></div></div>`).join('')}</div>
       <div class="score-tags">${h.strengths.map(s=>`<span class="score-tag">✓ ${s}</span>`).join('')}${h.warnings.map(w=>`<span class="score-tag warn">⚠ ${w}</span>`).join('')}</div>
     </div>`:''}`;
@@ -534,6 +589,7 @@ function switchTab(name){
 }
 
 renderTasks();
+renderGeoFilter();
 renderGeoHistory();
 loadData();
 </script>
