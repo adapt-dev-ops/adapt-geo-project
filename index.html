@@ -243,7 +243,7 @@
 <script>
 // ==============================================
 // ★ 배포 전 여기만 수정하세요 (한 줄)
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_l0C9na2VG69CxfaqvhhzqeUoEDZqzdpDdn1UGOpkSFZbRQg4wkC_Qr58yVWcyDFv/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/여기에_웹앱_URL_붙여넣기/exec';
 // ==============================================
 
 const BRANDS = ['풀리','푸드올로지','95P','오브제','8APM','에이페'];
@@ -550,8 +550,8 @@ function renderBrandMatrix(progress){
 
 function renderTasks(){
   document.getElementById('taskList').innerHTML=[
-    {section:'개발파트 세팅 필요 건',tasks:TASKS_DEV},
-    {section:'MD 세팅 필요 건',tasks:TASKS_MD}
+    {section:'MD 세팅 필요 건',tasks:TASKS_MD},
+    {section:'개발파트 세팅 필요 건',tasks:TASKS_DEV}
   ].map(sec=>`
     <div style="margin-bottom:28px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
