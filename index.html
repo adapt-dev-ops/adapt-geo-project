@@ -194,7 +194,7 @@
     <div class="metric"><span class="metric-flag">&#127482;&#127480;</span><div class="metric-label">미국 &middot; 쇼피파이</div><div class="metric-val" id="m-us">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127481;&#127484;</span><div class="metric-label">대만 &middot; 카페24</div><div class="metric-val" id="m-tw">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127471;&#127477;</span><div class="metric-label">일본 &middot; 카페24</div><div class="metric-val" id="m-jp">&#8212;</div></div>
-    <div class="metric"><span class="metric-flag">&#127469;&#127472;</span><div class="metric-label">홍콩 &middot; 숍라인</div><div class="metric-val" id="m-hk">&#8212;</div></div>
+
 
   </div>
 
@@ -462,7 +462,7 @@ function renderBrandMatrix(progress){
       const bItems=grouped[b];
       if(!bItems.length)return;
       rows+=`<tr>
-        <td colspan="4" style="background:var(--bg3);color:var(--text2);font-size:13px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2)">${b}</td>
+        <td colspan="6" style="background:var(--bg3);color:var(--text2);font-size:13px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2)">${b}</td>
       </tr>`;
       bItems.forEach(item=>{
         const stepCells=item.steps.map(s=>{
@@ -473,12 +473,12 @@ function renderBrandMatrix(progress){
         const devCells=(item.devSteps||[]).map(s=>{
           const cls=s==='done'?'cell-done':'cell-none';
           const lbl=s==='done'?'✓':'·';
-          return`<td style="background:rgba(91,79,255,0.04)"><span class="${cls}">${lbl}</span></td>`;
+          return`<td><span class="${cls}">${lbl}</span></td>`;
         }).join('');
         const linkCell=item.link?`<a href="${item.link}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:11px">↗</a>`:'';
         rows+=`<tr>
           <td class="task-col" style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.product} ${linkCell}</td>
-          ${stepCells}${devCells}
+          ${devCells}${stepCells}
         </tr>`;
       });
     });
@@ -487,8 +487,8 @@ function renderBrandMatrix(progress){
       <thead>
         <tr>
           <th class="task-col">상품명</th>
+          ${DEV_STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}
           ${STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}
-          ${DEV_STEPS.map(s=>`<th style="font-size:13px;min-width:80px;background:rgba(91,79,255,0.06);color:var(--accent)">${s}</th>`).join('')}
         </tr>
       </thead>
       <tbody>${rows}</tbody>
