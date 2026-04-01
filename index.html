@@ -60,7 +60,7 @@
   .country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
   .country-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;}
   .country-card:hover{border-color:var(--border2);transform:translateY(-1px);}
-  .country-header{padding:20px 20px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);}
+  .country-header{padding:20px 20px 16px;display:flex;align-items:center;gap:12px;}
   .country-flag-big{font-size:28px;line-height:1;}
   .country-info{flex:1;}
   .country-name{font-size:15px;font-weight:600;}
@@ -74,12 +74,12 @@
   .brand-row-name{color:var(--text2);}
   .brand-row-right{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--text3);}
   .status-pip{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
-  .pip-done{background:var(--green-bg);color:var(--green);}
+  .pip-done{background:var(--green);color:#fff;}
   .pip-partial{background:var(--amber-bg);color:var(--amber);}
   .pip-none{background:var(--bg4);color:var(--text3);}
 
   /* MATRIX */
-  .matrix-wrap{overflow:auto;border-radius:12px;border:1px solid var(--border);max-height:600px;}
+  .matrix-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);}
   table{width:100%;border-collapse:collapse;font-size:12px;}
   thead th{background:var(--bg3);padding:10px 12px;text-align:center;font-weight:500;color:var(--text3);border-bottom:1px solid var(--border);white-space:nowrap;font-size:11px;position:sticky;top:0;z-index:2;}
   thead th.task-col{text-align:left;min-width:160px;}
@@ -90,8 +90,8 @@
   tbody td.task-col{text-align:left;color:var(--text);font-weight:500;}
   tbody td.country-start{border-left:1px solid var(--border2);}
   tbody tr:last-child td{border-bottom:none;}
-  .cell-done{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--green-bg);color:var(--green);font-size:11px;font-weight:700;}
-  .cell-partial{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--amber-bg);color:var(--amber);font-size:11px;font-weight:700;}
+  .cell-done{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--green);color:#fff;font-size:11px;font-weight:700;}
+  .cell-partial{display:none;}
   .cell-none{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--bg4);color:var(--text3);font-size:11px;}
 
   /* TASKS */
@@ -148,6 +148,14 @@
   .state-msg{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;color:var(--text3);font-size:14px;gap:12px;text-align:center;}
   .state-msg .icon{font-size:32px;opacity:0.5;}
   .state-msg .desc{font-size:12px;line-height:1.7;max-width:360px;}
+  .brand-sticky-row td{
+    position:sticky;top:41px;z-index:1;
+    background:var(--accent);
+    color:#fff;
+    font-size:14px;font-weight:700;
+    letter-spacing:0;
+    padding:8px 14px;
+  }
   .spinner{width:20px;height:20px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
 
@@ -236,7 +244,7 @@
 <script>
 // ==============================================
 // ★ 배포 전 여기만 수정하세요 (한 줄)
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_l0C9na2VG69CxfaqvhhzqeUoEDZqzdpDdn1UGOpkSFZbRQg4wkC_Qr58yVWcyDFv/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/여기에_웹앱_URL_붙여넣기/exec';
 // ==============================================
 
 const BRANDS = ['풀리','푸드올로지','95P','오브제','8APM','에이페'];
@@ -270,9 +278,6 @@ function getStepStatus(val, date){
   // 날짜 컬럼에 값 있으면 완료
   const d=String(date||'').trim();
   if(d&&d!=='-'&&d!=='·') return 'done';
-  // 값 컬럼에 뭔가 있으면 진행중
-  const v=String(val||'').trim();
-  if(v&&v!=='-'&&v!=='·') return 'partial';
   return 'none';
 }
 
@@ -386,8 +391,8 @@ function renderOverview(progress){
           const bd=brandDone[b]||{done:0,partial:0,total:0};
           const allD=bd.total>0&&bd.done===bd.total;
           const part=!allD&&(bd.done>0||bd.partial>0);
-          const pip=allD?'pip-done':part?'pip-partial':'pip-none';
-          const lbl=allD?'✓':part?'~':'·';
+          const pip=allD?'pip-done':'pip-none';
+          const lbl=allD?'✓':'·';
           const prodCount=((c.items||[]).filter(i=>i.brand===b)).length;
           return`<div class="brand-row">
             <span class="brand-row-name">${b}</span>
@@ -427,13 +432,13 @@ function renderBrandMatrix(progress){
     BRANDS.forEach(b=>{
       const bItems=grouped[b];
       if(!bItems.length)return;
-      rows+=`<tr class="task-section-row" style="background:var(--bg3)">
-        <td colspan="6" style="color:var(--accent2);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 12px">${b}</td>
+      rows+=`<tr class="brand-sticky-row">
+        <td colspan="6">${b}</td>
       </tr>`;
       bItems.forEach(item=>{
         const stepCells=item.steps.map(s=>{
           const cls=s==='done'?'cell-done':s==='partial'?'cell-partial':'cell-none';
-          const lbl=s==='done'?'✓':s==='partial'?'~':'·';
+          const lbl=s==='done'?'✓':'·';
           return`<td><span class="${cls}">${lbl}</span></td>`;
         }).join('');
         const linkCell=item.link?`<a href="${item.link}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:11px">↗</a>`:'';
