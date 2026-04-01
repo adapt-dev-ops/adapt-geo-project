@@ -195,22 +195,18 @@
     <div class="metric"><span class="metric-flag">&#127481;&#127484;</span><div class="metric-label">대만 &middot; 카페24</div><div class="metric-val" id="m-tw">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127471;&#127477;</span><div class="metric-label">일본 &middot; 카페24</div><div class="metric-val" id="m-jp">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127469;&#127472;</span><div class="metric-label">홍콩 &middot; 숍라인</div><div class="metric-val" id="m-hk">&#8212;</div></div>
-    <div class="metric"><div class="metric-label">관리 브랜드</div><div class="metric-val">6</div><div class="metric-sub">풀리&middot;푸드올로지&middot;95P&middot;오브제&middot;8APM&middot;에이페</div></div>
+
   </div>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('overview')">국가별 현황</button>
-    <button class="tab" onclick="switchTab('matrix')">브랜드 매트릭스</button>
+    <button class="tab" onclick="switchTab('matrix')">진행 현황</button>
     <button class="tab" onclick="switchTab('tasks')">작업 프로세스</button>
     <button class="tab" onclick="switchTab('geo')">GEO 점수</button>
   </div>
 
   <div class="panel active" id="panel-overview">
-    <div class="legend">
-      <div class="legend-item"><div class="ld" style="background:var(--green)"></div>완료</div>
-      <div class="legend-item"><div class="ld" style="background:var(--amber)"></div>진행중</div>
-      <div class="legend-item"><div class="ld" style="background:var(--text3)"></div>미시작</div>
-    </div>
+
     <div class="country-grid" id="countryGrid">
       <div class="state-msg"><div class="spinner"></div><div>데이터를 불러오는 중...</div></div>
     </div>
@@ -318,8 +314,38 @@ async function loadData(){
   }
 }
 
+function parseDevSheet(allData){
+  // [GEO] 프로세스_파트별 분담 시트에서 개발파트 H1/H2, 통합스키마 읽기
+  const sheet = allData['[GEO] 프로세스_파트별 분담'] || [];
+  // 브랜드 순서: 풀리,푸드올로지,95P,오브제,8APM,에이페 (국내 기준 col7,9,11,13,15,17)
+  const DEV_TASKS = ['H1 / H2 태그','통합 상세 스키마 설정 점검'];
+  const result = {}; // {브랜드: {taskName: 'done'|'none'}}
+  BRANDS.forEach(b => { result[b] = {}; DEV_TASKS.forEach(t => { result[b][t] = 'none'; }); });
+
+  let hIdx = -1;
+  for(let i=0;i<sheet.length;i++){
+    const j=sheet[i].join(',');
+    if(j.includes('풀리') && j.includes('적용 날짜') && j.includes('에이페')){hIdx=i;break;}
+  }
+  if(hIdx < 0) return result;
+
+  for(let i=hIdx+1;i<sheet.length;i++){
+    const row = sheet[i];
+    const task = String(row[2]||'').trim();
+    if(!DEV_TASKS.includes(task)) continue;
+    // 국내 기준 날짜컬럼: 풀리=7, 푸드올로지=9, 95P=11, 오브제=13, 8APM=15, 에이페=17
+    const dateCols = [7,9,11,13,15,17];
+    BRANDS.forEach((b,bi) => {
+      const d = String(row[dateCols[bi]]||'').trim();
+      if(d && d!=='-' && d!=='·') result[b][task] = 'done';
+    });
+  }
+  return result;
+}
+
 function processAndRender(allData){
   const brandSheet=allData['GEO 진행 상황']||allData['브랜드별 진행 상황']||[];
+  const devData=parseDevSheet(allData);
   const countryData={국내:[],대만:[],일본:[],미국:[]};
   let currentCountry=null;
 
@@ -338,7 +364,8 @@ function processAndRender(allData){
     const s1=getStepStatus(row[6],row[7]);
     const s2=getStepStatus(row[8],row[9]);
     const s3=getStepStatus(row[10],row[11]);
-    countryData[currentCountry].push({brand:normalBrand,product,link,steps:[s1,s2,s3],stepVals:[String(row[6]||''),String(row[8]||''),String(row[10]||'')]});
+    const devSteps=[devData[normalBrand]?.['H1 / H2 태그']||'none',devData[normalBrand]?.['통합 상세 스키마 설정 점검']||'none'];
+    countryData[currentCountry].push({brand:normalBrand,product,link,steps:[s1,s2,s3],devSteps,stepVals:[String(row[6]||''),String(row[8]||''),String(row[10]||'')]});
   });
 
   const progress=COUNTRIES.map(c=>{
@@ -410,6 +437,7 @@ function renderOverview(progress){
 
 function renderBrandMatrix(progress){
   const STEPS=['STEP1 텍스트화/FAQ','STEP2 메타태그','STEP3 성과체크'];
+  const DEV_STEPS=['H1/H2 태그','통합 스키마'];
   const wrap=document.getElementById('matrixTable');
 
   // 국가 탭 생성
@@ -438,14 +466,19 @@ function renderBrandMatrix(progress){
       </tr>`;
       bItems.forEach(item=>{
         const stepCells=item.steps.map(s=>{
-          const cls=s==='done'?'cell-done':s==='partial'?'cell-partial':'cell-none';
+          const cls=s==='done'?'cell-done':'cell-none';
           const lbl=s==='done'?'✓':'·';
           return`<td><span class="${cls}">${lbl}</span></td>`;
+        }).join('');
+        const devCells=(item.devSteps||[]).map(s=>{
+          const cls=s==='done'?'cell-done':'cell-none';
+          const lbl=s==='done'?'✓':'·';
+          return`<td style="background:rgba(91,79,255,0.04)"><span class="${cls}">${lbl}</span></td>`;
         }).join('');
         const linkCell=item.link?`<a href="${item.link}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:11px">↗</a>`:'';
         rows+=`<tr>
           <td class="task-col" style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.product} ${linkCell}</td>
-          ${stepCells}
+          ${stepCells}${devCells}
         </tr>`;
       });
     });
@@ -454,11 +487,12 @@ function renderBrandMatrix(progress){
       <thead>
         <tr>
           <th class="task-col">상품명</th>
-          ${STEPS.map(s=>`<th style="font-size:10px;min-width:60px">${s}</th>`).join('')}
+          ${STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}
+          ${DEV_STEPS.map(s=>`<th style="font-size:13px;min-width:80px;background:rgba(91,79,255,0.06);color:var(--accent)">${s}</th>`).join('')}
         </tr>
       </thead>
       <tbody>${rows}</tbody>
-    </table>`;
+    </table></div>`;
   }
 
   // 국가 서브탭 + 테이블
