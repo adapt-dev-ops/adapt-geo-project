@@ -293,65 +293,77 @@ async function loadData(){
   try{
     const res=await fetchFromAppsScript(APPS_SCRIPT_URL);
     if(res.status!=='ok')throw new Error(res.message||'시트 오류');
-    const sheetData=Object.values(res.data)[0]||[];
-    const maxCols=sheetData.reduce((m,r)=>Math.max(m,r.length),0);
-    const rows=sheetData.map(r=>{while(r.length<maxCols)r.push('');return r;});
-    processAndRender(rows);
+    processAndRender(res.data);
     setSyncState('live');
   }catch(e){
     console.error(e);setSyncState('error',e.message.slice(0,40));setErrorState(e.message);
   }
 }
 
-function processAndRender(rows){
-  // 헤더: "풀리"+"적용 날짜"가 같은 행에 있는 행 (브랜드 헤더 행)
-  let hIdx=-1;
-  for(let i=0;i<rows.length;i++){
-    const j=rows[i].join(',');
-    if(j.includes('풀리')&&j.includes('적용 날짜')&&j.includes('에이페')){hIdx=i;break;}
-  }
-  const dataRows=[];
-  // 헤더 바로 다음 행부터 데이터
-  const startIdx=hIdx>=0?hIdx+1:0;
-  for(let i=startIdx;i<rows.length;i++){
-    const r=rows[i];
-    const taskName=r[2]?r[2].trim():'';
-    if(!taskName||taskName===''||taskName==='프로세스명')continue;
-    // 숫자 항목번호 or "단계" 표시가 있는 행만
-    const num=String(r[1]||'').trim();
-    if(!num||num==='항목'||num==='개발파트 세팅  필요 건'||num==='MD 세팅 필요 건')continue;
-    // 참고/빈 섹션 제외
-    if(taskName.startsWith('■')||taskName.startsWith('http'))continue;
-    dataRows.push({taskName,num,row:r});
-  }
-  const matrix={};
-  COUNTRIES.forEach(c=>{matrix[c.name]={};BRANDS.forEach(b=>{matrix[c.name][b]=[];});});
-  dataRows.forEach(d=>{
-    COUNTRIES.forEach(c=>{
-      BRANDS.forEach((b,bi)=>{
-        const val=d.row[c.colBase+bi*2]||'';
-        matrix[c.name][b].push(getStatus(val));
+function processAndRender(allData){
+  const brandSheet=allData['브랜드별 진행 상황']||[];
+  const countryData={국내:[],대만:[],일본:[],미국:[]};
+  let currentCountry=null;
+
+  brandSheet.forEach(row=>{
+    const col0=String(row[0]||'').trim();
+    if(col0.includes('(국내)')){currentCountry='국내';return;}
+    if(col0.includes('(대만)')){currentCountry='대만';return;}
+    if(col0.includes('(일본)')){currentCountry='일본';return;}
+    if(col0.includes('(미국)')){currentCountry='미국';return;}
+    if(col0==='브랜드'||!col0||!currentCountry)return;
+    const product=String(row[1]||'').trim();
+    const link=String(row[2]||'').trim();
+    if(!product)return;
+    const normalBrand=BRANDS.find(b=>col0===b||col0.includes(b))||col0;
+    if(!BRANDS.includes(normalBrand))return;
+    const s1=getStatus(String(row[6]||''));
+    const s2=getStatus(String(row[8]||''));
+    const s3=getStatus(String(row[10]||''));
+    const s4=getStatus(String(row[12]||''));
+    countryData[currentCountry].push({brand:normalBrand,product,link,steps:[s1,s2,s3,s4],stepVals:[String(row[6]||''),String(row[8]||''),String(row[10]||''),String(row[12]||'')]});
+  });
+
+  const progress=COUNTRIES.map(c=>{
+    const items=countryData[c.name]||[];
+    let total=0,done=0,partial=0;
+    const brandStats={};
+    BRANDS.forEach(b=>{brandStats[b]={done:0,partial:0,total:0};});
+    items.forEach(item=>{
+      item.steps.forEach(s=>{
+        total++;
+        if(!brandStats[item.brand])brandStats[item.brand]={done:0,partial:0,total:0};
+        brandStats[item.brand].total++;
+        if(s==='done'){done++;brandStats[item.brand].done++;}
+        else if(s==='partial'){partial+=0.5;brandStats[item.brand].partial+=0.5;}
       });
     });
-  });
-  const progress=COUNTRIES.map(c=>{
-    let total=0,done=0,partial=0;
-    BRANDS.forEach(b=>{matrix[c.name][b].forEach(s=>{total++;if(s==='done')done++;else if(s==='partial')partial+=0.5;});});
     const pct=total>0?Math.round((done+partial)/total*100):0;
-    return{...c,pct,done,partial:Math.round(partial*2)/2,total,brandStatus:matrix[c.name]};
+    return{...c,pct,done,partial,total,brandStats,items};
   });
+
   let allDone=0,allTotal=0;
   progress.forEach(p=>{allDone+=p.done;allTotal+=p.total;});
   const totalPct=allTotal>0?Math.round(allDone/allTotal*100):0;
   document.getElementById('m-total').textContent=totalPct+'%';
-  document.getElementById('m-total-sub').textContent=allDone+' / '+allTotal+' 완료';
+  document.getElementById('m-total-sub').textContent=Math.round(allDone)+' / '+allTotal+' 완료';
   progress.forEach(p=>{const el=document.getElementById(p.metricId);if(el)el.textContent=p.pct+'%';});
-  renderOverview(progress);renderMatrix(dataRows,matrix);
+  renderOverview(progress);
+  renderBrandMatrix(progress);
 }
 
 function renderOverview(progress){
-  document.getElementById('countryGrid').innerHTML=progress.map(c=>`
-    <div class="country-card">
+  document.getElementById('countryGrid').innerHTML=progress.map(c=>{
+    const items=c.items||[];
+    const brandDone={};
+    BRANDS.forEach(b=>{
+      const bi=items.filter(i=>i.brand===b);
+      const total=bi.length*4;
+      const done=bi.reduce((s,i)=>s+i.steps.filter(x=>x==='done').length,0);
+      const partial=bi.reduce((s,i)=>s+i.steps.filter(x=>x==='partial').length,0);
+      brandDone[b]={done,partial,total};
+    });
+    return`<div class="country-card">
       <div class="country-header">
         <div class="country-flag-big">${c.flag}</div>
         <div class="country-info"><div class="country-name">${c.name}</div><div class="country-platform">${c.platform}</div></div>
@@ -360,35 +372,102 @@ function renderOverview(progress){
       <div class="progress-outer"><div class="progress-inner" style="width:${c.pct}%;background:${c.color}"></div></div>
       <div class="brand-rows">
         ${BRANDS.map(b=>{
-          const st=c.brandStatus[b];
-          const done=st.filter(s=>s==='done').length,total=st.length;
-          const hasPartial=st.some(s=>s==='partial'),allD=done===total&&total>0;
-          const part=!allD&&(done>0||hasPartial);
+          const bd=brandDone[b]||{done:0,partial:0,total:0};
+          const allD=bd.total>0&&bd.done===bd.total;
+          const part=!allD&&(bd.done>0||bd.partial>0);
           const pip=allD?'pip-done':part?'pip-partial':'pip-none';
           const lbl=allD?'✓':part?'~':'·';
-          return`<div class="brand-row"><span class="brand-row-name">${b}</span><div class="brand-row-right"><span>${done}/${total}</span><div class="status-pip ${pip}">${lbl}</div></div></div>`;
+          const prodCount=((c.items||[]).filter(i=>i.brand===b)).length;
+          return`<div class="brand-row">
+            <span class="brand-row-name">${b}</span>
+            <div class="brand-row-right">
+              <span>${prodCount}개 상품</span>
+              <div class="status-pip ${pip}">${lbl}</div>
+            </div>
+          </div>`;
         }).join('')}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
-function renderMatrix(dataRows,matrix){
-  const rows=dataRows.slice(0,12);
-  document.getElementById('matrixTable').innerHTML=`<table>
-    <thead>
-      <tr><th class="task-col">작업 항목</th>${COUNTRIES.map(c=>`<th colspan="${BRANDS.length}" class="country-group">${c.flag} ${c.name}</th>`).join('')}</tr>
-      <tr><th class="task-col"></th>${COUNTRIES.map(()=>BRANDS.map(b=>`<th style="font-size:10px;min-width:40px">${b}</th>`).join('')).join('')}</tr>
-    </thead>
-    <tbody>
-      ${rows.map(d=>`<tr><td class="task-col">${d.taskName}</td>${COUNTRIES.map(c=>BRANDS.map((b,bi)=>{
-        const val=d.row[c.colBase+bi*2]||'';
-        const s=getStatus(val);
-        const cls=s==='done'?'cell-done':s==='partial'?'cell-partial':'cell-none';
-        const lbl=s==='done'?'✓':s==='partial'?'~':'·';
-        return`<td${bi===0?' class="country-start"':''}><span class="${cls}">${lbl}</span></td>`;
-      }).join('')).join('')}</tr>`).join('')}
-    </tbody>
-  </table>`;
+function renderBrandMatrix(progress){
+  const STEPS=['STEP1 ALT태그','STEP2 메타태그','STEP3 FAQ/텍스트','STEP4 성과체크'];
+  const wrap=document.getElementById('matrixTable');
+
+  // 국가 탭 생성
+  const countries=progress.filter(c=>(c.items||[]).length>0);
+  if(!countries.length){
+    wrap.innerHTML='<div class="state-msg"><div class="icon">📋</div><div>데이터가 없습니다</div></div>';
+    return;
+  }
+
+  let activeCountry=countries[0].name;
+
+  function renderTable(cName){
+    const c=progress.find(p=>p.name===cName);
+    const items=c?c.items:[];
+
+    // 브랜드별로 그룹핑
+    const grouped={};
+    BRANDS.forEach(b=>{grouped[b]=items.filter(i=>i.brand===b);});
+
+    let rows='';
+    BRANDS.forEach(b=>{
+      const bItems=grouped[b];
+      if(!bItems.length)return;
+      rows+=`<tr class="task-section-row" style="background:var(--bg3)">
+        <td colspan="6" style="color:var(--accent2);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 12px">${b}</td>
+      </tr>`;
+      bItems.forEach(item=>{
+        const stepCells=item.steps.map(s=>{
+          const cls=s==='done'?'cell-done':s==='partial'?'cell-partial':'cell-none';
+          const lbl=s==='done'?'✓':s==='partial'?'~':'·';
+          return`<td><span class="${cls}">${lbl}</span></td>`;
+        }).join('');
+        const linkCell=item.link?`<a href="${item.link}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:11px">↗</a>`:'';
+        rows+=`<tr>
+          <td class="task-col" style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.product} ${linkCell}</td>
+          ${stepCells}
+        </tr>`;
+      });
+    });
+
+    return`<table>
+      <thead>
+        <tr>
+          <th class="task-col">상품명</th>
+          ${STEPS.map(s=>`<th style="font-size:10px;min-width:60px">${s}</th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+  }
+
+  // 국가 서브탭 + 테이블
+  const tabHtml=countries.map(c=>`
+    <button onclick="switchMatrixTab('${c.name}')" id="mtab-${c.name}"
+      style="padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:${c.name===activeCountry?'var(--bg4)':'transparent'};color:${c.name===activeCountry?'var(--text)':'var(--text3)'};transition:all 0.15s;margin-right:4px">
+      ${c.flag} ${c.name}
+    </button>`).join('');
+
+  wrap.innerHTML=`
+    <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:4px;flex-wrap:wrap">
+      ${tabHtml}
+    </div>
+    <div id="matrix-body">${renderTable(activeCountry)}</div>`;
+
+  window.switchMatrixTab=function(name){
+    activeCountry=name;
+    document.getElementById('matrix-body').innerHTML=renderTable(name);
+    countries.forEach(c=>{
+      const btn=document.getElementById('mtab-'+c.name);
+      if(!btn)return;
+      btn.style.background=c.name===name?'var(--bg4)':'transparent';
+      btn.style.color=c.name===name?'var(--text)':'var(--text3)';
+      btn.style.borderColor=c.name===name?'var(--border2)':'var(--border)';
+    });
+  };
 }
 
 function renderTasks(){
