@@ -235,7 +235,7 @@
 <script>
 // ==============================================
 // ★ 배포 전 여기만 수정하세요 (한 줄)
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_l0C9na2VG69CxfaqvhhzqeUoEDZqzdpDdn1UGOpkSFZbRQg4wkC_Qr58yVWcyDFv/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/여기에_웹앱_URL_붙여넣기/exec';
 // ==============================================
 
 const BRANDS = ['풀리','푸드올로지','95P','오브제','8APM','에이페'];
@@ -304,19 +304,25 @@ async function loadData(){
 }
 
 function processAndRender(rows){
+  // 헤더: "풀리"+"적용 날짜"가 같은 행에 있는 행 (브랜드 헤더 행)
   let hIdx=-1;
   for(let i=0;i<rows.length;i++){
     const j=rows[i].join(',');
-    if(j.includes('풀리')&&j.includes('푸드올로지')&&j.includes('적용 날짜')){hIdx=i;break;}
+    if(j.includes('풀리')&&j.includes('적용 날짜')&&j.includes('에이페')){hIdx=i;break;}
   }
   const dataRows=[];
-  const startIdx=hIdx>=0?hIdx+2:0;
+  // 헤더 바로 다음 행부터 데이터
+  const startIdx=hIdx>=0?hIdx+1:0;
   for(let i=startIdx;i<rows.length;i++){
     const r=rows[i];
     const taskName=r[2]?r[2].trim():'';
     if(!taskName||taskName===''||taskName==='프로세스명')continue;
-    if(!r[1]||r[1].trim()==='')continue;
-    dataRows.push({taskName,num:r[1]||'',row:r});
+    // 숫자 항목번호 or "단계" 표시가 있는 행만
+    const num=String(r[1]||'').trim();
+    if(!num||num==='항목'||num==='개발파트 세팅  필요 건'||num==='MD 세팅 필요 건')continue;
+    // 참고/빈 섹션 제외
+    if(taskName.startsWith('■')||taskName.startsWith('http'))continue;
+    dataRows.push({taskName,num,row:r});
   }
   const matrix={};
   COUNTRIES.forEach(c=>{matrix[c.name]={};BRANDS.forEach(b=>{matrix[c.name][b]=[];});});
