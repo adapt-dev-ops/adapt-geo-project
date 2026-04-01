@@ -243,7 +243,7 @@
 <script>
 // ==============================================
 // ★ 배포 전 여기만 수정하세요 (한 줄)
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_l0C9na2VG69CxfaqvhhzqeUoEDZqzdpDdn1UGOpkSFZbRQg4wkC_Qr58yVWcyDFv/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/여기에_웹앱_URL_붙여넣기/exec';
 // ==============================================
 
 const BRANDS = ['풀리','푸드올로지','95P','오브제','8APM','에이페'];
@@ -274,10 +274,26 @@ const TASKS_MD = [
   {n:'4',name:'성과 분석',detail:'Google Rich Results Test + Beusable GEO로 스키마 점수 확인. 클로드 활용 자가진단 프롬프트 병행.',party:'md'},
 ];
 const GEO_HISTORY = [
+  {score:95,grade:'A',brand:'풀리',product:'쌀 세라 수분 선크림',url:'full-y.co.kr · consumer · detail',date:'2026-04-01',
+   items:[['속성 완성도','29/30',97],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+   strengths:['Organization+Product+Review+FAQPage 완벽 구현','AggregateRating 2,847개','FAQPage 5개 구조화','고객 리뷰 5개 구조화','shippingDetails·반품 정책 완전 구조화'],
+   warnings:['@context 중복 정의 — @graph 통합 최적화 권장','Manufacturer @id 참조 개선 가능']},
   {score:94,grade:'A',brand:'풀리',product:'쌀 세라 에센스 토너',url:'full-y.co.kr · consumer · detail',date:'2026-04-01',
    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
    strengths:['Product 스키마 완벽','AggregateRating 374개','FAQPage 5개 구조화','Offer 4가지 옵션 상세'],
-   warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']}
+   warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']},
+  {score:91,grade:'A',brand:'95P',product:'발란스핏 EMS 슬림 벨트 PRO',url:'95problems.com · consumer · detail',date:'2026-04-01',
+   items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+   strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
+   warnings:['개별 Review 스키마 부재','제품 세부 사양(모델명·배터리) 구조화 미흡','HowToUse 스키마 부재']},
+  {score:91,grade:'A',brand:'푸드올로지',product:'지중해 올리브오일',url:'food-ology.co.kr · consumer · detail',date:'2026-04-01',
+   items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
+   strengths:['Product 스키마 완벽 구현','다중 Offer 5가지 구독 옵션','FAQPage 5개 구조화','BreadcrumbList 3단계 명확'],
+   warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','HowTo 스키마 미적용']},
+  {score:89,grade:'B',brand:'푸드올로지',product:'콜레올로지 컷 다이어트 유산균',url:'food-ology.co.kr · consumer · detail',date:'2026-04-01',
+   items:[['속성 완성도','25/30',83],['정보 정확도','22/25',88],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+   strengths:['Product+Offer 7가지 옵션 완벽 구조화','AggregateRating 6,769개','FAQPage 5개 구조화','PropertyValue로 성분·섭취법 상세 제공'],
+   warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','유명인 모델 정보 구조화 미흡']}
 ];
 
 function getStepStatus(val, date){
@@ -610,7 +626,7 @@ function renderGeoHistory(){
       <span class="history-grade grade-${gc}">${h.grade}등급</span>
       <div class="history-date">${h.date}</div>
     </div>
-    ${i===0&&h.items?`<div class="score-card" style="margin-top:0;margin-bottom:16px;border-top:none;border-top-left-radius:0;border-top-right-radius:0;">
+    ${h.items?`<div class="score-card" style="margin-top:0;margin-bottom:16px;border-top:none;border-top-left-radius:0;border-top-right-radius:0;">
       <div class="score-bars">${h.items.map(([k,v,pct])=>`<div><div class="score-bar-header"><span class="score-bar-label">${k}</span><span class="score-bar-val">${v}</span></div><div class="score-bar-track"><div class="score-bar-fill" style="width:${pct}%"></div></div></div>`).join('')}</div>
       <div class="score-tags">${h.strengths.map(s=>`<span class="score-tag">✓ ${s}</span>`).join('')}${h.warnings.map(w=>`<span class="score-tag warn">⚠ ${w}</span>`).join('')}</div>
     </div>`:''}`;
