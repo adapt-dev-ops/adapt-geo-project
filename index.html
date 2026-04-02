@@ -267,28 +267,41 @@ const TASKS_MD = [
   {n:'3',name:'상세 FAQ 취합',detail:'고객 CS에서 빈도 높은 내용 가공. USP당 1~2개 구성, 완결된 문장으로 답변.',party:'md'},
   {n:'4',name:'성과 분석',detail:'Google Rich Results Test + Beusable GEO로 스키마 점수 확인. 클로드 활용 자가진단 프롬프트 병행.',party:'md'},
 ];
-const GEO_HISTORY = [
-  {score:95,grade:'A',brand:'풀리',product:'쌀 세라 수분 선크림',url:'full-y.co.kr · consumer · detail',date:'2026-04-01',
-   items:[['속성 완성도','29/30',97],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-   strengths:['Organization+Product+Review+FAQPage 완벽 구현','AggregateRating 2,847개','FAQPage 5개 구조화','고객 리뷰 5개 구조화','shippingDetails·반품 정책 완전 구조화'],
-   warnings:['@context 중복 정의 — @graph 통합 최적화 권장','Manufacturer @id 참조 개선 가능']},
-  {score:94,grade:'A',brand:'풀리',product:'쌀 세라 에센스 토너',url:'full-y.co.kr · consumer · detail',date:'2026-04-01',
-   items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-   strengths:['Product 스키마 완벽','AggregateRating 374개','FAQPage 5개 구조화','Offer 4가지 옵션 상세'],
-   warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']},
-  {score:91,grade:'A',brand:'95P',product:'발란스핏 EMS 슬림 벨트 PRO',url:'95problems.com · consumer · detail',date:'2026-04-01',
-   items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-   strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
-   warnings:['개별 Review 스키마 부재','제품 세부 사양(모델명·배터리) 구조화 미흡','HowToUse 스키마 부재']},
-  {score:91,grade:'A',brand:'푸드올로지',product:'지중해 올리브오일',url:'food-ology.co.kr · consumer · detail',date:'2026-04-01',
-   items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
-   strengths:['Product 스키마 완벽 구현','다중 Offer 5가지 구독 옵션','FAQPage 5개 구조화','BreadcrumbList 3단계 명확'],
-   warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','HowTo 스키마 미적용']},
-  {score:89,grade:'B',brand:'푸드올로지',product:'콜레올로지 컷 다이어트 유산균',url:'food-ology.co.kr · consumer · detail',date:'2026-04-01',
-   items:[['속성 완성도','25/30',83],['정보 정확도','22/25',88],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-   strengths:['Product+Offer 7가지 옵션 완벽 구조화','AggregateRating 6,769개','FAQPage 5개 구조화','PropertyValue로 성분·섭취법 상세 제공'],
-   warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','유명인 모델 정보 구조화 미흡']}
-];
+
+const GEO_PDF_DATA = {
+  '풀리:쌀 세라 수분 선크림': {
+    items:[['속성 완성도','29/30',97],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+    strengths:['Organization+Product+Review+FAQPage 완벽 구현','AggregateRating 2,847개','FAQPage 5개 구조화','고객 리뷰 5개 구조화','shippingDetails·반품 정책 완전 구조화'],
+    warnings:['@context 중복 정의 — @graph 통합 최적화 권장','Manufacturer @id 참조 개선 가능']
+  },
+  '풀리:쌀 세라 에센스토너': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product 스키마 완벽','AggregateRating 374개','FAQPage 5개 구조화','Offer 4가지 옵션 상세'],
+    warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']
+  },
+  '95P:발란스핏 EMS 슬림 벨트 PRO': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
+    warnings:['개별 Review 스키마 부재','제품 세부 사양(모델명·배터리) 구조화 미흡','HowToUse 스키마 부재']
+  },
+  '푸드올로지:지중해 올리브오일': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
+    strengths:['Product 스키마 완벽 구현','다중 Offer 5가지 구독 옵션','FAQPage 5개 구조화','BreadcrumbList 3단계 명확'],
+    warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','HowTo 스키마 미적용']
+  },
+  '푸드올로지:콜레올로지 컷 다이어트 유산균': {
+    items:[['속성 완성도','25/30',83],['정보 정확도','22/25',88],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product+Offer 7가지 옵션 완벽 구조화','AggregateRating 6,769개','FAQPage 5개 구조화','PropertyValue로 성분·섭취법 상세 제공'],
+    warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','유명인 모델 정보 구조화 미흡']
+  },
+  '에이페:Epais Scalp Boosting Ampoule': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
+    strengths:['Product+Offer+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (393개 리뷰)','FAQPage 7개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보'],
+    warnings:['개별 Review 스키마 부재','HowToUse 스키마 미적용','임상 검증 수치 구조화 미흡','기술 사양 PropertyValue 부재']
+  },
+};
+let GEO_HISTORY = [];
+
 
 function getStepStatus(val, date){
   // 날짜 컬럼에 값 있으면 완료
@@ -413,6 +426,57 @@ function processAndRender(allData){
   progress.forEach(p=>{const el=document.getElementById(p.metricId);if(el)el.textContent=p.pct+'%';});
   renderOverview(progress);
   renderBrandMatrix(progress);
+  parseGeoScores(allData);
+}
+
+function parseGeoScores(allData){
+  const sheet = allData['GEO 진행 상황'] || allData['브랜드별 진행 상황'] || [];
+  const brandMap = {'95PROBLEM':'95P'};
+  const scores = [];
+
+  sheet.forEach(row => {
+    const brand = String(row[0]||'').trim();
+    const product = String(row[1]||'').trim();
+    const link = String(row[2]||'').trim();
+    const scoreVal = String(row[10]||'').trim();
+    const dateVal = String(row[11]||'').trim();
+
+    if(!brand||!product||!scoreVal) return;
+    if(product.includes('★')||product.includes('초특가')) return;
+    const score = parseInt(scoreVal);
+    if(isNaN(score)||score<50||score>100) return;
+
+    const normalBrand = brandMap[brand]||(BRANDS.find(b=>brand===b||brand.includes(b))||brand);
+    if(!BRANDS.includes(normalBrand)) return;
+
+    // 등급 계산
+    const grade = score>=90?'A':score>=80?'B':score>=70?'C':'D';
+
+    // 날짜 포맷 정리
+    let date = dateVal;
+    if(date && /^\d{4}-\d{2}-\d{2}/.test(date)) date = date.split('T')[0];
+
+    // url 생성
+    const urlObj = link ? (()=>{try{return new URL(link);}catch(e){return null;}})() : null;
+    const url = urlObj ? urlObj.hostname.replace('www.','') + ' · consumer · detail' : '';
+
+    // PDF 기반 세부 데이터 매핑
+    const pdfData = GEO_PDF_DATA[normalBrand+':'+product.trim()] || GEO_PDF_DATA[normalBrand+':'+product.trim().replace(/ /g,'_')] || {};
+    scores.push({score, grade, brand:normalBrand, product:product.trim(), url, date,
+      items: pdfData.items||[],
+      strengths: pdfData.strengths||[],
+      warnings: pdfData.warnings||[]
+    });
+  });
+
+  // 점수 높은 순 정렬
+  scores.sort((a,b)=>b.score-a.score);
+
+  // GEO_HISTORY 업데이트 후 렌더
+  GEO_HISTORY.length = 0;
+  scores.forEach(s => GEO_HISTORY.push(s));
+  renderGeoFilter();
+  renderGeoHistory();
 }
 
 function renderOverview(progress){
