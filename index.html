@@ -381,29 +381,42 @@ async function loadData(){
 }
 
 function parseDevSheet(allData){
-  // [GEO] 프로세스_파트별 분담 시트에서 개발파트 H1/H2, 통합스키마 읽기
-  const sheet = allData['[GEO] 프로세스_파트별 분담'] || [];
-  // 브랜드 순서: 풀리,푸드올로지,95P,오브제,8APM,에이페 (국내 기준 col7,9,11,13,15,17)
-  const DEV_TASKS = ['H1 / H2 태그','통합 상세 스키마 설정 점검'];
-  const result = {}; // {브랜드: {taskName: 'done'|'none'}}
+  const sheet = allData['GEO 프로세스_파트별 분담'] || 
+                allData['[GEO] 프로세스_파트별 분담'] || [];
+  
+  // 실제 태스크명 (엑셀 기준)
+  const DEV_TASKS = ['H1 / H2 태그', '통합 스키마 설정 점검'];
+  const result = {};
   BRANDS.forEach(b => { result[b] = {}; DEV_TASKS.forEach(t => { result[b][t] = 'none'; }); });
 
+  // 헤더 찾기: 풀리 + 에이페 + 적용 날짜 가 같은 행에
   let hIdx = -1;
-  for(let i=0;i<sheet.length;i++){
-    const j=sheet[i].join(',');
-    if(j.includes('풀리') && j.includes('적용 날짜') && j.includes('에이페')){hIdx=i;break;}
+  for(let i = 0; i < sheet.length; i++){
+    const j = sheet[i].join(',');
+    if(j.includes('풀리') && j.includes('에이페') && j.includes('적용 날짜')){
+      hIdx = i; break;
+    }
   }
   if(hIdx < 0) return result;
 
-  for(let i=hIdx+1;i<sheet.length;i++){
+  // 데이터는 hIdx+1부터
+  // 국내 브랜드 날짜 컬럼: 풀리=7, 푸드올로지=9, 95P=11, 오브제=13, 8APM=15, 에이페=17
+  const dateCols = [7, 9, 11, 13, 15, 17];
+
+  for(let i = hIdx + 1; i < sheet.length; i++){
     const row = sheet[i];
-    const task = String(row[2]||'').trim();
-    if(!DEV_TASKS.includes(task)) continue;
-    // 국내 기준 날짜컬럼: 풀리=7, 푸드올로지=9, 95P=11, 오브제=13, 8APM=15, 에이페=17
-    const dateCols = [7,9,11,13,15,17];
-    BRANDS.forEach((b,bi) => {
-      const d = String(row[dateCols[bi]]||'').trim();
-      if(d && d!=='-' && d!=='·') result[b][task] = 'done';
+    const task = String(row[2] || '').trim();
+    if(!task) continue;
+    
+    // 태스크명 매칭 (부분 일치 허용)
+    const matchedTask = DEV_TASKS.find(t => task.includes(t) || t.includes(task));
+    if(!matchedTask) continue;
+
+    BRANDS.forEach((b, bi) => {
+      const dateVal = String(row[dateCols[bi]] || '').trim();
+      if(dateVal && dateVal !== '-' && dateVal !== '·') {
+        result[b][matchedTask] = 'done';
+      }
     });
   }
   return result;
@@ -431,7 +444,7 @@ function processAndRender(allData){
     const s1=getStepStatus(row[6],row[7]);
     const s2=getStepStatus(row[8],row[9]);
     const s3=getStepStatus(row[10],row[11]);
-    const devSteps=[devData[normalBrand]?.['H1 / H2 태그']||'none',devData[normalBrand]?.['통합 상세 스키마 설정 점검']||'none'];
+    const devSteps=[devData[normalBrand]?.['H1 / H2 태그']||'none', devData[normalBrand]?.['통합 스키마 설정 점검']||'none'];
     countryData[currentCountry].push({brand:normalBrand,product,link,steps:[s1,s2,s3],devSteps,stepVals:[String(row[6]||''),String(row[8]||''),String(row[10]||'')]});
   });
 
@@ -556,7 +569,7 @@ function renderOverview(progress){
 
 function renderBrandMatrix(progress){
   const STEPS=['STEP1 FAQ','STEP2 메타태그','STEP3 성과체크'];
-  const DEV_STEPS=['H1/H2 태그','통합 스키마'];
+  const DEV_STEPS = ['H1/H2 태그', '통합 스키마'];  // 표시명은 그대로 OK
   const wrap=document.getElementById('matrixTable');
 
   // 국가 탭 생성
