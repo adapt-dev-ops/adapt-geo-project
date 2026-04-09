@@ -437,7 +437,7 @@ function processAndRender(allData){
     if(col0==='브랜드'||!col0||!currentCountry)return;
     const product=String(row[1]||'').trim();
     const link=String(row[2]||'').trim();
-    if(!product && !String(row[0]||'').trim()) return; // 브랜드명도 없을 때만 스킵
+    if(!product) return;
     const brandMap={'95PROBLEM':'95P'};
     const normalBrand=brandMap[col0]||BRANDS.find(b=>col0===b||col0.includes(b))||col0;
     if(!BRANDS.includes(normalBrand))return;
