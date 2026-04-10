@@ -284,6 +284,11 @@ const GEO_PDF_DATA = {
     strengths:['Organization+Product+BreadcrumbList+FAQPage+ItemList 5개 스키마 포괄 구성','AggregateRating 4.9/5.0 (4,153개 리뷰)','FAQPage 6개 구조화','5개 Offer 구성 및 배송·반품 정책 완비','Review 3개 샘플 구조화'],
     warnings:['Product.description 간단함 — 핵심 성분·효과·차별점 상세화 필요','additionalProperty 성분 정보 상세화 필요']
   },
+  '풀리:쌀 PDRN 광채 세럼': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+    strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (172개 리뷰)','FAQPage 6개 구조화','Organization+BreadcrumbList 완전 구조화','ItemList 추천 제품 연관성 강화','HowTo 스키마 적용 완료'],
+    warnings:['Review 개별 스키마 부재 — 리뷰 텍스트 AI 인용 불가','additionalProperty 핵심 성분 함유량 상세화 권장']
+  },
   '95P:발란스핏 EMS 슬림 벨트 PRO': {
     items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
     strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
@@ -419,10 +424,15 @@ const GEO_PDF_DATA = {
     strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (93개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보','PropertyValue 성분·사용법·주의사항 상세'],
     warnings:['Review 스키마 부재 — 93개 리뷰 AI 인용 불가','additionalProperty 세분화 권장 — 사용법·용량·주의사항 추가','@id 참조 체계 개선 가능']
   },
-  '풀리:쌀 PDRN 광채 세럼': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (172개 리뷰)','FAQPage 6개 구조화','Organization+BreadcrumbList 완전 구조화','ItemList 추천 제품 연관성 강화','HowTo 스키마 적용 완료'],
-    warnings:['Review 개별 스키마 부재 — 리뷰 텍스트 AI 인용 불가','additionalProperty 핵심 성분 함유량 상세화 권장']
+  '에이페:스칼프 부스팅 앰플 (TW)': {
+    items:[['속성 완성도','24/30',80],['정보 정확도','21/25',84],['AI 인용 친화성','12/20',60],['스키마 커버리지','11/15',73],['구문 유효성','9/10',90]],
+    strengths:['기본 Product 스키마 구현','AggregateRating 5.0/5.0 (48개 리뷰)','Open Graph 메타태그 완비','H1 태그 명확'],
+    warnings:['Brand 필드 공란 — EPAIS 브랜드 정체성 불명확','description 누락 — 제품 기능·성분 미구조화','Organization 스키마 부재','조합 옵션(1+1·2+1) 미구조화','FAQPage 스키마 미적용']
+  },
+  '에이페:아이래쉬 에센셜 세럼 (TW)': {
+    items:[['속성 완성도','21/30',70],['정보 정확도','18/25',72],['AI 인용 친화성','12/20',60],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],
+    strengths:['기본 Product 스키마 구현','AggregateRating 4.9/5.0 (53개 리뷰)','Open Graph 메타태그 완비','이미지 2개 이상 제공'],
+    warnings:['description·brand 필드 누락','조합 옵션 7가지 미구조화','Organization 스키마 부재','BreadcrumbList 없음','배송·결제 메타데이터 부재']
   }
 };
 let GEO_HISTORY = [];
