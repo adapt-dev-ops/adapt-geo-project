@@ -279,6 +279,11 @@ const GEO_PDF_DATA = {
     strengths:['Product 스키마 완벽','AggregateRating 374개','FAQPage 5개 구조화','Offer 4가지 옵션 상세'],
     warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']
   },
+  '풀리:그린토마토 팩 클렌저': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+BreadcrumbList+FAQPage+ItemList 5개 스키마 포괄 구성','AggregateRating 4.9/5.0 (4,153개 리뷰)','FAQPage 6개 구조화','5개 Offer 구성 및 배송·반품 정책 완비','Review 3개 샘플 구조화'],
+    warnings:['Product.description 간단함 — 핵심 성분·효과·차별점 상세화 필요','additionalProperty 성분 정보 상세화 필요']
+  },
   '95P:발란스핏 EMS 슬림 벨트 PRO': {
     items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
     strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
@@ -329,11 +334,81 @@ const GEO_PDF_DATA = {
     strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.7/5.0 (672개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 적용','PropertyValue 원재료 상세 기재'],
     warnings:['개별 Review 텍스트 부재 — 실제 사용자 의견 인용 불가','반품 절차 상세 안내 추가 가능']
   },
+  '푸드올로지:콜레올로지 컷 PRO': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (43,474개 리뷰)','FAQPage 6개 구조화','Offer 5가지 구성(1~6개월) 상세','additionalProperty 성분·기능성 구조화','og 메타태그 완비'],
+    warnings:['각 Offer @id 참조 구조 추가 권장 — @graph 연결 강화 가능']
+  },
+  '푸드올로지:지중해 레몬그린티': {
+    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','8/10',80]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 구현','AggregateRating 4.9/5.0 (499개 리뷰)','FAQPage 6개 구조화','Offer 6가지 옵션 구성','NutritionInformation 스키마 적용','HowTo 스키마 적용','Review 2개 샘플 구조화'],
+    warnings:['@id 참조 연결 제한적 — Organization-Product 관계 명시 강화 필요','구문 유효성 8/10 — 문법 오류 점검 필요','A등급까지 +1점 — 소폭 개선으로 등급 상향 가능']
+  },
+  '오브제:오일 컨트롤 피니셔': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product+Offer+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (920개 리뷰)','FAQPage 6개 구조화','HowToUse 스키마 적용','Organization SNS 링크(인스타·유튜브·카카오) 완비','additionalProperty 전성분 구조화'],
+    warnings:['Review 개별 스키마 미구현 — 고객 후기 AI 직접 인용 불가','WebPage 스키마 미적용 — datePublished 등 메타정보 누락']
+  },
+  '오브제:포어 제로 오일 컨트롤 선스틱': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product 스키마 완벽 구현 — 상품명·설명·이미지·SKU·브랜드 완비','AggregateRating 4.9/5.0 (1,618개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 5단계 카테고리 완벽 구현','6가지 Offer 구성 및 배송·반품 정책 완벽 적용','PropertyValue 성분·효능·SPF 정보 구조화'],
+    warnings:['Review 개별 샘플 부재 — 종합 평점만 있고 고객 리뷰 텍스트 미구조화','Color/Size 옵션 미명시','WebPage 스키마 부재']
+  },
+  '오브제:내추럴 커버 로션 2종': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
+    strengths:['Product 필수 요소 완전 구성 — name·image·description·offers·aggregateRating','Offer 12가지 옵션 및 가격대 명확 구조화','AggregateRating 4.9/5.0 (1,975개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 4단계 구현','MerchantReturnPolicy 30일 무료 반품 완비'],
+    warnings:['Organization-Product @id 참조 분리 — 통합 @graph 구조로 강화 필요','Review 개별 샘플 없음 — 신뢰도 향상을 위해 3~5개 추가 권장','additionalProperty 전성분이 과도하게 길어 파싱 복잡']
+  },
+  '오브제:액티브 스웨트프루프 선스틱': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product+Organization+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (136개 리뷰)','FAQPage 6개 구조화','다양한 Offer 옵션 및 가격 구조화','HowTo 스키마 적용 — 사용 단계별 구조화','Review 3개 샘플 구조화','Open Graph 메타태그 완비'],
+    warnings:['Review 샘플 수 추가 권장 — 현재 3개에서 5개로 확대','HowTo 단계 6~8개로 세분화 권장']
+  },
+  '오브제:퍼펙트 커버 쿠션': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','21/25',84],['AI 인용 친화성','18/20',90],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
+    strengths:['Product 스키마 완전 구조화 — 제품명·가격·이미지·기능 명확','AggregateRating 4.9/5.0 (2,451개 리뷰)','다중 Offer — 색상별(아이보리/베이지/샌드)·세트별 구조화','FAQPage 6개 구조화','BreadcrumbList 4단계 구현','OfferShippingDetails 배송·반품 완비','Review 3개 샘플 구조화'],
+    warnings:['리뷰 수 불일치 — 메타데이터 2,451개 vs 스키마 281개 정합성 수정 필요','datePublished 정보 부재 — 최신성 표시 불가','제품 특징 수치(모공 커버 49.2%, 스웨트프루프 98.3%) 구조화 더 정교화 가능']
+  },
+  '오브제:포어 제로 무스 클레이 팩': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (442개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 5단계 네비게이션','5가지 Offer 옵션 완벽 구조화','ShippingDetails·MerchantReturnPolicy 완비','additionalProperty 임상 데이터·성분 상세 구조화'],
+    warnings:['Review 개별 스키마 부재 — 구체적 고객 의견 AI 인용 불가','ImageObject 타입 미명시 — 이미지 메타데이터 활용 제한']
+  },
+  '오브제:내추럴 커버 파운데이션': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product 스키마 완벽 구성 — 상품명·설명·가격·이미지 명확','AggregateRating 4.9/5.0 (29,933개 리뷰)','29개 이상 Offer 옵션 — 세트 구성별 가격 상세 구조화','FAQPage 6개 구조화','BreadcrumbList 4단계 구현','MerchantReturnPolicy·ShippingDeliveryTime 완비','color 배열(아이보리·베이지·샌드) 명시적 구조화'],
+    warnings:['Organization-Product @id 연결 부분적 — 통합 강화 필요','각 색상별 SKU 구분 미흡 — 통합 코드 "9"만 사용','HowToUse 스키마 부재 — 브러쉬 사용법 미구조화']
+  },
+  '오브제:맥스 올인원 워시 500ml': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product+Offer+AggregateRating 완벽 구현','AggregateRating 4.9/5.0 (96개 리뷰)','5개 Offer 옵션별 가격·배송·반품 정책 상세','FAQPage 6개 구조화','BreadcrumbList 5단계 구현','Organization 브랜드 정체성 확립','additionalProperty 주요 성분·효능 구조화'],
+    warnings:['개별 Review 스키마 없음 — 종합 평점만 있고 상세 리뷰 미구조화','HowTo 스키마 부재 — 사용 방법 단계별 구조화 미흡','주요 성분(DEO-NATURE™, 락토-시카™) 효능 정보 분산']
+  },
+  '오브제:맥스 워터풀 선크림 300ml': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+    strengths:['@graph 구조로 Organization+Product+BreadcrumbList+FAQPage 완벽 통합','AggregateRating 4.9/5.0 (125개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 5단계 구현','5개 Offer 세트 구성 상세','HowTo 스키마 적용 — 5단계 사용법 구조화','Review 3개 샘플 구조화','additionalProperty 성분·효능 구조화'],
+    warnings:['개별 Review 샘플 추가 권장 — 현재 3개에서 5개로 확대','color·material 속성 추가로 필터링 검색 최적화 가능']
+  },
   '에이페:Epais Scalp Boosting Ampoule': {
     items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
     strengths:['Product+Offer+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (393개 리뷰)','FAQPage 7개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보'],
     warnings:['개별 Review 스키마 부재','HowToUse 스키마 미적용','임상 검증 수치 구조화 미흡','기술 사양 PropertyValue 부재']
   },
+  '에이페:스칼프 부스팅 앰플': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (2,361개 리뷰)','FAQPage 6개 구조화','Offer 4가지 옵션 상세','PropertyValue 임상결과·사용법 구조화','MerchantReturnPolicy 완비'],
+    warnings:['Review 스키마 부재 — 개별 고객 리뷰 AI 인용 불가','HowTo 스키마 부재 — 사용법 단계별 구조화 미흡']
+  },
+  '에이페:리페어 리브인 트리트먼트': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (93개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보','PropertyValue 성분·사용법·주의사항 상세'],
+    warnings:['Review 스키마 부재 — 93개 리뷰 AI 인용 불가','additionalProperty 세분화 권장 — 사용법·용량·주의사항 추가','@id 참조 체계 개선 가능']
+  },
+  '풀리:쌀 PDRN 광채 세럼': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+    strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (172개 리뷰)','FAQPage 6개 구조화','Organization+BreadcrumbList 완전 구조화','ItemList 추천 제품 연관성 강화','HowTo 스키마 적용 완료'],
+    warnings:['Review 개별 스키마 부재 — 리뷰 텍스트 AI 인용 불가','additionalProperty 핵심 성분 함유량 상세화 권장']
+  }
 };
 let GEO_HISTORY = [];
 
