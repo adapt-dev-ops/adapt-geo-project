@@ -408,12 +408,7 @@ const GEO_PDF_DATA = {
     items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
     strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 5.0/5.0 (745개 리뷰)','FAQPage 6개 구조화','Offer 5가지 옵션 구조화','Review 2개 샘플 구조화','PropertyValue 전성분 상세 구조화'],
     warnings:['@graph에서 Product-Organization 명시적 @id 참조 강화 권장','Review 샘플 2개 — 추가 확대 권장']
-  },
-  '에이페:Epais Scalp Boosting Ampoule': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (393개 리뷰)','FAQPage 7개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보'],
-    warnings:['개별 Review 스키마 부재','HowToUse 스키마 미적용','임상 검증 수치 구조화 미흡','기술 사양 PropertyValue 부재']
-  },
+  },,
   '에이페:스칼프 부스팅 앰플': {
     items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
     strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (2,361개 리뷰)','FAQPage 6개 구조화','Offer 4가지 옵션 상세','PropertyValue 임상결과·사용법 구조화','MerchantReturnPolicy 완비'],
@@ -433,7 +428,27 @@ const GEO_PDF_DATA = {
     items:[['속성 완성도','21/30',70],['정보 정확도','18/25',72],['AI 인용 친화성','12/20',60],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],
     strengths:['기본 Product 스키마 구현','AggregateRating 4.9/5.0 (53개 리뷰)','Open Graph 메타태그 완비','이미지 2개 이상 제공'],
     warnings:['description·brand 필드 누락','조합 옵션 7가지 미구조화','Organization 스키마 부재','BreadcrumbList 없음','배송·결제 메타데이터 부재']
-  }
+  },
+  '에이페:Epais Scalp Boosting Ampoule': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
+    strengths:['Product+Offer+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (393개 리뷰)','FAQPage 7개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보'],
+    warnings:['개별 Review 스키마 부재','HowToUse 스키마 미적용','임상 검증 수치 구조화 미흡','기술 사양 PropertyValue 부재']
+  },
+  '에이페:Eyelash Essential Serum': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+BreadcrumbList+HowTo 완벽 구현','Offer 배송비·반품 정책 완비','ClaimReview 임상 데이터 구조화','ItemList 추천 상품 연결','Open Graph 메타태그 완벽 구성'],
+    warnings:['AggregateRating null 처리 — 페이지 4.8/5.0 (173개) 스키마 미반영','Review 스키마 부재 — 개별 고객 리뷰 인용 불가','Ingredients 스키마 미구조화 — 10가지 특허 성분 정보 부재']
+  },
+  '에이페:Eyelash Black Serum': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Product+AggregateRating+Offer 완벽 구현','AggregateRating 4.8/5.0 (125개 리뷰)','HowTo 4단계 구조화','BreadcrumbList 완벽 구현','FAQPage+ClaimReview 적용','Open Graph 메타태그 완비'],
+    warnings:['Review 스키마 부재 — 125개 리뷰 텍스트 AI 인용 불가','Clinical Test 수치 구조화 미흡 — ClaimReview/PropertyValue 변환 권장','FAQPage 스키마 미적용']
+  },
+  '에이페:Scalp Intensive Ampoule': {
+    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+BreadcrumbList+FAQPage+HowTo 완벽 구현','AggregateRating 4.8/5.0 (160개 리뷰)','FAQPage 5개 구조화','HowTo 7단계 구조화','Offer 배송·반품 정책 완비','Review 3개 샘플 구조화'],
+    warnings:['aggregateRating null 처리 — AggregateRating 직접 참조 강화 필요','Product color·material 속성 미포함']
+  },
 };
 let GEO_HISTORY = [];
 
