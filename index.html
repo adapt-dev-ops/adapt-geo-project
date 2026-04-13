@@ -328,7 +328,12 @@ const GEO_PDF_DATA = {
     items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]], 
     strengths:['Product 스키마가 상품명, 이미지, 설명, SKU, 브랜드로 완벽하게 구조화됨','Offer 정보로 가격(139,000원), 할인율(48%), 통화(KRW), 배송비 무료, 배송 시간이 명확하게 표현됨','AggregateRating으로 평점 4.9/5.0과 리뷰 922개 정보 제공','MerchantReturnPolicy로 30일 환불, 무료 반품 정책이 구조화됨','BreadcrumbList로 네비게이션 경로가 명확하게 표시됨','기본 메타태그(og:title, og:description, og:image, product:price 등)가 충실하게 구성됨'],
      warnings:['Review 개별 리뷰 샘플 스키마 추가로 구체성 강화 가능','제품 상세 사양(모델명, 정격전압, 정격전력, 무게, 색상 옵션)을 PropertyValue 형식으로 더 명확하게 구조화 필요','FAQPage 스키마로 배송 기간, 교환/반품/환불 안내, A/S 정책을 구조화하면 직접 인용 가능성 증가','사용 시간, 온열 온도 등 주요 기능 사양을 additionalProperty로 추가 필요'] 
-    },
+  },
+  '95P:발란스핏 압박스타킹 종아리형 프로': { 
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
+    strengths:['Organization, Product, Offer, AggregateRating, BreadcrumbList, FAQPage 모든 핵심 스키마 완벽 구현','다양한 구성(옵션1~5)과 색상, 사이즈별로 개별 Offer 상세 구조화','평점 4.9/5.0, 521개 리뷰가 AggregateRating으로 정확히 표현','배송료, 배송 기간(1~2일), 교환/반품 정책(30일)이 OfferShippingDetails와 MerchantReturnPolicy로 명시','6개의 주요 질문-답변 쌍이 FAQPage mainEntity로 완벽하게 구조화','의료기기 인증 정보가 description에 명시되어 신뢰도 강화','og:type=product와 Product 스키마가 일치하여 메타데이터 일관성 우수'], 
+    warnings:['Review 스키마로 개별 고객 리뷰(3~5개 샘플) 추가 시 AI 인용 신뢰도 추가 상승 가능','MedicalDevice 스키마 추가로 의료기기로서의 정체성 더욱 명확화 가능'] 
+  },
   '95P:발란스핏 종아리 마사지기 컴팩트형/지퍼형': { 
     items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]], 
     strengths:['Product 스키마가 완전하게 구현됨 — 제품명, 이미지, 설명, SKU, 브랜드 모두 포함','4개 옵션별 개별 Offer 스키마로 다양한 가격대(59,000~140,000원) 정확히 표시','AggregateRating으로 5.0 평점과 1,504개 리뷰 수 제공 — 신뢰도 높음','FAQPage 스키마로 6개 Q&A가 직접 인용 가능한 형식으로 제공','Organization 스키마로 회사 정보(주소, 연락처, 로고)가 명확히 구조화','BreadcrumbList로 홈 > 제품 상세 네비게이션 경로 제공','배송비, 반품정책, 배송 기간 등 거래 정보가 Offer 내에 완벽하게 포함','og:type, og:title, og:description 등 기본 메타태그 완벽하게 구성'], 
