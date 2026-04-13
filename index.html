@@ -455,8 +455,10 @@ let GEO_HISTORY = [];
 
 function getStepStatus(val, date){
   // 날짜 컬럼에 값 있으면 완료
-  const d=String(date||'').trim();
-  if(d&&d!=='-'&&d!=='·') return 'done';
+  const d = String(date||'').trim();
+  const v = String(val||'').trim();
+  if(d && d !== '-' && d !== '·') return 'done';
+  if(v && v !== '-' && v !== '·') return 'done';
   return 'none';
 }
 
