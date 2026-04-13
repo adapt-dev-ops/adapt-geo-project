@@ -577,8 +577,8 @@ function parseDevSheet(allData){
   if(hIdx < 0) return result;
 
   // 데이터는 hIdx+1부터
-  // 국내 브랜드 날짜 컬럼: 풀리=7, 푸드올로지=9, 95P=11, 오브제=13, 8APM=15, 에이페=17
-  const dateCols = [7, 9, 11, 13, 15, 17];
+  // 국내 브랜드 날짜 컬럼: 풀리=7, 푸드올로지=9, 95P=11, 오브제=13, 8APM=15, 에이페=17, 듀오렉신=19
+  const dateCols = [7, 9, 11, 13, 15, 17, 19];
 
   for(let i = hIdx + 1; i < sheet.length; i++){
     const row = sheet[i];
