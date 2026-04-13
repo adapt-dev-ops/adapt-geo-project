@@ -299,6 +299,21 @@ const GEO_PDF_DATA = {
     strengths:['Product 스키마가 완벽하게 구성되어 있음 — 상품명, 이미지, 설명, SKU, 브랜드 명시','다양한 Offer 옵션 (5가지 세트 구성)으로 선택지를 명확히 제시','AggregateRating 스키마로 4.9/5.0 평점과 4,697개 리뷰 신뢰도 제공','FAQPage 스키마로 6개의 주요 Q&A가 구조화되어 AI 직접 인용 가능','BreadcrumbList 스키마로 네비게이션 경로 명확화','Organization 스키마로 회사 정보, 주소, 이메일 명시','ItemList 스키마로 관련 상품 추천 구조화'], 
     warnings:['Review 스키마 부재 — 개별 고객 리뷰 내용이 구조화되지 않음 (리뷰 수만 표시)','HowTo 스키마 부재 — 사용법이 텍스트로만 표현되어 단계별 해석 미흡','ProductCollection 타입 부재 — 3종 세트의 구성 제품 간 관계 명시 부족','ingredient 또는 components 정보 부재 — 핵심 성분 설명이 PropertyValue로만 제시']
   },
+  '풀리:그린토마토 클레이팩클렌저 (TW)': {
+    items:[['속성 완성도','24/30',80],['정보 정확도','20/25',80],['AI 인용 친화성','16/20',80],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
+    strengths:['기본 Product 스키마 완성 — 상품명·가격·이미지·SKU 구조화','AggregateRating 5.0/5.0 (160개 리뷰)','og:title·og:description·og:image 완비','상품 이미지 5개 배열 구조화','재고 상태 InStock 명확 표시'],
+    warnings:['Organization 스키마 부재 — FULLY 브랜드 정체성 미구조화','Product description 공백 — 제품 기능·성분 AI 인식 불가','BreadcrumbList 부재 — 카테고리 경로 미구조화','FAQPage 부재 — 배송·반품 정책 인용 불가','Review 스키마 부재 — 개별 고객 리뷰 미구조화']
+  },
+  '풀리:레몬비타 버블세럼 (TW)': {
+    items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],
+    strengths:['Product 스키마 명확 구현 — 상품명·가격·평점·이미지 5개 구조화','AggregateRating 5.0/5.0 (66개 리뷰)','og:type=product 메타태그 완비','AddOn 번들 상품 구조화'],
+    warnings:['Organization 스키마 부재 — FULLY 브랜드 정체성 불명확','Product description 빈 문자열 — 기능·비타민C·거품 텍스처 미구조화','BreadcrumbList 부재','FAQPage 부재 — 배송·반품 Q&A 미구조화','Review 스키마 부재']
+  },
+  '풀리:쌀 세라 수분 선크림 (TW)': {
+    items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','15/20',75],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
+    strengths:['Product 스키마 필수 정보 완성 — name·sku·brand·image(5개)·offers·aggregateRating','AggregateRating 4.9/5.0 (8개 리뷰)','Offer availability InStock 명확','og:title·og:description·og:image 일관성 구성','H1 태그 명확'],
+    warnings:['Organization 스키마 부재 — 台灣愛戴特有限公司 기업 정보 미구조화','Brand 문자열로만 표시 — Brand 객체 미확장','BreadcrumbList 부재','FAQPage 부재 — 배송비·출고 안내·반품 정책 미구조화','Product description 공백 — 神經醯胺+PDRN 성분 미구조화']
+  },
   '95P:발란스핏 EMS 슬림 벨트 PRO': {
     items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
     strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
