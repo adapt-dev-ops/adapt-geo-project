@@ -75,8 +75,23 @@
   .brand-row-right{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--text3);}
   .status-pip{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
   .pip-done{background:var(--green);color:#fff;}
-  .pip-partial{background:var(--amber-bg);color:var(--amber);}
   .pip-none{background:var(--bg4);color:var(--text3);}
+
+  /* ── 작업 프로세스 인라인 (국가별 현황 탭 내부) ── */
+  .process-divider{height:1px;background:var(--border);margin:40px 0 32px;}
+  .process-inline-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .process-inline-title{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.2px;}
+  .process-inline-line{flex:1;height:1px;background:var(--border);}
+  .process-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px;}
+  .process-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;transition:border-color 0.15s;}
+  .process-block:hover{border-color:var(--border2);}
+  .process-step-num{font-size:13px;font-family:var(--mono);color:var(--text3);font-weight:600;min-width:20px;padding-top:2px;}
+  .process-step-body{flex:1;}
+  .process-step-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+  .process-step-detail{font-size:12px;color:var(--text2);line-height:1.7;}
+  .process-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-left:auto;flex-shrink:0;}
+  .tag-dev{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(37,99,235,0.15);}
+  .tag-md{background:var(--green-bg);color:var(--green);border:1px solid rgba(14,169,110,0.15);}
 
   /* MATRIX */
   .matrix-wrap{border-radius:12px;border:1px solid var(--border);overflow:hidden;}
@@ -94,10 +109,9 @@
   tbody td.country-start{border-left:1px solid var(--border2);}
   tbody tr:last-child td{border-bottom:none;}
   .cell-done{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--green);color:#fff;font-size:11px;font-weight:700;}
-  .cell-partial{display:none;}
   .cell-none{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--bg4);color:var(--text3);font-size:11px;}
 
-  /* TASKS */
+  /* TASKS (standalone tab) */
   .task-list{display:flex;flex-direction:column;gap:8px;}
   .task-item{display:flex;align-items:flex-start;gap:20px;padding:20px 24px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;transition:border-color 0.15s,box-shadow 0.15s;}
   .task-item:hover{border-color:var(--border2);box-shadow:0 2px 8px rgba(0,0,0,0.06);}
@@ -106,63 +120,89 @@
   .task-name{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;}
   .task-detail{font-size:13px;color:var(--text2);line-height:1.7;}
   .tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
-  .tag-dev{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(37,99,235,0.15);}
-  .tag-md{background:var(--green-bg);color:var(--green);border:1px solid rgba(14,169,110,0.15);}
 
-  /* GEO */
-  .notice{display:flex;align-items:center;gap:12px;padding:16px 20px;background:rgba(124,111,255,0.06);border:1px solid rgba(124,111,255,0.15);border-radius:12px;font-size:13px;color:var(--text2);margin-bottom:24px;line-height:1.6;}
-  .notice-icon{font-size:16px;flex-shrink:0;padding-top:1px;}
-  .notice a{color:var(--accent2);text-decoration:none;}
-  .geo-input-row{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
-  .geo-input-row input{flex:1;min-width:240px;padding:11px 16px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:13px;font-family:var(--mono);outline:none;}
-  .geo-input-row input:focus{border-color:var(--accent);}
-  .geo-input-row input::placeholder{color:var(--text3);}
-  .geo-input-row button{padding:11px 24px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:var(--accent);color:white;transition:all 0.15s;}
-  .geo-input-row button:hover{background:var(--accent2);}
-  .section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);}
-  .history-list{display:flex;flex-direction:column;gap:0;}
-  .history-item{display:flex;align-items:center;gap:16px;padding:16px 24px;background:var(--bg2);border:1px solid var(--border);border-radius:12px 12px 0 0;transition:border-color 0.15s;flex-wrap:wrap;}
-  .history-item:hover{border-color:var(--border2);}
-  .history-score{font-size:40px;font-weight:700;font-family:var(--mono);min-width:56px;line-height:1;}
-  .score-a{color:var(--green);}.score-b{color:var(--blue);}.score-c{color:var(--amber);}.score-d{color:var(--red);}
-  .history-info{flex:1;}
-  .history-name{font-size:15px;font-weight:600;}
-  .history-url{font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:2px;}
-  .history-date{font-size:12px;color:var(--text3);font-family:var(--mono);white-space:nowrap;}
-  .history-grade{font-size:13px;font-weight:700;font-family:var(--mono);padding:4px 12px;border-radius:6px;}
-  .grade-a{background:var(--green-bg);color:var(--green);}.grade-b{background:var(--blue-bg);color:var(--blue);}
-  .grade-c{background:var(--amber-bg);color:var(--amber);}.grade-d{background:var(--red-bg);color:var(--red);}
-  .score-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
-  .score-bars{padding:20px 24px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .score-bar-header{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;}
-  .score-bar-label{color:var(--text3);}.score-bar-val{color:var(--text);font-weight:600;font-family:var(--mono);}
-  .score-bar-track{height:4px;background:var(--bg4);border-radius:99px;overflow:hidden;}
-  .score-bar-fill{height:100%;border-radius:99px;background:var(--accent);transition:width 1s ease;}
-  .score-tags{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;}
-  .score-tag{padding:5px 14px;border-radius:6px;font-size:12px;font-weight:600;background:var(--green-bg);color:var(--green);}
-  .score-tag.warn{background:var(--amber-bg);color:var(--amber);}
-
-  /* LEGEND */
-  .legend{display:flex;gap:16px;font-size:13px;color:var(--text3);margin-bottom:14px;flex-wrap:wrap;}
-  .legend-item{display:flex;align-items:center;gap:5px;}
-  .ld{width:8px;height:8px;border-radius:50%;}
+  /* GEO — 개선된 검색·필터·아코디언 */
+  .geo-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
+  .geo-search{flex:1;min-width:200px;padding:10px 14px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:13px;font-family:var(--mono);outline:none;}
+  .geo-search:focus{border-color:var(--accent);}
+  .geo-search::placeholder{color:var(--text3);}
+  .geo-sort{padding:10px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-size:13px;outline:none;cursor:pointer;}
+  .geo-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+  .geo-stat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+  .geo-stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+  .geo-stat-val{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.5px;}
+  .geo-stat-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:var(--mono);}
+  .geo-filter-section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .geo-filter-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .geo-filter-row+.geo-filter-row{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+  .geo-filter-label{font-size:11px;font-weight:600;color:var(--text3);min-width:28px;letter-spacing:0.04em;}
+  .filter-pill{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text2);transition:all .12s;}
+  .filter-pill:hover{background:var(--bg3);color:var(--text);}
+  .filter-pill.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .grade-group{display:flex;border:1px solid var(--border2);border-radius:99px;overflow:hidden;}
+  .grade-pill{padding:5px 14px;font-size:12px;font-weight:500;cursor:pointer;border:none;border-right:1px solid var(--border2);background:transparent;color:var(--text2);transition:all .12s;}
+  .grade-pill:last-child{border-right:none;}
+  .grade-pill:hover{background:var(--bg3);}
+  .grade-pill.active{background:var(--accent);color:#fff;}
+  .grade-pill.ga.active{background:var(--green-bg);color:var(--green);}
+  .grade-pill.gb.active{background:var(--blue-bg);color:var(--blue);}
+  .grade-pill.gc.active{background:var(--amber-bg);color:var(--amber);}
+  .grade-pill.gd.active{background:var(--red-bg);color:var(--red);}
+  .geo-results-info{font-size:12px;color:var(--text3);margin-bottom:12px;font-family:var(--mono);}
+  .geo-card-list{display:flex;flex-direction:column;gap:8px;}
+  .geo-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.15s;}
+  .geo-card:hover{border-color:var(--border2);}
+  .geo-card-header{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;user-select:none;}
+  .geo-score-badge{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;font-family:var(--mono);flex-shrink:0;}
+  .sb-a{background:var(--green-bg);color:var(--green);}
+  .sb-b{background:var(--blue-bg);color:var(--blue);}
+  .sb-c{background:var(--amber-bg);color:var(--amber);}
+  .sb-d{background:var(--red-bg);color:var(--red);}
+  .geo-card-meta{flex:1;min-width:0;}
+  .geo-card-product{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .geo-card-brand{font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:2px;}
+  .geo-card-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+  .grade-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;font-family:var(--mono);}
+  .gb-a{background:var(--green-bg);color:var(--green);}
+  .gb-b{background:var(--blue-bg);color:var(--blue);}
+  .gb-c{background:var(--amber-bg);color:var(--amber);}
+  .gb-d{background:var(--red-bg);color:var(--red);}
+  .toggle-chevron{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--text3);white-space:nowrap;transition:color 0.15s;}
+  .toggle-chevron:hover{color:var(--text2);}
+  .toggle-chevron svg{transition:transform 0.2s;}
+  .toggle-chevron.open{color:var(--text2);}
+  .toggle-chevron.open svg{transform:rotate(180deg);}
+  .geo-card-body{display:none;border-top:1px solid var(--border);}
+  .geo-card-body.open{display:block;}
+  .score-bars-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;padding:16px 18px;}
+  .bar-item{}
+  .bar-header{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;}
+  .bar-label{color:var(--text3);}
+  .bar-val{color:var(--text);font-weight:600;font-family:var(--mono);}
+  .bar-track{height:3px;background:var(--bg4);border-radius:99px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:99px;background:var(--accent);transition:width 0.6s ease;}
+  .tags-wrap{padding:12px 18px 16px;border-top:1px solid var(--border);}
+  .tags-group{margin-bottom:10px;}
+  .tags-group:last-child{margin-bottom:0;}
+  .tags-group-title{font-size:11px;font-weight:600;margin-bottom:6px;}
+  .tgt-ok{color:var(--green);}
+  .tgt-warn{color:var(--amber);}
+  .tags-pills{display:flex;flex-wrap:wrap;gap:5px;}
+  .tag-pill{font-size:11px;padding:3px 9px;border-radius:6px;}
+  .tp-ok{background:var(--green-bg);color:var(--green);}
+  .tp-warn{background:var(--amber-bg);color:var(--amber);}
+  .empty-msg{display:flex;align-items:center;justify-content:center;padding:48px 20px;color:var(--text3);font-size:14px;}
 
   /* STATE */
   .state-msg{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;color:var(--text3);font-size:14px;gap:12px;text-align:center;}
-  .state-msg .icon{font-size:32px;opacity:0.5;}
-  .state-msg .desc{font-size:12px;line-height:1.7;max-width:360px;}
-  .brand-sticky-row td{
-    position:sticky;top:41px;z-index:1;
-    background:var(--accent);
-    color:#fff;
-    font-size:14px;font-weight:700;
-    letter-spacing:0;
-    padding:8px 14px;
-  }
   .spinner{width:20px;height:20px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
 
-  @media(max-width:640px){.wrap{padding:0 16px 60px;}.score-bars{grid-template-columns:1fr;}}
+  @media(max-width:640px){
+    .wrap{padding:0 16px 60px;}
+    .geo-stat-row{grid-template-columns:1fr 1fr;}
+    .score-bars-grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
@@ -186,58 +226,175 @@
         새로고침
       </button>
       <a class="btn" href="https://www.beusable.net/ko#geo" target="_blank">Beusable GEO &#8599;</a>
-
     </div>
   </div>
 
   <div class="metrics">
-    <div class="metric" style="background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent; padding: 25px 20px;">
+    <div class="metric" style="background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;padding:25px 20px;">
       <div class="metric-label" style="color:rgba(255,255,255,0.75);">전체 완료율</div>
-      <div class="metric-sub" id="m-total-sub" style="color:rgba(255,255,255,0.65); margin-bottom: 10px;">불러오는 중...</div>
+      <div class="metric-sub" id="m-total-sub" style="color:rgba(255,255,255,0.65);margin-bottom:10px;">불러오는 중...</div>
       <div class="metric-val" id="m-total" style="color:#fff">&#8212;</div>
     </div>
     <div class="metric"><span class="metric-flag">&#127472;&#127479;</span><div class="metric-label">국내 &middot; 카페24</div><div class="metric-val" id="m-kr">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127482;&#127480;</span><div class="metric-label">미국 &middot; 쇼피파이</div><div class="metric-val" id="m-us">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127481;&#127484;</span><div class="metric-label">대만 &middot; 카페24 / 숍라인</div><div class="metric-val" id="m-tw">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127471;&#127477;</span><div class="metric-label">일본 &middot; 카페24</div><div class="metric-val" id="m-jp">&#8212;</div></div>
-
-
   </div>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('overview')">국가별 현황</button>
     <button class="tab" onclick="switchTab('matrix')">진행 현황</button>
-    <button class="tab" onclick="switchTab('tasks')">작업 프로세스</button>
     <button class="tab" onclick="switchTab('geo')">GEO 점수</button>
   </div>
 
+  <!-- ── 국가별 현황 탭 ── -->
   <div class="panel active" id="panel-overview">
-
     <div class="country-grid" id="countryGrid">
       <div class="state-msg"><div class="spinner"></div><div>데이터를 불러오는 중...</div></div>
     </div>
+
+    <!-- 작업 프로세스 인라인 섹션 -->
+    <div class="process-divider"></div>
+
+    <div class="process-inline-header">
+      <div class="process-inline-title">MD 세팅 필요 건</div>
+      <span class="tag tag-md">MD</span>
+    </div>
+    <div class="process-blocks">
+      <div class="process-block">
+        <div class="process-step-num">1</div>
+        <div class="process-step-body">
+          <div class="process-step-name">ALT 태그 기입</div>
+          <div class="process-step-detail">상세페이지 분할 후 이미지별 알트 태그 작성. 150자 내외, 성분명+기능+피부타입 포함.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">2</div>
+        <div class="process-step-body">
+          <div class="process-step-name">메타 데이터 설정</div>
+          <div class="process-step-detail">Meta title / Meta description 작성 후 카페24 SEO 설정에 직접 입력.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">3</div>
+        <div class="process-step-body">
+          <div class="process-step-name">상세 FAQ 취합</div>
+          <div class="process-step-detail">CS 빈도 높은 내용 가공. USP당 1~2개 구성, 완결된 문장으로 답변.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">4</div>
+        <div class="process-step-body">
+          <div class="process-step-name">성과 분석</div>
+          <div class="process-step-detail">Google Rich Results Test + Beusable GEO로 스키마 점수 확인. 클로드 활용 자가진단 프롬프트 병행.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-inline-header">
+      <div class="process-inline-title">개발파트 세팅 필요 건</div>
+      <span class="tag tag-dev">개발</span>
+    </div>
+    <div class="process-blocks">
+      <div class="process-block">
+        <div class="process-step-num">1</div>
+        <div class="process-step-body">
+          <div class="process-step-name">H1 / H2 태그</div>
+          <div class="process-step-detail">상품 페이지의 제목 계층 구조를 정의. 검색엔진·AI 모두가 콘텐츠 구조를 파악하는 핵심 요소.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">2</div>
+        <div class="process-step-body">
+          <div class="process-step-name">FAQ 탭 개설</div>
+          <div class="process-step-detail">CS 빈도 높은 질문 5~7개를 텍스트로 작성 + FAQPage 스키마 구조화. AI 직접 인용 가능성 극대화.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">3</div>
+        <div class="process-step-body">
+          <div class="process-step-name">통합 상세 스키마 설정 점검</div>
+          <div class="process-step-detail">Product / FAQ / Review / Breadcrumb 스키마 점검. @graph 구조로 통합 관리.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">4</div>
+        <div class="process-step-body">
+          <div class="process-step-name">연관 상품 노출 구간 생성</div>
+          <div class="process-step-detail">상세 페이지 하단 내부 링크 구조. ItemList 스키마로 연관 상품 구조화.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">5</div>
+        <div class="process-step-body">
+          <div class="process-step-name">메인페이지 스키마 작업</div>
+          <div class="process-step-detail">메인·서브 페이지 Organization + WebSite 스키마 적용.</div>
+        </div>
+      </div>
+      <div class="process-block">
+        <div class="process-step-num">6</div>
+        <div class="process-step-body">
+          <div class="process-step-name">매거진 탭 신설</div>
+          <div class="process-step-detail">콘텐츠 내용은 PR 파트 확인 필요. 백링크 고려.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- ── 진행 현황 탭 ── -->
   <div class="panel" id="panel-matrix">
     <div class="matrix-wrap" id="matrixTable">
       <div class="state-msg"><div class="spinner"></div><div>데이터 로딩 중...</div></div>
     </div>
   </div>
 
+  <!-- ── 작업 프로세스 탭 (단독) ── -->
   <div class="panel" id="panel-tasks">
     <div id="taskList"></div>
   </div>
 
+  <!-- ── GEO 점수 탭 (개선) ── -->
   <div class="panel" id="panel-geo">
-
-    <div class="section">
-      <div class="section-title" style="margin-bottom:16px">진단 기록</div>
-      <div id="geoFilterWrap"></div>
-      <div class="history-list" id="geoHistory"></div>
+    <!-- 요약 스탯 -->
+    <div class="geo-stat-row" id="geoStatRow">
+      <div class="geo-stat"><div class="geo-stat-label">전체 상품</div><div class="geo-stat-val">—</div></div>
+      <div class="geo-stat"><div class="geo-stat-label">평균 점수</div><div class="geo-stat-val">—</div></div>
+      <div class="geo-stat"><div class="geo-stat-label">A등급</div><div class="geo-stat-val" style="color:var(--green)">—</div></div>
+      <div class="geo-stat"><div class="geo-stat-label">개선 필요 (C·D)</div><div class="geo-stat-val" style="color:var(--amber)">—</div></div>
     </div>
+
+    <!-- 검색 + 정렬 -->
+    <div class="geo-toolbar">
+      <input class="geo-search" id="geoSearch" type="text" placeholder="상품명 또는 브랜드 검색..." oninput="applyGeoFilters()">
+      <select class="geo-sort" id="geoSort" onchange="applyGeoFilters()">
+        <option value="score-desc">점수 높은순</option>
+        <option value="score-asc">점수 낮은순</option>
+        <option value="brand">브랜드순</option>
+      </select>
+    </div>
+
+    <div class="geo-filter-section">
+      <div class="geo-filter-row" id="geoBrandFilter">
+        <span class="geo-filter-label">브랜드</span>
+      </div>
+      <div class="geo-filter-row">
+        <span class="geo-filter-label">등급</span>
+        <div class="grade-group">
+          <button class="grade-pill active" id="gpAll" onclick="setGradeFilter('all',this)">전체</button>
+          <button class="grade-pill ga" id="gpA" onclick="setGradeFilter('A',this)">A</button>
+          <button class="grade-pill gb" id="gpB" onclick="setGradeFilter('B',this)">B</button>
+          <button class="grade-pill gc" id="gpC" onclick="setGradeFilter('C',this)">C</button>
+          <button class="grade-pill gd" id="gpD" onclick="setGradeFilter('D',this)">D</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="geo-results-info" id="geoResultsInfo"></div>
+    <div class="geo-card-list" id="geoCardList"></div>
   </div>
 
 </div>
+
 <script>
 // ==============================================
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_l0C9na2VG69CxfaqvhhzqeUoEDZqzdpDdn1UGOpkSFZbRQg4wkC_Qr58yVWcyDFv/exec';
@@ -272,398 +429,87 @@ const TASKS_MD = [
 ];
 
 const GEO_PDF_DATA = {
-  '풀리:쌀 세라 수분 선크림': {
-    items:[['속성 완성도','29/30',97],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Organization+Product+Review+FAQPage 완벽 구현','AggregateRating 2,847개','FAQPage 5개 구조화','고객 리뷰 5개 구조화','shippingDetails·반품 정책 완전 구조화'],
-    warnings:['@context 중복 정의 — @graph 통합 최적화 권장','Manufacturer @id 참조 개선 가능']
-  },
-  '풀리:쌀 세라 에센스토너': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product 스키마 완벽','AggregateRating 374개','FAQPage 5개 구조화','Offer 4가지 옵션 상세'],
-    warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']
-  },
-  '풀리:그린토마토 팩 클렌저': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+FAQPage+ItemList 5개 스키마 포괄 구성','AggregateRating 4.9/5.0 (4,153개 리뷰)','FAQPage 6개 구조화','5개 Offer 구성 및 배송·반품 정책 완비','Review 3개 샘플 구조화'],
-    warnings:['Product.description 간단함 — 핵심 성분·효과·차별점 상세화 필요','additionalProperty 성분 정보 상세화 필요']
-  },
-  '풀리:쌀 PDRN 광채 세럼': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (172개 리뷰)','FAQPage 6개 구조화','Organization+BreadcrumbList 완전 구조화','ItemList 추천 제품 연관성 강화','HowTo 스키마 적용 완료'],
-    warnings:['Review 개별 스키마 부재 — 리뷰 텍스트 AI 인용 불가','additionalProperty 핵심 성분 함유량 상세화 권장']
-  },
-  '풀리:쌀 반죽 팩 클렌저': { 
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
-    strengths:['Organization 스키마로 회사 정보 명확하게 인식됨','Product 스키마로 제품명, 가격, 이미지 완벽하게 구조화됨','AggregateRating(5.0점, 982개 리뷰)으로 신뢰성 높음','FAQPage로 6가지 주요 질문-답변 구조화됨','BreadcrumbList로 네비게이션 경로 구조화','ItemList로 추천 제품 6개 교차판매 기회 제공','MerchantReturnPolicy로 반품규정(30일, 무료반품) 명시'], 
-    warnings:['Review 개별 리뷰 스키마 부재 — AI가 특정 고객 의견 인용 불가','ImageObject 상세화 부족 — 이미지 메타데이터 한정'] 
-  },
-  '풀리:쌀 세라마이드 3종 세트': { 
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]], 
-    strengths:['Product 스키마가 완벽하게 구성되어 있음 — 상품명, 이미지, 설명, SKU, 브랜드 명시','다양한 Offer 옵션 (5가지 세트 구성)으로 선택지를 명확히 제시','AggregateRating 스키마로 4.9/5.0 평점과 4,697개 리뷰 신뢰도 제공','FAQPage 스키마로 6개의 주요 Q&A가 구조화되어 AI 직접 인용 가능','BreadcrumbList 스키마로 네비게이션 경로 명확화','Organization 스키마로 회사 정보, 주소, 이메일 명시','ItemList 스키마로 관련 상품 추천 구조화'], 
-    warnings:['Review 스키마 부재 — 개별 고객 리뷰 내용이 구조화되지 않음 (리뷰 수만 표시)','HowTo 스키마 부재 — 사용법이 텍스트로만 표현되어 단계별 해석 미흡','ProductCollection 타입 부재 — 3종 세트의 구성 제품 간 관계 명시 부족','ingredient 또는 components 정보 부재 — 핵심 성분 설명이 PropertyValue로만 제시']
-  },
-  '풀리:그린토마토 클레이팩클렌저 (TW)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','20/25',80],['AI 인용 친화성','16/20',80],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
-    strengths:['기본 Product 스키마 완성 — 상품명·가격·이미지·SKU 구조화','AggregateRating 5.0/5.0 (160개 리뷰)','og:title·og:description·og:image 완비','상품 이미지 5개 배열 구조화','재고 상태 InStock 명확 표시'],
-    warnings:['Organization 스키마 부재 — FULLY 브랜드 정체성 미구조화','Product description 공백 — 제품 기능·성분 AI 인식 불가','BreadcrumbList 부재 — 카테고리 경로 미구조화','FAQPage 부재 — 배송·반품 정책 인용 불가','Review 스키마 부재 — 개별 고객 리뷰 미구조화']
-  },
-  '풀리:레몬비타 버블세럼 (TW)': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],
-    strengths:['Product 스키마 명확 구현 — 상품명·가격·평점·이미지 5개 구조화','AggregateRating 5.0/5.0 (66개 리뷰)','og:type=product 메타태그 완비','AddOn 번들 상품 구조화'],
-    warnings:['Organization 스키마 부재 — FULLY 브랜드 정체성 불명확','Product description 빈 문자열 — 기능·비타민C·거품 텍스처 미구조화','BreadcrumbList 부재','FAQPage 부재 — 배송·반품 Q&A 미구조화','Review 스키마 부재']
-  },
-  '풀리:쌀 세라 수분 선크림 (TW)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','15/20',75],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
-    strengths:['Product 스키마 필수 정보 완성 — name·sku·brand·image(5개)·offers·aggregateRating','AggregateRating 4.9/5.0 (8개 리뷰)','Offer availability InStock 명확','og:title·og:description·og:image 일관성 구성','H1 태그 명확'],
-    warnings:['Organization 스키마 부재 — 台灣愛戴特有限公司 기업 정보 미구조화','Brand 문자열로만 표시 — Brand 객체 미확장','BreadcrumbList 부재','FAQPage 부재 — 배송비·출고 안내·반품 정책 미구조화','Product description 공백 — 神經醯胺+PDRN 성분 미구조화']
-  },
-  '풀리:(Green Tomato) Clay Mask Cleanser': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','17/20',85],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList+HowTo+ItemList 완벽 구현','Offer $19.90·배송$6.99·30일 무료반품 완비','FAQPage 8개 구조화','HowTo 마스크/클렌저 2가지 단계별 구조화','ItemList 추천상품 7개 연결','OG 메타태그 완비'],
-    warnings:['AggregateRating null 처리 — 5.0/5.0 (1,104 리뷰) 스키마 미포함','Review 스키마 부재','Product 설명 Award 중심 — 49% 그린토마토·6-Clay Complex 임상수치 미명시','HowTo 단계 텍스트 일부 불완전']
-  },
-  '95P:발란스핏 EMS 슬림 벨트 PRO': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
-    warnings:['개별 Review 스키마 부재','제품 세부 사양(모델명·배터리) 구조화 미흡','HowToUse 스키마 부재']
-  },
-  '95P:발란스핏 EMS 슬림 벨트 PRO': { 
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','17/15',113],['구문 유효성','10/10',100]], 
-    strengths:['Product 스키마 완성도 높음: 상품명, 설명, 이미지, 가격, 다양한 Offer 옵션 명시','AggregateRating 데이터 풍부: 4.8/5.0 평점에 62,268개 리뷰 수치로 강력한 신뢰도 제공','Organization 스키마 포함: 회사명(95프로블럼), 주소, 로고, 이메일로 발행처 명확화','FAQPage 스키마 잘 구성: 6개 Q&A가 직접 인용 가능한 형태로 제공','BreadcrumbList 구현: 페이지 계층 구조 명확','Offer 상세도: 배송료, 배송 시간, 반품 정책(30일 무료 환불) 완비','og 메타태그 완성: og:image, og:title, og:description, og:type(product) 등으로 소셜 공유 최적화'], 
-    warnings:['MedicalProduct 스키마 부재: 의료기기로서의 특성을 더 명확하게 표시할 수 있음','의료기기 인증 정보 미반영: 1등급 의료기기, 식약청 승인번호 등의 공식 인증 정보 구조화 부족','Review 개별 샘플 부재: 최상위 3-5개 리뷰 샘플이 구조화되지 않음','ProductSpecification 미흡: 시어버터 코팅, 라이크라 원단, 20~35mmHg 압박력 등 기술 사양 구조화 미완료','MedicalCondition 연결 부재: 하지정맥류, 다리 부기, 혈액순환 등 관련 의료 상태와의 @id 연결 없음','Clinical Trial 정보 구조화 부족: 종아리 둘레 변화량 인체적용시험 결과가 명시적으로 구조화되지 않음'] 
-  },
-  '95P:발란스핏 압박스타킹 발등 종아리형 프로': { 
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
-    strengths:['Organization, Product, Offer, AggregateRating, BreadcrumbList, FAQPage 모든 핵심 스키마 완벽 구현','다양한 구성(옵션1~5)과 색상, 사이즈별로 개별 Offer 상세 구조화','평점 4.9/5.0, 521개 리뷰가 AggregateRating으로 정확히 표현','배송료, 배송 기간(1~2일), 교환/반품 정책(30일)이 OfferShippingDetails와 MerchantReturnPolicy로 명시','6개의 주요 질문-답변 쌍이 FAQPage mainEntity로 완벽하게 구조화','의료기기 인증 정보가 description에 명시되어 신뢰도 강화','og:type=product와 Product 스키마가 일치하여 메타데이터 일관성 우수'], 
-    warnings:['Review 스키마로 개별 고객 리뷰(3~5개 샘플) 추가 시 AI 인용 신뢰도 추가 상승 가능','MedicalDevice 스키마 추가로 의료기기로서의 정체성 더욱 명확화 가능'] 
-  },
-  '95P:발란스핏 목 어깨 마사지기': { 
-    items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
-    strengths:['Organization 스키마로 95프로블럼의 회사 정보 완벽 구성 (이름, 로고, 주소, 이메일)','Product 스키마로 상품명, 이미지, 설명, 가격, 평점이 완벽하게 구조화됨','AggregateRating 스키마로 4.9/5.0 평점과 466개 리뷰 수 명시','FAQPage 스키마로 6개의 주요 Q&A가 AI 직접 인용 가능하도록 구조화','BreadcrumbList로 네비게이션 경로가 명확하게 표현됨','Offer 스키마의 MerchantReturnPolicy로 30일 환불 및 무상 배송 정보 기재'], 
-    warnings:['개별 Review 스키마 부재 — 496개 리뷰 중 샘플 리뷰의 상세 정보(리뷰어명, 평점, 내용) 미포함','제품 사양 정보(7.4V, 16W, 90분 충전시간)가 PropertyValue로 구조화되지 않음','KC 인증 정보(R-R-RaG-95PB01NSM)가 스키마에 포함되지 않음','@context 속성이 각 스키마 객체에 중복되어 있음 (정규화 필요)'] 
-  },
-  '95P:[SET] 이너핏 민소매 1+1 SET 할인': { 
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]], 
-    strengths:['Product 스키마가 상품명, 이미지, SKU, 브랜드 정보를 완벽히 구조화하여 기본 상품정보 인식 우수','AggregateRating으로 4.6/5.0 평점과 132개 리뷰 수를 명확히 제공하여 신뢰도 높음','50개 이상의 Offer 배열로 다양한 옵션(색상, 사이즈, 상품조합)별 가격 정보 제공','MerchantReturnPolicy로 30일 무료 반품, 배송료 0원, 배송기간 1-2일 정보 상세히 구조화','FAQPage로 6개 주요 Q&A를 구조화하여 AI가 직접 인용 가능한 콘텐츠 제공','BreadcrumbList로 페이지 계층 구조(홈 > 상품명) 명확화'], 
-    warnings:['개별 고객 리뷰(Review 스키마)가 부재하여 구체적인 사용 후기 정보를 AI가 직접 인용 불가','Product 최상위 레벨에 color, size 속성이 명시되지 않아 옵션 정보가 Offer 배열에만 묻혀있음','productId(78)가 있으나 더 상세한 제품 카테고리(category 필드)가 스키마에 누락됨','이미지가 1개뿐으로 다각도 상품 사진 구조화 기회 미활용'] 
-  },
-  '95P:체어 마사지기': { 
-    items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]], 
-    strengths:['Product 스키마가 상품명, 이미지, 설명, SKU, 브랜드로 완벽하게 구조화됨','Offer 정보로 가격(139,000원), 할인율(48%), 통화(KRW), 배송비 무료, 배송 시간이 명확하게 표현됨','AggregateRating으로 평점 4.9/5.0과 리뷰 922개 정보 제공','MerchantReturnPolicy로 30일 환불, 무료 반품 정책이 구조화됨','BreadcrumbList로 네비게이션 경로가 명확하게 표시됨','기본 메타태그(og:title, og:description, og:image, product:price 등)가 충실하게 구성됨'],
-     warnings:['Review 개별 리뷰 샘플 스키마 추가로 구체성 강화 가능','제품 상세 사양(모델명, 정격전압, 정격전력, 무게, 색상 옵션)을 PropertyValue 형식으로 더 명확하게 구조화 필요','FAQPage 스키마로 배송 기간, 교환/반품/환불 안내, A/S 정책을 구조화하면 직접 인용 가능성 증가','사용 시간, 온열 온도 등 주요 기능 사양을 additionalProperty로 추가 필요'] 
-  },
-  '95P:발란스핏 압박스타킹 종아리형 프로': { 
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
-    strengths:['Organization, Product, Offer, AggregateRating, BreadcrumbList, FAQPage 모든 핵심 스키마 완벽 구현','다양한 구성(옵션1~5)과 색상, 사이즈별로 개별 Offer 상세 구조화','평점 4.9/5.0, 521개 리뷰가 AggregateRating으로 정확히 표현','배송료, 배송 기간(1~2일), 교환/반품 정책(30일)이 OfferShippingDetails와 MerchantReturnPolicy로 명시','6개의 주요 질문-답변 쌍이 FAQPage mainEntity로 완벽하게 구조화','의료기기 인증 정보가 description에 명시되어 신뢰도 강화','og:type=product와 Product 스키마가 일치하여 메타데이터 일관성 우수'], 
-    warnings:['Review 스키마로 개별 고객 리뷰(3~5개 샘플) 추가 시 AI 인용 신뢰도 추가 상승 가능','MedicalDevice 스키마 추가로 의료기기로서의 정체성 더욱 명확화 가능'] 
-  },
-  '95P:발란스핏 종아리 마사지기 컴팩트형/지퍼형': { 
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]], 
-    strengths:['Product 스키마가 완전하게 구현됨 — 제품명, 이미지, 설명, SKU, 브랜드 모두 포함','4개 옵션별 개별 Offer 스키마로 다양한 가격대(59,000~140,000원) 정확히 표시','AggregateRating으로 5.0 평점과 1,504개 리뷰 수 제공 — 신뢰도 높음','FAQPage 스키마로 6개 Q&A가 직접 인용 가능한 형식으로 제공','Organization 스키마로 회사 정보(주소, 연락처, 로고)가 명확히 구조화','BreadcrumbList로 홈 > 제품 상세 네비게이션 경로 제공','배송비, 반품정책, 배송 기간 등 거래 정보가 Offer 내에 완벽하게 포함','og:type, og:title, og:description 등 기본 메타태그 완벽하게 구성'], 
-    warnings:['개별 Review 스키마 부재 — 평점만 표시되고 구체적 리뷰 내용이 AI 인용 불가','Product의 additionalProperty가 제품 사양만 기재 — 온열 온도, 모드 수, 압박력 단계는 미포함','관련 상품이나 함께 담기 상품(압박스타킹, 발등형)과의 관계 @id 연결 미흡','HowTo 또는 실제 사용 방법 단계별 스키마 부재'] 
-  },
-  '95P:발란스핏 압박스타킹 1+1특가': { 
-    items:[['속성 완성도','28/30',93],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
-    strengths:['Product 스키마가 완벽하게 구조화되어 상품명, 이미지, 설명, 가격 정보가 AI에 명확함','다양한 Offer 옵션(사이즈, 색상, 구성별)으로 구매 선택지가 체계적으로 표시됨','AggregateRating으로 평점 4.8/5.0과 리뷰 수(301개)가 명확함','FAQPage 스키마로 6개의 주요 Q&A가 구조화되어 AI가 직접 인용 가능','BreadcrumbList로 페이지 계층 구조 제공','Organization 스키마로 회사 정보(로고, 주소, 이메일) 완전함','배송비, 반품 정책 등 Offer 세부 정보가 충실함','og:type=product, og:title, og:description 등 Open Graph 메타태그 완비'], 
-    warnings:['aggregateRating의 reviewCount가 301개로 표시되나 실제 페이지에는 62,281개 리뷰로 표기 (데이터 불일치)','개별 Review 스키마 부재 — 62,281개 리뷰 중 샘플 리뷰를 구조화하면 AI 신뢰도 증대 가능','의료기기 인증(1등급), 국내 제조 등 차별화 정보가 Product 스키마에 포함되지 않음','color 옵션(베이지, 블랙, 핑크)과 size 옵션(S, M, L)이 Offer마다 명시되지 않아 옵션 조합 파악 어려움','인체시험 데이터(종아리 둘레 변화량)와 같은 검증 정보가 구조화되지 않음'] 
-  },
-  '95P:발란스핏 EMS 리커버리 밴드': { 
-    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
-    strengths:['Product 스키마가 완벽하게 구현되어 있음 — 제품명, 이미지, 상세 설명, 브랜드, SKU, 평점이 모두 포함','Organization 스키마로 판매사 정보(95프로블럼, 주소, 이메일)가 명확하게 구조화','AggregateRating으로 4.9/5.0와 111개 리뷰 수가 AI에 신뢰도 높은 형태로 제공','FAQPage 스키마로 6개의 주요 Q&A가 직접 인용 가능하도록 구조화','3개의 Offer 스키마로 판매 옵션별 가격, 배송료, 배송 시간이 명확하게 구분','BreadcrumbList로 네비게이션 구조가 체계적으로 표현','og:image, og:title, og:url 등 Open Graph 메타태그가 완벽하게 구성'], 
-    warnings:['리뷰 샘플이 상세 페이지에 표시되지 않아 개별 Review 스키마로 구현 기회 미활용 (top 리뷰 3-5개를 Review 타입으로 구조화 권장)','제품의 기술 사양(정격전압 3V, 정격전력 0.039W, KC 인증번호)이 technicalSpecification로 구조화되지 않음','사용 영역(어깨, 허리, 종아리 등)을 itemListElement로 구조화하면 더 정교한 검색 이해 가능'] 
-  },
-  '95P:발란스핏 EMS 브이라인 밴드': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]], 
-    strengths:['Product 스키마가 완벽하게 구현되어 있고, 3개의 Offer 옵션(단품, 1+1, 세트)이 명확하게 구조화됨','FAQPage 스키마로 6개 Q&A가 모두 구조화되어 있어 AI가 직접 인용 가능한 형태로 제공','Organization 스키마로 회사 정보, 주소, 로고가 완벽하게 등록되어 신뢰도 강화','AggregateRating으로 4.8/5.0, 231개 리뷰가 명확하게 표시되어 제품 신뢰성 전달','BreadcrumbList로 네비게이션 경로가 명시되어 검색 컨텍스트 강화','MerchantReturnPolicy로 배송, 반품 정책이 구조화되어 구매 신뢰도 증대'], 
-    warnings:['Review 스키마 부재 — 4.9점 평점은 있으나 개별 고객 리뷰 구조화 미흡','Product additionalProperty 불완전 — 3중 주파수, 강도 단계, KC 인증 번호 등 기술 사양이 텍스트로만 존재하고 구조화되지 않음','aggregateRating 세부사항 — ratingCount는 231개이나 bestRating(5), worstRating(1) 명시 부재','Offer 속성 최소화 — 할인율(44%), 무이자 할부, 적립금 정보가 텍스트 형태로만 존재'] 
-  },
-  '푸드올로지:지중해 올리브오일': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
-    strengths:['Product 스키마 완벽 구현','다중 Offer 5가지 구독 옵션','FAQPage 5개 구조화','BreadcrumbList 3단계 명확'],
-    warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','HowTo 스키마 미적용']
-  },
-  '푸드올로지:콜레올로지 컷 다이어트 유산균': {
-    items:[['속성 완성도','25/30',83],['정보 정확도','22/25',88],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer 7가지 옵션 완벽 구조화','AggregateRating 6,769개','FAQPage 5개 구조화','PropertyValue로 성분·섭취법 상세 제공'],
-    warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','유명인 모델 정보 구조화 미흡']
-  },
-  '푸드올로지:지중해 올리브 레몬 샷': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Organization+Product+FAQPage 완벽 구조화','AggregateRating 4.9/5.0 (347개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','OG 메타태그 완비','배송·반품 정책 상세 기술'],
-    warnings:['meta description 누락 — 검색 결과 스니펫 미최적화','개별 Review 엔티티 부재 — 실제 사용자 의견 인용 불가','이미지 URL https:https 중복 오류']
-  },
-  '푸드올로지:맨올로지 컷 PRO': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','8/10',80]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구조화','AggregateRating 4.8/5.0 (42,637개 리뷰)','FAQPage 6개 구조화','PropertyValue 성분·기능성 상세 기재','MerchantReturnPolicy 완비','OG 메타태그 완비'],
-    warnings:['개별 Review 스키마 부재 — 실제 사용자 의견 인용 불가','SameAs SNS 계정 미연동 — 브랜드 신뢰도 강화 필요']
-  },
-  '푸드올로지:버닝올로지 디데이': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구조화','AggregateRating 4.8/5.0 (5,806개 리뷰)','FAQPage 6개 구조화','7가지 Offer 옵션 명확 구조화','PropertyValue 성분·기능성 상세 기재','배송·반품 정책 완비'],
-    warnings:['개별 Review 스키마 부재 — 실제 사용자 의견 인용 불가']
-  },
-  '푸드올로지:2주 구성 다이어트 SET': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer 15가지 옵션 완벽 구조화','AggregateRating 4.6/5.0 (18,036개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','PropertyValue 성분·기능성 원료 상세 기재','OG 메타태그 완비'],
-    warnings:['개별 Review 스키마 미포함 — 실제 사용자 의견 인용 불가','JSON @context 중복 선언 — @graph 구조 정확성 저하','NutritionInformation 스키마 부재','VideoObject 미포함']
-  },
-  '푸드올로지:톡스올로지 클렌즈 48시간 CCA': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (858개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','MerchantReturnPolicy 전 옵션 포함','OG 메타태그 완비'],
-    warnings:['개별 Review 객체 부재 — 실제 사용자 의견 인용 불가','NutritionInformation 스키마 부재 — 영양 관련 쿼리 노출 취약','HowTo 스키마 부재 — 방법 검색 쿼리 미최적화','Meta description 부재 — 검색 결과 CTR 저하 가능']
-  },
-  '푸드올로지:톡스올로지 클렌즈 48시간 ABC': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','20/20',100],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer 12가지 옵션 완벽 구조화','AggregateRating 4.8/5.0 (2,706개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','PropertyValue 원재료·성분 상세 기재','MerchantReturnPolicy 전 옵션 포함'],
-    warnings:['개별 Review 배열 부재 — 실제 사용자 의견 인용 불가','일부 Offer price 0 표시 — 정확한 가격 정보 확인 필요']
-  },
-  '푸드올로지:지중해 오일만 클렌즈': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.7/5.0 (672개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 적용','PropertyValue 원재료 상세 기재'],
-    warnings:['개별 Review 텍스트 부재 — 실제 사용자 의견 인용 불가','반품 절차 상세 안내 추가 가능']
-  },
-  '푸드올로지:콜레올로지 컷 PRO': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (43,474개 리뷰)','FAQPage 6개 구조화','Offer 5가지 구성(1~6개월) 상세','additionalProperty 성분·기능성 구조화','og 메타태그 완비'],
-    warnings:['각 Offer @id 참조 구조 추가 권장 — @graph 연결 강화 가능']
-  },
-  '푸드올로지:지중해 레몬그린티': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','8/10',80]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 구현','AggregateRating 4.9/5.0 (499개 리뷰)','FAQPage 6개 구조화','Offer 6가지 옵션 구성','NutritionInformation 스키마 적용','HowTo 스키마 적용','Review 2개 샘플 구조화'],
-    warnings:['@id 참조 연결 제한적 — Organization-Product 관계 명시 강화 필요','구문 유효성 8/10 — 문법 오류 점검 필요','A등급까지 +1점 — 소폭 개선으로 등급 상향 가능']
-  },
-  '푸드올로지:컷팅젤리 (TW)': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (54개 리뷰)','FAQPage 4개 구조화','Offer 4가지 배송·반품 완비','additionalProperty 성분·섭취법·주의사항 상세','MerchantReturnPolicy 완비'],
-    warnings:['AggregateRating 텍스트만 표시 — 구조화 데이터 미반영','Review 스키마 부재','NutritionInformation 스키마 미적용']
-  },
-  '푸드올로지:콜레컷Pro + 콜레 티Pro + 컷팅젤리 세트 (TW)': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','21/25',84],['AI 인용 친화성','17/20',85],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+FAQPage 구현','AggregateRating 4.9/5.0 (61개 리뷰)','FAQPage 4개 구조화','Offer 배송·반품 정책 구조화','isPartOf로 번들 구성 3개 제품 명시'],
-    warnings:['Review 스키마 부재 — 개별 리뷰 미구조화','번들 상품 구성 명확도 개선 필요','ShippingDeliveryTime 실제 배송기간(7-14일)과 스키마 불일치','구문 유효성 8/10']
-  },
-  '푸드올로지:콜레올로지 컷 PRO (TW)': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (87점 기준)','FAQPage 구조화','Offer 다가지 옵션','additionalProperty 성분 구조화'],
-    warnings:['Review 스키마 부재','NutritionInformation 스키마 미적용']
-  },
-  '푸드올로지:버닝디데이 (TW)': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (54개 리뷰)','FAQPage 3개 구조화','Offer 6가지 옵션 배송·반품 완비','MerchantReturnPolicy 완비','OG 메타태그 완비'],
-    warnings:['AggregateRating 스키마 미포함 — 메타태그만 제공','Review 스키마 부재','NutritionInformation 스키마 미적용']
-  },
-  '푸드올로지:톡스올로지 비움 PRO (TW)': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 5.0/5.0 (57개 리뷰)','FAQPage 5개 구조화','Offer 7가지 옵션 배송·반품 완비','additionalProperty 성분·섭취법 구조화'],
-    warnings:['Review 스키마 부재 — 개별 리뷰 미구조화','DeliveryChargeSpecification 별도 구조화 가능']
-  },
-  '푸드올로지:2주 구성 다이어트 SET (TW)': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','16/15',107],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList+HowTo+WebPage 완벽 구현','AggregateRating 4.8/5.0 (16개 리뷰)','FAQPage 4개 구조화','HowTo 3단계 14일 프로그램 구조화','isPartOf 번들 구성 3개 제품 명시','Review 1개 샘플 구조화'],
-    warnings:['Review 스키마 1개 — 추가 확대 권장','성분 정보 additionalProperty 텍스트 — Ingredient 스키마 정교화 가능','배송시간 스키마와 실제 불일치 수정 필요']
-  },
-  '푸드올로지:Coleology Cutting Jelly': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','16/15',107],['구문 유효성','10/10',100]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','AggregateRating 4.9/5.0 (944개 리뷰)','FAQPage 6개 구조화','Offer $22.00·배송$5.99·30일 무료반품 완비','ItemList 추천상품 2개 연결','OG 메타태그 완비'],
-    warnings:['FAQ가 FAQPage 스키마 미적용 (적용 후 현재 완성)','ingredient 성분 정량 정보 미구조화']
-  },
-  '푸드올로지:Collagen Centella Jelly': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+ItemList 완벽 구현','AggregateRating 5.0/5.0 (157개 리뷰)','Offer $22.00·배송$5.99·30일 무료반품 완비','additionalProperty 성분·흡수율·맛·형태 구조화','OG 메타태그 완비'],
-    warnings:['FAQPage 스키마 부재 — 5개 FAQ 일반 텍스트만 제공','Review 스키마 부재','Product 설명 간결 — 성분 상세도 낮음']
-  },
-  '푸드올로지:Coleology Bowel Movement Jelly': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','AggregateRating 4.8/5.0 (180개 리뷰)','FAQPage 4개 구조화','Offer $22.00·배송$5.99·30일 무료반품 완비','OG 메타태그 완비'],
-    warnings:['Review 스키마 부재 — 개별 리뷰 미구조화','성분 정량 정보 미구조화 — 가르시니아·Polydextrose·Chia seeds 함유량']
-  },
-  '푸드올로지:컷팅 젤리 (JP)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','FAQPage 4개 구조화','Offer ¥2,680·배송¥300·7일 반품 완비','NutritionInformation 스키마 적용','additionalProperty 성분·섭취법·원산국 구조화'],
-    warnings:['AggregateRating 부재 — 고객 평점 미구조화','Review 스키마 부재','Organization과 Product @id 참조 미흡']
-  },
-  '푸드올로지:콜레올로지 컷 PRO (JP)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','FAQPage 5개 구조화','Offer ¥3,980(정가¥6,980)·무료배송·7일 반품 완비','AggregateRating 4.8/5.0 (1,200개)','additionalProperty 성분·용량·제조일 구조화','OG 메타태그 완비'],
-    warnings:['Product sku·color·size 미포함','NutritionInformation 부재','제조사(クァンドンヘルスバイオ)·판매원(아답트) 구분 불명확']
-  },
-  '푸드올로지:쾌변 젤리 (JP)': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (1,200개)','FAQPage 4개 구조화','Review 3개 샘플 구조화','NutritionInformation 영양정보 구조화','Offer ¥2,680·배송¥300·7일 반품 완비'],
-    warnings:['healthClaim 속성 부재 — 건강기능식품 기능성 미구조화','dosageAndAdministration 미구조화','manufacturer(CosmaxBio) 정보 링크 미약']
-  },
-  '오브제:오일 컨트롤 피니셔': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (920개 리뷰)','FAQPage 6개 구조화','HowToUse 스키마 적용','Organization SNS 링크(인스타·유튜브·카카오) 완비','additionalProperty 전성분 구조화'],
-    warnings:['Review 개별 스키마 미구현 — 고객 후기 AI 직접 인용 불가','WebPage 스키마 미적용 — datePublished 등 메타정보 누락']
-  },
-  '오브제:포어 제로 오일 컨트롤 선스틱': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product 스키마 완벽 구현 — 상품명·설명·이미지·SKU·브랜드 완비','AggregateRating 4.9/5.0 (1,618개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 5단계 카테고리 완벽 구현','6가지 Offer 구성 및 배송·반품 정책 완벽 적용','PropertyValue 성분·효능·SPF 정보 구조화'],
-    warnings:['Review 개별 샘플 부재 — 종합 평점만 있고 고객 리뷰 텍스트 미구조화','Color/Size 옵션 미명시','WebPage 스키마 부재']
-  },
-  '오브제:내추럴 커버 로션 2종': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
-    strengths:['Product 필수 요소 완전 구성 — name·image·description·offers·aggregateRating','Offer 12가지 옵션 및 가격대 명확 구조화','AggregateRating 4.9/5.0 (1,975개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 4단계 구현','MerchantReturnPolicy 30일 무료 반품 완비'],
-    warnings:['Organization-Product @id 참조 분리 — 통합 @graph 구조로 강화 필요','Review 개별 샘플 없음 — 신뢰도 향상을 위해 3~5개 추가 권장','additionalProperty 전성분이 과도하게 길어 파싱 복잡']
-  },
-  '오브제:액티브 스웨트프루프 선스틱': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Organization+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (136개 리뷰)','FAQPage 6개 구조화','다양한 Offer 옵션 및 가격 구조화','HowTo 스키마 적용 — 사용 단계별 구조화','Review 3개 샘플 구조화','Open Graph 메타태그 완비'],
-    warnings:['Review 샘플 수 추가 권장 — 현재 3개에서 5개로 확대','HowTo 단계 6~8개로 세분화 권장']
-  },
-  '오브제:퍼펙트 커버 쿠션': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','21/25',84],['AI 인용 친화성','18/20',90],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
-    strengths:['Product 스키마 완전 구조화 — 제품명·가격·이미지·기능 명확','AggregateRating 4.9/5.0 (2,451개 리뷰)','다중 Offer — 색상별(아이보리/베이지/샌드)·세트별 구조화','FAQPage 6개 구조화','BreadcrumbList 4단계 구현','OfferShippingDetails 배송·반품 완비','Review 3개 샘플 구조화'],
-    warnings:['리뷰 수 불일치 — 메타데이터 2,451개 vs 스키마 281개 정합성 수정 필요','datePublished 정보 부재 — 최신성 표시 불가','제품 특징 수치(모공 커버 49.2%, 스웨트프루프 98.3%) 구조화 더 정교화 가능']
-  },
-  '오브제:포어 제로 무스 클레이 팩': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (442개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 5단계 네비게이션','5가지 Offer 옵션 완벽 구조화','ShippingDetails·MerchantReturnPolicy 완비','additionalProperty 임상 데이터·성분 상세 구조화'],
-    warnings:['Review 개별 스키마 부재 — 구체적 고객 의견 AI 인용 불가','ImageObject 타입 미명시 — 이미지 메타데이터 활용 제한']
-  },
-  '오브제:내추럴 커버 파운데이션': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product 스키마 완벽 구성 — 상품명·설명·가격·이미지 명확','AggregateRating 4.9/5.0 (29,933개 리뷰)','29개 이상 Offer 옵션 — 세트 구성별 가격 상세 구조화','FAQPage 6개 구조화','BreadcrumbList 4단계 구현','MerchantReturnPolicy·ShippingDeliveryTime 완비','color 배열(아이보리·베이지·샌드) 명시적 구조화'],
-    warnings:['Organization-Product @id 연결 부분적 — 통합 강화 필요','각 색상별 SKU 구분 미흡 — 통합 코드 "9"만 사용','HowToUse 스키마 부재 — 브러쉬 사용법 미구조화']
-  },
-  '오브제:맥스 올인원 워시 500ml': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer+AggregateRating 완벽 구현','AggregateRating 4.9/5.0 (96개 리뷰)','5개 Offer 옵션별 가격·배송·반품 정책 상세','FAQPage 6개 구조화','BreadcrumbList 5단계 구현','Organization 브랜드 정체성 확립','additionalProperty 주요 성분·효능 구조화'],
-    warnings:['개별 Review 스키마 없음 — 종합 평점만 있고 상세 리뷰 미구조화','HowTo 스키마 부재 — 사용 방법 단계별 구조화 미흡','주요 성분(DEO-NATURE™, 락토-시카™) 효능 정보 분산']
-  },
-  '오브제:맥스 워터풀 선크림 300ml': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['@graph 구조로 Organization+Product+BreadcrumbList+FAQPage 완벽 통합','AggregateRating 4.9/5.0 (125개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 5단계 구현','5개 Offer 세트 구성 상세','HowTo 스키마 적용 — 5단계 사용법 구조화','Review 3개 샘플 구조화','additionalProperty 성분·효능 구조화'],
-    warnings:['개별 Review 샘플 추가 권장 — 현재 3개에서 5개로 확대','color·material 속성 추가로 필터링 검색 최적화 가능']
-  },
-  '오브제:무드 체인지 립밤': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (7,799개 리뷰)','FAQPage 6개 구조화','Offer 16개 옵션 구조화','MerchantReturnPolicy·배송 정책 완비','WebSite 스키마+SearchAction 적용'],
-    warnings:['개별 Review 스키마 부재 — 실제 리뷰 텍스트 AI 인용 불가','색상 옵션 color 배열 구조화 미흡','관련 제품 ItemList 스키마 부재']
-  },
-  '오브제:포어 제로 프레쉬 올인원': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.5~5.0/5.0 (246~432개 리뷰)','FAQPage 6개 구조화','Offer 6가지 옵션 구조화','배송·반품 정책 완비','PropertyValue 용량·성분·기능성 구조화'],
-    warnings:['Review 개별 스키마 부재 — 종합 평점만 있고 리뷰 텍스트 미구조화','이미지 단일 URL — 복수 이미지 배열 확장 권장']
-  },
-  '오브제:오일 컨트롤 로션': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 5.0/5.0 (745개 리뷰)','FAQPage 6개 구조화','Offer 5가지 옵션 구조화','Review 2개 샘플 구조화','PropertyValue 전성분 상세 구조화'],
-    warnings:['@graph에서 Product-Organization 명시적 @id 참조 강화 권장','Review 샘플 2개 — 추가 확대 권장']
-  },
-  '오브제:내추럴커버파데이션 (TW)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','20/25',80],['AI 인용 친화성','16/20',80],['스키마 커버리지','12/15',80],['구문 유효성','8/10',80]],
-    strengths:['기본 Product 스키마 구현 — 상품명·이미지·SKU 구조화','AggregateRating 5.0/5.0 (980개 리뷰)','가격·재고(InStock) 명확 표시','상품 이미지 8개','og:title·og:description·og:image 완비','H1 태그 명확'],
-    warnings:['Product description 공백 — 3in1 기능·스틱형 차별점 AI 인식 불가','색상 옵션(象牙白色·米色·柔沙色) color 속성 미구조화','Brand 객체 스키마 부재 — 텍스트 문자열만 존재','Bundle 조합 옵션 스키마 미정의','Organization 스키마 부재']
-  },
-  '오브제:내추럴커버로션 (TW)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','21/25',84],['AI 인용 친화성','16/20',80],['스키마 커버리지','9/15',60],['구문 유효성','8/10',80]],
-    strengths:['기본 Product 스키마 구현 — 상품명·가격·SKU·이미지 감지','AggregateRating 5.0/5.0 (919개 리뷰)','상품 이미지 배열 구조화','og:type=product 메타태그 설정','Offer 가격(898 TWD)·InStock 포함'],
-    warnings:['Organization 스키마 부재 — OBgE 브랜드 정체성 불명확','Product description 없음 — 자연 커버력·지속력 등 핵심 기능 미전달','Review 스키마 부재 — 919개 리뷰 텍스트 AI 인용 불가','BreadcrumbList 부재 — 카테고리 경로 감지 불가','색상/버전 옵션(經典原版·輕盈柔霧版) 미구조화','정가(KRW)·할인가(TWD) 혼재 — 가격 정확성 문제']
-  },
-  '오브제:블랙헤드스크럽밤 (TW)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','20/25',80],['AI 인용 친화성','15/20',75],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],
-    strengths:['기본 Product 스키마 구현 — 상품명·가격·평점·이미지 구조화','AggregateRating 4.9/5.0 (502개 리뷰)','상품 이미지 6개 배열','og:image·og:title·og:description 완벽 설정','SKU 정보 제공','가격·재고·통화 정확 기록'],
-    warnings:['Product description 공백 — 티트리 성분·실리콘 브러시·피지 제어 기능 미전달','Organization 스키마 부재 — 브랜드 신뢰성 신호 미흡','BreadcrumbList 부재 — 카테고리(出油/毛孔) 구조 미인식','Offer seller 정보 부재 — 판매처 신원 불명확','Bundle 추가 옵션 미구조화']
-  },
-  '오브제:포어제로 오일컨트롤 선스틱 (TW)': {
-    items:[['속성 완성도','23/30',77],['정보 정확도','20/25',80],['AI 인용 친화성','12/20',60],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],
-    strengths:['기본 Product 스키마 구현 (name, image, price, aggregateRating, offers, availability)','AggregateRating 5.0/5.0 (612개 리뷰)','Open Graph 메타태그 완비 (og:title, og:description, og:image)','상품 가격 정보 정확하게 포함'],
-    warnings:['description·brand 필드 누락','구매 옵션 (1+1, 번들 세트) 미구조화 — AggregateOffer 필요','색상 정보(color) 스키마 부재','Organization 스키마 부재','BreadcrumbList 없음']
-  },
-  '오브제:Oil Control Finisher': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','Offer $18.00·배송$6.99·30일 무료반품 완비','FAQPage 5개 구조화','Review 3개 샘플 구조화','OG 메타태그 완비'],
-    warnings:['AggregateRating null 처리 — 4.8/5.0 (221개 리뷰) 스키마 미포함','HowTo 사용법 스키마 부재']
-  },
-  '오브제:내추럴 커버 파운데이션 (JP)': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (102개 리뷰)','FAQPage 5개 구조화','Review 3개 샘플 구조화','Offer ¥3,980·배송무료·7일 반품 완비','additionalProperty 용량·효능·SPF 구조화'],
-    warnings:['AggregateOffer 미사용 — 색상(1호·2호·3호)별 가격 비교 미흡','@graph 일부 스키마 @id 참조 누락']
-  },
-  '오브제:포어제로 오일 컨트롤 선스틱 (JP)': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (29개 리뷰)','FAQPage 5개 구조화','Review 1개 샘플 구조화','Offer ¥2,580·배송·7일 반품 완비','additionalProperty SPF50+/PA++++·저자극·18g 구조화'],
-    warnings:['Review 스키마 1개 — 추가 확대 권장','ProductImage caption 부재','HowToUse 스키마 미포함']
-  },
-  '오브제:내추럴 커버 로션 (JP)': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (29개 리뷰)','FAQPage 5개 구조화','Review 3개 샘플 구조화','Offer ¥2,680·배송·7일 반품 완비','additionalProperty 용량·효능·SPF 구조화'],
-    warnings:['Review aggregateRating만 존재 (미적용 전) — 추가됨','additionalProperty 전성분·사용주의사항 미구조화','@context 중복 선언 최적화 필요']
-  },
-  '에이페:스칼프 부스팅 앰플': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (2,361개 리뷰)','FAQPage 6개 구조화','Offer 4가지 옵션 상세','PropertyValue 임상결과·사용법 구조화','MerchantReturnPolicy 완비'],
-    warnings:['Review 스키마 부재 — 개별 고객 리뷰 AI 인용 불가','HowTo 스키마 부재 — 사용법 단계별 구조화 미흡']
-  },
-  '에이페:리페어 리브인 트리트먼트': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (93개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보','PropertyValue 성분·사용법·주의사항 상세'],
-    warnings:['Review 스키마 부재 — 93개 리뷰 AI 인용 불가','additionalProperty 세분화 권장 — 사용법·용량·주의사항 추가','@id 참조 체계 개선 가능']
-  },
-  '에이페:스칼프 부스팅 앰플 (TW)': {
-    items:[['속성 완성도','24/30',80],['정보 정확도','21/25',84],['AI 인용 친화성','12/20',60],['스키마 커버리지','11/15',73],['구문 유효성','9/10',90]],
-    strengths:['기본 Product 스키마 구현','AggregateRating 5.0/5.0 (48개 리뷰)','Open Graph 메타태그 완비','H1 태그 명확'],
-    warnings:['Brand 필드 공란 — EPAIS 브랜드 정체성 불명확','description 누락 — 제품 기능·성분 미구조화','Organization 스키마 부재','조합 옵션(1+1·2+1) 미구조화','FAQPage 스키마 미적용']
-  },
-  '에이페:아이래쉬 에센셜 세럼 (TW)': {
-    items:[['속성 완성도','21/30',70],['정보 정확도','18/25',72],['AI 인용 친화성','12/20',60],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],
-    strengths:['기본 Product 스키마 구현','AggregateRating 4.9/5.0 (53개 리뷰)','Open Graph 메타태그 완비','이미지 2개 이상 제공'],
-    warnings:['description·brand 필드 누락','조합 옵션 7가지 미구조화','Organization 스키마 부재','BreadcrumbList 없음','배송·결제 메타데이터 부재']
-  },
-  '에이페:Epais Scalp Boosting Ampoule': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Product+Offer+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (393개 리뷰)','FAQPage 7개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보'],
-    warnings:['개별 Review 스키마 부재','HowToUse 스키마 미적용','임상 검증 수치 구조화 미흡','기술 사양 PropertyValue 부재']
-  },
-  '에이페:Eyelash Essential Serum': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+HowTo 완벽 구현','Offer 배송비·반품 정책 완비','ClaimReview 임상 데이터 구조화','ItemList 추천 상품 연결','Open Graph 메타태그 완벽 구성'],
-    warnings:['AggregateRating null 처리 — 페이지 4.8/5.0 (173개) 스키마 미반영','Review 스키마 부재 — 개별 고객 리뷰 인용 불가','Ingredients 스키마 미구조화 — 10가지 특허 성분 정보 부재']
-  },
-  '에이페:Eyelash Black Serum': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+AggregateRating+Offer 완벽 구현','AggregateRating 4.8/5.0 (125개 리뷰)','HowTo 4단계 구조화','BreadcrumbList 완벽 구현','FAQPage+ClaimReview 적용','Open Graph 메타태그 완비'],
-    warnings:['Review 스키마 부재 — 125개 리뷰 텍스트 AI 인용 불가','Clinical Test 수치 구조화 미흡 — ClaimReview/PropertyValue 변환 권장','FAQPage 스키마 미적용']
-  },
-  '에이페:Scalp Intensive Ampoule': {
-    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+BreadcrumbList+FAQPage+HowTo 완벽 구현','AggregateRating 4.8/5.0 (160개 리뷰)','FAQPage 5개 구조화','HowTo 7단계 구조화','Offer 배송·반품 정책 완비','Review 3개 샘플 구조화'],
-    warnings:['aggregateRating null 처리 — AggregateRating 직접 참조 강화 필요','Product color·material 속성 미포함']
-  },
-  '8APM:딥나잇 멜라시럽': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
-    strengths:['완벽한 @graph 구조 — Organization+Product+BreadcrumbList+FAQPage 통합','AggregateRating 4.8/5.0 (1,500개 리뷰)','FAQPage 6개 구조화','Offer 4가지(20~120일분) 가격·배송·반품 완비','additionalProperty HACCP 인증·성분·섭취법 구조화','OG 메타태그 완비'],
-    warnings:['healthRelated·medicalAction 의료 도메인 속성 추가 권장','NutritionInformation 스키마 고려 가능','shippingRate 일부 보완 가능']
-  },
-  '8APM:포커스 젤': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
-    strengths:['Product+FAQPage+AggregateRating+Offer 완벽 구현','AggregateRating 4.8/5.0 (1,133개 리뷰)','FAQPage 6개 구조화','Offer 4가지(10~60일분) 배송·반품 완비','BreadcrumbList 명확','Organization 브랜드 정체성 확립'],
-    warnings:['additionalProperty 원료명 과다 — 핵심 성분(갈랑갈·타우린·L-테아닌) PropertyValue 분리 권장','Review 개별 샘플 추가 시 신뢰도 강화 가능']
-  },
-  '8APM:멜라피스': {
-    items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Product+Organization+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (1,657개 리뷰)','FAQPage 6개 구조화','Offer 4가지 가격·배송·반품 완비','additionalProperty 성분·복용법 구조화','og:type=product 메타태그 완비'],
-    warnings:['Review 개별 샘플 추가 시 신뢰도 강화 가능','MedicalProduct 스키마 추가로 건강식품 특성 강조 가능']
-  },
-  '듀오렉신:안전한 글로벌 성분 그대로! Duorexin 듀오렉신 나비 정': {
-    items:[['속성 완성도','27/30',90],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
-    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.4/5.0 (6,286개 리뷰)','FAQPage 5개 구조화','Offer 4가지(2~12주) 배송·반품 완비','Medicine 스키마로 알긴산염·글루코만난 성분 구조화','HowTo 섭취법 4단계 구조화','additionalProperty FDA·EFSA 안전성 인증 명시'],
-    warnings:['Review 개별 스키마 부재 — 리뷰 텍스트 AI 인용 불가','Product @id 미명시 — 엔티티 관계 정의 약함','Recipe/HowTo 섭취법 구조화 보완 가능']
-  }
+  '풀리:쌀 세라 수분 선크림':{items:[['속성 완성도','29/30',97],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Organization+Product+Review+FAQPage 완벽 구현','AggregateRating 2,847개','FAQPage 5개 구조화','고객 리뷰 5개 구조화','shippingDetails·반품 정책 완전 구조화'],warnings:['@context 중복 정의 — @graph 통합 최적화 권장','Manufacturer @id 참조 개선 가능']},
+  '풀리:쌀 세라 에센스토너':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product 스키마 완벽','AggregateRating 374개','FAQPage 5개 구조화','Offer 4가지 옵션 상세'],warnings:['리뷰 374개 중 5개만 구조화','availability 상세화 권장']},
+  '풀리:그린토마토 팩 클렌저':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+FAQPage+ItemList 5개 스키마 포괄 구성','AggregateRating 4.9/5.0 (4,153개 리뷰)','FAQPage 6개 구조화','5개 Offer 구성 및 배송·반품 정책 완비','Review 3개 샘플 구조화'],warnings:['Product.description 간단함 — 핵심 성분·효과·차별점 상세화 필요','additionalProperty 성분 정보 상세화 필요']},
+  '풀리:쌀 PDRN 광채 세럼':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (172개 리뷰)','FAQPage 6개 구조화','Organization+BreadcrumbList 완전 구조화','ItemList 추천 제품 연관성 강화','HowTo 스키마 적용 완료'],warnings:['Review 개별 스키마 부재 — 리뷰 텍스트 AI 인용 불가','additionalProperty 핵심 성분 함유량 상세화 권장']},
+  '풀리:쌀 반죽 팩 클렌저':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization 스키마로 회사 정보 명확하게 인식됨','Product 스키마로 제품명, 가격, 이미지 완벽하게 구조화됨','AggregateRating(5.0점, 982개 리뷰)으로 신뢰성 높음','FAQPage로 6가지 주요 질문-답변 구조화됨','BreadcrumbList로 네비게이션 경로 구조화','ItemList로 추천 제품 6개 교차판매 기회 제공','MerchantReturnPolicy로 반품규정(30일, 무료반품) 명시'],warnings:['Review 개별 리뷰 스키마 부재 — AI가 특정 고객 의견 인용 불가','ImageObject 상세화 부족 — 이미지 메타데이터 한정']},
+  '풀리:쌀 세라마이드 3종 세트':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Product 스키마가 완벽하게 구성되어 있음','다양한 Offer 옵션 (5가지 세트 구성)으로 선택지를 명확히 제시','AggregateRating 스키마로 4.9/5.0 평점과 4,697개 리뷰 신뢰도 제공','FAQPage 스키마로 6개의 주요 Q&A가 구조화되어 AI 직접 인용 가능','BreadcrumbList 스키마로 네비게이션 경로 명확화','Organization 스키마로 회사 정보, 주소, 이메일 명시','ItemList 스키마로 관련 상품 추천 구조화'],warnings:['Review 스키마 부재 — 개별 고객 리뷰 내용이 구조화되지 않음','HowTo 스키마 부재 — 사용법이 텍스트로만 표현되어 단계별 해석 미흡','ProductCollection 타입 부재 — 3종 세트의 구성 제품 간 관계 명시 부족','ingredient 또는 components 정보 부재']},
+  '풀리:그린토마토 클레이팩클렌저 (TW)':{items:[['속성 완성도','24/30',80],['정보 정확도','20/25',80],['AI 인용 친화성','16/20',80],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],strengths:['기본 Product 스키마 완성 — 상품명·가격·이미지·SKU 구조화','AggregateRating 5.0/5.0 (160개 리뷰)','og:title·og:description·og:image 완비','상품 이미지 5개 배열 구조화','재고 상태 InStock 명확 표시'],warnings:['Organization 스키마 부재 — FULLY 브랜드 정체성 미구조화','Product description 공백 — 제품 기능·성분 AI 인식 불가','BreadcrumbList 부재 — 카테고리 경로 미구조화','FAQPage 부재 — 배송·반품 정책 인용 불가','Review 스키마 부재 — 개별 고객 리뷰 미구조화']},
+  '풀리:레몬비타 버블세럼 (TW)':{items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],strengths:['Product 스키마 명확 구현 — 상품명·가격·평점·이미지 5개 구조화','AggregateRating 5.0/5.0 (66개 리뷰)','og:type=product 메타태그 완비','AddOn 번들 상품 구조화'],warnings:['Organization 스키마 부재 — FULLY 브랜드 정체성 불명확','Product description 빈 문자열 — 기능·비타민C·거품 텍스처 미구조화','BreadcrumbList 부재','FAQPage 부재 — 배송·반품 Q&A 미구조화','Review 스키마 부재']},
+  '풀리:쌀 세라 수분 선크림 (TW)':{items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','15/20',75],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],strengths:['Product 스키마 필수 정보 완성','AggregateRating 4.9/5.0 (8개 리뷰)','Offer availability InStock 명확','og:title·og:description·og:image 일관성 구성','H1 태그 명확'],warnings:['Organization 스키마 부재','Brand 문자열로만 표시 — Brand 객체 미확장','BreadcrumbList 부재','FAQPage 부재','Product description 공백']},
+  '풀리:Green Tomato Clay Mask Cleanser (US)':{items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','17/20',85],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList+HowTo+ItemList 완벽 구현','Offer $19.90·배송$6.99·30일 무료반품 완비','FAQPage 8개 구조화','HowTo 마스크/클렌저 2가지 단계별 구조화','ItemList 추천상품 7개 연결','OG 메타태그 완비'],warnings:['AggregateRating null 처리 — 5.0/5.0 (1,104 리뷰) 스키마 미포함','Review 스키마 부재','Product 설명 Award 중심 — 49% 그린토마토·6-Clay Complex 임상수치 미명시','HowTo 단계 텍스트 일부 불완전']},
+  '95P:발란스핏 EMS 슬림 벨트 PRO':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','17/15',113],['구문 유효성','10/10',100]],strengths:['Product 스키마 완성도 높음: 상품명, 설명, 이미지, 가격, 다양한 Offer 옵션 명시','AggregateRating 데이터 풍부: 4.8/5.0 평점에 62,268개 리뷰 수치로 강력한 신뢰도 제공','Organization 스키마 포함: 회사명(95프로블럼), 주소, 로고, 이메일로 발행처 명확화','FAQPage 스키마 잘 구성: 6개 Q&A가 직접 인용 가능한 형태로 제공','BreadcrumbList 구현: 페이지 계층 구조 명확','Offer 상세도: 배송료, 배송 시간, 반품 정책(30일 무료 환불) 완비','og 메타태그 완성: og:image, og:title, og:description, og:type(product) 등으로 소셜 공유 최적화'],warnings:['MedicalProduct 스키마 부재: 의료기기로서의 특성을 더 명확하게 표시할 수 있음','의료기기 인증 정보 미반영: 1등급 의료기기, 식약청 승인번호 등의 공식 인증 정보 구조화 부족','Review 개별 샘플 부재: 최상위 3-5개 리뷰 샘플이 구조화되지 않음','ProductSpecification 미흡','MedicalCondition 연결 부재','Clinical Trial 정보 구조화 부족']},
+  '95P:발란스핏 압박스타킹 발등 종아리형 프로':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization, Product, Offer, AggregateRating, BreadcrumbList, FAQPage 모든 핵심 스키마 완벽 구현','다양한 구성(옵션1~5)과 색상, 사이즈별로 개별 Offer 상세 구조화','평점 4.9/5.0, 521개 리뷰가 AggregateRating으로 정확히 표현','배송료, 배송 기간(1~2일), 교환/반품 정책(30일)이 OfferShippingDetails와 MerchantReturnPolicy로 명시','6개의 주요 질문-답변 쌍이 FAQPage mainEntity로 완벽하게 구조화','의료기기 인증 정보가 description에 명시되어 신뢰도 강화'],warnings:['Review 스키마로 개별 고객 리뷰(3~5개 샘플) 추가 시 AI 인용 신뢰도 추가 상승 가능','MedicalDevice 스키마 추가로 의료기기로서의 정체성 더욱 명확화 가능']},
+  '95P:발란스핏 목 어깨 마사지기':{items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization 스키마로 95프로블럼의 회사 정보 완벽 구성','Product 스키마로 상품명, 이미지, 설명, 가격, 평점이 완벽하게 구조화됨','AggregateRating 스키마로 4.9/5.0 평점과 466개 리뷰 수 명시','FAQPage 스키마로 6개의 주요 Q&A가 AI 직접 인용 가능하도록 구조화','BreadcrumbList로 네비게이션 경로가 명확하게 표현됨','Offer 스키마의 MerchantReturnPolicy로 30일 환불 및 무상 배송 정보 기재'],warnings:['개별 Review 스키마 부재 — 496개 리뷰 중 샘플 리뷰의 상세 정보(리뷰어명, 평점, 내용) 미포함','제품 사양 정보(7.4V, 16W, 90분 충전시간)가 PropertyValue로 구조화되지 않음','KC 인증 정보(R-R-RaG-95PB01NSM)가 스키마에 포함되지 않음','@context 속성이 각 스키마 객체에 중복되어 있음 (정규화 필요)']},
+  '95P:[SET] 이너핏 민소매 1+1 SET 할인':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Product 스키마가 상품명, 이미지, SKU, 브랜드 정보를 완벽히 구조화하여 기본 상품정보 인식 우수','AggregateRating으로 4.6/5.0 평점과 132개 리뷰 수를 명확히 제공하여 신뢰도 높음','50개 이상의 Offer 배열로 다양한 옵션별 가격 정보 제공','MerchantReturnPolicy로 30일 무료 반품, 배송료 0원, 배송기간 1-2일 정보 상세히 구조화','FAQPage로 6개 주요 Q&A를 구조화하여 AI가 직접 인용 가능한 콘텐츠 제공','BreadcrumbList로 페이지 계층 구조(홈 > 상품명) 명확화'],warnings:['개별 고객 리뷰(Review 스키마)가 부재하여 구체적인 사용 후기 정보를 AI가 직접 인용 불가','Product 최상위 레벨에 color, size 속성이 명시되지 않아 옵션 정보가 Offer 배열에만 묻혀있음','productId(78)가 있으나 더 상세한 제품 카테고리(category 필드)가 스키마에 누락됨','이미지가 1개뿐으로 다각도 상품 사진 구조화 기회 미활용']},
+  '95P:체어 마사지기':{items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Product 스키마가 상품명, 이미지, 설명, SKU, 브랜드로 완벽하게 구조화됨','Offer 정보로 가격(139,000원), 할인율(48%), 통화(KRW), 배송비 무료, 배송 시간이 명확하게 표현됨','AggregateRating으로 평점 4.9/5.0과 리뷰 922개 정보 제공','MerchantReturnPolicy로 30일 환불, 무료 반품 정책이 구조화됨','BreadcrumbList로 네비게이션 경로가 명확하게 표시됨','기본 메타태그가 충실하게 구성됨'],warnings:['Review 개별 리뷰 샘플 스키마 추가로 구체성 강화 가능','제품 상세 사양(모델명, 정격전압, 정격전력, 무게, 색상 옵션)을 PropertyValue 형식으로 더 명확하게 구조화 필요','FAQPage 스키마로 배송 기간, 교환/반품/환불 안내, A/S 정책을 구조화하면 직접 인용 가능성 증가']},
+  '95P:발란스핏 압박스타킹 종아리형 프로':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization, Product, Offer, AggregateRating, BreadcrumbList, FAQPage 모든 핵심 스키마 완벽 구현','다양한 구성과 색상, 사이즈별로 개별 Offer 상세 구조화','평점 4.9/5.0, 521개 리뷰가 AggregateRating으로 정확히 표현','6개의 주요 질문-답변 쌍이 FAQPage mainEntity로 완벽하게 구조화','의료기기 인증 정보가 description에 명시되어 신뢰도 강화'],warnings:['Review 스키마로 개별 고객 리뷰(3~5개 샘플) 추가 시 AI 인용 신뢰도 추가 상승 가능','MedicalDevice 스키마 추가로 의료기기로서의 정체성 더욱 명확화 가능']},
+  '95P:발란스핏 종아리 마사지기 컴팩트형/지퍼형':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Product 스키마가 완전하게 구현됨','4개 옵션별 개별 Offer 스키마로 다양한 가격대(59,000~140,000원) 정확히 표시','AggregateRating으로 5.0 평점과 1,504개 리뷰 수 제공 — 신뢰도 높음','FAQPage 스키마로 6개 Q&A가 직접 인용 가능한 형식으로 제공','Organization 스키마로 회사 정보가 명확히 구조화','BreadcrumbList로 홈 > 제품 상세 네비게이션 경로 제공'],warnings:['개별 Review 스키마 부재 — 평점만 표시되고 구체적 리뷰 내용이 AI 인용 불가','Product의 additionalProperty가 제품 사양만 기재','관련 상품과의 관계 @id 연결 미흡','HowTo 또는 실제 사용 방법 단계별 스키마 부재']},
+  '95P:발란스핏 압박스타킹 1+1특가':{items:[['속성 완성도','28/30',93],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product 스키마가 완벽하게 구조화되어 상품명, 이미지, 설명, 가격 정보가 AI에 명확함','다양한 Offer 옵션으로 구매 선택지가 체계적으로 표시됨','AggregateRating으로 평점 4.8/5.0과 리뷰 수(301개)가 명확함','FAQPage 스키마로 6개의 주요 Q&A가 구조화되어 AI가 직접 인용 가능','Organization 스키마로 회사 정보 완전함'],warnings:['aggregateRating의 reviewCount가 301개로 표시되나 실제 페이지에는 62,281개 리뷰로 표기 (데이터 불일치)','개별 Review 스키마 부재','의료기기 인증(1등급), 국내 제조 등 차별화 정보가 Product 스키마에 포함되지 않음','인체시험 데이터와 같은 검증 정보가 구조화되지 않음']},
+  '95P:발란스핏 EMS 리커버리 밴드':{items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product 스키마가 완벽하게 구현되어 있음','Organization 스키마로 판매사 정보가 명확하게 구조화','AggregateRating으로 4.9/5.0와 111개 리뷰 수가 AI에 신뢰도 높은 형태로 제공','FAQPage 스키마로 6개의 주요 Q&A가 직접 인용 가능하도록 구조화','3개의 Offer 스키마로 판매 옵션별 가격, 배송료, 배송 시간이 명확하게 구분'],warnings:['리뷰 샘플이 상세 페이지에 표시되지 않아 개별 Review 스키마로 구현 기회 미활용','제품의 기술 사양이 technicalSpecification로 구조화되지 않음','사용 영역(어깨, 허리, 종아리 등)을 itemListElement로 구조화하면 더 정교한 검색 이해 가능']},
+  '95P:발란스핏 EMS 브이라인 밴드':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product 스키마가 완벽하게 구현되어 있고, 3개의 Offer 옵션이 명확하게 구조화됨','FAQPage 스키마로 6개 Q&A가 모두 구조화되어 있어 AI가 직접 인용 가능한 형태로 제공','Organization 스키마로 회사 정보, 주소, 로고가 완벽하게 등록되어 신뢰도 강화','AggregateRating으로 4.8/5.0, 231개 리뷰가 명확하게 표시','MerchantReturnPolicy로 배송, 반품 정책이 구조화'],warnings:['Review 스키마 부재 — 4.9점 평점은 있으나 개별 고객 리뷰 구조화 미흡','Product additionalProperty 불완전 — 3중 주파수, 강도 단계, KC 인증 번호 등 기술 사양이 텍스트로만 존재','Offer 속성 최소화 — 할인율, 무이자 할부, 적립금 정보가 텍스트 형태로만 존재']},
+  '푸드올로지:지중해 올리브오일':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],strengths:['Product 스키마 완벽 구현','다중 Offer 5가지 구독 옵션','FAQPage 5개 구조화','BreadcrumbList 3단계 명확'],warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','HowTo 스키마 미적용']},
+  '푸드올로지:콜레올로지 컷 다이어트 유산균':{items:[['속성 완성도','25/30',83],['정보 정확도','22/25',88],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Offer 7가지 옵션 완벽 구조화','AggregateRating 6,769개','FAQPage 5개 구조화','PropertyValue로 성분·섭취법 상세 제공'],warnings:['이미지 URL 프로토콜 중복(https:https) 오류','개별 Review 스키마 부재','유명인 모델 정보 구조화 미흡']},
+  '푸드올로지:지중해 올리브 레몬 샷':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Organization+Product+FAQPage 완벽 구조화','AggregateRating 4.9/5.0 (347개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','OG 메타태그 완비','배송·반품 정책 상세 기술'],warnings:['meta description 누락 — 검색 결과 스니펫 미최적화','개별 Review 엔티티 부재 — 실제 사용자 의견 인용 불가','이미지 URL https:https 중복 오류']},
+  '푸드올로지:맨올로지 컷 PRO':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','8/10',80]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구조화','AggregateRating 4.8/5.0 (42,637개 리뷰)','FAQPage 6개 구조화','PropertyValue 성분·기능성 상세 기재','MerchantReturnPolicy 완비','OG 메타태그 완비'],warnings:['개별 Review 스키마 부재 — 실제 사용자 의견 인용 불가','SameAs SNS 계정 미연동 — 브랜드 신뢰도 강화 필요']},
+  '푸드올로지:버닝올로지 디데이':{items:[['속성 완성도','27/30',90],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구조화','AggregateRating 4.8/5.0 (5,806개 리뷰)','FAQPage 6개 구조화','7가지 Offer 옵션 명확 구조화','PropertyValue 성분·기능성 상세 기재','배송·반품 정책 완비'],warnings:['개별 Review 스키마 부재 — 실제 사용자 의견 인용 불가']},
+  '푸드올로지:2주 구성 다이어트 SET':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Product+Offer 15가지 옵션 완벽 구조화','AggregateRating 4.6/5.0 (18,036개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','PropertyValue 성분·기능성 원료 상세 기재','OG 메타태그 완비'],warnings:['개별 Review 스키마 미포함','JSON @context 중복 선언 — @graph 구조 정확성 저하','NutritionInformation 스키마 부재','VideoObject 미포함']},
+  '푸드올로지:톡스올로지 클렌즈 48시간 CCA':{items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (858개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','MerchantReturnPolicy 전 옵션 포함','OG 메타태그 완비'],warnings:['개별 Review 객체 부재 — 실제 사용자 의견 인용 불가','NutritionInformation 스키마 부재','HowTo 스키마 부재','Meta description 부재']},
+  '푸드올로지:톡스올로지 클렌즈 48시간 ABC':{items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','20/20',100],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Offer 12가지 옵션 완벽 구조화','AggregateRating 4.8/5.0 (2,706개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 3단계 명확','PropertyValue 원재료·성분 상세 기재','MerchantReturnPolicy 전 옵션 포함'],warnings:['개별 Review 배열 부재','일부 Offer price 0 표시 — 정확한 가격 정보 확인 필요']},
+  '푸드올로지:지중해 오일만 클렌즈':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.7/5.0 (672개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 적용','PropertyValue 원재료 상세 기재'],warnings:['개별 Review 텍스트 부재','반품 절차 상세 안내 추가 가능']},
+  '푸드올로지:콜레올로지 컷 PRO':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (43,474개 리뷰)','FAQPage 6개 구조화','Offer 5가지 구성(1~6개월) 상세','additionalProperty 성분·기능성 구조화','og 메타태그 완비'],warnings:['각 Offer @id 참조 구조 추가 권장 — @graph 연결 강화 가능']},
+  '푸드올로지:지중해 레몬그린티':{items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','8/10',80]],strengths:['Organization+Product+FAQPage+BreadcrumbList 구현','AggregateRating 4.9/5.0 (499개 리뷰)','FAQPage 6개 구조화','Offer 6가지 옵션 구성','NutritionInformation 스키마 적용','HowTo 스키마 적용','Review 2개 샘플 구조화'],warnings:['@id 참조 연결 제한적','구문 유효성 8/10 — 문법 오류 점검 필요']},
+  '푸드올로지:컷팅젤리 (TW)':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (54개 리뷰)','FAQPage 4개 구조화','Offer 4가지 배송·반품 완비','additionalProperty 성분·섭취법·주의사항 상세','MerchantReturnPolicy 완비'],warnings:['AggregateRating 텍스트만 표시 — 구조화 데이터 미반영','Review 스키마 부재','NutritionInformation 스키마 미적용']},
+  '푸드올로지:콜레컷Pro + 콜레 티Pro + 컷팅젤리 세트 (TW)':{items:[['속성 완성도','26/30',87],['정보 정확도','21/25',84],['AI 인용 친화성','17/20',85],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+FAQPage 구현','AggregateRating 4.9/5.0 (61개 리뷰)','FAQPage 4개 구조화','isPartOf로 번들 구성 3개 제품 명시'],warnings:['Review 스키마 부재','번들 상품 구성 명확도 개선 필요','ShippingDeliveryTime 실제 배송기간과 스키마 불일치']},
+  '푸드올로지:콜레올로지 컷 PRO (TW)':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0','FAQPage 구조화','Offer 다가지 옵션','additionalProperty 성분 구조화'],warnings:['Review 스키마 부재','NutritionInformation 스키마 미적용']},
+  '푸드올로지:버닝디데이 (TW)':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (54개 리뷰)','Offer 6가지 옵션 배송·반품 완비','MerchantReturnPolicy 완비','OG 메타태그 완비'],warnings:['AggregateRating 스키마 미포함 — 메타태그만 제공','Review 스키마 부재','NutritionInformation 스키마 미적용']},
+  '푸드올로지:톡스올로지 비움 PRO (TW)':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 5.0/5.0 (57개 리뷰)','FAQPage 5개 구조화','Offer 7가지 옵션 배송·반품 완비','additionalProperty 성분·섭취법 구조화'],warnings:['Review 스키마 부재','DeliveryChargeSpecification 별도 구조화 가능']},
+  '푸드올로지:2주 구성 다이어트 SET (TW)':{items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','16/15',107],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList+HowTo+WebPage 완벽 구현','AggregateRating 4.8/5.0 (16개 리뷰)','HowTo 3단계 14일 프로그램 구조화','isPartOf 번들 구성 3개 제품 명시','Review 1개 샘플 구조화'],warnings:['Review 스키마 1개 — 추가 확대 권장','배송시간 스키마와 실제 불일치 수정 필요']},
+  '푸드올로지:Coleology Cutting Jelly (US)':{items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','16/15',107],['구문 유효성','10/10',100]],strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','AggregateRating 4.9/5.0 (944개 리뷰)','FAQPage 6개 구조화','Offer $22.00·배송$5.99·30일 무료반품 완비','ItemList 추천상품 2개 연결','OG 메타태그 완비'],warnings:['ingredient 성분 정량 정보 미구조화']},
+  '푸드올로지:Collagen Centella Jelly (US)':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+ItemList 완벽 구현','AggregateRating 5.0/5.0 (157개 리뷰)','Offer $22.00·배송$5.99·30일 무료반품 완비','additionalProperty 성분·흡수율·맛·형태 구조화','OG 메타태그 완비'],warnings:['FAQPage 스키마 부재 — 5개 FAQ 일반 텍스트만 제공','Review 스키마 부재','Product 설명 간결 — 성분 상세도 낮음']},
+  '푸드올로지:Coleology Bowel Movement Jelly (US)':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','AggregateRating 4.8/5.0 (180개 리뷰)','FAQPage 4개 구조화','Offer $22.00·배송$5.99·30일 무료반품 완비','OG 메타태그 완비'],warnings:['Review 스키마 부재','성분 정량 정보 미구조화']},
+  '푸드올로지:컷팅 젤리 (JP)':{items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','FAQPage 4개 구조화','Offer ¥2,680·배송¥300·7일 반품 완비','NutritionInformation 스키마 적용','additionalProperty 성분·섭취법·원산국 구조화'],warnings:['AggregateRating 부재 — 고객 평점 미구조화','Review 스키마 부재','Organization과 Product @id 참조 미흡']},
+  '푸드올로지:콜레올로지 컷 PRO (JP)':{items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','FAQPage 5개 구조화','Offer ¥3,980(정가¥6,980)·무료배송·7일 반품 완비','AggregateRating 4.8/5.0 (1,200개)','additionalProperty 성분·용량·제조일 구조화','OG 메타태그 완비'],warnings:['Product sku·color·size 미포함','NutritionInformation 부재','제조사·판매원 구분 불명확']},
+  '푸드올로지:쾌변 젤리 (JP)':{items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (1,200개)','FAQPage 4개 구조화','Review 3개 샘플 구조화','NutritionInformation 영양정보 구조화','Offer ¥2,680·배송¥300·7일 반품 완비'],warnings:['healthClaim 속성 부재','dosageAndAdministration 미구조화','manufacturer(CosmaxBio) 정보 링크 미약']},
+  '오브제:오일 컨트롤 피니셔':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Offer+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (920개 리뷰)','FAQPage 6개 구조화','HowToUse 스키마 적용','Organization SNS 링크 완비','additionalProperty 전성분 구조화'],warnings:['Review 개별 스키마 미구현','WebPage 스키마 미적용']},
+  '오브제:포어 제로 오일 컨트롤 선스틱':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product 스키마 완벽 구현','AggregateRating 4.9/5.0 (1,618개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 5단계 카테고리 완벽 구현','6가지 Offer 구성 및 배송·반품 정책 완벽 적용','PropertyValue 성분·효능·SPF 정보 구조화'],warnings:['Review 개별 샘플 부재','Color/Size 옵션 미명시','WebPage 스키마 부재']},
+  '오브제:내추럴 커버 로션 2종':{items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],strengths:['Product 필수 요소 완전 구성','Offer 12가지 옵션 및 가격대 명확 구조화','AggregateRating 4.9/5.0 (1,975개 리뷰)','FAQPage 6개 구조화','MerchantReturnPolicy 30일 무료 반품 완비'],warnings:['Organization-Product @id 참조 분리','Review 개별 샘플 없음','additionalProperty 전성분이 과도하게 길어 파싱 복잡']},
+  '오브제:액티브 스웨트프루프 선스틱':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Organization+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (136개 리뷰)','FAQPage 6개 구조화','HowTo 스키마 적용','Review 3개 샘플 구조화','Open Graph 메타태그 완비'],warnings:['Review 샘플 수 추가 권장','HowTo 단계 세분화 권장']},
+  '오브제:퍼펙트 커버 쿠션':{items:[['속성 완성도','27/30',90],['정보 정확도','21/25',84],['AI 인용 친화성','18/20',90],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],strengths:['Product 스키마 완전 구조화','AggregateRating 4.9/5.0 (2,451개 리뷰)','다중 Offer — 색상별·세트별 구조화','FAQPage 6개 구조화','Review 3개 샘플 구조화'],warnings:['리뷰 수 불일치 — 메타데이터 2,451개 vs 스키마 281개','datePublished 정보 부재','제품 특징 수치 구조화 더 정교화 가능']},
+  '오브제:포어 제로 무스 클레이 팩':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (442개 리뷰)','FAQPage 6개 구조화','5가지 Offer 옵션 완벽 구조화','additionalProperty 임상 데이터·성분 상세 구조화'],warnings:['Review 개별 스키마 부재','ImageObject 타입 미명시']},
+  '오브제:내추럴 커버 파운데이션':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product 스키마 완벽 구성','AggregateRating 4.9/5.0 (29,933개 리뷰)','29개 이상 Offer 옵션','FAQPage 6개 구조화','color 배열 명시적 구조화'],warnings:['Organization-Product @id 연결 부분적','각 색상별 SKU 구분 미흡','HowToUse 스키마 부재']},
+  '오브제:맥스 올인원 워시 500ml':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Offer+AggregateRating 완벽 구현','AggregateRating 4.9/5.0 (96개 리뷰)','5개 Offer 옵션별 가격·배송·반품 정책 상세','FAQPage 6개 구조화','BreadcrumbList 5단계 구현'],warnings:['개별 Review 스키마 없음','HowTo 스키마 부재','주요 성분 효능 정보 분산']},
+  '오브제:맥스 워터풀 선크림 300ml':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['@graph 구조로 Organization+Product+BreadcrumbList+FAQPage 완벽 통합','AggregateRating 4.9/5.0 (125개 리뷰)','FAQPage 6개 구조화','HowTo 스키마 적용 — 5단계 사용법 구조화','Review 3개 샘플 구조화','additionalProperty 성분·효능 구조화'],warnings:['Review 샘플 5개로 확대 권장','color·material 속성 추가 가능']},
+  '오브제:무드 체인지 립밤':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.9/5.0 (7,799개 리뷰)','FAQPage 6개 구조화','Offer 16개 옵션 구조화','WebSite 스키마+SearchAction 적용'],warnings:['개별 Review 스키마 부재','색상 옵션 color 배열 구조화 미흡','관련 제품 ItemList 스키마 부재']},
+  '오브제:포어 제로 프레쉬 올인원':{items:[['속성 완성도','27/30',90],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 4.5~5.0/5.0','FAQPage 6개 구조화','Offer 6가지 옵션 구조화','PropertyValue 용량·성분·기능성 구조화'],warnings:['Review 개별 스키마 부재','이미지 단일 URL — 복수 이미지 배열 확장 권장']},
+  '오브제:오일 컨트롤 로션':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+FAQPage 완벽 구현','AggregateRating 5.0/5.0 (745개 리뷰)','FAQPage 6개 구조화','Review 2개 샘플 구조화','PropertyValue 전성분 상세 구조화'],warnings:['@graph에서 Product-Organization 명시적 @id 참조 강화 권장','Review 샘플 2개 — 추가 확대 권장']},
+  '오브제:내추럴커버파데이션 (TW)':{items:[['속성 완성도','24/30',80],['정보 정확도','20/25',80],['AI 인용 친화성','16/20',80],['스키마 커버리지','12/15',80],['구문 유효성','8/10',80]],strengths:['기본 Product 스키마 구현','AggregateRating 5.0/5.0 (980개 리뷰)','상품 이미지 8개','og 태그 완비','H1 태그 명확'],warnings:['Product description 공백','색상 옵션 color 속성 미구조화','Brand 객체 스키마 부재','Organization 스키마 부재']},
+  '오브제:내추럴커버로션 (TW)':{items:[['속성 완성도','24/30',80],['정보 정확도','21/25',84],['AI 인용 친화성','16/20',80],['스키마 커버리지','9/15',60],['구문 유효성','8/10',80]],strengths:['기본 Product 스키마 구현','AggregateRating 5.0/5.0 (919개 리뷰)','og:type=product 메타태그 설정'],warnings:['Organization 스키마 부재','Product description 없음','Review 스키마 부재','BreadcrumbList 부재','정가(KRW)·할인가(TWD) 혼재 — 가격 정확성 문제']},
+  '오브제:블랙헤드스크럽밤 (TW)':{items:[['속성 완성도','24/30',80],['정보 정확도','20/25',80],['AI 인용 친화성','15/20',75],['스키마 커버리지','12/15',80],['구문 유효성','9/10',90]],strengths:['기본 Product 스키마 구현','AggregateRating 4.9/5.0 (502개 리뷰)','상품 이미지 6개 배열','og 메타태그 완벽 설정','가격·재고·통화 정확 기록'],warnings:['Product description 공백','Organization 스키마 부재','BreadcrumbList 부재','Bundle 추가 옵션 미구조화']},
+  '오브제:포어제로 오일컨트롤 선스틱 (TW)':{items:[['속성 완성도','23/30',77],['정보 정확도','20/25',80],['AI 인용 친화성','12/20',60],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],strengths:['기본 Product 스키마 구현','AggregateRating 5.0/5.0 (612개 리뷰)','Open Graph 메타태그 완비'],warnings:['description·brand 필드 누락','구매 옵션 미구조화','Organization 스키마 부재','BreadcrumbList 없음']},
+  '오브제:Oil Control Finisher (US)':{items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','Offer $18.00·배송$6.99·30일 무료반품 완비','FAQPage 5개 구조화','Review 3개 샘플 구조화','OG 메타태그 완비'],warnings:['AggregateRating null 처리 — 4.8/5.0 (221개 리뷰) 스키마 미포함','HowTo 사용법 스키마 부재']},
+  '오브제:내추럴 커버 파운데이션 (JP)':{items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (102개 리뷰)','FAQPage 5개 구조화','Review 3개 샘플 구조화','Offer ¥3,980·배송무료·7일 반품 완비'],warnings:['AggregateOffer 미사용 — 색상별 가격 비교 미흡','@graph 일부 스키마 @id 참조 누락']},
+  '오브제:포어제로 오일 컨트롤 선스틱 (JP)':{items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (29개 리뷰)','FAQPage 5개 구조화','Review 1개 샘플 구조화','additionalProperty SPF50+/PA++++·저자극·18g 구조화'],warnings:['Review 스키마 1개 — 추가 확대 권장','HowToUse 스키마 미포함']},
+  '오브제:내추럴 커버 로션 (JP)':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (29개 리뷰)','FAQPage 5개 구조화','Review 3개 샘플 구조화','Offer ¥2,680·배송·7일 반품 완비'],warnings:['additionalProperty 전성분·사용주의사항 미구조화','@context 중복 선언 최적화 필요']},
+  '에이페:스칼프 부스팅 앰플':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (2,361개 리뷰)','FAQPage 6개 구조화','Offer 4가지 옵션 상세','PropertyValue 임상결과·사용법 구조화','MerchantReturnPolicy 완비'],warnings:['Review 스키마 부재','HowTo 스키마 부재']},
+  '에이페:리페어 리브인 트리트먼트':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Offer 4가지 옵션 완벽 구조화','AggregateRating 4.9/5.0 (93개 리뷰)','FAQPage 6개 구조화','BreadcrumbList 적용','PropertyValue 성분·사용법·주의사항 상세'],warnings:['Review 스키마 부재','additionalProperty 세분화 권장','@id 참조 체계 개선 가능']},
+  '에이페:스칼프 부스팅 앰플 (TW)':{items:[['속성 완성도','24/30',80],['정보 정확도','21/25',84],['AI 인용 친화성','12/20',60],['스키마 커버리지','11/15',73],['구문 유효성','9/10',90]],strengths:['기본 Product 스키마 구현','AggregateRating 5.0/5.0 (48개 리뷰)','Open Graph 메타태그 완비','H1 태그 명확'],warnings:['Brand 필드 공란 — EPAIS 브랜드 정체성 불명확','description 누락','Organization 스키마 부재','조합 옵션(1+1·2+1) 미구조화','FAQPage 스키마 미적용']},
+  '에이페:아이래쉬 에센셜 세럼 (TW)':{items:[['속성 완성도','21/30',70],['정보 정확도','18/25',72],['AI 인용 친화성','12/20',60],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],strengths:['기본 Product 스키마 구현','AggregateRating 4.9/5.0 (53개 리뷰)','Open Graph 메타태그 완비','이미지 2개 이상 제공'],warnings:['description·brand 필드 누락','조합 옵션 7가지 미구조화','Organization 스키마 부재','BreadcrumbList 없음','배송·결제 메타데이터 부재']},
+  '에이페:Epais Scalp Boosting Ampoule (US)':{items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Product+Offer+FAQPage 완벽 구조화','AggregateRating 4.8/5.0 (393개 리뷰)','FAQPage 7개 구조화','BreadcrumbList 적용','Organization 브랜드 신뢰도 확보'],warnings:['개별 Review 스키마 부재','HowToUse 스키마 미적용','임상 검증 수치 구조화 미흡','기술 사양 PropertyValue 부재']},
+  '에이페:Eyelash Essential Serum (US)':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+HowTo 완벽 구현','ClaimReview 임상 데이터 구조화','ItemList 추천 상품 연결','Open Graph 메타태그 완벽 구성'],warnings:['AggregateRating null 처리 — 페이지 4.8/5.0 (173개) 스키마 미반영','Review 스키마 부재','Ingredients 스키마 미구조화']},
+  '에이페:Eyelash Black Serum':{items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+AggregateRating+Offer 완벽 구현','AggregateRating 4.8/5.0 (125개 리뷰)','HowTo 4단계 구조화','BreadcrumbList 완벽 구현','FAQPage+ClaimReview 적용','Open Graph 메타태그 완비'],warnings:['Review 스키마 부재 — 125개 리뷰 텍스트 AI 인용 불가','Clinical Test 수치 구조화 미흡']},
+  '에이페:Scalp Intensive Ampoule':{items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+BreadcrumbList+FAQPage+HowTo 완벽 구현','AggregateRating 4.8/5.0 (160개 리뷰)','FAQPage 5개 구조화','HowTo 7단계 구조화','Review 3개 샘플 구조화'],warnings:['aggregateRating null 처리 — AggregateRating 직접 참조 강화 필요','Product color·material 속성 미포함']},
+  '8APM:딥나잇 멜라시럽':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],strengths:['완벽한 @graph 구조 — Organization+Product+BreadcrumbList+FAQPage 통합','AggregateRating 4.8/5.0 (1,500개 리뷰)','FAQPage 6개 구조화','Offer 4가지(20~120일분) 가격·배송·반품 완비','additionalProperty HACCP 인증·성분·섭취법 구조화','OG 메타태그 완비'],warnings:['healthRelated·medicalAction 의료 도메인 속성 추가 권장','NutritionInformation 스키마 고려 가능']},
+  '8APM:포커스 젤':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],strengths:['Product+FAQPage+AggregateRating+Offer 완벽 구현','AggregateRating 4.8/5.0 (1,133개 리뷰)','FAQPage 6개 구조화','Offer 4가지(10~60일분) 배송·반품 완비','Organization 브랜드 정체성 확립'],warnings:['additionalProperty 원료명 과다 — 핵심 성분 PropertyValue 분리 권장','Review 개별 샘플 추가 시 신뢰도 강화 가능']},
+  '8APM:멜라피스':{items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Product+Organization+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (1,657개 리뷰)','FAQPage 6개 구조화','Offer 4가지 가격·배송·반품 완비','additionalProperty 성분·복용법 구조화'],warnings:['Review 개별 샘플 추가 시 신뢰도 강화 가능','MedicalProduct 스키마 추가로 건강식품 특성 강조 가능']},
+  '듀오렉신:안전한 글로벌 성분 그대로! Duorexin 듀오렉신 나비 정':{items:[['속성 완성도','27/30',90],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.4/5.0 (6,286개 리뷰)','FAQPage 5개 구조화','Offer 4가지(2~12주) 배송·반품 완비','Medicine 스키마로 알긴산염·글루코만난 성분 구조화','HowTo 섭취법 4단계 구조화','additionalProperty FDA·EFSA 안전성 인증 명시'],warnings:['Review 개별 스키마 부재','Product @id 미명시','Recipe/HowTo 섭취법 구조화 보완 가능']},
 };
+
 let GEO_HISTORY = [];
-
-
-function getStepStatus(val, date){
-  // 날짜 컬럼에 값 있으면 완료
-  const d = String(date||'').trim();
-  const v = String(val||'').trim();
-  if(d && d !== '-' && d !== '·') return 'done';
-  if(v && v !== '-' && v !== '·') return 'done';
-  return 'none';
-}
+let geoActiveBrand = 'all';
+let geoActiveGrade = 'all';
+let geoOpenCards = new Set();
 
 function getStatus(v){
   if(!v||!v.trim())return'none';
@@ -674,15 +520,17 @@ function getStatus(v){
   return'none';
 }
 
+function getStepStatus(val,date){
+  const d=String(date||'').trim();
+  const v=String(val||'').trim();
+  if(d&&d!=='-'&&d!=='·')return'done';
+  if(v&&v!=='-'&&v!=='·')return'done';
+  return'none';
+}
+
 async function fetchFromAppsScript(url){
-  // Apps Script 웹앱은 fetch 시 302 리다이렉트를 하므로 no-cors 불가
-  // no-redirect 없이 그냥 fetch하면 CORS 오류 — redirect:follow + mode:cors 필요
-  // Apps Script 배포 설정: 액세스 권한 "모든 사용자" 필수
-  const res = await fetch(url, {
-    method: 'GET',
-    redirect: 'follow',
-  });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const res=await fetch(url,{method:'GET',redirect:'follow'});
+  if(!res.ok)throw new Error('HTTP '+res.status);
   return await res.json();
 }
 
@@ -701,42 +549,26 @@ async function loadData(){
 }
 
 function parseDevSheet(allData){
-  const sheet = allData['GEO 프로세스_파트별 분담'] || 
-                allData['[GEO] 프로세스_파트별 분담'] || [];
-  
-  // 실제 태스크명 (엑셀 기준)
-  const DEV_TASKS = ['H1 / H2 태그', '통합 스키마 설정 점검'];
-  const result = {};
-  BRANDS.forEach(b => { result[b] = {}; DEV_TASKS.forEach(t => { result[b][t] = 'none'; }); });
-
-  // 헤더 찾기: 풀리 + 에이페 + 적용 날짜 가 같은 행에
-  let hIdx = -1;
-  for(let i = 0; i < sheet.length; i++){
-    const j = sheet[i].join(',');
-    if(j.includes('풀리') && j.includes('에이페') && j.includes('적용 날짜')){
-      hIdx = i; break;
-    }
+  const sheet=allData['GEO 프로세스_파트별 분담']||allData['[GEO] 프로세스_파트별 분담']||[];
+  const DEV_TASKS=['H1 / H2 태그','통합 스키마 설정 점검'];
+  const result={};
+  BRANDS.forEach(b=>{result[b]={};DEV_TASKS.forEach(t=>{result[b][t]='none';});});
+  let hIdx=-1;
+  for(let i=0;i<sheet.length;i++){
+    const j=sheet[i].join(',');
+    if(j.includes('풀리')&&j.includes('에이페')&&j.includes('적용 날짜')){hIdx=i;break;}
   }
-  if(hIdx < 0) return result;
-
-  // 데이터는 hIdx+1부터
-  // 국내 브랜드 날짜 컬럼: 풀리=7, 푸드올로지=9, 95P=11, 오브제=13, 8APM=15, 에이페=17, 듀오렉신=19
-  const dateCols = [7, 9, 11, 13, 15, 17, 19];
-
-  for(let i = hIdx + 1; i < sheet.length; i++){
-    const row = sheet[i];
-    const task = String(row[2] || '').trim();
-    if(!task) continue;
-    
-    // 태스크명 매칭 (부분 일치 허용)
-    const matchedTask = DEV_TASKS.find(t => task.includes(t) || t.includes(task));
-    if(!matchedTask) continue;
-
-    BRANDS.forEach((b, bi) => {
-      const dateVal = String(row[dateCols[bi]] || '').trim();
-      if(dateVal && dateVal !== '-' && dateVal !== '·') {
-        result[b][matchedTask] = 'done';
-      }
+  if(hIdx<0)return result;
+  const dateCols=[7,9,11,13,15,17,19];
+  for(let i=hIdx+1;i<sheet.length;i++){
+    const row=sheet[i];
+    const task=String(row[2]||'').trim();
+    if(!task)continue;
+    const matchedTask=DEV_TASKS.find(t=>task.includes(t)||t.includes(task));
+    if(!matchedTask)continue;
+    BRANDS.forEach((b,bi)=>{
+      const dateVal=String(row[dateCols[bi]]||'').trim();
+      if(dateVal&&dateVal!=='-'&&dateVal!=='·'){result[b][matchedTask]='done';}
     });
   }
   return result;
@@ -747,7 +579,6 @@ function processAndRender(allData){
   const devData=parseDevSheet(allData);
   const countryData={국내:[],대만:[],일본:[],미국:[]};
   let currentCountry=null;
-
   brandSheet.forEach(row=>{
     const col0=String(row[0]||'').trim();
     if(col0.includes('(국내)')){currentCountry='국내';return;}
@@ -757,14 +588,14 @@ function processAndRender(allData){
     if(col0==='브랜드'||!col0||!currentCountry)return;
     const product=String(row[1]||'').trim();
     const link=String(row[2]||'').trim();
-    if(!product) return;
+    if(!product)return;
     const brandMap={'95PROBLEM':'95P'};
     const normalBrand=brandMap[col0]||BRANDS.find(b=>col0===b||col0.includes(b))||col0;
     if(!BRANDS.includes(normalBrand))return;
     const s1=getStepStatus(row[6],row[7]);
     const s2=getStepStatus(row[8],row[9]);
     const s3=getStepStatus(row[10],row[11]);
-    const devSteps=[devData[normalBrand]?.['H1 / H2 태그']||'none', devData[normalBrand]?.['통합 스키마 설정 점검']||'none'];
+    const devSteps=[devData[normalBrand]?.['H1 / H2 태그']||'none',devData[normalBrand]?.['통합 스키마 설정 점검']||'none'];
     countryData[currentCountry].push({brand:normalBrand,product,link,steps:[s1,s2,s3],devSteps,stepVals:[String(row[6]||''),String(row[8]||''),String(row[10]||'')]});
   });
 
@@ -798,53 +629,35 @@ function processAndRender(allData){
 }
 
 function parseGeoScores(allData){
-  const sheet = allData['GEO 진행 상황'] || allData['브랜드별 진행 상황'] || [];
-  const brandMap = {'95PROBLEM':'95P'};
-  const scores = [];
-
-  sheet.forEach(row => {
-    const brand = String(row[0]||'').trim();
-    const product = String(row[1]||'').trim();
-    const link = String(row[2]||'').trim();
-    const scoreVal = String(row[10]||'').trim();
-    const dateVal = String(row[11]||'').trim();
-
-    if(!brand||!product||!scoreVal) return;
-    if(product.includes('★')||product.includes('초특가')) return;
-    const score = parseInt(scoreVal);
-    if(isNaN(score)||score<50||score>100) return;
-
-    const normalBrand = brandMap[brand]||(BRANDS.find(b=>brand===b||brand.includes(b))||brand);
-    if(!BRANDS.includes(normalBrand)) return;
-
-    // 등급 계산
-    const grade = score>=90?'A':score>=80?'B':score>=70?'C':'D';
-
-    // 날짜 포맷 정리
-    let date = dateVal;
-    if(date && /^\d{4}-\d{2}-\d{2}/.test(date)) date = date.split('T')[0];
-
-    // url 생성
-    const urlObj = link ? (()=>{try{return new URL(link);}catch(e){return null;}})() : null;
-    const url = urlObj ? urlObj.hostname.replace('www.','') + ' · consumer · detail' : '';
-
-    // PDF 기반 세부 데이터 매핑
-    const pdfData = GEO_PDF_DATA[normalBrand+':'+product.trim()] || GEO_PDF_DATA[normalBrand+':'+product.trim().replace(/ /g,'_')] || {};
-    scores.push({score, grade, brand:normalBrand, product:product.trim(), url, date,
-      items: pdfData.items||[],
-      strengths: pdfData.strengths||[],
-      warnings: pdfData.warnings||[]
-    });
+  const sheet=allData['GEO 진행 상황']||allData['브랜드별 진행 상황']||[];
+  const brandMap={'95PROBLEM':'95P'};
+  const scores=[];
+  sheet.forEach(row=>{
+    const brand=String(row[0]||'').trim();
+    const product=String(row[1]||'').trim();
+    const link=String(row[2]||'').trim();
+    const scoreVal=String(row[10]||'').trim();
+    const dateVal=String(row[11]||'').trim();
+    if(!brand||!product||!scoreVal)return;
+    if(product.includes('★')||product.includes('초특가'))return;
+    const score=parseInt(scoreVal);
+    if(isNaN(score)||score<50||score>100)return;
+    const normalBrand=brandMap[brand]||(BRANDS.find(b=>brand===b||brand.includes(b))||brand);
+    if(!BRANDS.includes(normalBrand))return;
+    const grade=score>=90?'A':score>=80?'B':score>=70?'C':'D';
+    let date=dateVal;
+    if(date&&/^\d{4}-\d{2}-\d{2}/.test(date))date=date.split('T')[0];
+    const urlObj=link?(()=>{try{return new URL(link);}catch(e){return null;}})():null;
+    const url=urlObj?urlObj.hostname.replace('www.','')+' · detail':'';
+    const pdfKey=normalBrand+':'+product.trim();
+    const pdfData=GEO_PDF_DATA[pdfKey]||{};
+    scores.push({score,grade,brand:normalBrand,product:product.trim(),url,date,items:pdfData.items||[],strengths:pdfData.strengths||[],warnings:pdfData.warnings||[]});
   });
-
-  // 점수 높은 순 정렬
   scores.sort((a,b)=>b.score-a.score);
-
-  // GEO_HISTORY 업데이트 후 렌더
-  GEO_HISTORY.length = 0;
-  scores.forEach(s => GEO_HISTORY.push(s));
-  renderGeoFilter();
-  renderGeoHistory();
+  GEO_HISTORY.length=0;
+  scores.forEach(s=>GEO_HISTORY.push(s));
+  initGeoBrandFilter();
+  applyGeoFilters();
 }
 
 function renderOverview(progress){
@@ -855,8 +668,7 @@ function renderOverview(progress){
       const bi=items.filter(i=>i.brand===b);
       const total=bi.length*4;
       const done=bi.reduce((s,i)=>s+i.steps.filter(x=>x==='done').length,0);
-      const partial=bi.reduce((s,i)=>s+i.steps.filter(x=>x==='partial').length,0);
-      brandDone[b]={done,partial,total};
+      brandDone[b]={done,total};
     });
     const cBrands=COUNTRY_BRANDS[c.name]||BRANDS;
     return`<div class="country-card">
@@ -868,9 +680,8 @@ function renderOverview(progress){
       <div class="progress-outer"><div class="progress-inner" style="width:${c.pct}%;background:${c.color}"></div></div>
       <div class="brand-rows">
         ${cBrands.map(b=>{
-          const bd=brandDone[b]||{done:0,partial:0,total:0};
+          const bd=brandDone[b]||{done:0,total:0};
           const allD=bd.total>0&&bd.done===bd.total;
-          const part=!allD&&(bd.done>0||bd.partial>0);
           const pip=allD?'pip-done':'pip-none';
           const lbl=allD?'✓':'·';
           const prodCount=((c.items||[]).filter(i=>i.brand===b)).length;
@@ -889,78 +700,33 @@ function renderOverview(progress){
 
 function renderBrandMatrix(progress){
   const STEPS=['STEP1 FAQ','STEP2 메타태그','STEP3 성과체크'];
-  const DEV_STEPS = ['H1/H2 태그', '통합 스키마'];  // 표시명은 그대로 OK
+  const DEV_STEPS=['H1/H2 태그','통합 스키마'];
   const wrap=document.getElementById('matrixTable');
-
-  // 국가 탭 생성
   const countries=progress.filter(c=>(c.items||[]).length>0);
-  if(!countries.length){
-    wrap.innerHTML='<div class="state-msg"><div class="icon">📋</div><div>데이터가 없습니다</div></div>';
-    return;
-  }
-
+  if(!countries.length){wrap.innerHTML='<div class="state-msg"><div class="icon">📋</div><div>데이터가 없습니다</div></div>';return;}
   let activeCountry=countries[0].name;
-
   function renderTable(cName){
     const c=progress.find(p=>p.name===cName);
     const items=c?c.items:[];
-
-    // 브랜드별로 그룹핑
     const cBrands=COUNTRY_BRANDS[cName]||BRANDS;
     const grouped={};
     cBrands.forEach(b=>{grouped[b]=items.filter(i=>i.brand===b);});
-
     let rows='';
     cBrands.forEach(b=>{
       const bItems=grouped[b];
       if(!bItems.length)return;
-      rows+=`<tr>
-        <td colspan="6" style="background:var(--bg3);color:var(--text2);font-size:13px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2)">${b}</td>
-      </tr>`;
+      rows+=`<tr><td colspan="6" style="background:var(--bg3);color:var(--text2);font-size:13px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2)">${b}</td></tr>`;
       bItems.forEach(item=>{
-        const stepCells=item.steps.map(s=>{
-          const cls=s==='done'?'cell-done':'cell-none';
-          const lbl=s==='done'?'✓':'·';
-          return`<td><span class="${cls}">${lbl}</span></td>`;
-        }).join('');
-        const devCells=(item.devSteps||[]).map(s=>{
-          const cls=s==='done'?'cell-done':'cell-none';
-          const lbl=s==='done'?'✓':'·';
-          return`<td><span class="${cls}">${lbl}</span></td>`;
-        }).join('');
+        const stepCells=item.steps.map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
+        const devCells=(item.devSteps||[]).map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
         const linkCell=item.link?`<a href="${item.link}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:11px">↗</a>`:'';
-        rows+=`<tr>
-          <td class="task-col" style="max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px">${item.product} ${linkCell}</td>
-          ${devCells}${stepCells}
-        </tr>`;
+        rows+=`<tr><td class="task-col" style="max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px">${item.product} ${linkCell}</td>${devCells}${stepCells}</tr>`;
       });
     });
-
-    return`<table>
-      <thead>
-        <tr>
-          <th class="task-col">상품명</th>
-          ${DEV_STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}
-          ${STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
+    return`<table><thead><tr><th class="task-col">상품명</th>${DEV_STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}${STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
   }
-
-  // 국가 서브탭 + 테이블
-  const tabHtml=countries.map(c=>`
-    <button onclick="switchMatrixTab('${c.name}')" id="mtab-${c.name}"
-      style="padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:${c.name===activeCountry?'var(--bg4)':'transparent'};color:${c.name===activeCountry?'var(--text)':'var(--text3)'};transition:all 0.15s;margin-right:4px">
-      ${c.flag} ${c.name}
-    </button>`).join('');
-
-  wrap.innerHTML=`
-    <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:4px;flex-wrap:wrap">
-      ${tabHtml}
-    </div>
-    <div id="matrix-body">${renderTable(activeCountry)}</div>`;
-
+  const tabHtml=countries.map(c=>`<button onclick="switchMatrixTab('${c.name}')" id="mtab-${c.name}" style="padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:${c.name===activeCountry?'var(--bg4)':'transparent'};color:${c.name===activeCountry?'var(--text)':'var(--text3)'};transition:all 0.15s;margin-right:4px">${c.flag} ${c.name}</button>`).join('');
+  wrap.innerHTML=`<div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:4px;flex-wrap:wrap">${tabHtml}</div><div id="matrix-body">${renderTable(activeCountry)}</div>`;
   window.switchMatrixTab=function(name){
     activeCountry=name;
     document.getElementById('matrix-body').innerHTML=renderTable(name);
@@ -978,88 +744,119 @@ function renderTasks(){
   document.getElementById('taskList').innerHTML=[
     {section:'MD 세팅 필요 건',tasks:TASKS_MD},
     {section:'개발파트 세팅 필요 건',tasks:TASKS_DEV}
-  ].map(sec=>`
-    <div style="margin-bottom:28px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-        <div style="font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.2px">${sec.section}</div>
-        <div style="flex:1;height:1px;background:var(--border)"></div>
-      </div>
-      <div class="task-list">
-        ${sec.tasks.map(t=>`<div class="task-item"><div class="task-num">${t.n}</div><div class="task-body"><div class="task-name">${t.name}</div><div class="task-detail">${t.detail}</div></div><span class="tag ${t.party==='dev'?'tag-dev':'tag-md'}">${t.party==='dev'?'개발':'MD'}</span></div>`).join('')}
-      </div>
-    </div>`).join('');
-}
-
-let geoFilterBrands=new Set();
-
-function renderGeoFilter(){
-  const brands=[...new Set(GEO_HISTORY.map(h=>h.brand))];
-  const wrap=document.getElementById('geoFilterWrap');
-  if(!wrap)return;
-  wrap.innerHTML=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center">
-    <button onclick="clearGeoFilter()" id="gf-all" style="padding:4px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border2);background:var(--accent);color:#fff;transition:all .15s">전체</button>
-    ${brands.map(b=>`<button onclick="toggleGeoFilter('${b}')" id="gf-${b}"
-      style="padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);transition:all .15s"
-      >${b}</button>`).join('')}
-  </div>`;
-}
-
-function toggleGeoFilter(brand){
-  if(geoFilterBrands.has(brand))geoFilterBrands.delete(brand);
-  else geoFilterBrands.add(brand);
-  updateGeoFilterUI();
-  renderGeoHistory();
-}
-
-function clearGeoFilter(){
-  geoFilterBrands.clear();
-  updateGeoFilterUI();
-  renderGeoHistory();
-}
-
-function updateGeoFilterUI(){
-  const brands=[...new Set(GEO_HISTORY.map(h=>h.brand))];
-  // 전체 버튼
-  const allBtn=document.getElementById('gf-all');
-  if(allBtn){
-    const isAll=geoFilterBrands.size===0;
-    allBtn.style.background=isAll?'var(--accent)':'var(--bg3)';
-    allBtn.style.color=isAll?'#fff':'var(--text2)';
-    allBtn.style.borderColor=isAll?'var(--accent)':'var(--border2)';
-  }
-  brands.forEach(b=>{
-    const btn=document.getElementById('gf-'+b);
-    if(!btn)return;
-    const active=geoFilterBrands.has(b);
-    btn.style.background=active?'var(--accent)':'var(--bg3)';
-    btn.style.color=active?'white':'var(--text2)';
-    btn.style.borderColor=active?'var(--accent)':'var(--border2)';
-  });
-}
-
-function renderGeoHistory(){
-  const el=document.getElementById('geoHistory');
-  const filtered=geoFilterBrands.size>0?GEO_HISTORY.filter(h=>geoFilterBrands.has(h.brand)):GEO_HISTORY;
-  if(!filtered.length){
-    el.innerHTML='<div class="state-msg"><div class="icon">📋</div><div>해당 브랜드의 진단 기록이 없습니다</div></div>';
-    return;
-  }
-  el.innerHTML=filtered.map((h,i)=>{
-    const gc=h.grade.toLowerCase();
-    return`<div class="history-item">
-      <div class="history-score score-${gc}">${h.score}</div>
-      <div class="history-info"><div class="history-name">${h.brand} · ${h.product}</div><div class="history-url">${h.url}</div></div>
-      <span class="history-grade grade-${gc}">${h.grade}등급</span>
-      <div class="history-date">${h.date}</div>
+  ].map(sec=>`<div style="margin-bottom:28px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <div style="font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.2px">${sec.section}</div>
+      <div style="flex:1;height:1px;background:var(--border)"></div>
     </div>
-    ${h.items?`<div class="score-card" style="margin-top:0;margin-bottom:16px;border-top:none;border-top-left-radius:0;border-top-right-radius:0;">
-      <div class="score-bars">${h.items.map(([k,v,pct])=>`<div><div class="score-bar-header"><span class="score-bar-label">${k}</span><span class="score-bar-val">${v}</span></div><div class="score-bar-track"><div class="score-bar-fill" style="width:${pct}%"></div></div></div>`).join('')}</div>
-      <div class="score-tags">${h.strengths.map(s=>`<span class="score-tag">✓ ${s}</span>`).join('')}${h.warnings.map(w=>`<span class="score-tag warn">⚠ ${w}</span>`).join('')}</div>
-    </div>`:''}`;
+    <div class="task-list">
+      ${sec.tasks.map(t=>`<div class="task-item"><div class="task-num">${t.n}</div><div class="task-body"><div class="task-name">${t.name}</div><div class="task-detail">${t.detail}</div></div><span class="tag ${t.party==='dev'?'tag-dev':'tag-md'}">${t.party==='dev'?'개발':'MD'}</span></div>`).join('')}
+    </div>
+  </div>`).join('');
+}
+
+/* ── GEO 점수 탭 로직 ── */
+function gradeOf(s){return s>=90?'A':s>=80?'B':s>=70?'C':'D';}
+
+function initGeoBrandFilter(){
+  const brands=[...new Set(GEO_HISTORY.map(h=>h.brand))];
+  const row=document.getElementById('geoBrandFilter');
+  if(!row)return;
+  row.innerHTML=`<span class="geo-filter-label">브랜드</span>
+    <button class="filter-pill active" id="gbAll" onclick="setGeoBrand('all',this)">전체</button>
+    ${brands.map(b=>`<button class="filter-pill" id="gb-${b}" onclick="setGeoBrand('${b}',this)">${b}</button>`).join('')}`;
+}
+
+function setGeoBrand(brand,btn){
+  geoActiveBrand=brand;
+  document.querySelectorAll('#geoBrandFilter .filter-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyGeoFilters();
+}
+
+function setGradeFilter(grade,btn){
+  geoActiveGrade=grade;
+  document.querySelectorAll('.grade-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyGeoFilters();
+}
+
+function applyGeoFilters(){
+  const q=(document.getElementById('geoSearch')||{value:''}).value.trim().toLowerCase();
+  const sort=(document.getElementById('geoSort')||{value:'score-desc'}).value;
+  let data=[...GEO_HISTORY];
+  if(geoActiveBrand!=='all')data=data.filter(r=>r.brand===geoActiveBrand);
+  if(geoActiveGrade!=='all')data=data.filter(r=>gradeOf(r.score)===geoActiveGrade);
+  if(q)data=data.filter(r=>r.product.toLowerCase().includes(q)||r.brand.toLowerCase().includes(q));
+  if(sort==='score-asc')data.sort((a,b)=>a.score-b.score);
+  else if(sort==='brand')data.sort((a,b)=>a.brand.localeCompare(b.brand,'ko'));
+  else data.sort((a,b)=>b.score-a.score);
+  renderGeoStats(data);
+  renderGeoCards(data);
+  const info=document.getElementById('geoResultsInfo');
+  if(info)info.textContent=data.length+'개 상품';
+}
+
+function renderGeoStats(data){
+  const el=document.getElementById('geoStatRow');
+  if(!el)return;
+  const total=data.length;
+  const avg=total?Math.round(data.reduce((s,r)=>s+r.score,0)/total):0;
+  const dist={A:0,B:0,C:0,D:0};
+  data.forEach(r=>{dist[gradeOf(r.score)]++;});
+  el.innerHTML=`
+    <div class="geo-stat"><div class="geo-stat-label">검색 결과</div><div class="geo-stat-val">${total}</div><div class="geo-stat-sub">개 상품</div></div>
+    <div class="geo-stat"><div class="geo-stat-label">평균 점수</div><div class="geo-stat-val">${avg}</div><div class="geo-stat-sub">/ 100</div></div>
+    <div class="geo-stat"><div class="geo-stat-label">A등급</div><div class="geo-stat-val" style="color:var(--green)">${dist.A}</div><div class="geo-stat-sub">B등급: ${dist.B}개</div></div>
+    <div class="geo-stat"><div class="geo-stat-label">개선 필요 (C·D)</div><div class="geo-stat-val" style="color:var(--amber)">${dist.C+dist.D}</div><div class="geo-stat-sub">C: ${dist.C} / D: ${dist.D}</div></div>`;
+}
+
+function renderGeoCards(data){
+  const list=document.getElementById('geoCardList');
+  if(!list)return;
+  if(!data.length){list.innerHTML='<div class="empty-msg">검색 결과가 없습니다</div>';return;}
+  list.innerHTML=data.map((h,i)=>{
+    const g=gradeOf(h.score).toLowerCase();
+    const id=`gc-${i}`;
+    const isOpen=geoOpenCards.has(id);
+    const hasDetail=h.items&&h.items.length>0;
+    return`<div class="geo-card">
+      <div class="geo-card-header" onclick="toggleGeoCard('${id}',${hasDetail})">
+        <div class="geo-score-badge sb-${g}">${h.score}</div>
+        <div class="geo-card-meta">
+          <div class="geo-card-product">${h.product}</div>
+          <div class="geo-card-brand">${h.brand}${h.date?' · '+h.date:''}</div>
+        </div>
+        <div class="geo-card-right" style="flex-direction:row;align-items:center;gap:10px;">
+          <span class="grade-badge gb-${g}">${g.toUpperCase()}등급</span>
+          ${hasDetail?`<span class="toggle-chevron ${isOpen?'open':''}">상세<svg width="10" height="10" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg></span>`:''}
+        </div>
+      </div>
+      ${hasDetail?`<div class="geo-card-body ${isOpen?'open':''}" id="${id}">
+        <div class="score-bars-grid">
+          ${h.items.map(([k,v,pct])=>`<div class="bar-item">
+            <div class="bar-header"><span class="bar-label">${k}</span><span class="bar-val">${v}</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+          </div>`).join('')}
+        </div>
+        <div class="tags-wrap">
+          ${h.strengths.length?`<div class="tags-group"><div class="tags-group-title tgt-ok">강점</div><div class="tags-pills">${h.strengths.map(s=>`<span class="tag-pill tp-ok">${s}</span>`).join('')}</div></div>`:''}
+          ${h.warnings.length?`<div class="tags-group"><div class="tags-group-title tgt-warn">개선 필요</div><div class="tags-pills">${h.warnings.map(w=>`<span class="tag-pill tp-warn">${w}</span>`).join('')}</div></div>`:''}
+        </div>
+      </div>`:''}
+    </div>`;
   }).join('');
 }
 
-function openBeusable(){window.open('https://www.beusable.net/ko#geo','_blank');}
+function toggleGeoCard(id,hasDetail){
+  if(!hasDetail)return;
+  if(geoOpenCards.has(id))geoOpenCards.delete(id);
+  else geoOpenCards.add(id);
+  const body=document.getElementById(id);
+  if(body){body.classList.toggle('open',geoOpenCards.has(id));}
+  const chevron=body?.closest('.geo-card')?.querySelector('.toggle-chevron');
+  if(chevron){chevron.classList.toggle('open',geoOpenCards.has(id));}
+}
 
 function setSyncState(s,msg){
   const dot=document.getElementById('syncDot'),lbl=document.getElementById('syncLabel');
@@ -1078,8 +875,8 @@ function setLoadingState(){
 function setErrorState(msg){
   const isP=msg==='placeholder';
   const html=isP
-    ?`<div class="state-msg"><div class="icon" style="font-size:28px">🔧</div><div style="font-size:15px;font-weight:600;color:var(--text)">Apps Script URL을 설정해 주세요</div><div class="desc">index.html 상단의 <code style="color:var(--accent2)">APPS_SCRIPT_URL</code> 값을 교체하세요.</div></div>`
-    :`<div class="state-msg"><div class="icon">⚠</div><div>${msg}</div></div>`;
+    ?`<div class="state-msg"><div style="font-size:28px">🔧</div><div style="font-size:15px;font-weight:600;color:var(--text)">Apps Script URL을 설정해 주세요</div><div style="font-size:12px;margin-top:8px">index.html 상단의 APPS_SCRIPT_URL 값을 교체하세요.</div></div>`
+    :`<div class="state-msg"><div>⚠</div><div>${msg}</div></div>`;
   document.getElementById('countryGrid').innerHTML=html;
   document.getElementById('matrixTable').innerHTML=html;
 }
@@ -1092,8 +889,6 @@ function switchTab(name){
 }
 
 renderTasks();
-renderGeoFilter();
-renderGeoHistory();
 loadData();
 </script>
 </body>
