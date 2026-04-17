@@ -317,6 +317,11 @@ const GEO_PDF_DATA = {
     strengths:['Product 스키마 필수 정보 완성 — name·sku·brand·image(5개)·offers·aggregateRating','AggregateRating 4.9/5.0 (8개 리뷰)','Offer availability InStock 명확','og:title·og:description·og:image 일관성 구성','H1 태그 명확'],
     warnings:['Organization 스키마 부재 — 台灣愛戴特有限公司 기업 정보 미구조화','Brand 문자열로만 표시 — Brand 객체 미확장','BreadcrumbList 부재','FAQPage 부재 — 배송비·출고 안내·반품 정책 미구조화','Product description 공백 — 神經醯胺+PDRN 성분 미구조화']
   },
+  '풀리:(Green Tomato) Clay Mask Cleanser': {
+    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','17/20',85],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList+HowTo+ItemList 완벽 구현','Offer $19.90·배송$6.99·30일 무료반품 완비','FAQPage 8개 구조화','HowTo 마스크/클렌저 2가지 단계별 구조화','ItemList 추천상품 7개 연결','OG 메타태그 완비'],
+    warnings:['AggregateRating null 처리 — 5.0/5.0 (1,104 리뷰) 스키마 미포함','Review 스키마 부재','Product 설명 Award 중심 — 49% 그린토마토·6-Clay Complex 임상수치 미명시','HowTo 단계 텍스트 일부 불완전']
+  },
   '95P:발란스핏 EMS 슬림 벨트 PRO': {
     items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
     strengths:['Organization 스키마 완성도 높음','Product+Offer 3가지 옵션 구조화','AggregateRating 3,091개','FAQPage 5개 구조화','H1·H2·H3 태그 명확'],
@@ -457,6 +462,36 @@ const GEO_PDF_DATA = {
     strengths:['Organization+Product+FAQPage+BreadcrumbList+HowTo+WebPage 완벽 구현','AggregateRating 4.8/5.0 (16개 리뷰)','FAQPage 4개 구조화','HowTo 3단계 14일 프로그램 구조화','isPartOf 번들 구성 3개 제품 명시','Review 1개 샘플 구조화'],
     warnings:['Review 스키마 1개 — 추가 확대 권장','성분 정보 additionalProperty 텍스트 — Ingredient 스키마 정교화 가능','배송시간 스키마와 실제 불일치 수정 필요']
   },
+  '푸드올로지:Coleology Cutting Jelly': {
+    items:[['속성 완성도','26/30',87],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','16/15',107],['구문 유효성','10/10',100]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','AggregateRating 4.9/5.0 (944개 리뷰)','FAQPage 6개 구조화','Offer $22.00·배송$5.99·30일 무료반품 완비','ItemList 추천상품 2개 연결','OG 메타태그 완비'],
+    warnings:['FAQ가 FAQPage 스키마 미적용 (적용 후 현재 완성)','ingredient 성분 정량 정보 미구조화']
+  },
+  '푸드올로지:Collagen Centella Jelly': {
+    items:[['속성 완성도','28/30',93],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+BreadcrumbList+ItemList 완벽 구현','AggregateRating 5.0/5.0 (157개 리뷰)','Offer $22.00·배송$5.99·30일 무료반품 완비','additionalProperty 성분·흡수율·맛·형태 구조화','OG 메타태그 완비'],
+    warnings:['FAQPage 스키마 부재 — 5개 FAQ 일반 텍스트만 제공','Review 스키마 부재','Product 설명 간결 — 성분 상세도 낮음']
+  },
+  '푸드올로지:Coleology Bowel Movement Jelly': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','AggregateRating 4.8/5.0 (180개 리뷰)','FAQPage 4개 구조화','Offer $22.00·배송$5.99·30일 무료반품 완비','OG 메타태그 완비'],
+    warnings:['Review 스키마 부재 — 개별 리뷰 미구조화','성분 정량 정보 미구조화 — 가르시니아·Polydextrose·Chia seeds 함유량']
+  },
+  '푸드올로지:컷팅 젤리 (JP)': {
+    items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','FAQPage 4개 구조화','Offer ¥2,680·배송¥300·7일 반품 완비','NutritionInformation 스키마 적용','additionalProperty 성분·섭취법·원산국 구조화'],
+    warnings:['AggregateRating 부재 — 고객 평점 미구조화','Review 스키마 부재','Organization과 Product @id 참조 미흡']
+  },
+  '푸드올로지:콜레올로지 컷 PRO (JP)': {
+    items:[['속성 완성도','24/30',80],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','FAQPage 5개 구조화','Offer ¥3,980(정가¥6,980)·무료배송·7일 반품 완비','AggregateRating 4.8/5.0 (1,200개)','additionalProperty 성분·용량·제조일 구조화','OG 메타태그 완비'],
+    warnings:['Product sku·color·size 미포함','NutritionInformation 부재','제조사(クァンドンヘルスバイオ)·판매원(아답트) 구분 불명확']
+  },
+  '푸드올로지:쾌변 젤리 (JP)': {
+    items:[['속성 완성도','26/30',87],['정보 정확도','22/25',88],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (1,200개)','FAQPage 4개 구조화','Review 3개 샘플 구조화','NutritionInformation 영양정보 구조화','Offer ¥2,680·배송¥300·7일 반품 완비'],
+    warnings:['healthClaim 속성 부재 — 건강기능식품 기능성 미구조화','dosageAndAdministration 미구조화','manufacturer(CosmaxBio) 정보 링크 미약']
+  },
   '오브제:오일 컨트롤 피니셔': {
     items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
     strengths:['Product+Offer+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (920개 리뷰)','FAQPage 6개 구조화','HowToUse 스키마 적용','Organization SNS 링크(인스타·유튜브·카카오) 완비','additionalProperty 전성분 구조화'],
@@ -536,6 +571,26 @@ const GEO_PDF_DATA = {
     items:[['속성 완성도','23/30',77],['정보 정확도','20/25',80],['AI 인용 친화성','12/20',60],['스키마 커버리지','10/15',67],['구문 유효성','9/10',90]],
     strengths:['기본 Product 스키마 구현 (name, image, price, aggregateRating, offers, availability)','AggregateRating 5.0/5.0 (612개 리뷰)','Open Graph 메타태그 완비 (og:title, og:description, og:image)','상품 가격 정보 정확하게 포함'],
     warnings:['description·brand 필드 누락','구매 옵션 (1+1, 번들 세트) 미구조화 — AggregateOffer 필요','색상 정보(color) 스키마 부재','Organization 스키마 부재','BreadcrumbList 없음']
+  },
+  '오브제:Oil Control Finisher': {
+    items:[['속성 완성도','26/30',87],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','13/15',87],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList+ItemList 완벽 구현','Offer $18.00·배송$6.99·30일 무료반품 완비','FAQPage 5개 구조화','Review 3개 샘플 구조화','OG 메타태그 완비'],
+    warnings:['AggregateRating null 처리 — 4.8/5.0 (221개 리뷰) 스키마 미포함','HowTo 사용법 스키마 부재']
+  },
+  '오브제:내추럴 커버 파운데이션 (JP)': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','10/10',100]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (102개 리뷰)','FAQPage 5개 구조화','Review 3개 샘플 구조화','Offer ¥3,980·배송무료·7일 반품 완비','additionalProperty 용량·효능·SPF 구조화'],
+    warnings:['AggregateOffer 미사용 — 색상(1호·2호·3호)별 가격 비교 미흡','@graph 일부 스키마 @id 참조 누락']
+  },
+  '오브제:포어제로 오일 컨트롤 선스틱 (JP)': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.9/5.0 (29개 리뷰)','FAQPage 5개 구조화','Review 1개 샘플 구조화','Offer ¥2,580·배송·7일 반품 완비','additionalProperty SPF50+/PA++++·저자극·18g 구조화'],
+    warnings:['Review 스키마 1개 — 추가 확대 권장','ProductImage caption 부재','HowToUse 스키마 미포함']
+  },
+  '오브제:내추럴 커버 로션 (JP)': {
+    items:[['속성 완성도','27/30',90],['정보 정확도','23/25',92],['AI 인용 친화성','18/20',90],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
+    strengths:['Organization+Product+FAQPage+BreadcrumbList 완벽 구현','AggregateRating 4.8/5.0 (29개 리뷰)','FAQPage 5개 구조화','Review 3개 샘플 구조화','Offer ¥2,680·배송·7일 반품 완비','additionalProperty 용량·효능·SPF 구조화'],
+    warnings:['Review aggregateRating만 존재 (미적용 전) — 추가됨','additionalProperty 전성분·사용주의사항 미구조화','@context 중복 선언 최적화 필요']
   },
   '에이페:스칼프 부스팅 앰플': {
     items:[['속성 완성도','28/30',93],['정보 정확도','24/25',96],['AI 인용 친화성','19/20',95],['스키마 커버리지','14/15',93],['구문 유효성','9/10',90]],
