@@ -200,7 +200,7 @@
 
   /* AI 유입 탭 */
   .ai-chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin-bottom:16px;}
-  .ai-chart-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;}
+  .ai-chart-title{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;}
   .ai-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
   .ai-bar-label{font-size:13px;color:var(--text2);width:96px;text-align:right;flex-shrink:0;font-weight:500;}
   .ai-bar-track{flex:1;height:28px;background:var(--bg3);border-radius:6px;overflow:hidden;}
@@ -226,6 +226,52 @@
     .geo-stat-row{grid-template-columns:1fr 1fr;}
     .score-bars-grid{grid-template-columns:1fr;}
   }
+
+  /* USP 테스트 탭 */
+  .usp-brand-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+  .usp-btab{padding:6px 16px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--text3);transition:all 0.15s;}
+  .usp-btab:hover{color:var(--text2);}
+  .usp-btab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .usp-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+  .usp-sc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+  .usp-sc-label{font-size:12px;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.07em;}
+  .usp-sc-val{font-size:26px;font-weight:700;color:var(--text);}
+  .usp-sc-sub{font-size:12px;color:var(--text3);margin-top:2px;font-family:var(--mono);}
+  .usp-product{background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden;}
+  .usp-product-hd{display:flex;align-items:center;gap:10px;padding:14px 20px;background:var(--bg3);border-bottom:1px solid var(--border);}
+  .usp-product-name{font-size:14px;font-weight:700;color:var(--text);}
+  .usp-grade{font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(91,79,255,0.12);color:var(--accent);}
+  .usp-cat{font-size:12px;color:var(--text3);margin-left:auto;}
+  .usp-prog-wrap{padding:10px 20px 8px;border-bottom:1px solid var(--border);background:rgba(0,0,0,0.02);}
+  .usp-prog-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:4px;font-family:var(--mono);}
+  .usp-prog-track{height:3px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+  .usp-prog-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.4s;}
+  .usp-row{display:grid;grid-template-columns:72px 1fr 340px;gap:16px;align-items:start;padding:14px 20px;border-bottom:1px solid var(--border);transition:background 0.12s;}
+  .usp-row:last-child{border-bottom:none;}
+  .usp-row:hover{background:rgba(91,79,255,0.02);}
+  .usp-step-badge{display:inline-flex;align-items:center;justify-content:center;padding:3px 10px;border-radius:5px;font-size:12px;font-weight:700;}
+  .usps-high{background:rgba(14,169,110,0.12);color:var(--green);}
+  .usps-mid{background:rgba(91,79,255,0.12);color:var(--accent);}
+  .usps-low{background:rgba(220,38,38,0.1);color:var(--red);}
+  .usp-tags-row{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;}
+  .usp-tag-chip{font-size:10px;padding:1px 6px;border-radius:3px;background:rgba(91,79,255,0.1);color:var(--accent);}
+  .usp-tag-chip.off{background:var(--bg3);color:var(--text3);text-decoration:line-through;opacity:0.5;}
+  .usp-query-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text);line-height:1.7;user-select:all;cursor:text;transition:border-color 0.15s;}
+  .usp-query-box:hover{border-color:var(--accent);}
+  .usp-copy-btn{font-size:11px;color:var(--text3);background:none;border:none;cursor:pointer;padding:3px 7px;border-radius:4px;transition:all 0.15s;margin-top:4px;}
+  .usp-copy-btn:hover{color:var(--accent);background:rgba(91,79,255,0.08);}
+  .usp-copy-btn.copied{color:var(--green);}
+  .usp-ai-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+  .usp-ai-row:last-child{margin-bottom:0;}
+  .usp-ai-name{font-size:12px;color:var(--text2);width:80px;flex-shrink:0;}
+  .usp-rbtn{width:32px;height:24px;border-radius:5px;border:1px solid var(--border2);background:var(--bg3);color:var(--text3);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.1s;flex-shrink:0;}
+  .usp-rbtn:hover{border-color:var(--text3);}
+  .usp-rbtn.yes.on{background:rgba(14,169,110,0.15);border-color:var(--green);color:var(--green);}
+  .usp-rbtn.no.on{background:rgba(220,38,38,0.1);border-color:var(--red);color:var(--red);}
+  .usp-url-inp{flex:1;min-width:0;height:24px;font-size:11px;padding:0 8px;border:1px solid var(--border);border-radius:5px;background:var(--bg3);color:var(--text2);font-family:var(--mono);outline:none;transition:border-color 0.15s;}
+  .usp-url-inp:focus{border-color:var(--accent);}
+  .usp-url-inp::placeholder{color:var(--text3);}
+  @media(max-width:700px){.usp-row{grid-template-columns:1fr;}.usp-summary{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -266,9 +312,15 @@
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('ai')">AI 유입 통계</button>
+    <button class="tab" onclick="switchTab('usp')">USP 감산 테스트</button>
     <button class="tab" onclick="switchTab('matrix')">진행 현황</button>
     <button class="tab" onclick="switchTab('overview')">국가별 현황</button>
     <!--<button class="tab" onclick="switchTab('geo')">GEO 점수</button>-->
+  </div>
+
+  <!-- ── USP 감산 테스트 탭 ── -->
+  <div class="panel" id="panel-usp">
+    <div id="usp-inner"><!-- JS로 렌더 --></div>
   </div>
 
   <!-- ── 국가별 현황 탭 ── -->
@@ -912,6 +964,7 @@ function switchTab(name){
   document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
   document.getElementById('panel-'+name).classList.add('active');
   if(name==='ai') loadAiTraffic();
+  if(name==='usp') initUspPanel();
 }
 
 /* ── AI 유입 탭 ── */
@@ -1087,20 +1140,22 @@ function renderPageTable(){
 }
 
 function updateAiSummary(data){
-  const bySource={}, byMethod={};
+  const bySource={}, bySite={};
   data.forEach(r=>{
     const s=r.ai_source||'unknown'; bySource[s]=(bySource[s]||0)+1;
-    const m=r.method||'unknown';   byMethod[m]=(byMethod[m]||0)+1;
+    const t=r.site||'unknown';     bySite[t]=(bySite[t]||0)+1;
   });
   const total=data.length;
-  const utmPct=total?Math.round((byMethod['utm']||0)/total*100):0;
   const sortedSrc=Object.entries(bySource).sort((a,b)=>b[1]-a[1]);
+  const sortedSite=Object.entries(bySite).sort((a,b)=>b[1]-a[1]);
+  const topSiteName=sortedSite[0]?sortedSite[0][0].replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' '):'—';
+  const topSiteCnt=sortedSite[0]?sortedSite[0][1]:0;
   const el=document.getElementById('ai-summary-cards');
   if(!el) return;
   el.innerHTML=`
     <div class="metric"><div class="metric-label">총 AI 유입</div><div class="metric-val">${total}</div><div class="metric-sub">전체 수집 건수</div></div>
     <div class="metric"><div class="metric-label">최다 에이전트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${sortedSrc[0]?sortedSrc[0][0]:'—'}</div><div class="metric-sub">${sortedSrc[0]?sortedSrc[0][1]+' 건':''}</div></div>
-    <div class="metric"><div class="metric-label">UTM 감지</div><div class="metric-val">${utmPct}<span style="font-size:18px">%</span></div><div class="metric-sub">referrer ${100-utmPct}%</div></div>`;
+    <div class="metric"><div class="metric-label">최다 유입 사이트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${topSiteName}</div><div class="metric-sub">${topSiteCnt?topSiteCnt+' 건':''}</div></div>`;
 }
 
 function timeAgo(iso){
@@ -1124,16 +1179,17 @@ function cleanPageUrl(raw){
 function renderAiTraffic(data){
   aiData = data;
   aiPage = 1;
-  const bySource={},byGeo={},byMethod={};
+  const bySource={},byGeo={},bySite={};
   data.forEach(r=>{
     const s=r.ai_source||'unknown'; bySource[s]=(bySource[s]||0)+1;
     const g=r.geo||'unknown';      byGeo[g]=(byGeo[g]||0)+1;
-    const m=r.method||'unknown';   byMethod[m]=(byMethod[m]||0)+1;
+    const t=r.site||'unknown';     bySite[t]=(bySite[t]||0)+1;
   });
   const total=data.length;
-  const utmCnt=byMethod['utm']||0;
-  const utmPct=total?Math.round(utmCnt/total*100):0;
   const sortedSrc=Object.entries(bySource).sort((a,b)=>b[1]-a[1]);
+  const sortedSite=Object.entries(bySite).sort((a,b)=>b[1]-a[1]);
+  const topSiteName=sortedSite[0]?sortedSite[0][0].replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' '):'—';
+  const topSiteCnt=sortedSite[0]?sortedSite[0][1]:0;
   const sortedGeo=Object.entries(byGeo).sort((a,b)=>b[1]-a[1]);
   const maxSrc=sortedSrc[0]?sortedSrc[0][1]:1;
   const maxGeo=sortedGeo[0]?sortedGeo[0][1]:1;
@@ -1152,7 +1208,7 @@ function renderAiTraffic(data){
     <div class="metrics" id="ai-summary-cards" style="margin-bottom:20px">
       <div class="metric"><div class="metric-label">총 AI 유입</div><div class="metric-val">${total}</div><div class="metric-sub">전체 수집 건수</div></div>
       <div class="metric"><div class="metric-label">최다 에이전트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${sortedSrc[0]?sortedSrc[0][0]:'—'}</div><div class="metric-sub">${sortedSrc[0]?sortedSrc[0][1]+' 건':''}</div></div>
-      <div class="metric"><div class="metric-label">UTM 감지</div><div class="metric-val">${utmPct}<span style="font-size:18px">%</span></div><div class="metric-sub">referrer ${100-utmPct}%</div></div>
+      <div class="metric"><div class="metric-label">최다 유입 사이트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${topSiteName}</div><div class="metric-sub">${topSiteCnt?topSiteCnt+' 건':''}</div></div>
     </div>
 
     <div class="ai-grid" style="margin-bottom:16px">
@@ -1192,6 +1248,314 @@ function renderAiTraffic(data){
       <div id="ai-page-table-wrap" style="overflow-x:auto"></div>
     </div>`;
   renderPageTable();
+}
+
+/* ── USP 감산 테스트 ── */
+const USP_PRODUCTS = [
+  {country:'국내',brand:'풀리',name:'쌀 세라 수분 선크림',category:'선크림',usps:['UV에이징 포뮬러로 광노화까지 한 번에 케어','24시간 지속되는 화잘먹 선크림','수분 에센스 87%로 가볍고 산뜻한 사용감','쌀겨수를 담아 저자극 데일리 스킨케어']},
+  {country:'국내',brand:'풀리',name:'그린토마토 팩 클렌저',category:'클렌저',usps:['팩, 클렌저 다 되는 클렌저 (클레이 팩 투 폼)','모공을 비우고 조여주는 그린토마토즙','6종 클레이 120,000PPM으로 모공 속 노폐물 완벽 케어','뛰어난 세정력의 약 알칼리성 클렌저']},
+  {country:'국내',brand:'풀리',name:'쌀 세라마이드 3종 세트',category:'스킨케어 세트',usps:['속부터 차오르는 보습 장벽 3종 세트','나노 에멀젼 기술로 토너의 흡수력과 에센스 보습력을 한번에 케어','세콜지 캡슐로 피부 장벽과 유사하게 120시간 보습 유지','물 없이 터트려 쓰는 특허받은 모델링마스크']},
+  {country:'국내',brand:'풀리',name:'쌀 반죽 팩 클렌저',category:'클렌저',usps:['팩, 클렌저 다 되는 클렌저 (보습 팩 클렌징)','5,000번 치대 쫀득한 쌀 반죽 제형','쌀겨수의 영양 성분으로 탄탄하게 채우는 보습감','약산성 저자극 클렌저']},
+  {country:'국내',brand:'풀리',name:'노세범 젤리 파우더',category:'파우더',usps:['가루날림, 묻어남 없는 고밀착 젤리 파우더','실리카파우더, 판토테닉애씨드 함유로 즉시 번들거리는 유분기 제거','필터 씌운 듯한 블러 피부 모공 순삭 커버 (8시간 지속)','건조함/자극 걱정 없는 편안한 마무리']},
+  {country:'국내',brand:'오브제',name:'오일 컨트롤 피니셔',category:'피니셔',usps:['번들번들 개기름 잡는 노세범 젤 파우더','가루날림, 묻어남, 텁텁함 없는 말랑한 젤리 제형','화장한 티 나지 않고 투명 매끈한 모공 블러 효과','여러 번 덧발라도 하얘지지 않는 자연스러움','콜라겐 파우더 & 4종 시카 파우더 함유로 건조함, 자극 DOWN']},
+  {country:'국내',brand:'오브제',name:'포어 제로 오일 컨트롤 선스틱',category:'선스틱',usps:['바르는 순간 보송해지는 기름종이 선스틱','피지 및 모공 개선 특허 성분 PORE SLEEP, Anti Sebum P 함유','바른 듯 안 바른듯 가볍고 백탁 없이 투명한 사용감','프라이머처럼 모공을 촘촘하게 메꿔 블러처리한 듯 매끈한 피부 연출','인체적용시험으로 검증된 강력한 자외선 차단력 (SPF50+ PA++++)']},
+  {country:'국내',brand:'오브제',name:'내추럴 커버 로션 2종',category:'로션',usps:['로션 하나로 올인원 커버','로션+선크림+커버까지 한 통으로 해결','4가지 컬러 캡슐로 내 피부톤 맞춤 컬러 구현','꾸민 듯 안 꾸민 듯 자연스러운 커버','초보자도 쓱쓱 바를 수 있는 신개념 로션형 메이크업']},
+  {country:'국내',brand:'푸드올로지',name:'콜레올로지 컷 다이어트 유산균',category:'유산균',usps:['다이어트와 유산균 한 번에 해결','체지방 잡는 유산균','체지방 감소, 장 건강, 배변 원활, 유산균 증식, 유해균 억제','생유산균 101억 CFU 보장']},
+  {country:'국내',brand:'푸드올로지',name:'지중해 오일만 클렌즈',category:'클렌즈',usps:['5일간 섭취하는 오일만 클렌즈','아침 공복 1잔으로 식습관 리셋','해외에서 유명한 오일만 클렌즈 레시피','유기농 파슬리, 레몬과 청정해역 바하소금 함유','굶지 않아도 되는 부담없는 클렌즈']},
+  {country:'국내',brand:'푸드올로지',name:'지중해 올리브오일',category:'건강기능식품',usps:['글로벌 1등 식단을 1캡슐에','스페인산 유기농 엑스트라 버진 올리브오일','COLD PRESS 공법으로 오일 본연의 신선함 그대로','최상급 Picual 품종, 풍부한 폴리페놀','100% 식물성 캡슐로 산패 걱정 없음','마지막 1캡슐까지 신선하게 유지']},
+  {country:'국내',brand:'푸드올로지',name:'톡스올로지 클렌즈 48h ABC',category:'클렌즈',usps:['단 2일 48시간 비워내는 ABC 클렌즈','하루 4번 2일간 확실하게 비우는 클렌즈','건강한 단맛의 ABC 클렌즈','클렌즈 중 지치지 않도록 11종 필수 영양소 함유','잦은 자극적 음식 섭취 후 리셋']},
+  {country:'국내',brand:'푸드올로지',name:'톡스올로지 클렌즈 48h CCA',category:'클렌즈',usps:['단 2일 48시간 비워내는 CCA 클렌즈','하루 4번 2일간 확실하게 비우는 클렌즈','건강한 단맛의 CCA 클렌즈','클렌즈 중 지치지 않도록 11종 필수 영양소 함유','잦은 자극적 음식 섭취 후 리셋']},
+  {country:'국내',brand:'푸드올로지',name:'중년 건강 다이어트 SET',category:'건강기능식품',usps:['체지방 잡는 유산균','유산균 섭취와 다이어트를 한 번에','국내 최초 식물 유래 다이어트 유산균','장용성 캡슐로 101억 생유산균 살아서 장까지','중년 건강고민 4가지 한 번에 해결','혈압, 혈행, 혈당 케어, 다이어트까지 올인원']},
+  {country:'국내',brand:'에이페',name:'스칼프 부스팅 앰플',category:'탈모 앰플',usps:['38개 브러쉬 빗살로 두피 구석구석 유효성분 흡수를 돕는 탈모 앰플','3세대 마이크로바이옴으로 두피 환경부터 탄탄하게 개선','뿌리에 힘을 채우는 고농축 포뮬러로 자연스러운 볼륨감 연출','두피모공보다 3,008배 작은 하수오 엑소좀+맥주효모 추출 PDRN 함유','2주 임상으로 입증한 모발 빠짐, 각질, 비듬, 열감 개선']},
+  {country:'국내',brand:'닥터데이알',name:'딥나잇 멜라시럽',category:'건강기능식품',usps:['피스타치오 유래 100% 식물성 멜라토닌','멜라토닌 내 합성 성분 없음','자사 최대 함량 멜라토닌 3mg','흡수 빠른 액상 제형','입면 유도 성분 락투신 124배 함유 국내산 유기농 흑하랑 상추']},
+  {country:'국내',brand:'95PROBLEM',name:'발란스핏 EMS 슬림 벨트 PRO',category:'EMS 기기',usps:['즉각적인 고강도 운동 효과를 주는 강력한 EMS 미세 전류 자극','4중 마사지 패드로 복부부터 옆구리까지 넓고 확실하게 케어','3단계 원적외선 온열 기능으로 운동 효과 극대화','두드림, 주무름, 지압, 스트레칭 등 7가지 EMS 모드','초경량으로 언제 어디서나 간편한 사용과 보관','전면 컨트롤러 또는 리모컨으로 편리한 조작']}
+];
+
+const USP_AIS = ['ChatGPT','Perplexity','Claude'];
+const USP_KEY = 'geo_usp_results_v1';
+let uspResults = {};
+let uspDbLoaded = false;
+try { uspResults = JSON.parse(localStorage.getItem(USP_KEY)||'{}'); } catch(e){}
+
+function uspSaveLocal(){localStorage.setItem(USP_KEY,JSON.stringify(uspResults));}
+
+async function uspLoadFromDb(){
+  const statusEl = document.getElementById('usp-save-status');
+  if(statusEl) statusEl.textContent = '불러오는 중...';
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/usp_test_results?select=*`, {
+      headers:{'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`}
+    });
+    if(!res.ok) throw new Error(res.status);
+    const rows = await res.json();
+    rows.forEach(row => {
+      const p = USP_PRODUCTS.find(x=>x.brand===row.brand && x.name===row.product_name);
+      if(!p) return;
+      const pid = uspPid(p);
+      if(!uspResults[pid]) uspResults[pid]={};
+      uspResults[pid][`${row.usp_step}_${row.ai_tool}`] = row.result;
+      if(row.result_url) uspResults[pid][`${row.usp_step}_${row.ai_tool}_url`] = row.result_url;
+    });
+    uspSaveLocal();
+    if(rows.length > 0){
+      const latest = rows.reduce((a,b)=>a.saved_at>b.saved_at?a:b);
+      const d = new Date(latest.saved_at);
+      const fmt = `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+      if(statusEl) statusEl.textContent = `마지막 저장: ${fmt}`;
+    } else {
+      if(statusEl) statusEl.textContent = '저장된 기록 없음';
+    }
+    uspDbLoaded = true;
+    const activeBrand = document.querySelector('.usp-btab.active');
+    if(activeBrand) renderUspBrand(activeBrand.dataset.brand);
+    uspUpdateSummary();
+  } catch(e){
+    if(statusEl) statusEl.textContent = 'DB 로드 실패';
+  }
+}
+
+async function uspSaveToDb(){
+  const btn = document.getElementById('usp-save-btn');
+  const statusEl = document.getElementById('usp-save-status');
+  if(btn){ btn.disabled=true; btn.textContent='저장 중...'; }
+  const rows = [];
+  const now = new Date().toISOString();
+  USP_PRODUCTS.forEach(p=>{
+    const pid = uspPid(p);
+    const r = uspResults[pid]||{};
+    Object.entries(r).forEach(([k,v])=>{
+      if(!v) return;
+      const parts = k.split('_');
+      const step = parseInt(parts[0]);
+      const ai = parts.slice(1).join('_');
+      rows.push({brand:p.brand, product_name:p.name, category:p.category,
+        usp_step:step, ai_tool:ai, result:v,
+        result_url:uspResults[pid]?.[`${step}_${ai}_url`]||null,
+        saved_at:now});
+    });
+  });
+  if(rows.length===0){
+    if(btn){ btn.disabled=false; btn.textContent='저장'; }
+    if(statusEl) statusEl.textContent = '기록된 결과가 없습니다';
+    return;
+  }
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/usp_test_results`, {
+      method:'POST',
+      headers:{
+        'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,
+        'Content-Type':'application/json',
+        'Prefer':'resolution=merge-duplicates'
+      },
+      body: JSON.stringify(rows)
+    });
+    if(!res.ok) throw new Error(res.status);
+    const d = new Date(now);
+    const fmt = `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    if(statusEl) statusEl.textContent = `마지막 저장: ${fmt}`;
+    if(btn){ btn.disabled=false; btn.textContent='저장 완료 ✓'; setTimeout(()=>{btn.textContent='저장';},2000); }
+  } catch(e){
+    if(btn){ btn.disabled=false; btn.textContent='저장'; }
+    if(statusEl) statusEl.textContent = `저장 실패: ${e.message}`;
+  }
+}
+
+function uspBuildQuery(usps, cat){
+  if(usps.length===1) return `"${usps[0]}" 특징을 가진 ${cat} 추천해줘`;
+  const joined = usps.map(u=>`"${u}"`).join(', ');
+  return `이런 특징을 가진 ${cat} 추천해줘: ${joined}`;
+}
+
+function uspPid(p){return (p.brand+'__'+p.name).replace(/\s+/g,'_');}
+
+function uspSetUrl(pid,step,ai,url){
+  if(!uspResults[pid]) uspResults[pid]={};
+  const k=`${step}_${ai}_url`;
+  if(url) uspResults[pid][k]=url;
+  else delete uspResults[pid][k];
+  uspSaveLocal();
+}
+
+function uspSet(pid,step,ai,val){
+  if(!uspResults[pid]) uspResults[pid]={};
+  const k=`${step}_${ai}`;
+  uspResults[pid][k] = uspResults[pid][k]===val ? null : val;
+  if(uspResults[pid][k]===null) delete uspResults[pid][k];
+  uspSaveLocal();
+  const yb=document.querySelector(`[data-upid="${pid}"][data-us="${step}"][data-uai="${ai}"][data-uv="yes"]`);
+  const nb=document.querySelector(`[data-upid="${pid}"][data-us="${step}"][data-uai="${ai}"][data-uv="no"]`);
+  if(yb) yb.classList.toggle('on', uspResults[pid]?.[k]==='yes');
+  if(nb) nb.classList.toggle('on', uspResults[pid]?.[k]==='no');
+  uspUpdateProgress(pid);
+  uspUpdateSummary();
+}
+
+function uspUpdateProgress(pid){
+  const p=USP_PRODUCTS.find(x=>uspPid(x)===pid);
+  if(!p) return;
+  const total=p.usps.length*USP_AIS.length;
+  let done=0;
+  for(let s=1;s<=p.usps.length;s++) for(const ai of USP_AIS) if(uspResults[pid]?.[`${s}_${ai}`]) done++;
+  const fill=document.getElementById(`uf-${pid}`);
+  const lbl=document.getElementById(`ul-${pid}`);
+  if(fill) fill.style.width=(done/total*100)+'%';
+  if(lbl) lbl.textContent=`${done} / ${total}`;
+}
+
+function uspUpdateSummary(){
+  let done=0,yes=0,no=0,total=0;
+  USP_PRODUCTS.forEach(p=>{
+    const pid=uspPid(p);
+    for(let s=1;s<=p.usps.length;s++) for(const ai of USP_AIS){
+      total++;
+      const v=uspResults[pid]?.[`${s}_${ai}`];
+      if(v==='yes'){done++;yes++;}
+      if(v==='no'){done++;no++;}
+    }
+  });
+  const d=document.getElementById('usp-stat-done');
+  const t=document.getElementById('usp-stat-total');
+  const y=document.getElementById('usp-stat-yes');
+  const n=document.getElementById('usp-stat-no');
+  if(d) d.textContent=done;
+  if(t) t.textContent=total;
+  if(y) y.textContent=yes;
+  if(n) n.textContent=no;
+}
+
+const USP_QUERY_MAP = {};
+
+function uspCopy(btn,qkey){
+  const text = USP_QUERY_MAP[qkey];
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='복사됨!'; btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');},1600);
+  });
+}
+
+function renderUspBrand(brand){
+  document.querySelectorAll('.usp-btab').forEach(b=>{
+    b.classList.toggle('active',b.dataset.brand===brand);
+  });
+  const products=USP_PRODUCTS.filter(p=>p.brand===brand);
+  let html='';
+  products.forEach(p=>{
+    const pid=uspPid(p);
+    const n=p.usps.length;
+    const total=n*USP_AIS.length;
+    let done=0;
+    for(let s=1;s<=n;s++) for(const ai of USP_AIS) if(uspResults[pid]?.[`${s}_${ai}`]) done++;
+
+    let rows='';
+    for(let step=n;step>=1;step--){
+      const activeUsps=p.usps.slice(0,step);
+      const query=uspBuildQuery(activeUsps,p.category);
+      const qkey=`${pid}_${step}`;
+      USP_QUERY_MAP[qkey]=query;
+
+      let tags='';
+      p.usps.forEach((_,i)=>{
+        const off=i>=step;
+        tags+=`<span class="usp-tag-chip${off?' off':''}">USP${i+1}</span>`;
+      });
+
+      const stepClass=step>=4?'usps-high':step===3?'usps-high':step===2?'usps-mid':'usps-low';
+
+      let aiRows='';
+      USP_AIS.forEach(ai=>{
+        const v=uspResults[pid]?.[`${step}_${ai}`];
+        const urlVal=uspResults[pid]?.[`${step}_${ai}_url`]||'';
+        const eid=`uurl-${pid}-${step}-${ai}`;
+        aiRows+=`<div class="usp-ai-row" style="flex-wrap:nowrap;gap:6px">
+          <span class="usp-ai-name">${ai}</span>
+          <div style="display:flex;gap:4px;flex-shrink:0">
+            <button class="usp-rbtn yes${v==='yes'?' on':''}" data-upid="${pid}" data-us="${step}" data-uai="${ai}" data-uv="yes" onclick="uspSet('${pid}',${step},'${ai}','yes')">✓</button>
+            <button class="usp-rbtn no${v==='no'?' on':''}" data-upid="${pid}" data-us="${step}" data-uai="${ai}" data-uv="no" onclick="uspSet('${pid}',${step},'${ai}','no')">✗</button>
+          </div>
+          <input type="url" class="usp-url-inp" id="${eid}" value="${urlVal}" placeholder="응답 링크" onchange="uspSetUrl('${pid}',${step},'${ai}',this.value)">
+        </div>`;
+      });
+
+      const uspList=activeUsps.map((u,i)=>`<div style="font-size:11px;color:var(--text3);margin-top:2px;padding-left:1px">· ${u}</div>`).join('');
+
+      rows+=`<div class="usp-row">
+        <div>
+          <span class="usp-step-badge ${stepClass}">USP ${step}개</span>
+          <div class="usp-tags-row">${tags}</div>
+        </div>
+        <div>
+          <div class="usp-query-box">${query}</div>
+          <button class="usp-copy-btn" onclick="uspCopy(this,'${qkey}')">복사</button>
+          <div style="margin-top:6px">${uspList}</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text3);margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase">${p.brand} 언급 여부</div>
+          ${aiRows}
+        </div>
+      </div>`;
+    }
+
+    html+=`<div class="usp-product">
+      <div class="usp-product-hd">
+        <span class="usp-product-name">${p.name}</span>
+        <span class="usp-grade">A등급</span>
+        <span class="usp-cat">${p.category} · USP ${n}개</span>
+      </div>
+      <div class="usp-prog-wrap">
+        <div class="usp-prog-meta"><span>진행률</span><span id="ul-${pid}">${done} / ${total}</span></div>
+        <div class="usp-prog-track"><div class="usp-prog-fill" id="uf-${pid}" style="width:${done/total*100}%"></div></div>
+      </div>
+      ${rows}
+    </div>`;
+  });
+  document.getElementById('usp-products').innerHTML=html;
+}
+
+function initUspPanel(){
+  const brands=[...new Set(USP_PRODUCTS.map(p=>p.brand))];
+  let brandTabs=brands.map(b=>{
+    const cnt=USP_PRODUCTS.filter(p=>p.brand===b).length;
+    return `<button class="usp-btab" data-brand="${b}" onclick="renderUspBrand('${b}')">${b} <span style="font-size:11px;opacity:0.7">${cnt}</span></button>`;
+  }).join('');
+
+  let totalItems=0,doneItems=0,yesItems=0;
+  USP_PRODUCTS.forEach(p=>{
+    const pid=uspPid(p);
+    for(let s=1;s<=p.usps.length;s++) for(const ai of USP_AIS){
+      totalItems++;
+      const v=uspResults[pid]?.[`${s}_${ai}`];
+      if(v) doneItems++;
+      if(v==='yes') yesItems++;
+    }
+  });
+
+  document.getElementById('usp-inner').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+      <span id="usp-save-status" style="font-size:12px;color:var(--text3);font-family:var(--mono)">로드 중...</span>
+      <button id="usp-save-btn" class="btn" style="background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600" onclick="uspSaveToDb()">저장</button>
+    </div>
+    <div class="usp-summary">
+      <div class="usp-sc">
+        <div class="usp-sc-label">완료 항목</div>
+        <div class="usp-sc-val" id="usp-stat-done">${doneItems}</div>
+        <div class="usp-sc-sub">/ <span id="usp-stat-total">${totalItems}</span></div>
+      </div>
+      <div class="usp-sc">
+        <div class="usp-sc-label">AI 인식 ✓</div>
+        <div class="usp-sc-val" id="usp-stat-yes" style="color:var(--green)">${yesItems}</div>
+      </div>
+      <div class="usp-sc">
+        <div class="usp-sc-label">AI 미인식 ✗</div>
+        <div class="usp-sc-val" id="usp-stat-no" style="color:var(--red)">0</div>
+      </div>
+    </div>
+    <div class="usp-brand-tabs">${brandTabs}</div>
+    <div id="usp-products"></div>`;
+
+  uspUpdateSummary();
+  renderUspBrand(brands[0]);
+  if(!uspDbLoaded) uspLoadFromDb();
 }
 
 renderTasks();
