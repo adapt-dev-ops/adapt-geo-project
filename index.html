@@ -198,6 +198,29 @@
   .spinner{width:20px;height:20px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
 
+  /* AI 유입 탭 */
+  .ai-chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin-bottom:16px;}
+  .ai-chart-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;}
+  .ai-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .ai-bar-label{font-size:13px;color:var(--text2);width:96px;text-align:right;flex-shrink:0;font-weight:500;}
+  .ai-bar-track{flex:1;height:28px;background:var(--bg3);border-radius:6px;overflow:hidden;}
+  .ai-bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:12px;font-size:13px;font-weight:700;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);min-width:36px;}
+  .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0;}
+  .ai-feed{width:100%;border-collapse:collapse;}
+  .ai-feed th{padding:11px 20px;text-align:center;font-size:11px;color:var(--text3);font-weight:700;letter-spacing:0.08em;border-bottom:2px solid var(--border);background:var(--bg3);text-transform:uppercase;white-space:nowrap;}
+  .ai-feed td{padding:14px 20px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .ai-feed tr:last-child td{border-bottom:none;}
+  .ai-feed tr:hover td{background:rgba(255,255,255,0.02);}
+  .ai-src{font-size:15px;font-weight:700;letter-spacing:0.01em;}
+  .ai-src-meta{font-size:12px;color:var(--text3);margin-top:2px;}
+  .ai-page{font-size:14px;color:var(--text);font-weight:500;display:flex;align-items:center;gap:6px;}
+  .ai-link-btn{display:inline-flex;align-items:center;color:var(--text3);opacity:0;transition:opacity 0.15s;flex-shrink:0;text-decoration:none;}
+  .ai-feed tr:hover .ai-link-btn{opacity:1;}
+  .ai-link-btn:hover{color:var(--accent);}
+  .ai-badge{display:inline-flex;align-items:center;font-size:12px;padding:3px 10px;border-radius:5px;font-weight:600;margin-right:5px;margin-bottom:3px;}
+  .ai-sort-btn.active,.ai-rsort-btn.active{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important;font-weight:600!important;}
+  @media(max-width:640px){.ai-grid{grid-template-columns:1fr;}}
+
   @media(max-width:640px){
     .wrap{padding:0 16px 60px;}
     .geo-stat-row{grid-template-columns:1fr 1fr;}
@@ -242,13 +265,14 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('overview')">국가별 현황</button>
+    <button class="tab active" onclick="switchTab('ai')">AI 유입 통계</button>
     <button class="tab" onclick="switchTab('matrix')">진행 현황</button>
-    <button class="tab" onclick="switchTab('geo')">GEO 점수</button>
+    <button class="tab" onclick="switchTab('overview')">국가별 현황</button>
+    <!--<button class="tab" onclick="switchTab('geo')">GEO 점수</button>-->
   </div>
 
   <!-- ── 국가별 현황 탭 ── -->
-  <div class="panel active" id="panel-overview">
+  <div class="panel" id="panel-overview">
     <div class="country-grid" id="countryGrid">
       <div class="state-msg"><div class="spinner"></div><div>데이터를 불러오는 중...</div></div>
     </div>
@@ -286,7 +310,7 @@
         <div class="process-step-num">4</div>
         <div class="process-step-body">
           <div class="process-step-name">성과 분석</div>
-          <div class="process-step-detail">Google Rich Results Test + Beusable GEO로 스키마 점수 확인. 클로드 활용 자가진단 프롬프트 병행.</div>
+          <div class="process-step-detail">Google Rich Results Test + Beusable GEO로 스키마 점수 확인.</div>
         </div>
       </div>
     </div>
@@ -353,17 +377,15 @@
     <div id="taskList"></div>
   </div>
 
-  <!-- ── GEO 점수 탭 (개선) ── -->
+  <!--
+  ── GEO 점수 탭 (비활성화) ──
   <div class="panel" id="panel-geo">
-    <!-- 요약 스탯 -->
     <div class="geo-stat-row" id="geoStatRow">
       <div class="geo-stat"><div class="geo-stat-label">전체 상품</div><div class="geo-stat-val">—</div></div>
       <div class="geo-stat"><div class="geo-stat-label">평균 점수</div><div class="geo-stat-val">—</div></div>
       <div class="geo-stat"><div class="geo-stat-label">A등급</div><div class="geo-stat-val" style="color:var(--green)">—</div></div>
       <div class="geo-stat"><div class="geo-stat-label">개선 필요 (C·D)</div><div class="geo-stat-val" style="color:var(--amber)">—</div></div>
     </div>
-
-    <!-- 검색 + 정렬 -->
     <div class="geo-toolbar">
       <input class="geo-search" id="geoSearch" type="text" placeholder="상품명 또는 브랜드 검색..." oninput="applyGeoFilters()">
       <select class="geo-sort" id="geoSort" onchange="applyGeoFilters()">
@@ -372,11 +394,8 @@
         <option value="brand">브랜드순</option>
       </select>
     </div>
-
     <div class="geo-filter-section">
-      <div class="geo-filter-row" id="geoBrandFilter">
-        <span class="geo-filter-label">브랜드</span>
-      </div>
+      <div class="geo-filter-row" id="geoBrandFilter"><span class="geo-filter-label">브랜드</span></div>
       <div class="geo-filter-row">
         <span class="geo-filter-label">등급</span>
         <div class="grade-group">
@@ -388,9 +407,14 @@
         </div>
       </div>
     </div>
-
     <div class="geo-results-info" id="geoResultsInfo"></div>
     <div class="geo-card-list" id="geoCardList"></div>
+  </div>
+  -->
+
+  <!-- ── AI 유입 탭 ── -->
+  <div class="panel active" id="panel-ai">
+    <div class="state-msg"><div class="spinner"></div><div>탭을 클릭하면 데이터를 불러옵니다</div></div>
   </div>
 
 </div>
@@ -656,8 +680,8 @@ function parseGeoScores(allData){
   scores.sort((a,b)=>b.score-a.score);
   GEO_HISTORY.length=0;
   scores.forEach(s=>GEO_HISTORY.push(s));
-  initGeoBrandFilter();
-  applyGeoFilters();
+  // initGeoBrandFilter();
+  // applyGeoFilters();
 }
 
 function renderOverview(progress){
@@ -755,7 +779,7 @@ function renderTasks(){
   </div>`).join('');
 }
 
-/* ── GEO 점수 탭 로직 ── */
+/* ── GEO 점수 탭 로직 (비활성화) ──
 function gradeOf(s){return s>=90?'A':s>=80?'B':s>=70?'C':'D';}
 
 function initGeoBrandFilter(){
@@ -857,6 +881,7 @@ function toggleGeoCard(id,hasDetail){
   const chevron=body?.closest('.geo-card')?.querySelector('.toggle-chevron');
   if(chevron){chevron.classList.toggle('open',geoOpenCards.has(id));}
 }
+── */
 
 function setSyncState(s,msg){
   const dot=document.getElementById('syncDot'),lbl=document.getElementById('syncLabel');
@@ -886,10 +911,292 @@ function switchTab(name){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
   document.getElementById('panel-'+name).classList.add('active');
+  if(name==='ai') loadAiTraffic();
+}
+
+/* ── AI 유입 탭 ── */
+const SB_URL = 'https://zsznmjvmbzqxtssqfrpj.supabase.co';
+const SB_KEY = 'sb_publishable_Dqx5699n2fgzAr3ijiiNCQ_WXavoaaD';
+let aiData = [];
+let aiSort = 'time';
+let aiPage = 1;
+let recentSort = 'time';
+let recentPage = 1;
+const AI_PAGE_SIZE = 20;
+
+async function loadAiTraffic(start, end){
+  const panel = document.getElementById('panel-ai');
+  const tableWrap = document.getElementById('ai-page-table-wrap');
+  const loadingHtml = '<div class="state-msg"><div class="spinner"></div><div>데이터 로딩 중...</div></div>';
+  if(tableWrap) tableWrap.innerHTML = loadingHtml;
+  else panel.innerHTML = loadingHtml;
+
+  let url = SB_URL+'/rest/v1/geo_signals?select=ai_source,method,site,geo,page_url,created_at&order=created_at.desc&limit=2000';
+  if(start) url += '&created_at=gte.'+start+'T00:00:00%2B09:00';
+  if(end)   url += '&created_at=lte.'+end+'T23:59:59%2B09:00';
+
+  try{
+    const res = await fetch(url, {headers:{'apikey':SB_KEY}});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    if(tableWrap) { aiData=data; aiPage=1; renderPageTable(); updateAiSummary(data); }
+    else renderAiTraffic(data);
+  }catch(e){
+    if(tableWrap) tableWrap.innerHTML=`<div class="state-msg"><div>⚠</div><div>${e.message}</div></div>`;
+    else panel.innerHTML=`<div class="state-msg"><div style="font-size:24px">⚠</div><div>${e.message}</div></div>`;
+  }
+}
+
+function fetchAiByDate(){
+  const start = document.getElementById('ai-date-start').value;
+  const end   = document.getElementById('ai-date-end').value;
+  aiPage = 1;
+  loadAiTraffic(start||undefined, end||undefined);
+}
+
+function setAiSort(sort){
+  aiSort = sort;
+  aiPage = 1;
+  document.querySelectorAll('.ai-sort-btn').forEach(b=>b.classList.toggle('active', b.dataset.sort===sort));
+  renderPageTable();
+}
+
+function setRecentSort(sort){
+  recentSort = sort;
+  recentPage = 1;
+  document.querySelectorAll('.ai-rsort-btn').forEach(b=>b.classList.toggle('active', b.dataset.sort===sort));
+  renderRecentTable();
+}
+
+function setRecentPage(n){
+  recentPage = n;
+  renderRecentTable();
+  document.getElementById('ai-recent-card').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function renderRecentTable(){
+  const wrap = document.getElementById('ai-recent-table-wrap');
+  if(!wrap) return;
+  const SRC_COLOR={chatgpt:'#10A37F',perplexity:'#6496FF',claude:'#FF9068',copilot:'#38BDF8',gemini:'#FBBC04'};
+  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
+  const LINK_SVG=`<svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M7 2H10V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M5 3H2.5C2.22 3 2 3.22 2 3.5V9.5C2 9.78 2.22 10 2.5 10H8.5C8.78 10 9 9.78 9 9.5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+  let rows = [...aiData];
+  if(recentSort==='agent') rows.sort((a,b)=>(a.ai_source||'').localeCompare(b.ai_source||'','ko'));
+  else if(recentSort==='site') rows.sort((a,b)=>(a.site||'').localeCompare(b.site||'','ko'));
+  // 'time' already sorted desc from fetch
+
+  const total = rows.length;
+  const totalPages = Math.max(1, Math.ceil(total/AI_PAGE_SIZE));
+  if(recentPage>totalPages) recentPage=totalPages;
+  const pageRows = rows.slice((recentPage-1)*AI_PAGE_SIZE, recentPage*AI_PAGE_SIZE);
+
+  const tbody = pageRows.map(r=>{
+    const c=SRC_COLOR[r.ai_source]||'#9090aa';
+    const page=cleanPageUrl(r.page_url);
+    const geoName=GEO_NAME[r.geo]||r.geo||'';
+    const siteName=(r.site||'').replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' ');
+    return`<tr>
+      <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${r.ai_source||'?'}</div></td>
+      <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${siteName}${geoName?' · '+geoName:''}</td>
+      <td style="width:99%"><div class="ai-page">${page}${r.page_url?`<a href="${r.page_url}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
+      <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${r.created_at?timeAgo(r.created_at):'—'}</td>
+    </tr>`;
+  }).join('');
+
+  const paginationBtns = Array.from({length:totalPages},(_,i)=>{
+    const n=i+1;
+    const active=n===recentPage;
+    return`<button onclick="setRecentPage(${n})" style="min-width:32px;height:32px;padding:0 10px;border-radius:6px;border:1px solid ${active?'var(--accent)':'var(--border)'};background:${active?'var(--accent)':'transparent'};color:${active?'#fff':'var(--text3)'};font-size:13px;font-weight:${active?700:400};cursor:pointer">${n}</button>`;
+  }).join('');
+
+  wrap.innerHTML=`
+    <table class="ai-feed">
+      <thead><tr><th>AI 에이전트</th><th>사이트</th><th>페이지</th><th>시간</th></tr></thead>
+      <tbody>${tbody}</tbody>
+    </table>
+    ${totalPages>1?`<div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding:0 4px">
+      <span style="font-size:12px;color:var(--text3)">총 ${total}건 · ${recentPage}/${totalPages} 페이지</span>
+      <div style="display:flex;gap:6px">${paginationBtns}</div>
+    </div>`:''}`;
+}
+
+function setAiPage(n){
+  aiPage = n;
+  renderPageTable();
+  document.getElementById('ai-page-card').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function buildPageRows(data){
+  const SRC_COLOR={chatgpt:'#10A37F',perplexity:'#6496FF',claude:'#FF9068',copilot:'#38BDF8',gemini:'#FBBC04'};
+  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
+  const map={};
+  data.forEach(r=>{
+    const label=cleanPageUrl(r.page_url);
+    const src=r.ai_source||'?';
+    const key=label+'||'+(r.site||'')+'||'+(r.geo||'')+'||'+src;
+    if(!map[key]) map[key]={label,site:r.site||'',geo:r.geo||'',src,total:0,url:r.page_url||'',lastSeen:r.created_at||''};
+    map[key].total++;
+    if(r.created_at>map[key].lastSeen) map[key].lastSeen=r.created_at;
+  });
+  let rows=Object.values(map);
+  if(aiSort==='agent') rows.sort((a,b)=>a.src.localeCompare(b.src,'ko')||b.total-a.total);
+  else if(aiSort==='site') rows.sort((a,b)=>a.site.localeCompare(b.site,'ko')||b.total-a.total);
+  else if(aiSort==='count') rows.sort((a,b)=>b.total-a.total);
+  else rows.sort((a,b)=>b.lastSeen.localeCompare(a.lastSeen));
+  return {rows, SRC_COLOR, GEO_NAME};
+}
+
+function renderPageTable(){
+  const wrap = document.getElementById('ai-page-table-wrap');
+  if(!wrap) return;
+  const {rows, SRC_COLOR, GEO_NAME} = buildPageRows(aiData);
+  const total = rows.length;
+  const totalPages = Math.max(1, Math.ceil(total/AI_PAGE_SIZE));
+  if(aiPage>totalPages) aiPage=totalPages;
+  const pageRows = rows.slice((aiPage-1)*AI_PAGE_SIZE, aiPage*AI_PAGE_SIZE);
+  const LINK_SVG=`<svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M7 2H10V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M5 3H2.5C2.22 3 2 3.22 2 3.5V9.5C2 9.78 2.22 10 2.5 10H8.5C8.78 10 9 9.78 9 9.5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+  const tbody = pageRows.map(p=>{
+    const c=SRC_COLOR[p.src]||'#9090aa';
+    const geoName=GEO_NAME[p.geo]||p.geo;
+    const siteName=p.site.replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' ');
+    return`<tr>
+      <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${p.src}</div></td>
+      <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${siteName}${geoName?' · '+geoName:''}</td>
+      <td style="width:99%"><div class="ai-page">${p.label}${p.url?`<a href="${p.url}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
+      <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${p.lastSeen?timeAgo(p.lastSeen):'—'}</td>
+      <td style="text-align:right;padding-right:24px;font-size:18px;font-weight:700;color:var(--accent)">${p.total}</td>
+    </tr>`;
+  }).join('');
+
+  const paginationBtns = Array.from({length:totalPages},(_,i)=>{
+    const n=i+1;
+    const active=n===aiPage;
+    return`<button onclick="setAiPage(${n})" style="min-width:32px;height:32px;padding:0 10px;border-radius:6px;border:1px solid ${active?'var(--accent)':'var(--border)'};background:${active?'var(--accent)':'transparent'};color:${active?'#fff':'var(--text3)'};font-size:13px;font-weight:${active?700:400};cursor:pointer">${n}</button>`;
+  }).join('');
+
+  wrap.innerHTML=`
+    <table class="ai-feed">
+      <thead><tr><th>AI 에이전트</th><th>사이트</th><th>페이지</th><th>최근 접속</th><th style="text-align:right;padding-right:24px">유입</th></tr></thead>
+      <tbody>${tbody}</tbody>
+    </table>
+    ${totalPages>1?`<div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding:0 4px">
+      <span style="font-size:12px;color:var(--text3)">총 ${total}건 · ${aiPage}/${totalPages} 페이지</span>
+      <div style="display:flex;gap:6px">${paginationBtns}</div>
+    </div>`:''}`;
+}
+
+function updateAiSummary(data){
+  const bySource={}, byMethod={};
+  data.forEach(r=>{
+    const s=r.ai_source||'unknown'; bySource[s]=(bySource[s]||0)+1;
+    const m=r.method||'unknown';   byMethod[m]=(byMethod[m]||0)+1;
+  });
+  const total=data.length;
+  const utmPct=total?Math.round((byMethod['utm']||0)/total*100):0;
+  const sortedSrc=Object.entries(bySource).sort((a,b)=>b[1]-a[1]);
+  const el=document.getElementById('ai-summary-cards');
+  if(!el) return;
+  el.innerHTML=`
+    <div class="metric"><div class="metric-label">총 AI 유입</div><div class="metric-val">${total}</div><div class="metric-sub">전체 수집 건수</div></div>
+    <div class="metric"><div class="metric-label">최다 에이전트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${sortedSrc[0]?sortedSrc[0][0]:'—'}</div><div class="metric-sub">${sortedSrc[0]?sortedSrc[0][1]+' 건':''}</div></div>
+    <div class="metric"><div class="metric-label">UTM 감지</div><div class="metric-val">${utmPct}<span style="font-size:18px">%</span></div><div class="metric-sub">referrer ${100-utmPct}%</div></div>`;
+}
+
+function timeAgo(iso){
+  const s=(Date.now()-new Date(iso))/1000;
+  if(s<60) return '방금';
+  if(s<3600) return Math.floor(s/60)+'분 전';
+  if(s<86400) return Math.floor(s/3600)+'시간 전';
+  return Math.floor(s/86400)+'일 전';
+}
+
+function cleanPageUrl(raw){
+  if(!raw) return '/';
+  const pno=raw.match(/product_no=(\d+)/);
+  if(pno) return '상품 #'+pno[1];
+  const slug=raw.match(/\/products\/([^?#/]+)/);
+  if(slug) return '/products/'+slug[1];
+  const path=raw.replace(/^https?:\/\/[^/]+/,'').split('?')[0];
+  return (path===''||path==='/')?'메인':path;
+}
+
+function renderAiTraffic(data){
+  aiData = data;
+  aiPage = 1;
+  const bySource={},byGeo={},byMethod={};
+  data.forEach(r=>{
+    const s=r.ai_source||'unknown'; bySource[s]=(bySource[s]||0)+1;
+    const g=r.geo||'unknown';      byGeo[g]=(byGeo[g]||0)+1;
+    const m=r.method||'unknown';   byMethod[m]=(byMethod[m]||0)+1;
+  });
+  const total=data.length;
+  const utmCnt=byMethod['utm']||0;
+  const utmPct=total?Math.round(utmCnt/total*100):0;
+  const sortedSrc=Object.entries(bySource).sort((a,b)=>b[1]-a[1]);
+  const sortedGeo=Object.entries(byGeo).sort((a,b)=>b[1]-a[1]);
+  const maxSrc=sortedSrc[0]?sortedSrc[0][1]:1;
+  const maxGeo=sortedGeo[0]?sortedGeo[0][1]:1;
+  const SRC_COLOR={chatgpt:'#10A37F',perplexity:'#6496FF',claude:'#FF9068',copilot:'#38BDF8',gemini:'#FBBC04'};
+  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
+  const recent=data.slice(0,30);
+
+  document.getElementById('panel-ai').innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+      <input id="ai-date-start" type="date" style="padding:7px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);color:var(--text);font-size:13px;">
+      <span style="color:var(--text3);font-size:13px">~</span>
+      <input id="ai-date-end" type="date" style="padding:7px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);color:var(--text);font-size:13px;">
+      <button onclick="fetchAiByDate()" style="padding:7px 18px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-size:13px;font-weight:600;cursor:pointer">조회</button>
+    </div>
+
+    <div class="metrics" id="ai-summary-cards" style="margin-bottom:20px">
+      <div class="metric"><div class="metric-label">총 AI 유입</div><div class="metric-val">${total}</div><div class="metric-sub">전체 수집 건수</div></div>
+      <div class="metric"><div class="metric-label">최다 에이전트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${sortedSrc[0]?sortedSrc[0][0]:'—'}</div><div class="metric-sub">${sortedSrc[0]?sortedSrc[0][1]+' 건':''}</div></div>
+      <div class="metric"><div class="metric-label">UTM 감지</div><div class="metric-val">${utmPct}<span style="font-size:18px">%</span></div><div class="metric-sub">referrer ${100-utmPct}%</div></div>
+    </div>
+
+    <div class="ai-grid" style="margin-bottom:16px">
+      <div class="ai-chart-card">
+        <div class="ai-chart-title">AI 에이전트별 유입</div>
+        ${sortedSrc.map(([src,cnt])=>{
+          const c=SRC_COLOR[src]||'#9090aa';
+          const p=Math.round(cnt/maxSrc*100);
+          return`<div class="ai-bar-row">
+            <div class="ai-bar-label">${src}</div>
+            <div class="ai-bar-track"><div class="ai-bar-fill" style="width:${p}%;background:${c}28;color:${c}">${cnt}</div></div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="ai-chart-card">
+        <div class="ai-chart-title">국가별 분포</div>
+        ${sortedGeo.map(([geo,cnt])=>{
+          const p=Math.round(cnt/maxGeo*100);
+          return`<div class="ai-bar-row">
+            <div class="ai-bar-label">${GEO_NAME[geo]||geo}</div>
+            <div class="ai-bar-track"><div class="ai-bar-fill" style="width:${p}%;background:rgba(91,79,255,0.18);color:var(--accent)">${cnt}</div></div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+
+    <div class="ai-chart-card" id="ai-page-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+        <div class="ai-chart-title" style="margin-bottom:0">AI 유입 현황</div>
+        <div style="display:flex;gap:6px">
+          <button class="ai-sort-btn active" data-sort="time" onclick="setAiSort('time')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">최신순</button>
+          <button class="ai-sort-btn" data-sort="count" onclick="setAiSort('count')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">유입순</button>
+          <button class="ai-sort-btn" data-sort="agent" onclick="setAiSort('agent')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">에이전트별</button>
+          <button class="ai-sort-btn" data-sort="site" onclick="setAiSort('site')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">사이트별</button>
+        </div>
+      </div>
+      <div id="ai-page-table-wrap" style="overflow-x:auto"></div>
+    </div>`;
+  renderPageTable();
 }
 
 renderTasks();
 loadData();
+loadAiTraffic();
 </script>
 </body>
 </html>
