@@ -872,7 +872,7 @@ function renderBrandMatrix(progress){
     cBrands.forEach(b=>{
       const bItems=grouped[b];
       if(!bItems.length)return;
-      rows+=`<tr><td colspan="5" style="background:var(--bg3);color:var(--text2);font-size:13px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2)">${b}</td></tr>`;
+      rows+=`<tr><td colspan="5" style="background:var(--bg3);color:var(--text);font-size:15px;font-weight:700;padding:12px 16px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2);border-left:3px solid var(--accent);letter-spacing:-0.3px;text-align:left">${b}</td></tr>`;
       bItems.forEach((item,idx)=>{
         const stepCells=item.steps.slice(0,2).map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
         const devCells=(item.devSteps||[]).map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
