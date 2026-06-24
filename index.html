@@ -690,13 +690,14 @@ function processAndRender(allData){
     const brandStats={};
     BRANDS.forEach(b=>{brandStats[b]={done:0,partial:0,total:0};});
     items.forEach(item=>{
-      item.steps.forEach(s=>{
-        total++;
-        if(!brandStats[item.brand])brandStats[item.brand]={done:0,partial:0,total:0};
-        brandStats[item.brand].total++;
-        if(s==='done'){done++;brandStats[item.brand].done++;}
-        else if(s==='partial'){partial+=0.5;brandStats[item.brand].partial+=0.5;}
-      });
+      total++;
+      if(!brandStats[item.brand])brandStats[item.brand]={done:0,partial:0,total:0};
+      brandStats[item.brand].total++;
+      // 완료 기준: STEP2 메타태그(index 1)까지 done
+      const isCompleted = item.steps[1]==='done';
+      const isPartial   = !isCompleted && item.steps[0]==='done';
+      if(isCompleted){done++;brandStats[item.brand].done++;}
+      else if(isPartial){partial+=0.5;brandStats[item.brand].partial+=0.5;}
     });
     const pct=total>0?Math.round((done+partial)/total*100):0;
     return{...c,pct,done,partial,total,brandStats,items};
@@ -784,7 +785,7 @@ function renderOverview(progress){
 }
 
 function renderBrandMatrix(progress){
-  const STEPS=['STEP1 FAQ','STEP2 메타태그','STEP3 성과체크'];
+  const STEPS=['FAQ','메타태그'];
   const DEV_STEPS=['H1/H2 태그','통합 스키마'];
   const wrap=document.getElementById('matrixTable');
   const countries=progress.filter(c=>(c.items||[]).length>0);
@@ -800,12 +801,13 @@ function renderBrandMatrix(progress){
     cBrands.forEach(b=>{
       const bItems=grouped[b];
       if(!bItems.length)return;
-      rows+=`<tr><td colspan="6" style="background:var(--bg3);color:var(--text2);font-size:13px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2)">${b}</td></tr>`;
-      bItems.forEach(item=>{
-        const stepCells=item.steps.map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
+      rows+=`<tr><td colspan="5" style="background:var(--bg3);color:var(--text2);font-size:13px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);border-top:2px solid var(--border2)">${b}</td></tr>`;
+      bItems.forEach((item,idx)=>{
+        const stepCells=item.steps.slice(0,2).map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
         const devCells=(item.devSteps||[]).map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
         const linkCell=item.link?`<a href="${stripUtm(item.link)}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:11px">↗</a>`:'';
-        rows+=`<tr><td class="task-col" style="max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px">${item.product} ${linkCell}</td>${devCells}${stepCells}</tr>`;
+        const num=`<span style="font-size:11px;color:var(--text3);font-family:var(--mono);margin-right:5px">${idx+1}.</span>`;
+        rows+=`<tr><td class="task-col" style="max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px">${num}${item.product} ${linkCell}</td>${devCells}${stepCells}</tr>`;
       });
     });
     return`<table><thead><tr><th class="task-col">상품명</th>${DEV_STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}${STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
