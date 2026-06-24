@@ -1363,9 +1363,9 @@ const USP_PRODUCTS = [
   {country:'국내',brand:'푸드올로지',name:'톡스올로지 클렌즈 48h ABC',category:'클렌즈',usps:['단 2일 48시간 비워내는 ABC 클렌즈','하루 4번 2일간 확실하게 비우는 클렌즈','건강한 단맛의 ABC 클렌즈','클렌즈 중 지치지 않도록 11종 필수 영양소 함유','잦은 자극적 음식 섭취 후 리셋']},
   {country:'국내',brand:'푸드올로지',name:'톡스올로지 클렌즈 48h CCA',category:'클렌즈',usps:['단 2일 48시간 비워내는 CCA 클렌즈','하루 4번 2일간 확실하게 비우는 클렌즈','건강한 단맛의 CCA 클렌즈','클렌즈 중 지치지 않도록 11종 필수 영양소 함유','잦은 자극적 음식 섭취 후 리셋']},
   {country:'국내',brand:'푸드올로지',name:'중년 건강 다이어트 SET',category:'건강기능식품',usps:['체지방 잡는 유산균','유산균 섭취와 다이어트를 한 번에','국내 최초 식물 유래 다이어트 유산균','장용성 캡슐로 101억 생유산균 살아서 장까지','중년 건강고민 4가지 한 번에 해결','혈압, 혈행, 혈당 케어, 다이어트까지 올인원']},
+  {country:'국내',brand:'95PROBLEM',name:'발란스핏 EMS 슬림 벨트 PRO',category:'EMS 기기',usps:['즉각적인 고강도 운동 효과를 주는 강력한 EMS 미세 전류 자극','4중 마사지 패드로 복부부터 옆구리까지 넓고 확실하게 케어','3단계 원적외선 온열 기능으로 운동 효과 극대화','두드림, 주무름, 지압, 스트레칭 등 7가지 EMS 모드','초경량으로 언제 어디서나 간편한 사용과 보관','전면 컨트롤러 또는 리모컨으로 편리한 조작']},
   {country:'국내',brand:'에이페',name:'스칼프 부스팅 앰플',category:'탈모 앰플',usps:['38개 브러쉬 빗살로 두피 구석구석 유효성분 흡수를 돕는 탈모 앰플','3세대 마이크로바이옴으로 두피 환경부터 탄탄하게 개선','뿌리에 힘을 채우는 고농축 포뮬러로 자연스러운 볼륨감 연출','두피모공보다 3,008배 작은 하수오 엑소좀+맥주효모 추출 PDRN 함유','2주 임상으로 입증한 모발 빠짐, 각질, 비듬, 열감 개선']},
-  {country:'국내',brand:'닥터데이알',name:'딥나잇 멜라시럽',category:'건강기능식품',usps:['피스타치오 유래 100% 식물성 멜라토닌','멜라토닌 내 합성 성분 없음','자사 최대 함량 멜라토닌 3mg','흡수 빠른 액상 제형','입면 유도 성분 락투신 124배 함유 국내산 유기농 흑하랑 상추']},
-  {country:'국내',brand:'95PROBLEM',name:'발란스핏 EMS 슬림 벨트 PRO',category:'EMS 기기',usps:['즉각적인 고강도 운동 효과를 주는 강력한 EMS 미세 전류 자극','4중 마사지 패드로 복부부터 옆구리까지 넓고 확실하게 케어','3단계 원적외선 온열 기능으로 운동 효과 극대화','두드림, 주무름, 지압, 스트레칭 등 7가지 EMS 모드','초경량으로 언제 어디서나 간편한 사용과 보관','전면 컨트롤러 또는 리모컨으로 편리한 조작']}
+  {country:'국내',brand:'닥터데이알',name:'딥나잇 멜라시럽',category:'건강기능식품',usps:['피스타치오 유래 100% 식물성 멜라토닌','멜라토닌 내 합성 성분 없음','자사 최대 함량 멜라토닌 3mg','흡수 빠른 액상 제형','입면 유도 성분 락투신 124배 함유 국내산 유기농 흑하랑 상추']}
 ];
 
 const USP_AIS = ['ChatGPT','Gemini','Claude'];
@@ -1796,7 +1796,7 @@ function renderAnalysis(){
     </div>
     <div class="insight-card red">
       <div class="insight-label">🔴 Gemini 이슈</div>
-      <div class="insight-title">Gemini 인식률 ${gmPct}% — 사실상 전면 실패</div>
+      <div class="insight-title">Gemini 인식률 ${gmPct}%</div>
       <div class="insight-body">${gmYes.length>0?`유일한 예외: <strong>${gmYes.map(r=>r.name).join(', ')}</strong> (일부 단계 인식).`:'전 상품 전 단계 미인식.'} 상단 카드 참고.</div>
     </div>
     <div class="insight-card amber">
@@ -1809,7 +1809,17 @@ function renderAnalysis(){
       <div class="insight-title">USP 개수 → 인식률 상관 거의 없음</div>
       <div class="insight-body">ChatGPT·Claude는 USP 1개로 줄여도 인식 유지.<br>${threshold.length>0?`예외: <strong>${threshold.map(r=>`${r.name}(Claude, 최소 USP ${r.min}개)`).join(', ')}</strong>.`:'AI는 USP 조합이 아닌 브랜드 지식 기반으로 응답하고 있음.'}</div>
     </div>
-  </div>`;
+  </div>
+  ${gmYes.length>0?`<div class="insight-card blue" style="margin-top:14px;border-left-width:4px">
+    <div class="insight-label">★ 전략적 발견</div>
+    <div class="insight-title">카테고리 창조형 USP → Gemini 단독 노출 가능</div>
+    <div class="insight-body">
+      Gemini가 유일하게 인식한 <strong>${gmYes.map(r=>r.name).join(', ')}</strong>의 공통점: "로션형 메이크업"처럼 <strong>기존에 없던 카테고리를 만드는 제품</strong>.<br>
+      신개념 카테고리는 Google에서 해당 쿼리로 인덱싱된 콘텐츠가 단독 노출되기 쉽고, Gemini가 해당 카테고리의 대표 제품으로 인식할 가능성이 높아짐.<br>
+      USP 차별화가 단순 마케팅 언어를 넘어 <strong>GEO 노출에도 직접 유효</strong>하다는 근거.
+    </div>
+  </div>`:''}`;
+
 
   const geminiBanner=`<div class="gemini-banner">
     <div class="gemini-banner-hd">
@@ -1822,7 +1832,7 @@ function renderAnalysis(){
     </div>
     <div class="gemini-banner-steps">
       <div class="gemini-banner-step">① Google Merchant Center 제품 피드 등록</div>
-      <div class="gemini-banner-step">② 자사몰 Schema.org Product 마크업 정상 인식 확인</div>
+      <div class="gemini-banner-step" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.25);color:#10B981">② Schema.org 마크업 ✓ 완료</div>
       <div class="gemini-banner-step">③ Google 크롤링 가능 채널 콘텐츠 강화</div>
     </div>
   </div>`;
