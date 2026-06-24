@@ -206,14 +206,21 @@
   .ai-bar-track{flex:1;height:28px;background:var(--bg3);border-radius:6px;overflow:hidden;}
   .ai-bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:12px;font-size:13px;font-weight:700;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);min-width:36px;}
   .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0;}
-  .ai-feed{width:100%;border-collapse:collapse;}
-  .ai-feed th{padding:11px 20px;text-align:center;font-size:11px;color:var(--text3);font-weight:700;letter-spacing:0.08em;border-bottom:2px solid var(--border);background:var(--bg3);text-transform:uppercase;white-space:nowrap;}
-  .ai-feed td{padding:14px 20px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .ai-feed{width:100%;border-collapse:collapse;table-layout:fixed;}
+  .ai-feed th{padding:9px 12px;text-align:center;font-size:11px;color:var(--text3);font-weight:700;letter-spacing:0.08em;border-bottom:2px solid var(--border);background:var(--bg3);text-transform:uppercase;white-space:nowrap;overflow:hidden;}
+  .ai-feed td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle;overflow:hidden;}
   .ai-feed tr:last-child td{border-bottom:none;}
   .ai-feed tr:hover td{background:rgba(255,255,255,0.02);}
-  .ai-src{font-size:15px;font-weight:700;letter-spacing:0.01em;}
+  .ai-feed th:nth-child(1),.ai-feed td:nth-child(1){width:120px;}
+  .ai-feed th:nth-child(2),.ai-feed td:nth-child(2){width:150px;}
+  .ai-feed th:nth-child(3),.ai-feed td:nth-child(3){width:auto;}
+  .ai-feed td:nth-child(3) { text-align: left;}
+  .ai-feed th:nth-child(4),.ai-feed td:nth-child(4){width:100px;}
+  .ai-feed th:nth-child(5),.ai-feed td:nth-child(5){width:80px;}
+  .ai-src{font-size:14px;font-weight:700;letter-spacing:0.01em;}
   .ai-src-meta{font-size:12px;color:var(--text3);margin-top:2px;}
-  .ai-page{font-size:14px;color:var(--text);font-weight:500;display:flex;align-items:center;gap:6px;}
+  .ai-page{font-size:14px;color:var(--text);font-weight:500;display:flex;align-items:center;gap:6px;min-width:0;}
+  .ai-page-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1;}
   .ai-link-btn{display:inline-flex;align-items:center;color:var(--text3);opacity:0;transition:opacity 0.15s;flex-shrink:0;text-decoration:none;}
   .ai-feed tr:hover .ai-link-btn{opacity:1;}
   .ai-link-btn:hover{color:var(--accent);}
@@ -1054,7 +1061,7 @@ function renderRecentTable(){
     return`<tr>
       <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${r.ai_source||'?'}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${siteName}${geoName?' · '+geoName:''}</td>
-      <td style="width:99%"><div class="ai-page">${page}${r.page_url?`<a href="${stripUtm(r.page_url)}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
+      <td><div class="ai-page"><span class="ai-page-label">${page}</span>${r.page_url?`<a href="${stripUtm(r.page_url)}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${r.created_at?timeAgo(r.created_at):'—'}</td>
     </tr>`;
   }).join('');
@@ -1118,7 +1125,7 @@ function renderPageTable(){
     return`<tr>
       <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${p.src}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${siteName}${geoName?' · '+geoName:''}</td>
-      <td style="width:99%"><div class="ai-page">${p.label}${p.url?`<a href="${stripUtm(p.url)}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
+      <td><div class="ai-page"><span class="ai-page-label">${p.label}</span>${p.url?`<a href="${stripUtm(p.url)}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${p.lastSeen?timeAgo(p.lastSeen):'—'}</td>
       <td style="text-align:right;padding-right:24px;font-size:18px;font-weight:700;color:var(--accent)">${p.total}</td>
     </tr>`;
