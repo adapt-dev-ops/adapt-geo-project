@@ -253,7 +253,7 @@
   .usp-prog-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:4px;font-family:var(--mono);}
   .usp-prog-track{height:3px;background:var(--bg4);border-radius:2px;overflow:hidden;}
   .usp-prog-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.4s;}
-  .usp-row{display:grid;grid-template-columns:72px 1fr 340px;gap:16px;align-items:start;padding:14px 20px;border-bottom:1px solid var(--border);transition:background 0.12s;}
+  .usp-row{display:grid;grid-template-columns:72px 1fr 154px;gap:16px;align-items:start;padding:14px 20px;border-bottom:1px solid var(--border);transition:background 0.12s;}
   .usp-row:last-child{border-bottom:none;}
   .usp-row:hover{background:rgba(91,79,255,0.02);}
   .usp-step-badge{display:inline-flex;align-items:center;justify-content:center;padding:3px 10px;border-radius:5px;font-size:12px;font-weight:700;}
@@ -313,10 +313,10 @@
       <div class="metric-sub" id="m-total-sub" style="color:rgba(255,255,255,0.65);margin-bottom:10px;">불러오는 중...</div>
       <div class="metric-val" id="m-total" style="color:#fff">&#8212;</div>
     </div>
-    <div class="metric"><span class="metric-flag">&#127472;&#127479;</span><div class="metric-label">국내 &middot; 카페24</div><div class="metric-val" id="m-kr">&#8212;</div></div>
-    <div class="metric"><span class="metric-flag">&#127482;&#127480;</span><div class="metric-label">미국 &middot; 쇼피파이</div><div class="metric-val" id="m-us">&#8212;</div></div>
-    <div class="metric"><span class="metric-flag">&#127481;&#127484;</span><div class="metric-label">대만 &middot; 카페24 / 숍라인</div><div class="metric-val" id="m-tw">&#8212;</div></div>
-    <div class="metric"><span class="metric-flag">&#127471;&#127477;</span><div class="metric-label">일본 &middot; 카페24</div><div class="metric-val" id="m-jp">&#8212;</div></div>
+    <div class="metric"><span class="metric-flag">&#127472;&#127479;</span><div class="metric-sub" id="m-kr-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-kr">&#8212;</div></div>
+    <div class="metric"><span class="metric-flag">&#127482;&#127480;</span><div class="metric-sub" id="m-us-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-us">&#8212;</div></div>
+    <div class="metric"><span class="metric-flag">&#127481;&#127484;</span><div class="metric-sub" id="m-tw-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-tw">&#8212;</div></div>
+    <div class="metric"><span class="metric-flag">&#127471;&#127477;</span><div class="metric-sub" id="m-jp-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-jp">&#8212;</div></div>
   </div>
 
   <div class="tabs">
@@ -708,7 +708,12 @@ function processAndRender(allData){
   const totalPct=allTotal>0?Math.round(allDone/allTotal*100):0;
   document.getElementById('m-total').textContent=totalPct+'%';
   document.getElementById('m-total-sub').textContent=Math.round(allDone)+' / '+allTotal+' 완료';
-  progress.forEach(p=>{const el=document.getElementById(p.metricId);if(el)el.textContent=p.pct+'%';});
+  progress.forEach(p=>{
+    const el=document.getElementById(p.metricId);
+    if(el)el.textContent=p.pct+'%';
+    const sub=document.getElementById(p.metricId+'-sub');
+    if(sub)sub.textContent=Math.round(p.done)+' / '+p.total+' 완료';
+  });
   renderOverview(progress);
   renderBrandMatrix(progress);
   parseGeoScores(allData);
@@ -752,8 +757,8 @@ function renderOverview(progress){
     const brandDone={};
     BRANDS.forEach(b=>{
       const bi=items.filter(i=>i.brand===b);
-      const total=bi.reduce((s,i)=>s+i.steps.length+(i.devSteps||[]).length,0);
-      const done=bi.reduce((s,i)=>s+i.steps.filter(x=>x==='done').length+(i.devSteps||[]).filter(x=>x==='done').length,0);
+      const total=bi.length;
+      const done=bi.filter(i=>i.steps[1]==='done').length;
       brandDone[b]={done,total};
     });
     const cBrands=COUNTRY_BRANDS[c.name]||BRANDS;
@@ -761,7 +766,10 @@ function renderOverview(progress){
       <div class="country-header">
         <div class="country-flag-big">${c.flag}</div>
         <div class="country-info"><div class="country-name">${c.name}</div><div class="country-platform">${c.platform}</div></div>
-        <div class="country-pct" style="color:${c.color}">${c.pct}%</div>
+        <div style="text-align:right">
+          <div class="country-pct" style="color:${c.color}">${c.pct}%</div>
+          <div style="font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:2px">${c.total}개 상품</div>
+        </div>
       </div>
       <div class="progress-outer"><div class="progress-inner" style="width:${c.pct}%;background:${c.color}"></div></div>
       <div class="brand-rows">
@@ -1041,7 +1049,7 @@ function setRecentPage(n){
 function renderRecentTable(){
   const wrap = document.getElementById('ai-recent-table-wrap');
   if(!wrap) return;
-  const SRC_COLOR={chatgpt:'#10A37F',perplexity:'#6496FF',claude:'#FF9068',copilot:'#38BDF8',gemini:'#FBBC04'};
+  const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
   const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
   const LINK_SVG=`<svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M7 2H10V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M5 3H2.5C2.22 3 2 3.22 2 3.5V9.5C2 9.78 2.22 10 2.5 10H8.5C8.78 10 9 9.78 9 9.5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 
@@ -1056,12 +1064,12 @@ function renderRecentTable(){
   const pageRows = rows.slice((recentPage-1)*AI_PAGE_SIZE, recentPage*AI_PAGE_SIZE);
 
   const tbody = pageRows.map(r=>{
-    const c=SRC_COLOR[r.ai_source]||'#9090aa';
+    const c=SRC_COLOR[normalizeSrc(r.ai_source)]||'#9090aa';
     const page=cleanPageUrl(r.page_url);
     const geoName=GEO_NAME[r.geo]||r.geo||'';
     const siteName=(r.site||'').replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' ');
     return`<tr>
-      <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${r.ai_source||'?'}</div></td>
+      <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${normalizeSrc(r.ai_source)}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${siteName}${geoName?' · '+geoName:''}</td>
       <td><div class="ai-page"><span class="ai-page-label">${page}</span>${r.page_url?`<a href="${stripUtm(r.page_url)}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${r.created_at?timeAgo(r.created_at):'—'}</td>
@@ -1092,12 +1100,12 @@ function setAiPage(n){
 }
 
 function buildPageRows(data){
-  const SRC_COLOR={chatgpt:'#10A37F',perplexity:'#6496FF',claude:'#FF9068',copilot:'#38BDF8',gemini:'#FBBC04'};
+  const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
   const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
   const map={};
   data.forEach(r=>{
     const label=cleanPageUrl(r.page_url);
-    const src=r.ai_source||'?';
+    const src=normalizeSrc(r.ai_source);
     const key=label+'||'+(r.site||'')+'||'+(r.geo||'')+'||'+src;
     if(!map[key]) map[key]={label,site:r.site||'',geo:r.geo||'',src,total:0,url:r.page_url||'',lastSeen:r.created_at||''};
     map[key].total++;
@@ -1125,7 +1133,7 @@ function renderPageTable(){
     const geoName=GEO_NAME[p.geo]||p.geo;
     const siteName=p.site.replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' ');
     return`<tr>
-      <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${p.src}</div></td>
+      <td style="white-space:nowrap"><div class="ai-src" style="color:${c}">${normalizeSrc(p.src)}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${siteName}${geoName?' · '+geoName:''}</td>
       <td><div class="ai-page"><span class="ai-page-label">${p.label}</span>${p.url?`<a href="${stripUtm(p.url)}" target="_blank" rel="noopener" class="ai-link-btn">${LINK_SVG}</a>`:''}</div></td>
       <td style="white-space:nowrap;font-size:13px;color:var(--text3)">${p.lastSeen?timeAgo(p.lastSeen):'—'}</td>
@@ -1153,7 +1161,7 @@ function renderPageTable(){
 function updateAiSummary(data){
   const bySource={}, bySite={};
   data.forEach(r=>{
-    const s=r.ai_source||'unknown'; bySource[s]=(bySource[s]||0)+1;
+    const s=normalizeSrc(r.ai_source)||'unknown'; bySource[s]=(bySource[s]||0)+1;
     const t=r.site||'unknown';     bySite[t]=(bySite[t]||0)+1;
   });
   const total=data.length;
@@ -1167,6 +1175,11 @@ function updateAiSummary(data){
     <div class="metric"><div class="metric-label">총 AI 유입</div><div class="metric-val">${total}</div><div class="metric-sub">전체 수집 건수</div></div>
     <div class="metric"><div class="metric-label">최다 에이전트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${sortedSrc[0]?sortedSrc[0][0]:'—'}</div><div class="metric-sub">${sortedSrc[0]?sortedSrc[0][1]+' 건':''}</div></div>
     <div class="metric"><div class="metric-label">최다 유입 사이트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${topSiteName}</div><div class="metric-sub">${topSiteCnt?topSiteCnt+' 건':''}</div></div>`;
+}
+
+function normalizeSrc(src){
+  const alias={bing:'Copilot',copilot:'Copilot',chatgpt:'ChatGPT',gemini:'Gemini',claude:'Claude',perplexity:'Perplexity'};
+  return alias[(src||'').toLowerCase()]||src||'?';
 }
 
 function timeAgo(iso){
@@ -1201,7 +1214,7 @@ function renderAiTraffic(data){
   aiPage = 1;
   const bySource={},byGeo={},bySite={};
   data.forEach(r=>{
-    const s=r.ai_source||'unknown'; bySource[s]=(bySource[s]||0)+1;
+    const s=normalizeSrc(r.ai_source)||'unknown'; bySource[s]=(bySource[s]||0)+1;
     const g=r.geo||'unknown';      byGeo[g]=(byGeo[g]||0)+1;
     const t=r.site||'unknown';     bySite[t]=(bySite[t]||0)+1;
   });
@@ -1213,7 +1226,7 @@ function renderAiTraffic(data){
   const sortedGeo=Object.entries(byGeo).sort((a,b)=>b[1]-a[1]);
   const maxSrc=sortedSrc[0]?sortedSrc[0][1]:1;
   const maxGeo=sortedGeo[0]?sortedGeo[0][1]:1;
-  const SRC_COLOR={chatgpt:'#10A37F',perplexity:'#6496FF',claude:'#FF9068',copilot:'#38BDF8',gemini:'#FBBC04'};
+  const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
   const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
   const recent=data.slice(0,30);
 
@@ -1479,21 +1492,20 @@ function renderUspBrand(brand){
 
       const stepClass=step>=4?'usps-high':step===3?'usps-high':step===2?'usps-mid':'usps-low';
 
+      const sharedUrlVal=uspResults[pid]?.[`${step}_ChatGPT_url`]||'';
+      const sharedEid=`uurl-${pid}-${step}`;
+      const sharedLbid=`ulb-${pid}-${step}`;
+      const sharedSafeUrl=sharedUrlVal.replace(/"/g,'&quot;');
+
       let aiRows='';
       USP_AIS.forEach(ai=>{
         const v=uspResults[pid]?.[`${step}_${ai}`];
-        const urlVal=uspResults[pid]?.[`${step}_${ai}_url`]||'';
-        const eid=`uurl-${pid}-${step}-${ai}`;
-        const lbid=`ulb-${pid}-${step}-${ai}`;
-        const safeUrl=urlVal.replace(/"/g,'&quot;');
         aiRows+=`<div class="usp-ai-row" style="flex-wrap:nowrap;gap:6px">
           <span class="usp-ai-name">${ai}</span>
           <div style="display:flex;gap:4px;flex-shrink:0">
             <button class="usp-rbtn yes${v==='yes'?' on':''}" data-upid="${pid}" data-us="${step}" data-uai="${ai}" data-uv="yes" onclick="uspSet('${pid}',${step},'${ai}','yes')">✓</button>
             <button class="usp-rbtn no${v==='no'?' on':''}" data-upid="${pid}" data-us="${step}" data-uai="${ai}" data-uv="no" onclick="uspSet('${pid}',${step},'${ai}','no')">✗</button>
           </div>
-          <input type="url" class="usp-url-inp" id="${eid}" value="${safeUrl}" placeholder="응답 링크" onchange="uspSetUrl('${pid}',${step},'${ai}',this.value)" oninput="(function(el){var lb=document.getElementById('${lbid}');lb.href=el.value;lb.style.display=el.value?'flex':'none';})(this)">
-          <a href="${safeUrl}" target="_blank" rel="noopener" class="usp-link-btn" id="${lbid}" style="display:${urlVal?'flex':'none'}" title="링크 열기">↗</a>
         </div>`;
       });
 
@@ -1508,6 +1520,10 @@ function renderUspBrand(brand){
           <div class="usp-query-box">${query}</div>
           <button class="usp-copy-btn" onclick="uspCopy(this,'${qkey}')">복사</button>
           <div style="margin-top:6px">${uspList}</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px">
+            <input type="url" class="usp-url-inp" id="${sharedEid}" value="${sharedSafeUrl}" placeholder="ChatGPT 응답 링크" onchange="uspSetUrl('${pid}',${step},'ChatGPT',this.value)" oninput="(function(el){var lb=document.getElementById('${sharedLbid}');lb.href=el.value;lb.style.display=el.value?'flex':'none';})(this)">
+            <a href="${sharedSafeUrl}" target="_blank" rel="noopener" class="usp-link-btn" id="${sharedLbid}" style="display:${sharedUrlVal?'flex':'none'}" title="링크 열기">↗</a>
+          </div>
         </div>
         <div>
           <div style="font-size:10px;color:var(--text3);margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase">${p.brand} 언급 여부</div>
