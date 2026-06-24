@@ -265,9 +265,10 @@
   .usp-tag-chip.off{background:var(--bg3);color:var(--text3);text-decoration:line-through;opacity:0.5;}
   .usp-query-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text);line-height:1.7;user-select:all;cursor:text;transition:border-color 0.15s;}
   .usp-query-box:hover{border-color:var(--accent);}
-  .usp-copy-btn{font-size:11px;color:var(--text3);background:none;border:none;cursor:pointer;padding:3px 7px;border-radius:4px;transition:all 0.15s;margin-top:4px;}
-  .usp-copy-btn:hover{color:var(--accent);background:rgba(91,79,255,0.08);}
-  .usp-copy-btn.copied{color:var(--green);}
+  .usp-query-wrap{position:relative;}
+  .usp-copy-btn{position:absolute;top:50%;right:8px;transform:translateY(-50%);font-size:11px;color:var(--text3);background:var(--bg4);border:1px solid var(--border);cursor:pointer;padding:2px 8px;border-radius:4px;transition:all 0.15s;line-height:1.6;}
+  .usp-copy-btn:hover{color:var(--accent);background:rgba(91,79,255,0.08);border-color:var(--accent);}
+  .usp-copy-btn.copied{color:var(--green);border-color:var(--green);background:rgba(14,169,110,0.08);}
   .usp-ai-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
   .usp-ai-row:last-child{margin-bottom:0;}
   .usp-ai-name{font-size:12px;color:var(--text2);width:80px;flex-shrink:0;}
@@ -281,6 +282,60 @@
   .usp-link-btn{width:24px;height:24px;border-radius:5px;border:1px solid var(--border2);background:var(--bg3);color:var(--accent);font-size:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;flex-shrink:0;transition:all 0.15s;}
   .usp-link-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
   @media(max-width:700px){.usp-row{grid-template-columns:1fr;}.usp-summary{grid-template-columns:1fr 1fr;}}
+
+  /* ── Analysis Panel ── */
+  .analysis-wrap{padding:24px 0;}
+  .analysis-section{margin-bottom:36px;}
+  .analysis-section-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+  /* AI rate cards */
+  .ai-rate-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:16px;margin-bottom:10px;}
+  .ai-rate-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+  .ai-rate-name{font-size:14px;font-weight:700;width:96px;flex-shrink:0;}
+  .ai-rate-bar-wrap{flex:1;background:var(--bg3);border-radius:8px;height:16px;overflow:hidden;}
+  .ai-rate-bar{height:100%;border-radius:8px;transition:width 0.8s cubic-bezier(.4,0,.2,1);}
+  .ai-rate-pct{font-size:22px;font-weight:800;width:64px;text-align:right;flex-shrink:0;letter-spacing:-0.5px;}
+  .ai-rate-sub{font-size:12px;color:var(--text3);width:80px;flex-shrink:0;text-align:right;}
+  /* heatmap */
+  .heatmap-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .heatmap-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .heatmap-table th{padding:11px 16px;text-align:left;color:var(--text3);font-weight:600;font-size:11px;letter-spacing:0.04em;border-bottom:1px solid var(--border);background:var(--bg3);}
+  .heatmap-table th.ai-th{text-align:center;width:110px;}
+  .heatmap-table td{padding:10px 16px;border-bottom:1px solid var(--border2);font-size:12px;}
+  .heatmap-table tr:last-child td{border-bottom:none;}
+  .heatmap-table tr:hover td{background:rgba(255,255,255,0.02);}
+  .hm-cell{display:inline-flex;align-items:center;justify-content:center;border-radius:6px;padding:4px 0;font-size:12px;font-weight:700;width:72px;}
+  .hm-green{background:rgba(16,185,129,0.15);color:#10B981;}
+  .hm-amber{background:rgba(245,158,11,0.15);color:#F59E0B;}
+  .hm-red{background:rgba(239,68,68,0.13);color:#EF4444;}
+  .hm-zero{background:var(--bg3);color:var(--text3);}
+  .hm-brand-badge{display:inline-block;font-size:11px;color:var(--text3);background:var(--bg3);border-radius:4px;padding:2px 7px;margin-right:8px;font-weight:500;}
+  .hm-prod-name{font-size:13px;color:var(--text);}
+  /* insight cards */
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 20px;border-left:4px solid;}
+  .insight-card.red{border-left-color:#EF4444;}
+  .insight-card.amber{border-left-color:#F59E0B;}
+  .insight-card.green{border-left-color:#10B981;}
+  .insight-card.blue{border-left-color:#6496FF;}
+  .insight-label{font-size:11px;font-weight:700;letter-spacing:0.06em;margin-bottom:8px;}
+  .insight-card.red .insight-label{color:#EF4444;}
+  .insight-card.amber .insight-label{color:#F59E0B;}
+  .insight-card.green .insight-label{color:#10B981;}
+  .insight-card.blue .insight-label{color:#6496FF;}
+  .insight-title{font-size:14px;font-weight:700;margin-bottom:10px;line-height:1.4;}
+  .insight-body{font-size:12px;color:var(--text3);line-height:1.75;}
+  .insight-body strong{color:var(--text);font-weight:600;}
+  .analysis-footer{font-size:11px;color:var(--text3);text-align:center;padding:16px 0 4px;opacity:0.5;}
+  /* gemini banner */
+  .gemini-banner{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.22);border-left:4px solid #EF4444;border-radius:12px;padding:20px 24px;margin-bottom:32px;}
+  .gemini-banner-hd{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .gemini-banner-icon{font-size:20px;line-height:1;}
+  .gemini-banner-title{font-size:15px;font-weight:800;color:#EF4444;}
+  .gemini-banner-body{font-size:13px;color:var(--text2);line-height:1.75;}
+  .gemini-banner-body strong{color:var(--text);font-weight:700;}
+  .gemini-banner-steps{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .gemini-banner-step{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:7px;padding:7px 14px;font-size:12px;font-weight:600;color:#EF4444;}
+  @media(max-width:700px){.insight-grid{grid-template-columns:1fr;}.ai-rate-sub{display:none;}}
 </style>
 </head>
 <body>
@@ -320,11 +375,19 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('ai')">AI 유입 통계</button>
-    <button class="tab" onclick="switchTab('usp')">USP 감산 테스트</button>
-    <button class="tab" onclick="switchTab('matrix')">진행 현황</button>
+    <button class="tab active" onclick="switchTab('matrix')">진행 현황</button>
     <button class="tab" onclick="switchTab('overview')">국가별 현황</button>
+    <button class="tab" onclick="switchTab('ai')">AI 유입 현황</button>
+    <button class="tab" onclick="switchTab('usp')">USP 감산 테스트</button>
+    <button class="tab" onclick="switchTab('analysis')">분석 리포트</button>
     <!--<button class="tab" onclick="switchTab('geo')">GEO 점수</button>-->
+  </div>
+
+  <!-- ── 감산 테스트 분석 탭 ── -->
+  <div class="panel" id="panel-analysis">
+    <div class="analysis-wrap" id="analysis-inner">
+      <div class="state-msg" style="padding:40px 0"><div class="spinner"></div><div>분석 중...</div></div>
+    </div>
   </div>
 
   <!-- ── USP 감산 테스트 탭 ── -->
@@ -427,7 +490,7 @@
   </div>
 
   <!-- ── 진행 현황 탭 ── -->
-  <div class="panel" id="panel-matrix">
+  <div class="panel active" id="panel-matrix">
     <div class="matrix-wrap" id="matrixTable">
       <div class="state-msg"><div class="spinner"></div><div>데이터 로딩 중...</div></div>
     </div>
@@ -474,7 +537,7 @@
   -->
 
   <!-- ── AI 유입 탭 ── -->
-  <div class="panel active" id="panel-ai">
+  <div class="panel" id="panel-ai">
     <div class="state-msg"><div class="spinner"></div><div>탭을 클릭하면 데이터를 불러옵니다</div></div>
   </div>
 
@@ -984,6 +1047,7 @@ function switchTab(name){
   document.getElementById('panel-'+name).classList.add('active');
   if(name==='ai') loadAiTraffic();
   if(name==='usp') initUspPanel();
+  if(name==='analysis') renderAnalysis();
 }
 
 /* ── AI 유입 탭 ── */
@@ -1310,6 +1374,17 @@ let uspResults = {};
 let uspDbLoaded = false;
 try { uspResults = JSON.parse(localStorage.getItem(USP_KEY)||'{}'); } catch(e){}
 
+// migrate per-step ChatGPT_url keys to product-level chatgpt_url
+(function(){
+  let changed=false;
+  Object.keys(uspResults).forEach(pid=>{
+    if(uspResults[pid]['chatgpt_url']) return;
+    const stepKey=Object.keys(uspResults[pid]).find(k=>/_ChatGPT_url$/.test(k)&&uspResults[pid][k]);
+    if(stepKey){ uspResults[pid]['chatgpt_url']=uspResults[pid][stepKey]; changed=true; }
+  });
+  if(changed) try{localStorage.setItem(USP_KEY,JSON.stringify(uspResults));}catch(e){}
+})();
+
 function uspSaveLocal(){localStorage.setItem(USP_KEY,JSON.stringify(uspResults));}
 
 async function uspLoadFromDb(){
@@ -1330,7 +1405,7 @@ async function uspLoadFromDb(){
       const pid = uspPid(p);
       if(!uspResults[pid]) uspResults[pid]={};
       if(row.result && row.result !== 'cleared') uspResults[pid][`${row.usp_step}_${row.ai_tool}`] = row.result;
-      if(row.result_url) uspResults[pid][`${row.usp_step}_${row.ai_tool}_url`] = row.result_url;
+      if(row.result_url && row.ai_tool === 'ChatGPT') uspResults[pid]['chatgpt_url'] = row.result_url;
     });
     uspSaveLocal();
     if(rows.length > 0){
@@ -1365,7 +1440,7 @@ async function uspSaveToDb(){
         rows.push({brand:p.brand, product_name:p.name, category:p.category,
           usp_step:step, ai_tool:ai,
           result: uspResults[pid]?.[`${step}_${ai}`]||'cleared',
-          result_url: uspResults[pid]?.[`${step}_${ai}_url`]||null,
+          result_url: ai==='ChatGPT' ? (uspResults[pid]?.['chatgpt_url']||null) : null,
           saved_at:now});
       });
     }
@@ -1404,6 +1479,15 @@ function uspSetUrl(pid,step,ai,url){
   if(url) uspResults[pid][k]=url;
   else delete uspResults[pid][k];
   uspSaveLocal();
+}
+
+function uspSetProdUrl(pid,url){
+  if(!uspResults[pid]) uspResults[pid]={};
+  if(url) uspResults[pid]['chatgpt_url']=url;
+  else delete uspResults[pid]['chatgpt_url'];
+  uspSaveLocal();
+  const lb=document.getElementById(`pulb-${pid}`);
+  if(lb){lb.href=url;lb.style.display=url?'flex':'none';}
 }
 
 function uspSet(pid,step,ai,val){
@@ -1453,6 +1537,21 @@ function uspUpdateSummary(){
   if(n) n.textContent=no;
 }
 
+function uspFindMissing(){
+  const missing=[];
+  USP_PRODUCTS.forEach(p=>{
+    const pid=uspPid(p);
+    for(let s=1;s<=p.usps.length;s++) for(const ai of USP_AIS){
+      if(!uspResults[pid]?.[`${s}_${ai}`])
+        missing.push(`[${p.brand}] ${p.name} — USP ${s}개 / ${ai}`);
+    }
+  });
+  if(missing.length===0){console.log('누락 없음');return;}
+  console.log(`미체크 ${missing.length}개:`);
+  missing.forEach(m=>console.log(' •',m));
+  return missing;
+}
+
 const USP_QUERY_MAP = {};
 
 function uspCopy(btn,qkey){
@@ -1476,6 +1575,8 @@ function renderUspBrand(brand){
     const total=n*USP_AIS.length;
     let done=0;
     for(let s=1;s<=n;s++) for(const ai of USP_AIS) if(uspResults[pid]?.[`${s}_${ai}`]) done++;
+    const prodUrl=uspResults[pid]?.['chatgpt_url']||'';
+    const prodUrlSafe=prodUrl.replace(/"/g,'&quot;');
 
     let rows='';
     for(let step=n;step>=1;step--){
@@ -1491,11 +1592,6 @@ function renderUspBrand(brand){
       });
 
       const stepClass=step>=4?'usps-high':step===3?'usps-high':step===2?'usps-mid':'usps-low';
-
-      const sharedUrlVal=uspResults[pid]?.[`${step}_ChatGPT_url`]||'';
-      const sharedEid=`uurl-${pid}-${step}`;
-      const sharedLbid=`ulb-${pid}-${step}`;
-      const sharedSafeUrl=sharedUrlVal.replace(/"/g,'&quot;');
 
       let aiRows='';
       USP_AIS.forEach(ai=>{
@@ -1517,13 +1613,11 @@ function renderUspBrand(brand){
           <div class="usp-tags-row">${tags}</div>
         </div>
         <div>
-          <div class="usp-query-box">${query}</div>
-          <button class="usp-copy-btn" onclick="uspCopy(this,'${qkey}')">복사</button>
-          <div style="margin-top:6px">${uspList}</div>
-          <div style="display:flex;align-items:center;gap:6px;margin-top:10px">
-            <input type="url" class="usp-url-inp" id="${sharedEid}" value="${sharedSafeUrl}" placeholder="ChatGPT 응답 링크" onchange="uspSetUrl('${pid}',${step},'ChatGPT',this.value)" oninput="(function(el){var lb=document.getElementById('${sharedLbid}');lb.href=el.value;lb.style.display=el.value?'flex':'none';})(this)">
-            <a href="${sharedSafeUrl}" target="_blank" rel="noopener" class="usp-link-btn" id="${sharedLbid}" style="display:${sharedUrlVal?'flex':'none'}" title="링크 열기">↗</a>
+          <div class="usp-query-wrap">
+            <div class="usp-query-box" style="padding-right:62px">${query}</div>
+            <button class="usp-copy-btn" onclick="uspCopy(this,'${qkey}')">복사</button>
           </div>
+          <div style="margin-top:6px">${uspList}</div>
         </div>
         <div>
           <div style="font-size:10px;color:var(--text3);margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase">${p.brand} 언급 여부</div>
@@ -1537,6 +1631,11 @@ function renderUspBrand(brand){
         <span class="usp-product-name">${p.name}</span>
         <span class="usp-grade">A등급</span>
         <span class="usp-cat">${p.category} · USP ${n}개</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin:10px 0;padding:0 20px">
+        <span style="font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0">ChatGPT 링크</span>
+        <input type="url" class="usp-url-inp" id="puurl-${pid}" value="${prodUrlSafe}" placeholder="ChatGPT 응답 링크 (상품 공통)" style="flex:1;min-width:0" onchange="uspSetProdUrl('${pid}',this.value)" oninput="(function(el){var lb=document.getElementById('pulb-${pid}');lb.href=el.value;lb.style.display=el.value?'flex':'none';})(this)">
+        <a href="${prodUrlSafe}" target="_blank" rel="noopener" class="usp-link-btn" id="pulb-${pid}" style="display:${prodUrl?'flex':'none'};flex-shrink:0" title="링크 열기">↗</a>
       </div>
       <div class="usp-prog-wrap">
         <div class="usp-prog-meta"><span>진행률</span><span id="ul-${pid}">${done} / ${total}</span></div>
@@ -1597,6 +1696,154 @@ function initUspPanel(){
 renderTasks();
 loadData();
 loadAiTraffic();
+
+/* ── 감산 테스트 분석 ── */
+function renderAnalysis(){
+  const wrap=document.getElementById('analysis-inner');
+  if(!wrap) return;
+
+  // compute per-AI and per-product stats
+  const aiTotals={ChatGPT:{yes:0,total:0},Gemini:{yes:0,total:0},Claude:{yes:0,total:0}};
+  const productRows=[];
+
+  USP_PRODUCTS.forEach(p=>{
+    const pid=uspPid(p);
+    const row={brand:p.brand,name:p.name,steps:p.usps.length,ai:{}};
+    USP_AIS.forEach(ai=>{
+      let yes=0,total=0;
+      for(let s=1;s<=p.usps.length;s++){
+        total++;
+        if(uspResults[pid]?.[`${s}_${ai}`]==='yes') yes++;
+      }
+      row.ai[ai]={yes,total};
+      aiTotals[ai].yes+=yes;
+      aiTotals[ai].total+=total;
+    });
+    productRows.push(row);
+  });
+
+  const AI_COLOR={ChatGPT:'#10A37F',Claude:'#FF9068',Gemini:'#FBBC04'};
+
+  // ── Section 1: AI rate cards
+  const aiCards=USP_AIS.map(ai=>{
+    const {yes,total}=aiTotals[ai];
+    const pct=total?Math.round(yes/total*100):0;
+    const col=AI_COLOR[ai];
+    const barCol=pct>=80?col:pct>=20?'#F59E0B':'#EF4444';
+    return `<div class="ai-rate-card">
+      <div class="ai-rate-dot" style="background:${col}"></div>
+      <div class="ai-rate-name">${ai}</div>
+      <div class="ai-rate-bar-wrap"><div class="ai-rate-bar" style="width:${pct}%;background:${barCol}"></div></div>
+      <div class="ai-rate-pct" style="color:${barCol}">${pct}%</div>
+      <div class="ai-rate-sub">${yes} / ${total} 인식</div>
+    </div>`;
+  }).join('');
+
+  // ── Section 2: heatmap
+  function hmCell(yes,total){
+    if(total===0) return `<div class="hm-cell hm-zero">—</div>`;
+    const pct=Math.round(yes/total*100);
+    const cls=pct>=80?'hm-green':pct>=20?'hm-amber':pct>0?'hm-amber':'hm-red';
+    const label=pct===0?'0%':pct===100?'100%':`${pct}%`;
+    return `<div class="hm-cell ${cls}">${label}</div>`;
+  }
+
+  const hmRows=productRows.map(r=>{
+    const ais=USP_AIS.map(ai=>`<td style="text-align:center">${hmCell(r.ai[ai].yes,r.ai[ai].total)}</td>`).join('');
+    return `<tr>
+      <td><span class="hm-brand-badge">${r.brand}</span><span class="hm-prod-name">${r.name}</span></td>
+      <td style="text-align:center;color:var(--text3);font-size:11px">USP ${r.steps}개</td>
+      ${ais}
+    </tr>`;
+  }).join('');
+
+  const heatmap=`<div class="heatmap-wrap"><table class="heatmap-table">
+    <thead><tr>
+      <th>상품명</th><th></th>
+      ${USP_AIS.map(ai=>`<th class="ai-th" style="color:${AI_COLOR[ai]}">${ai}</th>`).join('')}
+    </tr></thead>
+    <tbody>${hmRows}</tbody>
+  </table></div>`;
+
+  // ── Section 3: insights (dynamic)
+  const gptPct=aiTotals.ChatGPT.total?Math.round(aiTotals.ChatGPT.yes/aiTotals.ChatGPT.total*100):0;
+  const clPct=aiTotals.Claude.total?Math.round(aiTotals.Claude.yes/aiTotals.Claude.total*100):0;
+  const gmPct=aiTotals.Gemini.total?Math.round(aiTotals.Gemini.yes/aiTotals.Gemini.total*100):0;
+
+  // find zero-across-all products
+  const zeroAll=productRows.filter(r=>USP_AIS.every(ai=>r.ai[ai].yes===0));
+  // find claude-zero products
+  const clZero=productRows.filter(r=>r.ai.Claude.yes===0&&r.ai.ChatGPT.yes>0);
+  // find any Gemini yes
+  const gmYes=productRows.filter(r=>r.ai.Gemini.yes>0);
+  // find threshold products (claude: step threshold)
+  const threshold=[];
+  productRows.forEach(r=>{
+    const pid=uspPid(USP_PRODUCTS.find(p=>p.brand===r.brand&&p.name===r.name));
+    for(let s=1;s<=r.steps;s++){
+      if(uspResults[pid]?.[`${s}_Claude`]==='yes'){
+        if(s>1) threshold.push({name:r.name,brand:r.brand,min:s});
+        break;
+      }
+    }
+  });
+
+  const insights=`<div class="insight-grid">
+    <div class="insight-card red">
+      <div class="insight-label">⚠ 전 AI 미인식</div>
+      <div class="insight-title">${zeroAll.length}개 상품 — 전 AI 0%</div>
+      <div class="insight-body">${zeroAll.map(r=>`<strong>${r.name}</strong>`).join(', ')}.<br>USP 조합 무관하게 ChatGPT·Claude·Gemini 모두 미인식. AI 학습 데이터 내 브랜드 노출 자체가 없는 것으로 판단.</div>
+    </div>
+    <div class="insight-card red">
+      <div class="insight-label">🔴 Gemini 이슈</div>
+      <div class="insight-title">Gemini 인식률 ${gmPct}% — 사실상 전면 실패</div>
+      <div class="insight-body">${gmYes.length>0?`유일한 예외: <strong>${gmYes.map(r=>r.name).join(', ')}</strong> (일부 단계 인식).`:'전 상품 전 단계 미인식.'} 상단 카드 참고.</div>
+    </div>
+    <div class="insight-card amber">
+      <div class="insight-label">△ Claude 편차</div>
+      <div class="insight-title">Claude ${clPct}% — 상품별 편차 큼</div>
+      <div class="insight-body">${clZero.length>0?`<strong>${clZero.map(r=>r.name).join(', ')}</strong> — 0% (ChatGPT는 인식).<br>`:''}틈새 카테고리·글로벌 경쟁 포화 상품에서 Claude 미인식 패턴.</div>
+    </div>
+    <div class="insight-card green">
+      <div class="insight-label">✓ USP 감산 효과</div>
+      <div class="insight-title">USP 개수 → 인식률 상관 거의 없음</div>
+      <div class="insight-body">ChatGPT·Claude는 USP 1개로 줄여도 인식 유지.<br>${threshold.length>0?`예외: <strong>${threshold.map(r=>`${r.name}(Claude, 최소 USP ${r.min}개)`).join(', ')}</strong>.`:'AI는 USP 조합이 아닌 브랜드 지식 기반으로 응답하고 있음.'}</div>
+    </div>
+  </div>`;
+
+  const geminiBanner=`<div class="gemini-banner">
+    <div class="gemini-banner-hd">
+      <div class="gemini-banner-icon">🔴</div>
+      <div class="gemini-banner-title">Gemini 인식률 ${gmPct}% — 핵심 발견</div>
+    </div>
+    <div class="gemini-banner-body">
+      단순 GEO 최적화 부족이 아닌 <strong>Google 생태계 내 브랜드 데이터 자체 부재</strong> 문제.<br>
+      Gemini는 Google Search를 그라운딩 소스로 사용하는데, 대상 브랜드들은 네이버 중심 생태계라 Google 인덱스 노출이 희박함.
+    </div>
+    <div class="gemini-banner-steps">
+      <div class="gemini-banner-step">① Google Merchant Center 제품 피드 등록</div>
+      <div class="gemini-banner-step">② 자사몰 Schema.org Product 마크업 정상 인식 확인</div>
+      <div class="gemini-banner-step">③ Google 크롤링 가능 채널 콘텐츠 강화</div>
+    </div>
+  </div>`;
+
+  wrap.innerHTML=`
+    ${geminiBanner}
+    <div class="analysis-section">
+      <div class="analysis-section-title">AI별 브랜드 인식률</div>
+      ${aiCards}
+    </div>
+    <div class="analysis-section">
+      <div class="analysis-section-title">상품별 인식 현황</div>
+      ${heatmap}
+    </div>
+    <div class="analysis-section">
+      <div class="analysis-section-title">주요 인사이트</div>
+      ${insights}
+    </div>
+    <div class="analysis-footer">USP 감산 테스트 기록 기반 · 탭 전환 시 자동 갱신</div>
+  `;
+}
 </script>
 </body>
 </html>
