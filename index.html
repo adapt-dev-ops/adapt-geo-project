@@ -311,7 +311,7 @@
   .hm-brand-badge{display:inline-block;font-size:11px;color:var(--text3);background:var(--bg3);border-radius:4px;padding:2px 7px;margin-right:8px;font-weight:500;}
   .hm-prod-name{font-size:13px;color:var(--text);}
   /* insight cards */
-  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
   .insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 20px;border-left:4px solid;}
   .insight-card.red{border-left-color:#EF4444;}
   .insight-card.amber{border-left-color:#F59E0B;}
@@ -1759,8 +1759,8 @@ function renderAnalysis(){
 
   const heatmap=`<div class="heatmap-wrap"><table class="heatmap-table">
     <thead><tr>
-      <th>상품명</th><th></th>
-      ${USP_AIS.map(ai=>`<th class="ai-th" style="color:${AI_COLOR[ai]}">${ai}</th>`).join('')}
+      <th style="text-align:center">상품명</th><th style="text-align:center">USP</th>
+      ${USP_AIS.map(ai=>`<th class="ai-th" style="color:${AI_COLOR[ai]};text-align:center">${ai}</th>`).join('')}
     </tr></thead>
     <tbody>${hmRows}</tbody>
   </table></div>`;
@@ -1790,33 +1790,28 @@ function renderAnalysis(){
 
   const insights=`<div class="insight-grid">
     <div class="insight-card red">
-      <div class="insight-label">⚠ 전 AI 미인식</div>
-      <div class="insight-title">${zeroAll.length}개 상품 — 전 AI 0%</div>
-      <div class="insight-body">${zeroAll.map(r=>`<strong>${r.name}</strong>`).join(', ')}.<br>USP 조합 무관하게 ChatGPT·Claude·Gemini 모두 미인식. AI 학습 데이터 내 브랜드 노출 자체가 없는 것으로 판단.</div>
-    </div>
-    <div class="insight-card red">
       <div class="insight-label">🔴 Gemini 이슈</div>
       <div class="insight-title">Gemini 인식률 ${gmPct}%</div>
-      <div class="insight-body">${gmYes.length>0?`유일한 예외: <strong>${gmYes.map(r=>r.name).join(', ')}</strong> (일부 단계 인식).`:'전 상품 전 단계 미인식.'} 상단 카드 참고.</div>
+      <div class="insight-body">${gmYes.length>0?`유일한 예외: <strong>${gmYes.map(r=>r.name).join(', ')}</strong> — 전 USP 단계 100% 인식.`:'전 상품 전 단계 미인식.'} 나머지 ${gmYes.length>0?`${Object.keys(uspResults).length-gmYes.length}개`:'전'} 상품은 0%. 상단 카드 참고.</div>
     </div>
     <div class="insight-card amber">
       <div class="insight-label">△ Claude 편차</div>
       <div class="insight-title">Claude ${clPct}% — 상품별 편차 큼</div>
-      <div class="insight-body">${clZero.length>0?`<strong>${clZero.map(r=>r.name).join(', ')}</strong> — 0% (ChatGPT는 인식).<br>`:''}틈새 카테고리·글로벌 경쟁 포화 상품에서 Claude 미인식 패턴.</div>
+      <div class="insight-body">${clZero.length>0?`<strong>${clZero.map(r=>r.name).join(', ')}</strong> — 0% (ChatGPT는 인식).<br>`:''}Claude는 브랜드 인지도·경쟁 강도에 따라 미인식 발생. ChatGPT 대비 보수적 응답 패턴.</div>
     </div>
     <div class="insight-card green">
       <div class="insight-label">✓ USP 감산 효과</div>
       <div class="insight-title">USP 개수 → 인식률 상관 거의 없음</div>
-      <div class="insight-body">ChatGPT·Claude는 USP 1개로 줄여도 인식 유지.<br>${threshold.length>0?`예외: <strong>${threshold.map(r=>`${r.name}(Claude, 최소 USP ${r.min}개)`).join(', ')}</strong>.`:'AI는 USP 조합이 아닌 브랜드 지식 기반으로 응답하고 있음.'}</div>
+      <div class="insight-body">ChatGPT는 USP 1개로 줄여도 전 상품 인식 유지.<br>${threshold.length>0?`Claude는 <strong>${threshold.length}개 상품</strong>에서 최소 USP ${Math.max(...threshold.map(r=>r.min))}개 이상 필요 — 브랜드 지식보다 USP 조합 의존도 높음.`:'AI는 USP 조합이 아닌 브랜드 지식 기반으로 응답하고 있음.'}</div>
     </div>
   </div>
   ${gmYes.length>0?`<div class="insight-card blue" style="margin-top:14px;border-left-width:4px">
     <div class="insight-label">★ 전략적 발견</div>
     <div class="insight-title">카테고리 창조형 USP → Gemini 단독 노출 가능</div>
     <div class="insight-body">
-      Gemini가 유일하게 인식한 <strong>내추럴 커버 로션</strong>의 특징: "로션형 메이크업"처럼 <strong>기존에 없던 카테고리를 스스로 정의하는 제품</strong>.<br>
+      Gemini가 유일하게 인식한 <strong>내추럴 커버 로션</strong>은 전 USP 단계(5/5) 100% 인식 — "로션형 메이크업"처럼 <strong>기존에 없던 카테고리를 스스로 정의하는 제품</strong>.<br>
       신개념 카테고리는 Google에서 해당 쿼리로 인덱싱된 콘텐츠가 단독 노출되기 쉽고, Gemini가 해당 카테고리의 대표 제품으로 인식할 가능성이 높아짐.<br>
-      USP 차별화가 단순 마케팅 언어를 넘어 <strong>GEO 노출에도 직접 유효</strong>하다는 근거.
+      나머지 16개 상품이 Gemini 0%인 반면 단독 100%를 기록한 것은 <strong>카테고리 창조 전략이 GEO에서 가장 강력한 무기</strong>임을 시사.
     </div>
   </div>`:''}`;
 
