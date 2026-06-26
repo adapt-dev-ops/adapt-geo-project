@@ -93,6 +93,37 @@
   .tag-dev{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(37,99,235,0.15);}
   .tag-md{background:var(--green-bg);color:var(--green);border:1px solid rgba(14,169,110,0.15);}
 
+  /* ── 국가별 현황 & To Do (타임라인 체크리스트) ── */
+  .badge-done{background:var(--green-bg);color:var(--green);border:1px solid rgba(14,169,110,0.2);}
+  .badge-active{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(37,99,235,0.2);}
+  .badge-blocker{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(217,119,6,0.2);}
+  .badge-wait{background:var(--bg3);color:var(--text3);border:1px solid var(--border);}
+  /* ── 국가별 To Do ── */
+  .ctl-wrap{margin-top:36px;}
+  .ctl-sec-title{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;}
+  .todo-groups{display:flex;flex-direction:column;gap:20px;}
+  .todo-group{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+  .tg-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg4);border-bottom:2px solid var(--border2);}
+  .tg-label{font-size:14px;font-weight:700;color:var(--text);}
+  .tg-sub{font-size:11px;font-family:var(--mono);color:var(--text3);flex:1;}
+  .tg-count{font-size:11px;font-family:var(--mono);color:var(--text3);}
+  .td-item{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid var(--border);border-left:3px solid transparent;transition:background 0.1s;}
+  .td-item:last-child{border-bottom:none;}
+  .td-item.is-done{opacity:0.42;}
+  .td-item.is-now{border-left-color:var(--accent);background:rgba(91,79,255,0.04);}
+  .td-item.is-wait{border-left-color:var(--text3);background:rgba(0,0,0,0.015);}
+  .td-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+  .dot-done{background:var(--green);}
+  .dot-now{background:var(--accent);}
+  .dot-wait{background:var(--text3);}
+  .dot-todo{border:1.5px solid var(--border2);background:transparent;}
+  .td-text{flex:1;font-size:13px;line-height:1.55;color:var(--text2);}
+  .td-text.done{text-decoration:line-through;}
+  .td-text.now{color:var(--text);font-weight:500;}
+  .td-now{font-size:10px;font-weight:700;color:var(--accent);white-space:nowrap;margin-top:3px;flex-shrink:0;letter-spacing:0.02em;}
+  .td-sep{display:flex;align-items:center;gap:8px;padding:7px 16px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;}
+  .td-sep::after{content:'';flex:1;height:1px;background:var(--border);}
+
   /* MATRIX */
   .matrix-wrap{border-radius:12px;border:1px solid var(--border);overflow:hidden;}
   .matrix-scroll{overflow-x:auto;max-height:70vh;overflow-y:auto;}
@@ -401,90 +432,183 @@
       <div class="state-msg"><div class="spinner"></div><div>데이터를 불러오는 중...</div></div>
     </div>
 
-    <!-- 작업 프로세스 인라인 섹션 -->
-    <div class="process-divider"></div>
+    <!-- 국가별 To Do -->
+    <div class="ctl-wrap">
+      <div class="ctl-sec-title">국가별 To Do</div>
+      <div class="todo-groups">
 
-    <div class="process-inline-header">
-      <div class="process-inline-title">MD 세팅 필요 건</div>
-      <span class="tag tag-md">MD</span>
-    </div>
-    <div class="process-blocks">
-      <div class="process-block">
-        <div class="process-step-num">1</div>
-        <div class="process-step-body">
-          <div class="process-step-name">ALT 태그 기입</div>
-          <div class="process-step-detail">상세페이지 분할 후 이미지별 알트 태그 작성. 150자 내외, 성분명+기능+피부타입 포함.</div>
+        <!-- 국내 -->
+        <div class="todo-group">
+          <div class="tg-head">
+            <span class="tg-label">국내</span>
+            <span class="tg-sub"></span>
+            <span class="tg-count">2 / 4</span>
+          </div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">67개 상품 세팅 완료 — Schema-patch + AI 유입 추적 배포</div>
+          </div>
+          <div class="td-sep">AI 검증</div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">1단계 — USP 기준 테스트</div>
+          </div>
+          <div class="td-item is-now">
+            <div class="td-dot dot-now"></div>
+            <div class="td-text now">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
+            <div class="td-now">현재</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+          </div>
         </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">2</div>
-        <div class="process-step-body">
-          <div class="process-step-name">메타 데이터 설정</div>
-          <div class="process-step-detail">Meta title / Meta description 작성 후 카페24 SEO 설정에 직접 입력.</div>
-        </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">3</div>
-        <div class="process-step-body">
-          <div class="process-step-name">상세 FAQ 취합</div>
-          <div class="process-step-detail">CS 빈도 높은 내용 가공. USP당 1~2개 구성, 완결된 문장으로 답변.</div>
-        </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">4</div>
-        <div class="process-step-body">
-          <div class="process-step-name">성과 분석</div>
-          <div class="process-step-detail">Google Rich Results Test + Beusable GEO로 스키마 점수 확인.</div>
-        </div>
-      </div>
-    </div>
 
-    <div class="process-inline-header">
-      <div class="process-inline-title">개발파트 세팅 필요 건</div>
-      <span class="tag tag-dev">개발</span>
-    </div>
-    <div class="process-blocks">
-      <div class="process-block">
-        <div class="process-step-num">1</div>
-        <div class="process-step-body">
-          <div class="process-step-name">H1 / H2 태그</div>
-          <div class="process-step-detail">상품 페이지의 제목 계층 구조를 정의. 검색엔진·AI 모두가 콘텐츠 구조를 파악하는 핵심 요소.</div>
+        <!-- 미국 -->
+        <div class="todo-group">
+          <div class="tg-head">
+            <span class="tg-label">미국</span>
+            <span class="tg-sub"></span>
+            <span class="tg-count">1 / 6</span>
+          </div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">7개 상품 세팅 완료 — Schema-patch + AI 유입 추적 배포</div>
+          </div>
+          <div class="td-item is-now">
+            <div class="td-dot dot-now"></div>
+            <div class="td-text now">기존 7개 상품 — 국내 자사몰 기준 USP/FAQ 업데이트</div>
+            <div class="td-now">현재</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">신규 런칭 상품 — 광고 우선순위에 맞춰 GEO 세팅 순차 진행</div>
+          </div>
+          <div class="td-sep">AI 검증</div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">1단계 — USP 기준 테스트</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+          </div>
         </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">2</div>
-        <div class="process-step-body">
-          <div class="process-step-name">FAQ 탭 개설</div>
-          <div class="process-step-detail">CS 빈도 높은 질문 5~7개를 텍스트로 작성 + FAQPage 스키마 구조화. AI 직접 인용 가능성 극대화.</div>
+
+        <!-- 대만 -->
+        <div class="todo-group">
+          <div class="tg-head">
+            <span class="tg-label">대만</span>
+            <span class="tg-sub">Cafe24 (푸드올로지) · Shopline 1.0 (오브제/풀리/에이페)</span>
+            <span class="tg-count">2 / 7</span>
+          </div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">6개 상품 세팅 완료 (푸드올로지)</div>
+          </div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">Shopline 커스텀 코드 불가 확인 → 대안 전략 제안 완료</div>
+          </div>
+          <div class="td-item is-now">
+            <div class="td-dot dot-now"></div>
+            <div class="td-text now">메타디스크립션 USP 기반 보강 · FAQ 콘텐츠 세팅 · 상품 설명 키워드 점검</div>
+            <div class="td-now">현재</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">오브제/풀리/에이페 — Shopline 1.0 커스텀 코드 가능 여부 최종 확인 후 세팅</div>
+          </div>
+          <div class="td-sep">AI 검증</div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">1단계 — USP 기준 테스트</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+          </div>
         </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">3</div>
-        <div class="process-step-body">
-          <div class="process-step-name">통합 상세 스키마 설정 점검</div>
-          <div class="process-step-detail">Product / FAQ / Review / Breadcrumb 스키마 점검. @graph 구조로 통합 관리.</div>
+
+        <!-- 홍콩 -->
+        <div class="todo-group">
+          <div class="tg-head">
+            <span class="tg-label">홍콩</span>
+            <span class="tg-sub">Shopline 2.0</span>
+            <span class="tg-count">0 / 5</span>
+          </div>
+          <div class="td-item is-wait">
+            <div class="td-dot dot-wait"></div>
+            <div class="td-text now">앱사 개발팀 회신 대기 — PDP .js 삽입 + H1/H2 SEO 점검 범위로 문의 전달 완료</div>
+            <div class="td-now">현재</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">회신 후 schema-patch.js 배포 및 상품 세팅 착수</div>
+          </div>
+          <div class="td-sep">AI 검증</div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">1단계 — USP 기준 테스트</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+          </div>
         </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">4</div>
-        <div class="process-step-body">
-          <div class="process-step-name">연관 상품 노출 구간 생성</div>
-          <div class="process-step-detail">상세 페이지 하단 내부 링크 구조. ItemList 스키마로 연관 상품 구조화.</div>
+
+        <!-- 일본 -->
+        <div class="todo-group">
+          <div class="tg-head">
+            <span class="tg-label">일본</span>
+            <span class="tg-sub"></span>
+            <span class="tg-count">1 / 6</span>
+          </div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">8개 상품 세팅 완료 — schema-patch-jp.js 배포</div>
+          </div>
+          <div class="td-item is-now">
+            <div class="td-dot dot-now"></div>
+            <div class="td-text now">구조화 점검 — 바이버튼 특성 고려, 브랜드 공식몰 명확화 (Organization schema 강화)</div>
+            <div class="td-now">현재</div>
+          </div>
+          <div class="td-item is-now">
+            <div class="td-dot dot-now"></div>
+            <div class="td-text now">FAQ 및 메타디스크립션 보완</div>
+            <div class="td-now">현재</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">점검 완료 후 매출순으로 상품 GEO 세팅 진행</div>
+          </div>
+          <div class="td-sep">AI 검증</div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">1단계 — USP 기준 테스트</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 콘텐츠 / 외부 언급량 비교)</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+          </div>
         </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">5</div>
-        <div class="process-step-body">
-          <div class="process-step-name">메인페이지 스키마 작업</div>
-          <div class="process-step-detail">메인·서브 페이지 Organization + WebSite 스키마 적용.</div>
-        </div>
-      </div>
-      <div class="process-block">
-        <div class="process-step-num">6</div>
-        <div class="process-step-body">
-          <div class="process-step-name">매거진 탭 신설</div>
-          <div class="process-step-detail">콘텐츠 내용은 PR 파트 확인 필요. 백링크 고려.</div>
-        </div>
+
       </div>
     </div>
   </div>
