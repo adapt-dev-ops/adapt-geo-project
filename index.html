@@ -538,37 +538,6 @@
           </div>
         </div>
 
-        <!-- 홍콩 -->
-        <div class="todo-group">
-          <div class="tg-head">
-            <span class="tg-label">홍콩</span>
-            <span class="tg-sub">Shopline 2.0</span>
-            <span class="tg-count">0 / 5</span>
-          </div>
-          <div class="td-item is-wait">
-            <div class="td-dot dot-wait"></div>
-            <div class="td-text now">앱사 개발팀 회신 대기 — PDP .js 삽입 + H1/H2 SEO 점검 범위로 문의 전달 완료</div>
-            <div class="td-now">현재</div>
-          </div>
-          <div class="td-item">
-            <div class="td-dot dot-todo"></div>
-            <div class="td-text">회신 후 schema-patch.js 배포 및 상품 세팅 착수</div>
-          </div>
-          <div class="td-sep">AI 검증</div>
-          <div class="td-item">
-            <div class="td-dot dot-todo"></div>
-            <div class="td-text">1단계 — USP 기준 테스트</div>
-          </div>
-          <div class="td-item">
-            <div class="td-dot dot-todo"></div>
-            <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
-          </div>
-          <div class="td-item">
-            <div class="td-dot dot-todo"></div>
-            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
-          </div>
-        </div>
-
         <!-- 일본 -->
         <div class="todo-group">
           <div class="tg-head">
@@ -602,6 +571,37 @@
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
             <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 콘텐츠 / 외부 언급량 비교)</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+          </div>
+        </div>
+
+        <!-- 홍콩 -->
+        <div class="todo-group">
+          <div class="tg-head">
+            <span class="tg-label">홍콩</span>
+            <span class="tg-sub">Shopline 2.0</span>
+            <span class="tg-count">0 / 5</span>
+          </div>
+          <div class="td-item is-wait">
+            <div class="td-dot dot-wait"></div>
+            <div class="td-text now">앱사 개발팀 회신 대기 — PDP .js 삽입 + H1/H2 SEO 점검 범위로 문의 전달 완료</div>
+            <div class="td-now">현재</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">회신 후 schema-patch.js 배포 및 상품 세팅 착수</div>
+          </div>
+          <div class="td-sep">AI 검증</div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">1단계 — USP 기준 테스트</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
@@ -1007,7 +1007,7 @@ function renderBrandMatrix(progress){
     });
     return`<table><thead><tr><th class="task-col">상품명</th>${DEV_STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}${STEPS.map(s=>`<th style="font-size:13px;min-width:80px">${s}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
   }
-  const tabHtml=countries.map(c=>`<button onclick="switchMatrixTab('${c.name}')" id="mtab-${c.name}" style="padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:${c.name===activeCountry?'var(--bg4)':'transparent'};color:${c.name===activeCountry?'var(--text)':'var(--text3)'};transition:all 0.15s;margin-right:4px">${c.flag} ${c.name}</button>`).join('');
+  const tabHtml=countries.map(c=>`<button onclick="switchMatrixTab('${c.name}')" id="mtab-${c.name}" style="padding:6px 14px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid ${c.name===activeCountry?'var(--accent)':'var(--border2)'};background:${c.name===activeCountry?'var(--accent)':'var(--bg3)'};color:${c.name===activeCountry?'#fff':'var(--text3)'};transition:all 0.15s;margin-right:4px">${c.flag} ${c.name}</button>`).join('');
   wrap.innerHTML=`<div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:4px;flex-wrap:wrap">${tabHtml}</div><div id="matrix-body">${renderTable(activeCountry)}</div>`;
   window.switchMatrixTab=function(name){
     activeCountry=name;
@@ -1015,9 +1015,9 @@ function renderBrandMatrix(progress){
     countries.forEach(c=>{
       const btn=document.getElementById('mtab-'+c.name);
       if(!btn)return;
-      btn.style.background=c.name===name?'var(--bg4)':'transparent';
-      btn.style.color=c.name===name?'var(--text)':'var(--text3)';
-      btn.style.borderColor=c.name===name?'var(--border2)':'var(--border)';
+      btn.style.background=c.name===name?'var(--accent)':'var(--bg3)';
+      btn.style.color=c.name===name?'#fff':'var(--text3)';
+      btn.style.borderColor=c.name===name?'var(--accent)':'var(--border2)';
     });
   };
 }
