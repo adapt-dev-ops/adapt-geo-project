@@ -20,7 +20,7 @@
     --mono:'DM Mono',monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{background:var(--bg);color:var(--text);font-family:var(--font);}
+  html{background:var(--bg);color:var(--text);font-family:var(--font);word-break:keep-all;line-height:1.6;}
   body{min-height:100vh;background:var(--bg);overflow-x:hidden;}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(124,111,255,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(124,111,255,0.03)1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
   .wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 32px 80px;}
@@ -89,7 +89,7 @@
   .process-step-body{flex:1;}
   .process-step-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
   .process-step-detail{font-size:12px;color:var(--text2);line-height:1.7;}
-  .process-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-left:auto;flex-shrink:0;}
+  .process-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:auto;flex-shrink:0;}
   .tag-dev{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(37,99,235,0.15);}
   .tag-md{background:var(--green-bg);color:var(--green);border:1px solid rgba(14,169,110,0.15);}
 
@@ -105,8 +105,8 @@
   .todo-group{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
   .tg-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg4);border-bottom:2px solid var(--border2);}
   .tg-label{font-size:14px;font-weight:700;color:var(--text);}
-  .tg-sub{font-size:11px;font-family:var(--mono);color:var(--text3);flex:1;}
-  .tg-count{font-size:11px;font-family:var(--mono);color:var(--text3);}
+  .tg-sub{font-size:12px;font-family:var(--mono);color:var(--text3);flex:1;}
+  .tg-count{font-size:12px;font-family:var(--mono);color:var(--text3);}
   .td-item{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid var(--border);border-left:3px solid transparent;transition:background 0.1s;}
   .td-item:last-child{border-bottom:none;}
   .td-item.is-done{opacity:0.42;}
@@ -117,11 +117,11 @@
   .dot-now{background:var(--accent);}
   .dot-wait{background:var(--text3);}
   .dot-todo{border:1.5px solid var(--border2);background:transparent;}
-  .td-text{flex:1;font-size:13px;line-height:1.55;color:var(--text2);}
+  .td-text{flex:1;font-size:13px;line-height:1.65;color:var(--text2);}
   .td-text.done{text-decoration:line-through;}
   .td-text.now{color:var(--text);font-weight:500;}
-  .td-now{font-size:10px;font-weight:700;color:var(--accent);white-space:nowrap;margin-top:3px;flex-shrink:0;letter-spacing:0.02em;}
-  .td-sep{display:flex;align-items:center;gap:8px;padding:7px 16px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;}
+  .td-now{font-size:12px;font-weight:700;color:var(--accent);white-space:nowrap;margin-top:3px;flex-shrink:0;letter-spacing:0.02em;}
+  .td-sep{display:flex;align-items:center;gap:8px;padding:7px 16px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;}
   .td-sep::after{content:'';flex:1;height:1px;background:var(--border);}
 
   /* MATRIX */
@@ -139,8 +139,8 @@
   tbody td.task-col{text-align:left;color:var(--text);font-weight:500;}
   tbody td.country-start{border-left:1px solid var(--border2);}
   tbody tr:last-child td{border-bottom:none;}
-  .cell-done{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--green);color:#fff;font-size:11px;font-weight:700;}
-  .cell-none{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--bg4);color:var(--text3);font-size:11px;}
+  .cell-done{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--green);color:#fff;font-size:12px;font-weight:700;}
+  .cell-none{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--bg4);color:var(--text3);font-size:12px;}
 
   /* TASKS (standalone tab) */
   .task-list{display:flex;flex-direction:column;gap:8px;}
@@ -160,13 +160,13 @@
   .geo-sort{padding:10px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-size:13px;outline:none;cursor:pointer;}
   .geo-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
   .geo-stat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
-  .geo-stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+  .geo-stat-label{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;}
   .geo-stat-val{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.5px;}
-  .geo-stat-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:var(--mono);}
+  .geo-stat-sub{font-size:12px;color:var(--text3);margin-top:3px;font-family:var(--mono);}
   .geo-filter-section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .geo-filter-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
   .geo-filter-row+.geo-filter-row{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
-  .geo-filter-label{font-size:11px;font-weight:600;color:var(--text3);min-width:28px;letter-spacing:0.04em;}
+  .geo-filter-label{font-size:12px;font-weight:600;color:var(--text3);min-width:28px;letter-spacing:0.04em;}
   .filter-pill{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text2);transition:all .12s;}
   .filter-pill:hover{background:var(--bg3);color:var(--text);}
   .filter-pill.active{background:var(--accent);color:#fff;border-color:var(--accent);}
@@ -193,12 +193,12 @@
   .geo-card-product{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .geo-card-brand{font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:2px;}
   .geo-card-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
-  .grade-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;font-family:var(--mono);}
+  .grade-badge{font-size:12px;font-weight:700;padding:3px 9px;border-radius:6px;font-family:var(--mono);}
   .gb-a{background:var(--green-bg);color:var(--green);}
   .gb-b{background:var(--blue-bg);color:var(--blue);}
   .gb-c{background:var(--amber-bg);color:var(--amber);}
   .gb-d{background:var(--red-bg);color:var(--red);}
-  .toggle-chevron{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--text3);white-space:nowrap;transition:color 0.15s;}
+  .toggle-chevron{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--text3);white-space:nowrap;transition:color 0.15s;}
   .toggle-chevron:hover{color:var(--text2);}
   .toggle-chevron svg{transition:transform 0.2s;}
   .toggle-chevron.open{color:var(--text2);}
@@ -215,11 +215,11 @@
   .tags-wrap{padding:12px 18px 16px;border-top:1px solid var(--border);}
   .tags-group{margin-bottom:10px;}
   .tags-group:last-child{margin-bottom:0;}
-  .tags-group-title{font-size:11px;font-weight:600;margin-bottom:6px;}
+  .tags-group-title{font-size:12px;font-weight:600;margin-bottom:6px;}
   .tgt-ok{color:var(--green);}
   .tgt-warn{color:var(--amber);}
   .tags-pills{display:flex;flex-wrap:wrap;gap:5px;}
-  .tag-pill{font-size:11px;padding:3px 9px;border-radius:6px;}
+  .tag-pill{font-size:12px;padding:3px 9px;border-radius:6px;}
   .tp-ok{background:var(--green-bg);color:var(--green);}
   .tp-warn{background:var(--amber-bg);color:var(--amber);}
   .empty-msg{display:flex;align-items:center;justify-content:center;padding:48px 20px;color:var(--text3);font-size:14px;}
@@ -238,7 +238,7 @@
   .ai-bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:12px;font-size:13px;font-weight:700;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);min-width:36px;}
   .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0;}
   .ai-feed{width:100%;border-collapse:collapse;table-layout:fixed;}
-  .ai-feed th{padding:9px 12px;text-align:center;font-size:11px;color:var(--text3);font-weight:700;letter-spacing:0.08em;border-bottom:2px solid var(--border);background:var(--bg3);text-transform:uppercase;white-space:nowrap;overflow:hidden;}
+  .ai-feed th{padding:9px 12px;text-align:center;font-size:12px;color:var(--text3);font-weight:700;letter-spacing:0.04em;border-bottom:2px solid var(--border);background:var(--bg3);text-transform:uppercase;white-space:nowrap;overflow:hidden;}
   .ai-feed td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle;overflow:hidden;}
   .ai-feed tr:last-child td{border-bottom:none;}
   .ai-feed tr:hover td{background:rgba(255,255,255,0.02);}
@@ -278,10 +278,10 @@
   .usp-product{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;margin-bottom:28px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
   .usp-product-hd{display:flex;align-items:center;gap:10px;padding:14px 20px;background:linear-gradient(135deg,var(--bg3),rgba(91,79,255,0.04));border-bottom:2px solid var(--border2);}
   .usp-product-name{font-size:14px;font-weight:700;color:var(--text);}
-  .usp-grade{font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(91,79,255,0.12);color:var(--accent);}
-  .usp-cat{font-size:12px;color:var(--text3);margin-left:auto;}
+  .usp-grade{font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(91,79,255,0.12);color:var(--accent);}
+  .usp-cat{font-size:13px;color:var(--text3);margin-left:auto;}
   .usp-prog-wrap{padding:10px 20px 8px;border-bottom:1px solid var(--border);background:rgba(0,0,0,0.02);}
-  .usp-prog-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:4px;font-family:var(--mono);}
+  .usp-prog-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:4px;font-family:var(--mono);}
   .usp-prog-track{height:3px;background:var(--bg4);border-radius:2px;overflow:hidden;}
   .usp-prog-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.4s;}
   .usp-row{display:grid;grid-template-columns:72px 1fr 154px;gap:16px;align-items:start;padding:14px 20px;border-bottom:1px solid var(--border);transition:background 0.12s;}
@@ -292,12 +292,12 @@
   .usps-mid{background:rgba(91,79,255,0.12);color:var(--accent);}
   .usps-low{background:rgba(220,38,38,0.1);color:var(--red);}
   .usp-tags-row{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;}
-  .usp-tag-chip{font-size:10px;padding:1px 6px;border-radius:3px;background:rgba(91,79,255,0.1);color:var(--accent);}
+  .usp-tag-chip{font-size:12px;padding:2px 7px;border-radius:3px;background:rgba(91,79,255,0.1);color:var(--accent);}
   .usp-tag-chip.off{background:var(--bg3);color:var(--text3);text-decoration:line-through;opacity:0.5;}
   .usp-query-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text);line-height:1.7;user-select:all;cursor:text;transition:border-color 0.15s;}
   .usp-query-box:hover{border-color:var(--accent);}
   .usp-query-wrap{position:relative;}
-  .usp-copy-btn{position:absolute;top:50%;right:8px;transform:translateY(-50%);font-size:11px;color:var(--text3);background:var(--bg4);border:1px solid var(--border);cursor:pointer;padding:2px 8px;border-radius:4px;transition:all 0.15s;line-height:1.6;}
+  .usp-copy-btn{position:absolute;top:50%;right:8px;transform:translateY(-50%);font-size:12px;color:var(--text3);background:var(--bg4);border:1px solid var(--border);cursor:pointer;padding:2px 8px;border-radius:4px;transition:all 0.15s;line-height:1.6;}
   .usp-copy-btn:hover{color:var(--accent);background:rgba(91,79,255,0.08);border-color:var(--accent);}
   .usp-copy-btn.copied{color:var(--green);border-color:var(--green);background:rgba(14,169,110,0.08);}
   .usp-ai-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
@@ -307,7 +307,7 @@
   .usp-rbtn:hover{border-color:var(--text3);}
   .usp-rbtn.yes.on{background:rgba(14,169,110,0.15);border-color:var(--green);color:var(--green);}
   .usp-rbtn.no.on{background:rgba(220,38,38,0.1);border-color:var(--red);color:var(--red);}
-  .usp-url-inp{flex:1;min-width:0;height:24px;font-size:11px;padding:0 8px;border:1px solid var(--border);border-radius:5px;background:var(--bg3);color:var(--text2);font-family:var(--mono);outline:none;transition:border-color 0.15s;}
+  .usp-url-inp{flex:1;min-width:0;height:24px;font-size:12px;padding:0 8px;border:1px solid var(--border);border-radius:5px;background:var(--bg3);color:var(--text2);font-family:var(--mono);outline:none;transition:border-color 0.15s;}
   .usp-url-inp:focus{border-color:var(--accent);}
   .usp-url-inp::placeholder{color:var(--text3);}
   .usp-link-btn{width:24px;height:24px;border-radius:5px;border:1px solid var(--border2);background:var(--bg3);color:var(--accent);font-size:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;flex-shrink:0;transition:all 0.15s;}
@@ -329,7 +329,7 @@
   /* heatmap */
   .heatmap-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
   .heatmap-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .heatmap-table th{padding:11px 16px;text-align:left;color:var(--text3);font-weight:600;font-size:11px;letter-spacing:0.04em;border-bottom:1px solid var(--border);background:var(--bg3);}
+  .heatmap-table th{padding:11px 16px;text-align:left;color:var(--text3);font-weight:600;font-size:12px;letter-spacing:0.02em;border-bottom:1px solid var(--border);background:var(--bg3);}
   .heatmap-table th.ai-th{text-align:center;width:110px;}
   .heatmap-table td{padding:10px 16px;border-bottom:1px solid var(--border2);font-size:12px;}
   .heatmap-table tr:last-child td{border-bottom:none;}
@@ -339,7 +339,7 @@
   .hm-amber{background:rgba(245,158,11,0.15);color:#F59E0B;}
   .hm-red{background:rgba(239,68,68,0.13);color:#EF4444;}
   .hm-zero{background:var(--bg3);color:var(--text3);}
-  .hm-brand-badge{display:inline-block;font-size:11px;color:var(--text3);background:var(--bg3);border-radius:4px;padding:2px 7px;margin-right:8px;font-weight:500;}
+  .hm-brand-badge{display:inline-block;font-size:12px;color:var(--text3);background:var(--bg3);border-radius:4px;padding:2px 7px;margin-right:8px;font-weight:500;}
   .hm-prod-name{font-size:13px;color:var(--text);}
   /* insight cards */
   .insight-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
@@ -348,7 +348,7 @@
   .insight-card.amber{border-left-color:#F59E0B;}
   .insight-card.green{border-left-color:#10B981;}
   .insight-card.blue{border-left-color:#6496FF;}
-  .insight-label{font-size:11px;font-weight:700;letter-spacing:0.06em;margin-bottom:8px;}
+  .insight-label{font-size:12px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;}
   .insight-card.red .insight-label{color:#EF4444;}
   .insight-card.amber .insight-label{color:#F59E0B;}
   .insight-card.green .insight-label{color:#10B981;}
@@ -356,7 +356,7 @@
   .insight-title{font-size:14px;font-weight:700;margin-bottom:10px;line-height:1.4;}
   .insight-body{font-size:12px;color:var(--text3);line-height:1.75;}
   .insight-body strong{color:var(--text);font-weight:600;}
-  .analysis-footer{font-size:11px;color:var(--text3);text-align:center;padding:16px 0 4px;opacity:0.5;}
+  .analysis-footer{font-size:12px;color:var(--text3);text-align:center;padding:16px 0 4px;opacity:0.5;}
   /* gemini banner */
   .gemini-banner{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.22);border-left:4px solid #EF4444;border-radius:12px;padding:20px 24px;margin-bottom:32px;}
   .gemini-banner-hd{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
@@ -374,19 +374,25 @@
   .s2-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
   .s2-kpi-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:16px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
   .s2-kpi-val{font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1.1;}
-  .s2-kpi-lbl{font-size:12px;color:var(--text3);margin-top:5px;}
+  .s2-kpi-lbl{font-size:13px;color:var(--text2);margin-top:6px;}
   .s2-ov{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;margin-bottom:28px;}
   .s2-ov table{width:100%;border-collapse:collapse;font-size:13px;}
-  .s2-ov th{background:var(--bg3);padding:9px 16px;text-align:center;font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.04em;border-bottom:1px solid var(--border2);white-space:nowrap;}
+  .s2-ov th{background:var(--bg3);padding:9px 16px;text-align:center;font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.02em;border-bottom:1px solid var(--border2);white-space:nowrap;}
   .s2-ov td{padding:9px 16px;border-bottom:1px solid var(--border);vertical-align:middle;}
   .s2-ov tr:last-child td{border-bottom:none;}
   .s2-ov tr:hover td{background:rgba(0,0,0,.015);}
   .s2-ai-ok{color:var(--green);font-weight:700;}
   .s2-ai-no{color:var(--red);}
-  .s2-sec{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin:0 0 12px;}
+  .s2-sec{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin:0 0 12px;}
   .ca-action{display:flex;align-items:flex-start;gap:8px;padding:9px 16px;background:rgba(91,79,255,.04);border-top:1px solid rgba(91,79,255,.1);}
-  .ca-action-lbl{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding-top:2px;min-width:28px;}
-  .ca-action-txt{font-size:12px;color:var(--text2);line-height:1.5;}
+  .ca-action-lbl{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding-top:2px;min-width:32px;}
+  .ca-action-txt{font-size:13px;color:var(--text2);line-height:1.6;}
+  .ca-ch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:10px 16px 12px;border-top:1px dashed rgba(91,79,255,.1);}
+  .ca-ch-item{display:flex;flex-direction:column;gap:2px;padding:8px 10px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);}
+  .ca-ch-cat{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;}
+  .ca-ch-detail{font-size:12px;color:var(--text2);line-height:1.5;}
+  .ca-ch-platform{font-size:11px;color:var(--text3);margin-top:2px;}
+  @media(max-width:600px){.ca-ch-list{grid-template-columns:1fr;}}
   @media(max-width:600px){.s2-kpi{grid-template-columns:repeat(2,1fr);}.ca-cards{grid-template-columns:1fr;}}
   /* ── 국내 2단계 타사 분석 ── */
   .ca-wrap{margin-top:36px;}
@@ -394,26 +400,41 @@
   .ca-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   .ca-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
   .ca-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg4);border-bottom:2px solid var(--border2);}
-  .ca-brand{font-size:11px;font-weight:700;padding:3px 9px;border-radius:5px;background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
+  .ca-brand{font-size:12px;font-weight:700;padding:3px 9px;border-radius:5px;background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
   .ca-prod{font-size:13px;font-weight:600;color:var(--text);flex:1;}
-  .ca-query-row{display:flex;align-items:baseline;gap:8px;padding:8px 16px;font-size:12px;color:var(--text3);border-bottom:1px solid var(--border);}
-  .ca-qlbl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;flex-shrink:0;}
-  .ca-query-row em{font-family:var(--mono);font-style:normal;color:var(--text2);}
+  .ca-query-row{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--border);}
+  .ca-qlbl{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;flex-shrink:0;}
+  .ca-query-row em{font-family:var(--mono);font-style:normal;font-size:12px;color:var(--text);}
   .ca-cols{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);}
   .ca-col{padding:10px 16px;}
   .ca-col+.ca-col{border-left:1px solid var(--border);}
-  .ca-col-label{font-size:10px;font-weight:700;letter-spacing:0.06em;color:var(--text3);text-transform:uppercase;margin-bottom:7px;}
-  .ca-rank-item{display:flex;align-items:flex-start;gap:6px;padding:2px 0;font-size:12px;color:var(--text2);line-height:1.4;}
-  .ca-rank-n{font-family:var(--mono);color:var(--text3);font-size:11px;min-width:16px;padding-top:1px;}
+  .ca-col-label{font-size:12px;font-weight:700;letter-spacing:0.04em;color:var(--text2);text-transform:uppercase;margin-bottom:7px;}
+  .ca-rank-item{display:flex;align-items:flex-start;gap:6px;padding:3px 0;font-size:13px;color:var(--text2);line-height:1.6;}
+  .ca-rank-n{font-family:var(--mono);color:var(--text3);font-size:12px;min-width:16px;padding-top:1px;}
   .ca-rank-self{color:var(--green);font-weight:600;}
-  .ca-analysis{padding:12px 16px;border-top:1px solid var(--border);}
-  .ca-analysis-lbl{font-size:10px;color:var(--text3);margin-bottom:4px;}
-  .ca-analysis-body{font-size:13px;color:var(--text2);line-height:1.7;}
+  .ca-analysis{padding:14px 16px;border-top:1px solid var(--border);}
+  .ca-analysis-lbl{font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:600;}
+  .ca-analysis-body{font-size:13px;color:var(--text2);line-height:1.75;}
   .ca-analysis-body strong{color:var(--text);font-weight:600;}
   .s2-flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:13px 18px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.04);}
-  .s2-flow-step{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text2);}
-  .s2-flow-n{width:19px;height:19px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .s2-flow-step{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text2);}
+  .s2-flow-n{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .s2-flow-arr{color:var(--text3);font-size:13px;flex-shrink:0;}
+  .s2-ch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px;}
+  .s2-ch-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);}
+  .s2-ch-head{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--bg4);border-bottom:2px solid var(--border2);font-size:13px;font-weight:600;color:var(--text);}
+  .s2-ch-cols{display:grid;grid-template-columns:1fr 1fr;}
+  .s2-ch-col{padding:10px 14px;}
+  .s2-ch-col+.s2-ch-col{border-left:1px solid var(--border);}
+  .s2-ch-lbl{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+  .s2-ch-tags{display:flex;flex-direction:column;gap:4px;}
+  .s2-ch-tag{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text2);padding:2px 0;}
+  .s2-ch-tag-n{font-family:var(--mono);font-size:12px;color:var(--text3);background:var(--bg3);border-radius:3px;padding:2px 6px;flex-shrink:0;}
+  .s2-ch-tag.hi{color:var(--accent);font-weight:600;}
+  .s2-ch-tag.hi .s2-ch-tag-n{background:rgba(91,79,255,.1);color:var(--accent);}
+  .s2-ch-tag.warn{color:var(--amber);}
+  .s2-ch-insight{padding:10px 14px;font-size:13px;color:var(--text2);border-top:1px solid var(--border);line-height:1.65;}
+  .s2-ch-insight strong{color:var(--text);font-weight:600;}
 </style>
 </head>
 <body>
@@ -453,35 +474,234 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('matrix')">진행 현황</button>
+    <button class="tab" onclick="switchTab('matrix')">진행 현황</button>
     <button class="tab" onclick="switchTab('overview')">국가별 현황</button>
     <button class="tab" onclick="switchTab('ai')">AI 유입 현황</button>
     <button class="tab" onclick="switchTab('usp')">USP 감산 테스트</button>
-    <button class="tab" onclick="switchTab('analysis')">2단계 테스트</button>
+    <button class="tab active" onclick="switchTab('analysis')">2단계 테스트</button>
     <!--<button class="tab" onclick="switchTab('geo')">GEO 점수</button>-->
   </div>
 
   <!-- ── 감산 테스트 분석 탭 ── -->
-  <div class="panel" id="panel-analysis">
+  <div class="panel active" id="panel-analysis">
+    <div class="s2-sec">GEO 채널 신뢰도 원리</div>
+    <div class="s2-flow" style="flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:8px;">
+      <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:2px;">
+        AI 엔진(Gemini·ChatGPT·Perplexity)은 <strong style="color:var(--text)">브랜드 자사몰보다 외부에서 쓴 콘텐츠</strong>를 먼저 신뢰합니다.<br>
+        채널 권위가 높을수록, 채널 종류가 다양할수록 AI 인식률이 올라갑니다.
+      </div>
+      <div style="width:100%;">
+        <div style="display:grid;grid-template-columns:140px 1fr 44px 110px;gap:6px 10px;align-items:center;font-size:13px;">
+          <span style="color:var(--text2);font-weight:500;">뷰티 전문 플랫폼</span>
+          <div style="background:var(--border);border-radius:3px;height:7px;overflow:hidden;"><div style="width:80%;height:100%;background:var(--accent);border-radius:3px;"></div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--accent);background:rgba(91,79,255,0.1);padding:2px 5px;border-radius:3px;text-align:center;">높음</span>
+          <span style="color:var(--text3);font-size:12px;">글로우픽·화해·올리브영</span>
+
+          <span style="color:var(--text2);font-weight:500;">유튜브</span>
+          <div style="background:var(--border);border-radius:3px;height:7px;overflow:hidden;"><div style="width:70%;height:100%;background:var(--accent);border-radius:3px;"></div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--accent);background:rgba(91,79,255,0.1);padding:2px 5px;border-radius:3px;text-align:center;">높음</span>
+          <span style="color:var(--text3);font-size:12px;">유튜버 리뷰 영상</span>
+
+          <span style="color:var(--text2);">전문 미디어</span>
+          <div style="background:var(--border);border-radius:3px;height:7px;overflow:hidden;"><div style="width:55%;height:100%;background:var(--blue);border-radius:3px;"></div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-bg);padding:2px 5px;border-radius:3px;text-align:center;">중간</span>
+          <span style="color:var(--text3);font-size:12px;">얼루어·코스모·패션비즈</span>
+
+          <span style="color:var(--text2);">블로그·커뮤니티</span>
+          <div style="background:var(--border);border-radius:3px;height:7px;overflow:hidden;"><div style="width:40%;height:100%;background:var(--blue);border-radius:3px;"></div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-bg);padding:2px 5px;border-radius:3px;text-align:center;">중간</span>
+          <span style="color:var(--text3);font-size:12px;">네이버 블로그·티스토리</span>
+
+          <span style="color:var(--text3);">유통몰 상품페이지</span>
+          <div style="background:var(--border);border-radius:3px;height:7px;overflow:hidden;"><div style="width:28%;height:100%;background:var(--text3);border-radius:3px;"></div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--text3);background:var(--bg3);padding:2px 5px;border-radius:3px;text-align:center;">낮음</span>
+          <span style="color:var(--text3);font-size:12px;">쿠팡·마켓컬리</span>
+
+          <span style="color:var(--text3);">자사몰 단독</span>
+          <div style="background:var(--border);border-radius:3px;height:7px;overflow:hidden;"><div style="width:14%;height:100%;background:var(--amber);border-radius:3px;"></div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--amber);background:var(--amber-bg);padding:2px 5px;border-radius:3px;text-align:center;">낮음</span>
+          <span style="color:var(--text3);font-size:12px;">외부 채널 없으면 낮음</span>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);border-top:1px solid var(--border);padding-top:8px;width:100%;line-height:1.6;">
+        <span style="color:var(--amber);font-weight:600;">⚠ 검증 범위:</span> 채널 권위 원칙(E-E-A-T)은 Google 공식 문서 기반. 채널별 상대 순위는 GEO 실무 관찰·테스트 기반으로, 공식 가중치 수치는 미공개.
+      </div>
+    </div>
     <div class="s2-kpi">
-      <div class="s2-kpi-card"><div class="s2-kpi-val">6</div><div class="s2-kpi-lbl">브랜드 분석</div></div>
-      <div class="s2-kpi-card"><div class="s2-kpi-val" style="color:var(--green)">1</div><div class="s2-kpi-lbl">AI 인식 완료</div></div>
+      <div class="s2-kpi-card"><div class="s2-kpi-val">6</div><div class="s2-kpi-lbl">제품 분석</div></div>
+      <div class="s2-kpi-card"><div class="s2-kpi-val" style="color:var(--blue)">1</div><div class="s2-kpi-lbl">카테고리 인식</div></div>
       <div class="s2-kpi-card"><div class="s2-kpi-val" style="color:var(--amber)">4</div><div class="s2-kpi-lbl">보완 필요</div></div>
-      <div class="s2-kpi-card"><div class="s2-kpi-val" style="color:var(--blue)">1</div><div class="s2-kpi-lbl">카테고리 기회</div></div>
+      <div class="s2-kpi-card"><div class="s2-kpi-val" style="color:var(--blue)">1</div><div class="s2-kpi-lbl">선점 가능</div></div>
     </div>
     <div class="s2-sec">브랜드별 현황</div>
     <div class="s2-ov">
       <table>
         <thead><tr><th>브랜드</th><th>대표 상품</th><th>Gemini 1위</th><th>ChatGPT 1위</th><th>상태</th></tr></thead>
         <tbody>
-          <tr><td><span class="ca-brand">풀리</span></td><td style="color:var(--text)">쌀 세라 수분 선크림</td><td><span class="s2-ai-no">✗</span> 조선미녀</td><td><span class="s2-ai-ok">✓</span> 풀리 (자사)</td><td><span class="tag badge-blocker">Gemini 보완</span></td></tr>
+          <tr><td><span class="ca-brand">풀리</span></td><td style="color:var(--text)">쌀 세라 수분 선크림</td><td><span class="s2-ai-no">✗</span> 조선미녀</td><td><span class="s2-ai-no">✗</span> 조선미녀 (3순위)</td><td><span class="tag badge-blocker">양쪽 보완</span></td></tr>
           <tr><td><span class="ca-brand">오브제</span></td><td style="color:var(--text)">오일 컨트롤 피니셔</td><td><span class="s2-ai-no">✗</span> 메이크업포에버</td><td><span class="s2-ai-no">✗</span> 풀리(타 제품)</td><td><span class="tag badge-blocker">AI 데이터 공백</span></td></tr>
           <tr><td><span class="ca-brand">푸드올로지</span></td><td style="color:var(--text)">콜레올로지 컷</td><td><span class="s2-ai-no">✗</span> 비에날씬 BNR17</td><td><span class="s2-ai-no">✗</span> 비에날씬 BNR17</td><td><span class="tag badge-blocker">BNR17 확인 필요</span></td></tr>
-          <tr><td><span class="ca-brand">95PROBLEM</span></td><td style="color:var(--text)">발란스핏 EMS 슬림 벨트</td><td><span class="s2-ai-ok">✓</span> 자사</td><td><span class="s2-ai-ok">✓</span> 자사</td><td><span class="tag badge-done">인식 완료</span></td></tr>
-          <tr><td><span class="ca-brand">에이페</span></td><td style="color:var(--text)">스칼프 부스팅 앰플</td><td><span class="s2-ai-no">✗</span> 라보에이치</td><td><span class="s2-ai-no">✗</span> 라보에이치</td><td><span class="tag badge-blocker">보완 필요</span></td></tr>
-          <tr><td><span class="ca-brand">닥터데이알</span></td><td style="color:var(--text)">딥나잇 멜라시럽</td><td><span class="s2-ai-no">✗</span> 뉴트원</td><td><span class="s2-ai-no">✗</span> 휴럼</td><td><span class="tag badge-active">카테고리 기회</span></td></tr>
+          <tr><td><span class="ca-brand">95PROBLEM</span></td><td style="color:var(--text)">발란스핏 EMS 슬림 벨트</td><td><span class="s2-ai-ok">✓</span> 자사</td><td><span class="s2-ai-ok">✓</span> 자사</td><td><span class="tag badge-active">카테고리 1위</span></td></tr>
+          <tr><td><span class="ca-brand">에이페</span></td><td style="color:var(--text)">스칼프 부스팅 앰플</td><td><span class="s2-ai-no">✗</span> 랩핑스/닥터포헤어</td><td><span class="s2-ai-no">✗</span> 라보에이치</td><td><span class="tag badge-blocker">보완 필요</span></td></tr>
+          <tr><td><span class="ca-brand">닥터데이알</span></td><td style="color:var(--text)">딥나잇 멜라시럽</td><td><span class="s2-ai-no">✗</span> 뉴트원</td><td><span class="s2-ai-no">✗</span> 휴럼</td><td><span class="tag badge-active">선점 가능</span></td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="s2-sec">구글 외부 콘텐츠 현황</div>
+    <div class="s2-ov" style="margin-bottom:28px;">
+      <table>
+        <thead><tr><th>브랜드</th><th>자사 검색 결과</th><th>타사 검색 결과</th><th>격차</th><th>원인 분석</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="ca-brand">풀리</span></td>
+            <td style="font-family:var(--mono);text-align:center"><span class="s2-ai-no">5p</span></td>
+            <td style="font-family:var(--mono);text-align:center">조선미녀 <strong>15p</strong></td>
+            <td style="text-align:center"><span class="tag badge-blocker">타사 3배</span></td>
+            <td style="font-size:12px;color:var(--text3)">자사몰 44% 과다 — YouTube 0건, 뷰티플랫폼 1건뿐</td>
+          </tr>
+          <tr>
+            <td><span class="ca-brand">오브제</span></td>
+            <td style="font-family:var(--mono);text-align:center"><span class="s2-ai-ok">8p</span></td>
+            <td style="font-family:var(--mono);text-align:center">메이크업포에버 7p</td>
+            <td style="text-align:center"><span class="tag badge-wait">페이지수 우위</span></td>
+            <td style="font-size:12px;color:var(--text3)">페이지수 우위이나 자사몰 30% 중심 — AI는 양쪽 모두 타사 추천</td>
+          </tr>
+          <tr>
+            <td><span class="ca-brand">푸드올로지</span></td>
+            <td style="font-family:var(--mono);text-align:center"><span class="s2-ai-no">5p</span></td>
+            <td style="font-family:var(--mono);text-align:center">비에날씬 <strong>9p</strong></td>
+            <td style="text-align:center"><span class="tag badge-blocker">타사 1.8배</span></td>
+            <td style="font-size:12px;color:var(--text3)">자사몰+유통 66% 편중 — YouTube 0건, 뷰티플랫폼 1건</td>
+          </tr>
+          <tr>
+            <td><span class="ca-brand">에이페</span></td>
+            <td style="font-family:var(--mono);text-align:center"><span class="s2-ai-no">6p</span></td>
+            <td style="font-family:var(--mono);text-align:center">라보에이치 <strong>11p</strong></td>
+            <td style="text-align:center"><span class="tag badge-blocker">타사 1.8배</span></td>
+            <td style="font-size:12px;color:var(--text3)">뷰티플랫폼 1건 vs 라보에이치 3건(33%) — 전문 리뷰 채널 열세</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="s2-sec">외부 채널 비중 분석</div>
+    <div class="s2-flow" style="margin-bottom:16px;">
+      <div class="s2-flow-step"><span class="s2-flow-n">1</span><span>분석 기준: Google 검색 상위 10건(1페이지)</span></div>
+      <span class="s2-flow-arr">→</span>
+      <div class="s2-flow-step"><span class="s2-flow-n">2</span><span>Gemini·ChatGPT는 상위 노출 콘텐츠를 우선 참조 — 1페이지가 AI 학습 영향력이 가장 높은 구간</span></div>
+      <span class="s2-flow-arr">→</span>
+      <div class="s2-flow-step"><span class="s2-flow-n">3</span><span>네이버 미포함 — Gemini·ChatGPT는 Google·Bing 인덱스 기반</span></div>
+    </div>
+    <div class="s2-ch-grid">
+      <div class="s2-ch-card">
+        <div class="s2-ch-head"><span class="ca-brand">풀리</span>&nbsp;vs 조선미녀</div>
+        <div class="s2-ch-cols">
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">자사 (풀리) · 9건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag warn"><span>자사몰</span><span class="s2-ch-tag-n">4건 (44%)</span></div>
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>네이버 블로그</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>패션 플랫폼</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>SNS</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+            </div>
+          </div>
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">조선미녀 · 9건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">3건 (33%)</span></div>
+              <div class="s2-ch-tag"><span>자사몰</span><span class="s2-ch-tag-n">3건 (33%)</span></div>
+              <div class="s2-ch-tag hi"><span>YouTube</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>네이버 블로그</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="s2-ch-insight"><strong>핵심 차이:</strong> 자사몰 44% 과다 점유 — YouTube·외부 리뷰 콘텐츠 확보 필요</div>
+      </div>
+      <div class="s2-ch-card">
+        <div class="s2-ch-head"><span class="ca-brand">오브제</span>&nbsp;vs 메이크업포에버</div>
+        <div class="s2-ch-cols">
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">자사 (오브제) · 10건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag warn"><span>자사몰</span><span class="s2-ch-tag-n">3건 (30%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">1건 (10%)</span></div>
+              <div class="s2-ch-tag"><span>패션 플랫폼</span><span class="s2-ch-tag-n">1건 (10%)</span></div>
+              <div class="s2-ch-tag"><span>티스토리</span><span class="s2-ch-tag-n">1건 (10%)</span></div>
+              <div class="s2-ch-tag"><span>네이버 블로그</span><span class="s2-ch-tag-n">1건 (10%)</span></div>
+              <div class="s2-ch-tag"><span>YouTube</span><span class="s2-ch-tag-n">1건 (10%)</span></div>
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">1건 (10%)</span></div>
+              <div class="s2-ch-tag"><span>가격비교</span><span class="s2-ch-tag-n">1건 (10%)</span></div>
+            </div>
+          </div>
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">메이크업포에버 · 9건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">3건 (33%)</span></div>
+              <div class="s2-ch-tag"><span>자사몰</span><span class="s2-ch-tag-n">2건 (22%)</span></div>
+              <div class="s2-ch-tag hi"><span>네이버 블로그</span><span class="s2-ch-tag-n">2건 (22%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>YouTube</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="s2-ch-insight"><strong>핵심 차이:</strong> 채널 다양성은 비슷하나 자사몰 30% 중심 — 뷰티플랫폼·미디어 보강 필요</div>
+      </div>
+      <div class="s2-ch-card">
+        <div class="s2-ch-head"><span class="ca-brand">푸드올로지</span>&nbsp;vs 비에날씬</div>
+        <div class="s2-ch-cols">
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">자사 (푸드올로지) · 9건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag warn"><span>자사몰</span><span class="s2-ch-tag-n">3건 (33%)</span></div>
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">3건 (33%)</span></div>
+              <div class="s2-ch-tag"><span>네이버 블로그</span><span class="s2-ch-tag-n">2건 (22%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+            </div>
+          </div>
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">비에날씬 · 9건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">2건 (22%)</span></div>
+              <div class="s2-ch-tag hi"><span>해외 유통</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag hi"><span>면세/백화점</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>YouTube</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>자사몰</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>가격비교</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+              <div class="s2-ch-tag"><span>네이버 블로그</span><span class="s2-ch-tag-n">1건 (11%)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="s2-ch-insight"><strong>핵심 차이:</strong> 비에날씬은 코스트코·면세점·해외유통까지 — 유통 채널 다양성이 AI 신뢰도 결정</div>
+      </div>
+      <div class="s2-ch-card">
+        <div class="s2-ch-head"><span class="ca-brand">에이페</span>&nbsp;vs 라보에이치</div>
+        <div class="s2-ch-cols">
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">자사 (에이페) · 8건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">3건 (38%)</span></div>
+              <div class="s2-ch-tag"><span>자사몰</span><span class="s2-ch-tag-n">1건 (13%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">1건 (13%)</span></div>
+              <div class="s2-ch-tag"><span>네이버 블로그</span><span class="s2-ch-tag-n">1건 (13%)</span></div>
+              <div class="s2-ch-tag"><span>뷰티/IT 미디어</span><span class="s2-ch-tag-n">1건 (13%)</span></div>
+              <div class="s2-ch-tag"><span>SNS</span><span class="s2-ch-tag-n">1건 (13%)</span></div>
+            </div>
+          </div>
+          <div class="s2-ch-col">
+            <div class="s2-ch-lbl">라보에이치 · 9건</div>
+            <div class="s2-ch-tags">
+              <div class="s2-ch-tag hi"><span>뷰티 플랫폼</span><span class="s2-ch-tag-n">3건 (33%)</span></div>
+              <div class="s2-ch-tag"><span>자사몰</span><span class="s2-ch-tag-n">2건 (22%)</span></div>
+              <div class="s2-ch-tag hi"><span>네이버 블로그</span><span class="s2-ch-tag-n">2건 (22%)</span></div>
+              <div class="s2-ch-tag"><span>유통/쇼핑몰</span><span class="s2-ch-tag-n">2건 (22%)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="s2-ch-insight"><strong>핵심 차이:</strong> 라보에이치 뷰티 플랫폼 33% vs 에이페 13% — 전문 리뷰 플랫폼 등재가 핵심</div>
+      </div>
     </div>
     <div class="s2-sec">상세 분석</div>
     <div class="s2-flow">
@@ -493,16 +713,43 @@
       <span class="s2-flow-arr">→</span>
       <div class="s2-flow-step"><span class="s2-flow-n">4</span>자사 미노출 시 타사 노출 요인 분석 · 보완 방향 도출</div>
     </div>
+    <div style="background:rgba(91,79,255,0.06);border:1px solid rgba(91,79,255,0.2);border-left:4px solid var(--accent);border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:12px;line-height:1.7;color:var(--text2);">
+      <span style="font-weight:700;color:var(--accent);">🔍 테스트 핵심 발견 (2026-06-30)</span><br>
+      <strong style="color:var(--text);">알고 있다 ≠ 추천한다</strong> — 풀리·에이페 모두 직접 물으면 상세 응답 가능하나, 카테고리 추천 쿼리에서는 선택받지 못함.<br>
+      Gemini가 ChatGPT보다 엄격: 풀리는 ChatGPT 3순위 / Gemini 없음. 에이페는 양쪽 모두 없음. <strong style="color:var(--text);">외부 채널 신호 부족이 직접적 원인.</strong>
+    </div>
     <div class="ca-cards">
       <div class="ca-card">
-        <div class="ca-head"><span class="ca-brand">풀리</span><span class="ca-prod">쌀 세라 수분 선크림</span><span class="tag badge-blocker">Gemini 보완 필요</span></div>
-        <div class="ca-query-row"><span class="ca-qlbl">AI 질의</span><em>"쌀 성분 선크림 추천해줘"</em></div>
+        <div class="ca-head"><span class="ca-brand">풀리</span><span class="ca-prod">쌀 세라 수분 선크림</span><span class="tag badge-blocker">양쪽 보완 필요</span></div>
+        <div class="ca-query-row"><span class="ca-qlbl">AI 질의</span><em>"쌀 선크림 추천해줘. 수분감 있고 백탁 없는 거로"</em></div>
         <div class="ca-cols">
-          <div class="ca-col"><div class="ca-col-label">Gemini</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 조선미녀 맑은 쌀 선크림</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 이즈앤트리 쌀 선크림</div></div>
-          <div class="ca-col"><div class="ca-col-label">ChatGPT</div><div class="ca-rank-item ca-rank-self"><span class="ca-rank-n">1.</span> 풀리 쌀 세라 수분 선크림 ✓</div></div>
+          <div class="ca-col"><div class="ca-col-label">Gemini</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 조선미녀 맑은쌀 선크림 아쿠아프레쉬</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 하우스오브허 백미 브라이트닝 선크림</div><div class="ca-rank-item" style="color:var(--red);font-size:12px;"><span class="ca-rank-n">—</span> 풀리 미노출</div></div>
+          <div class="ca-col"><div class="ca-col-label">ChatGPT</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 조선미녀 맑은쌀 선크림 아쿠아프레쉬</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 조선미녀 Relief Sun (다른 라인)</div><div class="ca-rank-item ca-rank-self"><span class="ca-rank-n">3.</span> 풀리 쌀 세라 수분 선크림 ✓</div></div>
         </div>
-        <div class="ca-analysis"><div class="ca-analysis-lbl">분석</div><div class="ca-analysis-body">조선미녀가 <strong>"쌀 선크림" 카테고리 선점.</strong> 5년 누적 1억개 판매·아마존 1위로 AI 학습 데이터에 고착화. ChatGPT 인식 완료, Gemini만 보완 필요.</div></div>
-        <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">"쌀+세라마이드" 조합 차별화 포지션으로 FAQ 강화</span></div>
+        <div class="ca-analysis"><div class="ca-analysis-lbl">분석</div><div class="ca-analysis-body">조선미녀가 <strong>"쌀 선크림" 카테고리 완전 선점.</strong> Gemini는 풀리 미노출, ChatGPT는 3순위. 직접 물으면 둘 다 상세 응답 가능 — <strong>인지하고 있으나 카테고리 추천에서 선택받지 못하는 구조.</strong></div></div>
+        <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">"쌀+세라마이드" 차별 포지션 FAQ 강화 — 4채널 외부 신호 확보 필요</span></div>
+        <div class="ca-ch-list">
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">뷰티 플랫폼</span>
+            <span class="ca-ch-detail">글로우픽·화해 제품 등재 + 쌀 성분 선크림 카테고리 리뷰 누적</span>
+            <span class="ca-ch-platform">glowpick.com · hwahae.com · powderm.co.kr</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">YouTube</span>
+            <span class="ca-ch-detail">쌀크림 전문 뷰티 유튜버 협찬 리뷰 (구독자 1만+ 중소 채널 우선)</span>
+            <span class="ca-ch-platform">youtube.com — 쌀 선크림 / 백탁 없는 선크림</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">전문 미디어</span>
+            <span class="ca-ch-detail">얼루어코리아·코스인코리아 선크림 특집 피처 / 성분 기고</span>
+            <span class="ca-ch-platform">allure.co.kr · cosinkorea.com · beautynury.com</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">외부 리뷰</span>
+            <span class="ca-ch-detail">네이버 파워블로거 체험단 + 뷰티 커뮤니티(파우더룸·언니들의 파우치)</span>
+            <span class="ca-ch-platform">blog.naver.com · tistory.com · cafe.naver.com</span>
+          </div>
+        </div>
       </div>
       <div class="ca-card">
         <div class="ca-head"><span class="ca-brand">오브제</span><span class="ca-prod">오일 컨트롤 피니셔</span><span class="tag badge-blocker">AI 데이터 공백</span></div>
@@ -512,7 +759,29 @@
           <div class="ca-col"><div class="ca-col-label">ChatGPT</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 풀리 노세범 젤리 파우더</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 이니스프리 노세범 미네랄 파우더</div></div>
         </div>
         <div class="ca-analysis"><div class="ca-analysis-lbl">분석</div><div class="ca-analysis-body">Gemini는 글로벌 럭셔리, ChatGPT는 타 브랜드(풀리 타 제품) 응답. <strong>오브제는 양쪽 AI 모두에서 미노출 — 6개 브랜드 중 공백 가장 큼.</strong></div></div>
-        <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">PDP 피니셔 키워드 강화 + 외부 블로그·리뷰 콘텐츠 생성</span></div>
+        <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">PDP 피니셔 키워드 강화 — 4채널 외부 신호 확보 필요</span></div>
+        <div class="ca-ch-list">
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">뷰티 플랫폼</span>
+            <span class="ca-ch-detail">파우더룸·화해 피니셔 카테고리 등재 + 지속력 리뷰 누적</span>
+            <span class="ca-ch-platform">powderm.co.kr · hwahae.com · chicor.com</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">YouTube</span>
+            <span class="ca-ch-detail">메이크업 유튜버 협찬 — 세팅 파우더 vs 피니셔 포지션 비교 리뷰</span>
+            <span class="ca-ch-platform">youtube.com — 메이크업 피니셔 / 유분 잡는 파우더</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">전문 미디어</span>
+            <span class="ca-ch-detail">엘르·코스모폴리탄 메이크업 피니셔 특집 기고 / 편집자 픽</span>
+            <span class="ca-ch-platform">elle.co.kr · cosmopolitan.co.kr · marieclaire.co.kr</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">외부 리뷰</span>
+            <span class="ca-ch-detail">뷰티 블로거 체험단 + 메이크업 커뮤니티 리뷰 생성</span>
+            <span class="ca-ch-platform">blog.naver.com · tistory.com · powderm.co.kr</span>
+          </div>
+        </div>
       </div>
       <div class="ca-card">
         <div class="ca-head"><span class="ca-brand">푸드올로지</span><span class="ca-prod">콜레올로지 컷 다이어트 유산균</span><span class="tag badge-blocker">BNR17 확인 필요</span></div>
@@ -525,27 +794,49 @@
         <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">BNR17 포함 여부 확인 → 포함 시 FAQ 명시 / 미포함 시 자체 차별 성분 키워드 세팅</span></div>
       </div>
       <div class="ca-card">
-        <div class="ca-head"><span class="ca-brand">95PROBLEM</span><span class="ca-prod">발란스핏 EMS 슬림 벨트 PRO</span><span class="tag badge-done">AI 인식 완료</span></div>
+        <div class="ca-head"><span class="ca-brand">95PROBLEM</span><span class="ca-prod">발란스핏 EMS 슬림 벨트 PRO</span><span class="tag badge-active">카테고리 1위</span></div>
         <div class="ca-query-row"><span class="ca-qlbl">AI 질의</span><em>"EMS 슬림 벨트 추천해줘"</em></div>
         <div class="ca-cols">
           <div class="ca-col"><div class="ca-col-label">Gemini</div><div class="ca-rank-item ca-rank-self"><span class="ca-rank-n">1.</span> 95PROBLEM 발란스핏 EMS 슬림 벨트 PRO ✓</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 핫서클 EMS 원적외선 온열 슬림벨트 V2</div></div>
           <div class="ca-col"><div class="ca-col-label">ChatGPT</div><div class="ca-rank-item ca-rank-self"><span class="ca-rank-n">1.</span> 95PROBLEM 발란스핏 EMS 슬림 벨트 PRO ✓</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 핫서클 EMS 슬림벨트 V2</div></div>
         </div>
-        <div class="ca-analysis"><div class="ca-analysis-lbl">분석</div><div class="ca-analysis-body"><strong>Gemini·ChatGPT 양쪽 1위 인식 완료.</strong><br>2순위로 핫서클 EMS 슬림벨트 V2 계열이 노출 — 경쟁 제품으로 모니터링 필요.</div></div>
-        <div class="ca-action"><span class="ca-action-lbl">다음</span><span class="ca-action-txt">3단계 — 실제 고객 질문 기반 테스트로 진행. 핫서클 노출 요인 모니터링 병행 권장.</span></div>
+        <div class="ca-analysis"><div class="ca-analysis-lbl">분석</div><div class="ca-analysis-body"><strong>카테고리 쿼리에서 Gemini·ChatGPT 양쪽 1위.</strong> 단, USP 감산 테스트(실측)에서 Gemini·ChatGPT 모두 0% — AI가 USP 텍스트로는 브랜드를 연결하지 못함.<br><strong style="color:var(--amber);">현재 1위는 USP 최적화 효과가 아닌 누적 브랜드 인지도 기반.</strong> 경쟁사 진입 시 순위가 밀릴 수 있음.</div></div>
+        <div class="ca-action"><span class="ca-action-lbl">다음</span><span class="ca-action-txt">USP 텍스트 → 브랜드 연결 강화 (FAQ·스키마에 브랜드명 + USP 명시적 결합). 핫서클 노출 요인 모니터링 병행.</span></div>
       </div>
       <div class="ca-card">
         <div class="ca-head"><span class="ca-brand">에이페</span><span class="ca-prod">스칼프 부스팅 앰플</span><span class="tag badge-blocker">보완 필요</span></div>
-        <div class="ca-query-row"><span class="ca-qlbl">AI 질의</span><em>"두피 앰플 추천해줘"</em></div>
+        <div class="ca-query-row"><span class="ca-qlbl">AI 질의</span><em>"두피 앰플 추천해줘. 탈모 예방에 효과 있는 거"</em></div>
         <div class="ca-cols">
-          <div class="ca-col"><div class="ca-col-label">Gemini</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 라보에이치 두피 앰플 토닉</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 려 루트젠 두피 에센스</div></div>
-          <div class="ca-col"><div class="ca-col-label">ChatGPT</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 라보에이치 앰플 토닉</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 솔랩 두피 앰플</div></div>
+          <div class="ca-col"><div class="ca-col-label">Gemini</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 랩핑스/닥터포헤어 폴리젠 토닉</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 려 자양윤모 두피 에센스</div><div class="ca-rank-item" style="color:var(--red);font-size:12px;"><span class="ca-rank-n">—</span> 에이페·라보에이치 모두 미노출</div></div>
+          <div class="ca-col"><div class="ca-col-label">ChatGPT</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 라보에이치 앰플토닉</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 라보에이치 헤어라인 앰플</div><div class="ca-rank-item" style="color:var(--red);font-size:12px;"><span class="ca-rank-n">—</span> 에이페 미노출</div></div>
         </div>
-        <div class="ca-analysis"><div class="ca-analysis-lbl">분석</div><div class="ca-analysis-body">양쪽 모두 <strong>라보에이치 1위 고착화.</strong> 아모레퍼시픽 계열로 브랜드 인지도 높음 + 탈모증상완화 기능성 인증 + 특허 성분(스칼프베리어 218™) 보유 — AI 신뢰도 요인 3중 확보 상태.</div></div>
-        <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">에이페 차별 성분·기전 FAQ 명시, 기능성 인증 여부 확인, 외부 언급(블로그·커뮤니티) 확대</span></div>
+        <div class="ca-analysis"><div class="ca-analysis-lbl">분석</div><div class="ca-analysis-body">Gemini는 에이페는 물론 <strong>라보에이치도 미노출</strong> — 뷰티미디어·전문플랫폼에서 더 자주 다뤄지는 브랜드들을 추천. ChatGPT는 라보에이치 1·2위. 에이페는 직접 질문 시 상세 응답 가능하나 <strong>카테고리 추천에서는 양쪽 모두 미선택.</strong></div></div>
+        <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">외부 채널 신호 없이는 카테고리 진입 불가 — 4채널 동시 가동 필요</span></div>
+        <div class="ca-ch-list">
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">뷰티 플랫폼</span>
+            <span class="ca-ch-detail">글로우픽·화해 두피 앰플 카테고리 등재 + 탈모케어 키워드 리뷰 누적</span>
+            <span class="ca-ch-platform">glowpick.com · hwahae.com — 두피/탈모케어 카테고리</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">YouTube</span>
+            <span class="ca-ch-detail">두피케어·탈모 전문 유튜버 협찬 리뷰 (의학·성분 채널 우선)</span>
+            <span class="ca-ch-platform">youtube.com — 두피 앰플 / 탈모 예방 / 스칼프케어</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">전문 미디어</span>
+            <span class="ca-ch-detail">얼루어·뷰티누리 두피 솔루션 기고 / 탈모케어 성분 특집 피처</span>
+            <span class="ca-ch-platform">allure.co.kr · beautynury.com · cosinkorea.com</span>
+          </div>
+          <div class="ca-ch-item">
+            <span class="ca-ch-cat">외부 리뷰</span>
+            <span class="ca-ch-detail">탈모 전문 네이버 카페 체험단 + 파워블로거 장기 사용 후기</span>
+            <span class="ca-ch-platform">cafe.naver.com (탈모114·헤어라인) · blog.naver.com</span>
+          </div>
+        </div>
       </div>
       <div class="ca-card">
-        <div class="ca-head"><span class="ca-brand">닥터데이알</span><span class="ca-prod">딥나잇 멜라시럽</span><span class="tag badge-active">카테고리 선점 기회</span></div>
+        <div class="ca-head"><span class="ca-brand">닥터데이알</span><span class="ca-prod">딥나잇 멜라시럽</span><span class="tag badge-active">선점 가능</span></div>
         <div class="ca-query-row"><span class="ca-qlbl">AI 질의</span><em>"수면 영양제 추천해줘"</em></div>
         <div class="ca-cols">
           <div class="ca-col"><div class="ca-col-label">Gemini</div><div class="ca-rank-item"><span class="ca-rank-n">1.</span> 뉴트원 식물성 멜라토닌</div><div class="ca-rank-item"><span class="ca-rank-n">2.</span> 락티브 멜라드림</div></div>
@@ -719,16 +1010,16 @@
           <div class="tg-head">
             <span class="tg-label">홍콩</span>
             <span class="tg-sub">Shopline 2.0</span>
-            <span class="tg-count">0 / 5</span>
+            <span class="tg-count">1 / 5</span>
           </div>
-          <div class="td-item is-wait">
-            <div class="td-dot dot-wait"></div>
-            <div class="td-text now">앱사 개발팀 회신 대기 — PDP .js 삽입 + H1/H2 SEO 점검 범위로 문의 전달 완료</div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">앱사 개발팀 회신 완료 — .js 삽입 가능 (결제 SDK 미수정 조건), 충돌 시 자체 유지보수 필요</div>
+          </div>
+          <div class="td-item is-now">
+            <div class="td-dot dot-now"></div>
+            <div class="td-text now">기존 스크립트 충돌 여부 확인 후 schema-patch.js 배포 및 상품 세팅 착수</div>
             <div class="td-now">현재</div>
-          </div>
-          <div class="td-item">
-            <div class="td-dot dot-todo"></div>
-            <div class="td-text">회신 후 schema-patch.js 배포 및 상품 세팅 착수</div>
           </div>
           <div class="td-sep">AI 검증</div>
           <div class="td-item">
@@ -750,7 +1041,7 @@
   </div>
 
   <!-- ── 진행 현황 탭 ── -->
-  <div class="panel active" id="panel-matrix">
+  <div class="panel" id="panel-matrix">
     <div class="matrix-wrap" id="matrixTable">
       <div class="state-msg"><div class="spinner"></div><div>데이터 로딩 중...</div></div>
     </div>
@@ -1091,7 +1382,7 @@ function renderOverview(progress){
         <div class="country-info"><div class="country-name">${c.name}</div><div class="country-platform">${c.platform}</div></div>
         <div style="text-align:right">
           <div class="country-pct" style="color:${c.color}">${c.pct}%</div>
-          <div style="font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:2px">${c.total}개 상품</div>
+          <div style="font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:2px">${c.total}개 상품</div>
         </div>
       </div>
       <div class="progress-outer"><div class="progress-inner" style="width:${c.pct}%;background:${c.color}"></div></div>
@@ -1136,8 +1427,8 @@ function renderBrandMatrix(progress){
       bItems.forEach((item,idx)=>{
         const stepCells=item.steps.slice(0,2).map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
         const devCells=(item.devSteps||[]).map(s=>`<td><span class="${s==='done'?'cell-done':'cell-none'}">${s==='done'?'✓':'·'}</span></td>`).join('');
-        const linkCell=item.link?`<a href="${stripUtm(item.link)}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:11px">↗</a>`:'';
-        const num=`<span style="font-size:11px;color:var(--text3);font-family:var(--mono);margin-right:5px">${idx+1}.</span>`;
+        const linkCell=item.link?`<a href="${stripUtm(item.link)}" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:12px">↗</a>`:'';
+        const num=`<span style="font-size:12px;color:var(--text3);font-family:var(--mono);margin-right:5px">${idx+1}.</span>`;
         rows+=`<tr><td class="task-col" style="max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px">${num}${item.product} ${linkCell}</td>${devCells}${stepCells}</tr>`;
       });
     });
@@ -1865,7 +2156,7 @@ function renderUspBrand(brand){
         </div>`;
       });
 
-      const uspList=activeUsps.map((u,i)=>`<div style="font-size:11px;color:var(--text3);margin-top:2px;padding-left:1px">· ${u}</div>`).join('');
+      const uspList=activeUsps.map((u,i)=>`<div style="font-size:12px;color:var(--text3);margin-top:3px;padding-left:1px;line-height:1.6;">· ${u}</div>`).join('');
 
       rows+=`<div class="usp-row">
         <div>
@@ -1880,7 +2171,7 @@ function renderUspBrand(brand){
           <div style="margin-top:6px">${uspList}</div>
         </div>
         <div>
-          <div style="font-size:10px;color:var(--text3);margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase">${p.brand} 언급 여부</div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:6px;letter-spacing:0.04em;text-transform:uppercase">${p.brand} 언급 여부</div>
           ${aiRows}
         </div>
       </div>`;
@@ -1893,7 +2184,7 @@ function renderUspBrand(brand){
         <span class="usp-cat">${p.category} · USP ${n}개</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin:10px 0;padding:0 20px">
-        <span style="font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0">ChatGPT 링크</span>
+        <span style="font-size:12px;color:var(--text3);white-space:nowrap;flex-shrink:0">ChatGPT 링크</span>
         <input type="url" class="usp-url-inp" id="puurl-${pid}" value="${prodUrlSafe}" placeholder="ChatGPT 응답 링크 (상품 공통)" style="flex:1;min-width:0" onchange="uspSetProdUrl('${pid}',this.value)" oninput="(function(el){var lb=document.getElementById('pulb-${pid}');lb.href=el.value;lb.style.display=el.value?'flex':'none';})(this)">
         <a href="${prodUrlSafe}" target="_blank" rel="noopener" class="usp-link-btn" id="pulb-${pid}" style="display:${prodUrl?'flex':'none'};flex-shrink:0" title="링크 열기">↗</a>
       </div>
@@ -1911,7 +2202,7 @@ function initUspPanel(){
   const brands=[...new Set(USP_PRODUCTS.map(p=>p.brand))];
   let brandTabs=brands.map(b=>{
     const cnt=USP_PRODUCTS.filter(p=>p.brand===b).length;
-    return `<button class="usp-btab" data-brand="${b}" onclick="renderUspBrand('${b}')">${b} <span style="font-size:11px;opacity:0.7">${cnt}</span></button>`;
+    return `<button class="usp-btab" data-brand="${b}" onclick="renderUspBrand('${b}')">${b} <span style="font-size:12px;opacity:0.7">${cnt}</span></button>`;
   }).join('');
 
   let totalItems=0,doneItems=0,yesItems=0;
@@ -1992,7 +2283,7 @@ function renderUspAnalysis(){
      g:['라보에이치 두피 앰플 토닉','려 루트젠 두피 에센스'],gSelf:[],
      c:['라보에이치 앰플 토닉','솔랩 두피 앰플'],cSelf:[],
      note:'<strong>분석:</strong> 양쪽 라보에이치 1위. 아모레퍼시픽 계열·탈모증상완화 기능성 인증·특허(스칼프베리어 218™) 보유. <strong>보완:</strong> 차별 성분 FAQ 명시, 기능성 인증 여부 확인, 외부 언급 확대.'},
-    {brand:'닥터데이알',prod:'딥나잇 멜라시럽',badge:'badge-active',badgeText:'카테고리 선점 기회',
+    {brand:'닥터데이알',prod:'딥나잇 멜라시럽',badge:'badge-active',badgeText:'선점 가능',
      query:'"수면 영양제 추천해줘"',
      g:['뉴트원 식물성 멜라토닌','락티브 멜라드림'],gSelf:[],
      c:['휴럼 리얼슬립','에스더몰 수면건강 락티움 플러스'],cSelf:[],
@@ -2077,7 +2368,7 @@ function renderAnalysis(){
     const ais=USP_AIS.map(ai=>`<td style="text-align:center">${hmCell(r.ai[ai].yes,r.ai[ai].total)}</td>`).join('');
     return `<tr>
       <td><span class="hm-brand-badge">${r.brand}</span><span class="hm-prod-name">${r.name}</span></td>
-      <td style="text-align:center;color:var(--text3);font-size:11px">USP ${r.steps}개</td>
+      <td style="text-align:center;color:var(--text3);font-size:12px">USP ${r.steps}개</td>
       ${ais}
     </tr>`;
   }).join('');
