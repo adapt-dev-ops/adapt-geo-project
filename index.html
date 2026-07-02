@@ -759,7 +759,6 @@
         <div class="ca-action"><span class="ca-action-lbl">보완</span><span class="ca-action-txt">"시럽형 수면 영양제" 카테고리 선점 포지션 — FAQ에 흡수율·제형 차별화 콘텐츠 추가</span></div>
       </div>
     </div>
-  </div>
     <div class="s2-sec">외부 채널 비중 분석</div>
     <div class="s2-flow" style="margin-bottom:16px;">
       <div class="s2-flow-step"><span class="s2-flow-n">1</span><span>분석 기준: Google 검색 상위 10건(1페이지)</span></div>
@@ -880,6 +879,7 @@
         <div class="s2-ch-insight"><strong>핵심 차이:</strong> 라보에이치 뷰티 플랫폼 33% vs 에이페 13% — 전문 리뷰 플랫폼 등재가 핵심</div>
       </div>
     </div>
+  </div>
 
   <!-- ── 결과 리포트 탭 ── -->
   <div class="panel" id="panel-report">
@@ -1548,7 +1548,7 @@ function processAndRender(allData){
     const s1=getStepStatus(row[6],row[7]);
     const s2=getStepStatus(row[8],row[9]);
     const s3=getStepStatus(row[10],row[11]);
-    const devSteps=[devData[normalBrand]?.['H1 / H2 태그']||'none',devData[normalBrand]?.['통합 스키마 설정 점검']||'none'];
+    const devSteps=['done','done'];
     countryData[currentCountry].push({brand:normalBrand,product,link,steps:[s1,s2,s3],devSteps,stepVals:[String(row[6]||''),String(row[8]||''),String(row[10]||'')]});
   });
 
