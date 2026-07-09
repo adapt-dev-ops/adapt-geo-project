@@ -1,0 +1,600 @@
+<title>GEO 검증 로그</title>
+<meta name="description" content="국내 브랜드 AI 검색 노출 최적화 검증 단계별 방법·결과 기록">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080C14;
+    --surface: #0F1624;
+    --surface2: #1A2235;
+    --border: #253047;
+    --accent: #4493F8;
+    --accent-dim: rgba(68,147,248,.12);
+    --success: #39C98A;
+    --success-dim: rgba(57,201,138,.12);
+    --warn: #E3A84A;
+    --warn-dim: rgba(227,168,74,.12);
+    --danger: #FF6B6B;
+    --text: #D4DCF0;
+    --muted: #5A6A8A;
+    --label: #8A9ABB;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 40px 24px 80px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── 헤더 ── */
+  .log-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  .log-eyebrow {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .log-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .log-meta {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .log-meta span { display: flex; align-items: center; gap: 5px; }
+
+  /* ── 단계 카드 ── */
+  .step {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 48px;
+  }
+  .step::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid var(--border);
+  }
+  .step.done::before { background: var(--success); border-color: var(--success); }
+  .step.active::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); }
+  .step::after {
+    content: '';
+    position: absolute;
+    left: 3px; top: 20px; bottom: -40px;
+    width: 1px;
+    background: var(--border);
+  }
+  .step:last-child::after { display: none; }
+
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .step-badge {
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .badge-done { background: var(--success-dim); color: var(--success); }
+  .badge-active { background: var(--accent-dim); color: var(--accent); }
+  .badge-next { background: var(--surface2); color: var(--muted); }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .step-date { font-size: 11px; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .purpose {
+    font-size: 12px;
+    color: var(--label);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .purpose strong { color: var(--text); }
+
+  /* ── 테이블 ── */
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+  td {
+    padding: 9px 10px;
+    border-bottom: 1px solid rgba(37,48,71,.5);
+    color: var(--text);
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+
+  /* ── 상태 뱃지 ── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pill-success { background: var(--success-dim); color: var(--success); }
+  .pill-warn { background: var(--warn-dim); color: var(--warn); }
+  .pill-muted { background: var(--surface2); color: var(--muted); }
+  .pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+  /* ── 채널 바 ── */
+  .channel-list { display: flex; flex-direction: column; gap: 7px; }
+  .channel-row { display: flex; align-items: center; gap: 10px; }
+  .channel-name { font-size: 12px; color: var(--label); width: 100px; flex-shrink: 0; }
+  .channel-bar-wrap { flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+  .channel-bar { height: 100%; border-radius: 3px; background: var(--accent); }
+  .channel-bar.warn { background: var(--warn); }
+  .channel-bar.success { background: var(--success); }
+  .channel-count { font-size: 11px; color: var(--muted); width: 18px; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ── 브랜드 결과 ── */
+  .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .brand-grid { grid-template-columns: 1fr; } }
+
+  .brand-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .brand-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .brand-query { font-size: 11px; color: var(--muted); margin-bottom: 12px; line-height: 1.4; }
+  .brand-mentions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .mention-label { font-size: 10px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* ── 인사이트 블록 ── */
+  .insights { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .insight {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--label);
+    line-height: 1.5;
+  }
+  .insight-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .insight strong { color: var(--text); }
+
+  /* ── 다음 단계 ── */
+  .next-list { display: flex; flex-direction: column; gap: 8px; }
+  .next-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    background: var(--surface2);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--label);
+  }
+  .next-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-radius: 3px;
+    padding: 1px 6px;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .next-item strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+  /* ── 구분 ── */
+  .section-gap { margin-top: 20px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  .note {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    border-left: 3px solid var(--warn);
+    padding: 8px 12px;
+    border-radius: 0 4px 4px 0;
+    margin-top: 12px;
+  }
+</style>
+
+<div class="log-header">
+  <div class="log-eyebrow">GEO · Generative Engine Optimization</div>
+  <div class="log-title">국내 AI 검색 노출 검증 로그</div>
+  <div class="log-meta">
+    <span>마지막 업데이트 2026-07-06</span>
+    <span>담당 김도근</span>
+    <span>대상 풀리 · 오브제 · 푸드올로지 · 에이페 · 95P · 닥터데이알</span>
+  </div>
+</div>
+
+<!-- ── Step 1 ── -->
+<div class="step done">
+  <div class="step-head">
+    <span class="step-badge badge-done">완료</span>
+    <span class="step-title">검증 1단계 — USP 감산 테스트</span>
+    <span class="step-date">2026-06-23 ~ 26</span>
+  </div>
+  <div class="card">
+    <div class="purpose">
+      <strong>목적:</strong> USP를 단계별로 줄이며 AI가 자사 제품을 인식하는 최소 정보량 확인
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>브랜드</th>
+            <th>대상 상품</th>
+            <th>ChatGPT</th>
+            <th>Claude</th>
+            <th>Gemini</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>풀리</td>
+            <td>쌀 세라 수분 선크림 외 4종</td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-warn">낮음</span></td>
+          </tr>
+          <tr>
+            <td>오브제</td>
+            <td>오일 컨트롤 피니셔 외 2종</td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-warn">낮음</span></td>
+          </tr>
+          <tr>
+            <td>푸드올로지</td>
+            <td>콜레올로지 컷 외 4종</td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-warn">낮음</span></td>
+          </tr>
+          <tr>
+            <td>에이페</td>
+            <td>스칼프 부스팅 앰플</td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-warn">낮음</span></td>
+          </tr>
+          <tr>
+            <td>95P</td>
+            <td>발란스핏 EMS 슬림 벨트 PRO</td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-warn">낮음</span></td>
+          </tr>
+          <tr>
+            <td>닥터데이알</td>
+            <td>딥나잇 멜라시럽</td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-success">인식</span></td>
+            <td><span class="pill pill-warn">낮음</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insights section-gap">
+      <div class="insight"><div class="insight-dot"></div><div>ChatGPT / Claude 대비 <strong>Gemini 인식률이 전반적으로 낮음</strong> — USP 나열만으로는 Gemini 개선 한계 확인</div></div>
+      <div class="insight"><div class="insight-dot"></div><div>제품명 직접 질문 시 응답 가능한 수준의 학습은 완료되어 있음 — 그러나 이것이 카테고리 추천으로 이어지지는 않음</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Step 2 ── -->
+<div class="step done">
+  <div class="step-head">
+    <span class="step-badge badge-done">완료</span>
+    <span class="step-title">검증 2단계 — 카테고리 질문 AI 추천 여부</span>
+    <span class="step-date">2026-06-30</span>
+  </div>
+  <div class="card">
+    <div class="purpose">
+      <strong>목적:</strong> 실제 고객 질문 기준으로 자사 제품이 AI에 추천되는지 확인. 브랜드별 대표 상품 1개, ChatGPT·Gemini 동일 질문 진행.
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>브랜드</th>
+            <th>카테고리 질문</th>
+            <th>ChatGPT</th>
+            <th>Gemini</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>풀리</td>
+            <td style="color:var(--muted);">"쌀 선크림 추천해줘. 수분감 있고 백탁 없는 거로"</td>
+            <td><span class="pill pill-warn">3순위</span></td>
+            <td><span class="pill pill-muted">미노출</span></td>
+          </tr>
+          <tr>
+            <td>오브제</td>
+            <td style="color:var(--muted);">"메이크업 유분 잡는 피니셔 추천해줘"</td>
+            <td><span class="pill pill-muted">미노출</span></td>
+            <td><span class="pill pill-muted">미노출</span></td>
+          </tr>
+          <tr>
+            <td>푸드올로지</td>
+            <td style="color:var(--muted);">"다이어트에 좋은 유산균 제품 추천해줘"</td>
+            <td><span class="pill pill-muted">미노출</span></td>
+            <td><span class="pill pill-muted">미노출</span></td>
+          </tr>
+          <tr>
+            <td>95P</td>
+            <td style="color:var(--muted);">"EMS 슬림 벨트 추천해줘"</td>
+            <td><span class="pill pill-success">1순위</span></td>
+            <td><span class="pill pill-success">1순위</span></td>
+          </tr>
+          <tr>
+            <td>에이페</td>
+            <td style="color:var(--muted);">"두피 앰플 추천해줘. 탈모 예방에 효과 있는 거"</td>
+            <td><span class="pill pill-muted">미노출</span></td>
+            <td><span class="pill pill-muted">미노출</span></td>
+          </tr>
+          <tr>
+            <td>닥터데이알</td>
+            <td style="color:var(--muted);">"수면 영양제 추천해줘"</td>
+            <td><span class="pill pill-muted">미노출</span></td>
+            <td><span class="pill pill-muted">미노출</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insights section-gap">
+      <div class="insight"><div class="insight-dot"></div><div><strong>6개 중 4개 미노출</strong> — 제품 인식(1단계)과 카테고리 추천은 별개임을 확인</div></div>
+      <div class="insight"><div class="insight-dot"></div><div>95P가 양쪽 1순위인 이유: EMS 슬림 벨트 카테고리에서 <strong>외부 콘텐츠 언급 맥락이 자사 제품과 긴밀하게 연결</strong>됨</div></div>
+      <div class="insight"><div class="insight-dot"></div><div>자사몰 내부 최적화(스키마·FAQ·USP)만으로는 카테고리 추천 진입에 한계 — <strong>외부 생태계 신호 부재가 핵심 문제</strong></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Step 3 ── -->
+<div class="step done">
+  <div class="step-head">
+    <span class="step-badge badge-done">완료</span>
+    <span class="step-title">채널 갭 분석 v1 — 상품명 직접 검색</span>
+    <span class="step-date">2026-07-03</span>
+  </div>
+  <div class="card">
+    <div class="purpose">
+      <strong>목적:</strong> 자사 vs 타사 Google 검색 결과 채널 분포 비교 (상품명 직접 검색)<br>
+      <strong>방법:</strong> SerpAPI · Google KR · 상위 10건 · 채널 카테고리 분류
+    </div>
+    <hr class="divider">
+    <div class="brand-grid">
+      <div class="brand-card">
+        <div class="brand-name">풀리 vs 조선미녀</div>
+        <div class="brand-query">풀리 쌀 세라 수분 선크림 / 조선미녀 맑은 쌀 선크림</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">자사몰</div><div class="channel-bar-wrap"><div class="channel-bar warn" style="width:80%"></div></div><div class="channel-count">4</div></div>
+          <div class="channel-row"><div class="channel-name">뷰티 플랫폼</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:20%"></div></div><div class="channel-count">1</div></div>
+          <div class="channel-row"><div class="channel-name">YouTube</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:0%"></div></div><div class="channel-count" style="color:var(--danger)">0</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">자사몰 4건 과집중 · YouTube 부재</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-name">오브제 vs 메이크업포에버</div>
+        <div class="brand-query">오브제 오일 컨트롤 피니셔 / 메이크업포에버 HD SKIN 파우더</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">유통/쇼핑몰</div><div class="channel-bar-wrap"><div class="channel-bar warn" style="width:20%"></div></div><div class="channel-count">1</div></div>
+          <div class="channel-row"><div class="channel-name">네이버 블로그</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:20%"></div></div><div class="channel-count">1</div></div>
+          <div class="channel-row"><div class="channel-name">YouTube</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:0%"></div></div><div class="channel-count" style="color:var(--danger)">0</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">타사 유통 3건 · 블로그 2건 · YouTube 1건 대비 열세</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-name">푸드올로지 vs 비에날씬</div>
+        <div class="brand-query">푸드올로지 콜레올로지 컷 / 비에날씬 BNR17</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">자사몰</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:60%"></div></div><div class="channel-count">3</div></div>
+          <div class="channel-row"><div class="channel-name">유통/쇼핑몰</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:60%"></div></div><div class="channel-count">3</div></div>
+          <div class="channel-row"><div class="channel-name">YouTube</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:0%"></div></div><div class="channel-count" style="color:var(--danger)">0</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">타사 YouTube·면세 채널 있음 · 수치 유사하나 맥락 차이</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-name">에이페 vs 라보에이치</div>
+        <div class="brand-query">에이페 스칼프 부스팅 앰플 / 라보에이치 두피 앰플 토닉</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">뷰티 플랫폼</div><div class="channel-bar-wrap"><div class="channel-bar warn" style="width:40%"></div></div><div class="channel-count">2</div></div>
+          <div class="channel-row" style="opacity:.5;"><div class="channel-name">(타사)</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:80%"></div></div><div class="channel-count">4</div></div>
+          <div class="channel-row"><div class="channel-name">자사몰</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:20%"></div></div><div class="channel-count">1</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;"><strong style="color:var(--warn);">뷰티 플랫폼 2 vs 4</strong> — 가장 큰 갭. 화해·글로우픽 리뷰 수 차이</div>
+      </div>
+    </div>
+    <div class="note">방법론 한계: 상품명 직접 검색은 이미 인지된 소비자의 검색이라 카테고리 추천 최적화와 직결되지 않음 → v2에서 카테고리 쿼리로 전환</div>
+  </div>
+</div>
+
+<!-- ── Step 4 ── -->
+<div class="step active">
+  <div class="step-head">
+    <span class="step-badge badge-active">최신</span>
+    <span class="step-title">채널 갭 분석 v2 — 카테고리 쿼리 검색</span>
+    <span class="step-date">2026-07-06</span>
+  </div>
+  <div class="card">
+    <div class="purpose">
+      <strong>목적:</strong> 실제 고객이 AI에 입력하는 카테고리 질문으로 Google 검색 시 자사·타사 브랜드 언급 콘텐츠가 상위에 존재하는지 확인<br>
+      <strong>방법:</strong> SerpAPI · Google KR · 상위 10건 · 채널 분류 + 브랜드 언급 감지 (title+snippet)
+    </div>
+    <hr class="divider">
+    <div class="brand-grid">
+      <div class="brand-card">
+        <div class="brand-name">풀리</div>
+        <div class="brand-query">"쌀 선크림 추천 수분감 백탁 없는"</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">네이버 블로그</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:40%"></div></div><div class="channel-count">2</div></div>
+          <div class="channel-row"><div class="channel-name">YouTube</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:20%"></div></div><div class="channel-count">1</div></div>
+          <div class="channel-row"><div class="channel-name">SNS</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:20%"></div></div><div class="channel-count">1</div></div>
+        </div>
+        <div class="brand-mentions">
+          <div>
+            <div class="mention-label">자사(풀리) 언급</div>
+            <span class="pill pill-muted">0건</span>
+          </div>
+          <div>
+            <div class="mention-label">타사(조선미녀) 언급</div>
+            <span class="pill pill-warn">1건</span>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-name">오브제</div>
+        <div class="brand-query">"메이크업 유분 잡는 피니셔 추천"</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">SNS</div><div class="channel-bar-wrap"><div class="channel-bar warn" style="width:60%"></div></div><div class="channel-count">3</div></div>
+          <div class="channel-row"><div class="channel-name">YouTube</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:40%"></div></div><div class="channel-count">2</div></div>
+          <div class="channel-row"><div class="channel-name">네이버 블로그</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:40%"></div></div><div class="channel-count">2</div></div>
+        </div>
+        <div class="brand-mentions">
+          <div>
+            <div class="mention-label">자사(오브제) 언급</div>
+            <span class="pill pill-muted">0건</span>
+          </div>
+          <div>
+            <div class="mention-label">타사(메이크업포에버)</div>
+            <span class="pill pill-muted">0건</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--warn);margin-top:8px;">SNS+YouTube 지배 카테고리 — 인플루언서 콘텐츠가 핵심</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-name">푸드올로지</div>
+        <div class="brand-query">"다이어트 유산균 추천"</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">YouTube</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:40%"></div></div><div class="channel-count">2</div></div>
+          <div class="channel-row"><div class="channel-name">유통/쇼핑몰</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:40%"></div></div><div class="channel-count">2</div></div>
+          <div class="channel-row"><div class="channel-name">뷰티 플랫폼</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:40%"></div></div><div class="channel-count">2</div></div>
+        </div>
+        <div class="brand-mentions">
+          <div>
+            <div class="mention-label">자사(푸드올로지) 언급</div>
+            <span class="pill pill-muted">0건</span>
+          </div>
+          <div>
+            <div class="mention-label">타사(비에날씬) 언급</div>
+            <span class="pill pill-warn">2건 — 유통 큐레이션 리스트</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">SSG·가격비교 추천 리스트에 비에날씬 포함 → AI가 참조하는 소스</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-name">에이페</div>
+        <div class="brand-query">"두피 앰플 추천 탈모 예방"</div>
+        <div class="channel-list">
+          <div class="channel-row"><div class="channel-name">유통/쇼핑몰</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:40%"></div></div><div class="channel-count">2</div></div>
+          <div class="channel-row"><div class="channel-name">자사몰</div><div class="channel-bar-wrap"><div class="channel-bar" style="width:40%"></div></div><div class="channel-count">2</div></div>
+          <div class="channel-row"><div class="channel-name">YouTube</div><div class="channel-bar-wrap"><div class="channel-bar success" style="width:20%"></div></div><div class="channel-count">1</div></div>
+        </div>
+        <div class="brand-mentions">
+          <div>
+            <div class="mention-label">자사(에이페) 언급</div>
+            <span class="pill pill-warn">1건 — 쿠팡 카테고리</span>
+          </div>
+          <div>
+            <div class="mention-label">타사(라보에이치) 언급</div>
+            <span class="pill pill-warn">1건 — 같은 URL</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">쿠팡 카테고리 페이지에서 동시 노출 — 독립 언급 아님</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div style="font-size:12px;color:var(--label);margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase;">핵심 인사이트</div>
+    <div class="insights">
+      <div class="insight"><div class="insight-dot"></div><div><strong>전 브랜드 자사 독립 언급 0건</strong> — 카테고리 질문 검색 상위에 자사 브랜드를 직접 언급하는 리뷰·추천 콘텐츠가 없음</div></div>
+      <div class="insight"><div class="insight-dot"></div><div><strong>타사 노출 경로: 유통 큐레이션 리스트</strong> — 비에날씬은 SSG·가격비교 "추천 TOP10"에 포함. AI가 이런 리스트를 참조하는 것으로 추정</div></div>
+      <div class="insight"><div class="insight-dot"></div><div><strong>오브제 카테고리: SNS·YouTube 지배</strong> — 피니셔는 인플루언서 영상/릴스가 검색 상위를 점유. 블로그·스키마 최적화보다 크리에이터 콘텐츠가 우선</div></div>
+      <div class="insight"><div class="insight-dot"></div><div><strong>YouTube 전 브랜드 공통 부재</strong> — 카테고리 쿼리 결과에서 YouTube가 전 브랜드에 걸쳐 노출되나 자사 제품 언급 없음</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Next ── -->
+<div class="step">
+  <div class="step-head">
+    <span class="step-badge badge-next">예정</span>
+    <span class="step-title">다음 단계 — 외부 채널 보완 및 재측정</span>
+  </div>
+  <div class="card">
+    <div class="next-list">
+      <div class="next-item">
+        <span class="next-num">1</span>
+        <div><strong>유통 채널 큐레이션 리스트 진입</strong>각 브랜드 주요 카테고리 키워드로 SSG·올리브영·가격비교 기획전 등재 확인 및 신청. 비에날씬 노출 경로가 이쪽.</div>
+      </div>
+      <div class="next-item">
+        <span class="next-num">2</span>
+        <div><strong>에이페 — 뷰티 플랫폼 리뷰 수 강화</strong>화해·글로우픽 리뷰 캠페인. 라보에이치 대비 뷰티 플랫폼 노출 2건 vs 4건 갭 메우기.</div>
+      </div>
+      <div class="next-item">
+        <span class="next-num">3</span>
+        <div><strong>오브제 — 인플루언서 콘텐츠</strong>피니셔 카테고리는 SNS·YouTube 지배. 블로그 최적화보다 릴스·쇼츠 리뷰가 우선.</div>
+      </div>
+      <div class="next-item">
+        <span class="next-num">4</span>
+        <div><strong>보완 후 동일 쿼리 재측정</strong>보완 실행 4~6주 후 동일 카테고리 쿼리로 재실행 + AI 추천 결과 재확인.</div>
+      </div>
+    </div>
+  </div>
+</div>
