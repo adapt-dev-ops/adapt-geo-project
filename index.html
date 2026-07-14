@@ -740,6 +740,51 @@
       </div>
     </div>
 
+    <!-- 백링크 프로파일 비교 -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#0d9488;text-transform:uppercase;font-family:var(--mono)">백링크 프로파일</span>
+        <span style="flex:1;height:1px;background:var(--border);display:block"></span>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:20px;">Ahrefs 무료 체커 직접 조회 · 2026년 7월 기준</div>
+
+      <div style="background:rgba(13,148,136,0.07);border:1px solid rgba(13,148,136,0.22);border-radius:10px;padding:14px 18px;margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;color:#0d9488;margin-bottom:6px;">핵심 결론</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
+          오브제(DR 11)·다슈(DR 11) — DR 동일, dofollow 실효 참조 도메인도 유사(~40 vs ~58개).
+          그럼에도 AI 결과 역전: 다슈 1위, 오브제 미노출.
+          <strong>→ 백링크는 AI 추천의 직접 결정 요인이 아님.</strong>
+          고권위 링크 → 크롤러 수집 우선도 → AI 학습 포함 확률 증가라는 간접 경로만 존재.
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:500px;">
+          <thead>
+            <tr>
+              <th style="padding:8px 14px;text-align:left;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">지표</th>
+              <th style="padding:8px 14px;text-align:center;background:rgba(14,169,110,0.1);color:var(--green);font-weight:700;border-bottom:2px solid var(--border);">풀리 (자사)</th>
+              <th style="padding:8px 14px;text-align:center;background:rgba(167,139,250,0.1);color:#a78bfa;font-weight:700;border-bottom:2px solid var(--border);">라운드랩 (타사)</th>
+              <th style="padding:8px 14px;text-align:center;background:rgba(14,169,110,0.1);color:var(--green);font-weight:700;border-bottom:2px solid var(--border);">오브제 (자사)</th>
+              <th style="padding:8px 14px;text-align:center;background:rgba(245,166,35,0.1);color:#f5a623;font-weight:700;border-bottom:2px solid var(--border);">다슈 (타사)</th>
+            </tr>
+          </thead>
+          <tbody id="backlink-compare-tbody"></tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="padding:12px 16px;background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.15);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;">
+          <strong style="color:var(--red);display:block;margin-bottom:4px;">직접 연관 없음</strong>
+          AI는 링크 그래프 구조를 직접 학습하지 않음. 백링크 수치는 AI 추천 알고리즘의 입력 변수가 아님. PBN·스팸 링크 매입으로 DR을 높여도 GEO에 효과 없음.
+        </div>
+        <div style="padding:12px 16px;background:rgba(13,148,136,0.05);border:1px solid rgba(13,148,136,0.15);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;">
+          <strong style="color:#0d9488;display:block;margin-bottom:4px;">간접 연관 있음 (부산물)</strong>
+          수상·PR → 고권위 미디어 기사 → 자연 링크 누적 → 크롤러 수집 우선도 증가 → AI 학습 포함 확률 상승. 백링크는 외부 언급량 확대의 결과물.
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ── AI 유입 탭 ── -->
@@ -1332,7 +1377,7 @@ function renderMentionCompare2(){
 
 function renderPRCompare(){
   const rows = [
-    ['수상 이력',       '없음',  '올리브영 어워즈 선케어\n4년 연속 1위 (2021·22·24·25)', '없음',  '소비자만족지수 헤어\n11년 연속 1위 (2016~2026)'],
+    ['수상 이력',       '없음',  '올리브영 어워즈 선케어\n4년 연속 1위 (2022~2025)', '없음',  '소비자만족지수 헤어\n11년 연속 1위 (2016~2026)'],
     ['브랜드 역사',     '단기',  '—',                                                    '2021년 설립 (5년)',  '2001년 설립 (25년)'],
     ['주요 보도 매체',  '이지경제 (구글 기준)',  '패션비즈·ITBizNews\n시사매거진·국제뉴스 등',       '없음 (제품 특정 보도 없음)',  '씨스픈뉴스 (출시 보도 1건)'],
     ['확인된 기사 수',  '1건',  '8건+ 직접 확인\n(2021~2025 수상 시즌 외)',  '0건',  '1건'],
@@ -1385,13 +1430,45 @@ function renderKeywordAlign(){
   }).join('');
 }
 
+function renderBacklinkCompare(){
+  const rows = [
+    ['DR (도메인 신뢰도)', '9', '23', '11', '11'],
+    ['참조 도메인 수', '31', '379', '99', '342'],
+    ['백링크 수', '121', '2,800', '179', '443'],
+    ['dofollow 비율', '55%', '29%', '40%', '17%'],
+    ['dofollow 실효 참조 도메인', '~17개', '~110개', '~40개', '~58개'],
+    ['주요 링크 출처', '스팸/PBN 다수', 'iHerb·Wikipedia\n글로벌 뷰티미디어', 'Shopify KR\nYouTube·대만·일본', 'PBN 다수\nMarie Claire Korea'],
+    ['AI 노출 현황', '미노출', '1위 추천', '미노출', '1위 추천'],
+  ];
+  const tbody = document.getElementById('backlink-compare-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = rows.map((row,i)=>{
+    const bg = i%2===0?'var(--bg2)':'var(--bg3)';
+    const isAI = i===6;
+    const selfStyle = `padding:8px 14px;border-bottom:1px solid var(--border);background:${bg};text-align:center;color:var(--text2);white-space:pre-line;`;
+    const rivalStyle1 = `padding:8px 14px;border-bottom:1px solid var(--border);background:${bg};text-align:center;color:#a78bfa;font-weight:600;white-space:pre-line;`;
+    const rivalStyle2 = `padding:8px 14px;border-bottom:1px solid var(--border);background:${bg};text-align:center;color:#f5a623;font-weight:600;white-space:pre-line;`;
+    const selfAI = isAI ? `<span style="padding:2px 10px;border-radius:20px;background:rgba(220,38,38,0.1);color:var(--red);font-size:11px;font-weight:700;">미노출</span>` : row[1];
+    const rivalAI1 = isAI ? `<span style="padding:2px 10px;border-radius:20px;background:rgba(14,169,110,0.12);color:var(--green);font-size:11px;font-weight:700;">1위 추천</span>` : row[2];
+    const selfAI2 = isAI ? `<span style="padding:2px 10px;border-radius:20px;background:rgba(220,38,38,0.1);color:var(--red);font-size:11px;font-weight:700;">미노출</span>` : row[3];
+    const rivalAI2 = isAI ? `<span style="padding:2px 10px;border-radius:20px;background:rgba(14,169,110,0.12);color:var(--green);font-size:11px;font-weight:700;">1위 추천</span>` : row[4];
+    return `<tr>
+      <td style="padding:8px 14px;border-bottom:1px solid var(--border);background:${bg};color:var(--text2);font-weight:500;">${row[0]}</td>
+      <td style="${selfStyle}">${selfAI}</td>
+      <td style="${rivalStyle1}">${rivalAI1}</td>
+      <td style="${selfStyle}">${selfAI2}</td>
+      <td style="${rivalStyle2}">${rivalAI2}</td>
+    </tr>`;
+  }).join('');
+}
+
 function switchTab(name){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
   document.getElementById('panel-'+name).classList.add('active');
   if(name==='ai') loadAiTraffic();
-  if(name==='scan'){ loadBrandScan(); renderSchemaCompare(); renderMentionCompare(); renderMentionCompare2(); renderPRCompare(); renderKeywordAlign(); }
+  if(name==='scan'){ loadBrandScan(); renderSchemaCompare(); renderMentionCompare(); renderMentionCompare2(); renderPRCompare(); renderKeywordAlign(); renderBacklinkCompare(); }
   if(name==='matrix'||name==='overview') loadData();
 }
 
