@@ -228,6 +228,7 @@
   .gsc-dtab{padding:6px 14px;border-radius:7px;border:1px solid var(--border2);background:transparent;color:var(--text3);font-size:12px;cursor:pointer;}
   .gsc-dtab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -1623,16 +1624,23 @@ async function loadAiTraffic(start, end){
   if(tableWrap) tableWrap.innerHTML = loadingHtml;
   else panel.innerHTML = loadingHtml;
 
-  let url = SB_URL+'/rest/v1/geo_signals?select=ai_source,method,site,geo,page_url,created_at&order=created_at.desc&limit=2000';
-  if(start) url += '&created_at=gte.'+start+'T00:00:00%2B09:00';
-  if(end)   url += '&created_at=lte.'+end+'T23:59:59%2B09:00';
+  let baseUrl = SB_URL+'/rest/v1/geo_signals?select=ai_source,method,site,geo,page_url,created_at&order=created_at.desc';
+  if(start) baseUrl += '&created_at=gte.'+start+'T00:00:00%2B09:00';
+  if(end)   baseUrl += '&created_at=lte.'+end+'T23:59:59%2B09:00';
 
   try{
-    const res = await fetch(url, {headers:{'apikey':SB_KEY}});
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data = await res.json();
-    if(tableWrap) { aiData=data; aiPage=1; renderPageTable(); updateAiSummary(data); }
-    else renderAiTraffic(data);
+    const PAGE = 1000;
+    let all = [], offset = 0;
+    while(true){
+      const res = await fetch(baseUrl+'&limit='+PAGE+'&offset='+offset, {headers:{'apikey':SB_KEY}});
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const batch = await res.json();
+      all = all.concat(batch);
+      if(batch.length < PAGE) break;
+      offset += PAGE;
+    }
+    if(tableWrap) { aiData=all; aiPage=1; renderPageTable(); updateAiSummary(all); }
+    else renderAiTraffic(all);
   }catch(e){
     if(tableWrap) tableWrap.innerHTML=`<div class="state-msg"><div>⚠</div><div>${e.message}</div></div>`;
     else panel.innerHTML=`<div class="state-msg"><div style="font-size:24px">⚠</div><div>${e.message}</div></div>`;
@@ -1782,23 +1790,170 @@ function renderPageTable(){
     </div>`:''}`;
 }
 
+let _chartLine=null, _chartBar=null;
+
 function updateAiSummary(data){
-  const bySource={}, bySite={};
+  const bySource={}, bySite={}, byDate={};
+  const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
+  const GEO_FLAG={kr:'🇰🇷',us:'🇺🇸',tw:'🇹🇼',jp:'🇯🇵'};
   data.forEach(r=>{
     const s=normalizeSrc(r.ai_source)||'unknown'; bySource[s]=(bySource[s]||0)+1;
-    const t=r.site||'unknown';     bySite[t]=(bySite[t]||0)+1;
+    const t=r.site||'unknown'; bySite[t]=(bySite[t]||0)+1;
+    if(r.created_at){ const d=r.created_at.slice(0,10); byDate[d]=(byDate[d]||0)+1; }
   });
   const total=data.length;
   const sortedSrc=Object.entries(bySource).sort((a,b)=>b[1]-a[1]);
   const sortedSite=Object.entries(bySite).sort((a,b)=>b[1]-a[1]);
-  const topSiteName=sortedSite[0]?sortedSite[0][0].replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' '):'—';
-  const topSiteCnt=sortedSite[0]?sortedSite[0][1]:0;
+
+  // 최근 7일
+  const days=Array.from({length:7},(_,i)=>{
+    const d=new Date(); d.setDate(d.getDate()-6+i); return d.toISOString().slice(0,10);
+  });
+  const vals=days.map(d=>byDate[d]||0);
+
+  // 사이트 TOP 5
+  const siteList=sortedSite.slice(0,5).map(([site,cnt],i)=>{
+    const geoM=site.match(/-(kr|us|tw|jp)$/);
+    const flag=geoM?GEO_FLAG[geoM[1]]:'';
+    const name=site.replace(/-(kr|us|tw|jp)$/,'').replace(/-/g,' ');
+    const pct=Math.round(cnt/total*100);
+    return `<div style="padding:8px 0;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:11px;color:var(--text3);width:14px;text-align:right;font-family:var(--mono);flex-shrink:0">${i+1}</span>
+        <span style="font-size:14px;line-height:1;flex-shrink:0">${flag}</span>
+        <span style="flex:1;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${name}</span>
+        <span style="font-size:12px;color:var(--text3);font-family:var(--mono);flex-shrink:0">${cnt.toLocaleString()}건 &middot; ${pct}%</span>
+      </div>
+      <div style="height:3px;background:var(--border);border-radius:2px;margin-top:6px;margin-left:38px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:var(--accent);opacity:0.4;border-radius:2px"></div>
+      </div>
+    </div>`;
+  }).join('');
+
   const el=document.getElementById('ai-summary-cards');
   if(!el) return;
+
+  if(_chartLine){ _chartLine.destroy(); _chartLine=null; }
+  if(_chartBar){ _chartBar.destroy(); _chartBar=null; }
+
+  el.style.cssText='display:flex;flex-direction:column;gap:12px;margin-bottom:20px';
   el.innerHTML=`
-    <div class="metric"><div class="metric-label">총 AI 유입</div><div class="metric-val">${total}</div><div class="metric-sub">전체 수집 건수</div></div>
-    <div class="metric"><div class="metric-label">최다 에이전트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${sortedSrc[0]?sortedSrc[0][0]:'—'}</div><div class="metric-sub">${sortedSrc[0]?sortedSrc[0][1]+' 건':''}</div></div>
-    <div class="metric"><div class="metric-label">최다 유입 사이트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${topSiteName}</div><div class="metric-sub">${topSiteCnt?topSiteCnt+' 건':''}</div></div>`;
+    <div style="display:grid;grid-template-columns:minmax(140px,180px) 1fr;gap:12px;align-items:stretch">
+      <div class="metric" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="metric-label">총 AI 유입</div>
+        <div class="metric-val" style="margin-top:6px">${total.toLocaleString()}</div>
+        <div class="metric-sub" style="margin-top:8px">전체 수집 건수</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label" style="margin-bottom:14px">최근 7일 추이</div>
+        <div style="position:relative;height:100px">
+          <canvas id="ai-line-chart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="metric">
+        <div class="metric-label" style="margin-bottom:14px">에이전트 분포</div>
+        <div style="position:relative;height:200px">
+          <canvas id="ai-bar-chart"></canvas>
+        </div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">사이트 TOP 5</div>
+        <div style="margin-top:4px">${siteList||'<span style="color:var(--text3);font-size:13px">데이터 없음</span>'}</div>
+      </div>
+    </div>`;
+
+  // Line chart
+  const lineCtx=document.getElementById('ai-line-chart');
+  if(lineCtx){
+    const grad=lineCtx.getContext('2d').createLinearGradient(0,0,0,110);
+    grad.addColorStop(0,'rgba(91,79,255,0.22)');
+    grad.addColorStop(1,'rgba(91,79,255,0)');
+    _chartLine=new Chart(lineCtx,{
+      type:'line',
+      data:{
+        labels:days.map(d=>d.slice(5)),
+        datasets:[{
+          data:vals,
+          borderColor:'#5b4fff',
+          backgroundColor:grad,
+          borderWidth:2.5,
+          pointRadius:4,
+          pointHoverRadius:7,
+          pointBackgroundColor:'#5b4fff',
+          pointBorderColor:'#fff',
+          pointBorderWidth:2,
+          fill:true,
+          tension:0.4
+        }]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{display:false},
+          tooltip:{
+            backgroundColor:'rgba(20,20,30,0.85)',
+            titleColor:'#ccc',
+            bodyColor:'#fff',
+            padding:10,
+            cornerRadius:8,
+            callbacks:{
+              title:items=>`${items[0].label}`,
+              label:ctx=>`  ${ctx.parsed.y.toLocaleString()}건`
+            }
+          }
+        },
+        scales:{
+          x:{grid:{display:false},ticks:{color:'#888',font:{size:11}}},
+          y:{display:false,min:0,suggestedMax:Math.max(...vals)*1.15}
+        }
+      }
+    });
+  }
+
+  // Horizontal bar chart — 에이전트 분포
+  const barCtx=document.getElementById('ai-bar-chart');
+  if(barCtx&&sortedSrc.length){
+    const top=sortedSrc.slice(0,5);
+    _chartBar=new Chart(barCtx,{
+      type:'bar',
+      data:{
+        labels:top.map(([n])=>n),
+        datasets:[{
+          data:top.map(([,c])=>c),
+          backgroundColor:top.map(([n])=>SRC_COLOR[n]||'#9090aa'),
+          borderRadius:5,
+          borderSkipped:false
+        }]
+      },
+      options:{
+        indexAxis:'y',
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{display:false},
+          tooltip:{
+            backgroundColor:'rgba(20,20,30,0.85)',
+            titleColor:'#ccc',
+            bodyColor:'#fff',
+            padding:10,
+            cornerRadius:8,
+            callbacks:{
+              label:ctx=>`  ${ctx.parsed.x.toLocaleString()}건 (${Math.round(ctx.parsed.x/total*100)}%)`
+            }
+          }
+        },
+        scales:{
+          x:{display:false,min:0},
+          y:{grid:{display:false},ticks:{color:'#ccc',font:{size:12,weight:'500'}}}
+        }
+      }
+    });
+  }
 }
 
 function normalizeSrc(src){
@@ -1845,8 +2000,6 @@ function renderAiTraffic(data){
   const total=data.length;
   const sortedSrc=Object.entries(bySource).sort((a,b)=>b[1]-a[1]);
   const sortedSite=Object.entries(bySite).sort((a,b)=>b[1]-a[1]);
-  const topSiteName=sortedSite[0]?sortedSite[0][0].replace(/-kr$|-us$|-jp$|-tw$/,'').replace(/-/g,' '):'—';
-  const topSiteCnt=sortedSite[0]?sortedSite[0][1]:0;
   const sortedGeo=Object.entries(byGeo).sort((a,b)=>b[1]-a[1]);
   const maxSrc=sortedSrc[0]?sortedSrc[0][1]:1;
   const maxGeo=sortedGeo[0]?sortedGeo[0][1]:1;
@@ -1862,11 +2015,7 @@ function renderAiTraffic(data){
       <button onclick="fetchAiByDate()" style="padding:7px 18px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-size:13px;font-weight:600;cursor:pointer">조회</button>
     </div>
 
-    <div class="metrics" id="ai-summary-cards" style="margin-bottom:20px">
-      <div class="metric"><div class="metric-label">총 AI 유입</div><div class="metric-val">${total}</div></div>
-      <div class="metric"><div class="metric-label">최다 에이전트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${sortedSrc[0]?sortedSrc[0][0]:'—'}</div><div class="metric-sub">${sortedSrc[0]?sortedSrc[0][1]+' 건':''}</div></div>
-      <div class="metric"><div class="metric-label">최다 유입 사이트</div><div class="metric-val" style="font-size:20px;padding-top:4px">${topSiteName}</div><div class="metric-sub">${topSiteCnt?topSiteCnt+' 건':''}</div></div>
-    </div>
+    <div id="ai-summary-cards" style="margin-bottom:20px"></div>
 
     <div class="ai-chart-card" id="ai-page-card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
@@ -1879,6 +2028,7 @@ function renderAiTraffic(data){
       </div>
       <div id="ai-page-table-wrap" style="overflow-x:auto"></div>
     </div>`;
+  updateAiSummary(data);
   renderPageTable();
 }
 
