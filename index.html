@@ -267,8 +267,8 @@
     <button class="tab active" onclick="switchTab('matrix')">진행 현황</button>
     <button class="tab" onclick="switchTab('overview')">국가별 현황</button>
     <button class="tab" onclick="switchTab('ai')">AI 유입 현황</button>
-    <button class="tab" onclick="window.open('insight.html','_blank')">인사이트</button>
-    <button class="tab" onclick="window.open('geo.html','_blank')">컨퍼런스</button>
+    <button class="tab" onclick="window.open('insight.html','_blank')">인사이트 <svg style="width:10px;height:10px;vertical-align:middle;margin-left:2px" viewBox="0 0 12 12" fill="none" stroke="#7c6fff" stroke-width="1.8"><path d="M2 10 L10 2M5 2h5v5"/></svg></button>
+    <button class="tab" onclick="window.open('geo.html','_blank')">컨퍼런스 <svg style="width:10px;height:10px;vertical-align:middle;margin-left:2px" viewBox="0 0 12 12" fill="none" stroke="#7c6fff" stroke-width="1.8"><path d="M2 10 L10 2M5 2h5v5"/></svg></button>
     <!--<button class="tab" onclick="switchTab('geo')">GEO 점수</button>-->
   </div>
 
@@ -1778,7 +1778,7 @@ function updateAiSummary(data){
     <div class="metric">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;">
         <div class="metric-label">최근 7일 추이</div>
-        <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1">${total.toLocaleString()}<span style="font-size:11px;font-weight:400;color:var(--text3);margin-left:5px;">건 수집</span></div>
+        <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1">${vals.reduce((a,b)=>a+b,0).toLocaleString()}<span style="font-size:11px;font-weight:400;color:var(--text3);margin-left:5px;">건 / 7일</span></div>
       </div>
       <div style="position:relative;height:100px">
         <canvas id="ai-line-chart"></canvas>
