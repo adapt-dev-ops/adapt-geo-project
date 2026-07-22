@@ -1780,7 +1780,7 @@ function updateAiSummary(data){
         <div class="metric-label">최근 7일 추이</div>
         <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1">${vals.reduce((a,b)=>a+b,0).toLocaleString()}<span style="font-size:11px;font-weight:400;color:var(--text3);margin-left:5px;">건 / 7일</span></div>
       </div>
-      <div style="position:relative;height:100px">
+      <div style="position:relative;height:160px">
         <canvas id="ai-line-chart"></canvas>
       </div>
     </div>
@@ -1941,11 +1941,9 @@ function renderAiTraffic(data){
   const recent=data.slice(0,30);
 
   document.getElementById('panel-ai').innerHTML=`
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap">
-      <input id="ai-date-start" type="date" style="padding:7px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);color:var(--text);font-size:13px;">
-      <span style="color:var(--text3);font-size:13px">~</span>
-      <input id="ai-date-end" type="date" style="padding:7px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);color:var(--text);font-size:13px;">
-      <button onclick="fetchAiByDate()" style="padding:7px 18px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-size:13px;font-weight:600;cursor:pointer">조회</button>
+    <div style="display:none">
+      <input id="ai-date-start" type="date">
+      <input id="ai-date-end" type="date">
     </div>
 
     <div id="ai-summary-cards" style="margin-bottom:20px"></div>
