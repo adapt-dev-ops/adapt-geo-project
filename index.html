@@ -57,7 +57,7 @@
   .panel{display:none;}.panel.active{display:block;}
 
   /* COUNTRY GRID */
-  .country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+  .country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
   .country-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;}
   .country-card:hover{border-color:var(--border2);transform:translateY(-1px);}
   .country-header{padding:20px 20px 16px;display:flex;align-items:center;gap:12px;}
@@ -260,13 +260,15 @@
     <div class="metric"><span class="metric-flag">&#127482;&#127480;</span><div class="metric-sub" id="m-us-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-us">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127481;&#127484;</span><div class="metric-sub" id="m-tw-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-tw">&#8212;</div></div>
     <div class="metric"><span class="metric-flag">&#127471;&#127477;</span><div class="metric-sub" id="m-jp-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-jp">&#8212;</div></div>
+    <div class="metric"><span class="metric-flag">🇭🇰</span><div class="metric-sub" id="m-hk-sub" style="margin-bottom:6px">—</div><div class="metric-val" id="m-hk">&#8212;</div></div>
   </div>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('matrix')">진행 현황</button>
     <button class="tab" onclick="switchTab('overview')">국가별 현황</button>
     <button class="tab" onclick="switchTab('ai')">AI 유입 현황</button>
-    <button class="tab" onclick="switchTab('scan')">AI 노출 현황</button>
+    <button class="tab" onclick="window.open('insight.html','_blank')">인사이트</button>
+    <button class="tab" onclick="window.open('geo.html','_blank')">컨퍼런스</button>
     <!--<button class="tab" onclick="switchTab('geo')">GEO 점수</button>-->
   </div>
 
@@ -287,7 +289,7 @@
           <div class="tg-head">
             <span class="tg-label">국내</span>
             <span class="tg-sub"></span>
-            <span class="tg-count">2 / 4</span>
+            <span class="tg-count">3 / 4</span>
           </div>
           <div class="td-item is-done">
             <div class="td-dot dot-done"></div>
@@ -298,14 +300,14 @@
             <div class="td-dot dot-done"></div>
             <div class="td-text done">1단계 — USP 기준 테스트</div>
           </div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">2단계 — 브랜드별 대표 상품 AI 답변 내 타사 브랜드 확인 및 보완 방향 도출 완료 (6/30)</div>
+          </div>
           <div class="td-item is-now">
             <div class="td-dot dot-now"></div>
-            <div class="td-text now">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
-            <div class="td-now">현재</div>
-          </div>
-          <div class="td-item">
-            <div class="td-dot dot-todo"></div>
-            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+            <div class="td-text now">3단계 — 외부 채널 확장 (PR · 백링크 · 콘텐츠) 후 AI 노출 재검증</div>
+            <div class="td-now">다음</div>
           </div>
         </div>
 
@@ -314,15 +316,15 @@
           <div class="tg-head">
             <span class="tg-label">미국</span>
             <span class="tg-sub"></span>
-            <span class="tg-count">1 / 6</span>
+            <span class="tg-count">2 / 5</span>
           </div>
           <div class="td-item is-done">
             <div class="td-dot dot-done"></div>
-            <div class="td-text done">7개 상품 세팅 완료 — Schema-patch + AI 유입 추적 배포</div>
+            <div class="td-text done">13개 상품 세팅 완료 (풀리·푸드올로지·오브제·에이페) — USP/키워드 기입 완료 (7/3)</div>
           </div>
           <div class="td-item is-now">
             <div class="td-dot dot-now"></div>
-            <div class="td-text now">기존 7개 상품 — 국내 자사몰 기준 USP/FAQ 업데이트</div>
+            <div class="td-text now">FAQ 생성 및 시트 기입 진행 중 — 11개 상품 (데드라인 7/31)</div>
             <div class="td-now">현재</div>
           </div>
           <div class="td-item">
@@ -336,11 +338,11 @@
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
-            <div class="td-text">2단계 — 자사 미노출 상품 대상, AI 답변 내 타사 브랜드 확인 후 보완 방향 도출 (백링크 / 검색 노출 콘텐츠 / 외부 언급량 비교)</div>
+            <div class="td-text">2단계 — AI 답변 내 타사 브랜드 확인 후 보완 방향 도출</div>
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
-            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+            <div class="td-text">3단계 — 외부 채널 확장 (PR · 백링크 · 콘텐츠) 후 AI 노출 재검증</div>
           </div>
         </div>
 
@@ -349,24 +351,24 @@
           <div class="tg-head">
             <span class="tg-label">대만</span>
             <span class="tg-sub">Cafe24 (푸드올로지) · Shopline 1.0 (오브제/풀리/에이페)</span>
-            <span class="tg-count">2 / 7</span>
+            <span class="tg-count">2 / 6</span>
           </div>
           <div class="td-item is-done">
             <div class="td-dot dot-done"></div>
-            <div class="td-text done">6개 상품 세팅 완료 (푸드올로지)</div>
+            <div class="td-text done">세팅 1단계 완료 — Shopline 커스텀 불가 확인, 대안 전략(메타디스크립션) 수립 (7/3)</div>
           </div>
           <div class="td-item is-done">
             <div class="td-dot dot-done"></div>
-            <div class="td-text done">Shopline 커스텀 코드 불가 확인 → 대안 전략 제안 완료</div>
+            <div class="td-text done">USP/키워드 기입 완료 — 푸드 9개·풀리 6개·오브제 8개·에이페 2개 (7/3~7/8)</div>
           </div>
           <div class="td-item is-now">
             <div class="td-dot dot-now"></div>
-            <div class="td-text now">메타디스크립션 USP 기반 보강 · FAQ 콘텐츠 세팅 · 상품 설명 키워드 점검</div>
+            <div class="td-text now">FAQ·메타디스크립션 기입 진행 중 — 푸드 FAQ 시트 기입 대기(10개) · 풀리·에이페 메타디스크립션 진행(8개) · 오브제 대기(11개) (데드라인 7/31)</div>
             <div class="td-now">현재</div>
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
-            <div class="td-text">오브제/풀리/에이페 — Shopline 1.0 커스텀 코드 가능 여부 최종 확인 후 세팅</div>
+            <div class="td-text">전체 세팅 마무리 후 AI 검증 착수</div>
           </div>
           <div class="td-sep">AI 검증</div>
           <div class="td-item">
@@ -379,7 +381,7 @@
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
-            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+            <div class="td-text">3단계 — 외부 채널 확장 (PR · 백링크 · 콘텐츠) 후 AI 노출 재검증</div>
           </div>
         </div>
 
@@ -392,21 +394,16 @@
           </div>
           <div class="td-item is-done">
             <div class="td-dot dot-done"></div>
-            <div class="td-text done">8개 상품 세팅 완료 — schema-patch-jp.js 배포</div>
+            <div class="td-text done">세팅 1단계 완료 — 21개 상품 선정 및 USP/키워드 기입 완료 (푸드 5 · 오브제 6 · 에이페 2 · 풀리 5, 7/3)</div>
           </div>
           <div class="td-item is-now">
             <div class="td-dot dot-now"></div>
-            <div class="td-text now">구조화 점검 — 바이버튼 특성 고려, 브랜드 공식몰 명확화 (Organization schema 강화)</div>
-            <div class="td-now">현재</div>
-          </div>
-          <div class="td-item is-now">
-            <div class="td-dot dot-now"></div>
-            <div class="td-text now">FAQ 및 메타디스크립션 보완</div>
+            <div class="td-text now">FAQ 생성 및 시트 기입 대기 — 18개 상품 (데드라인 7/31)</div>
             <div class="td-now">현재</div>
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
-            <div class="td-text">점검 완료 후 매출순으로 상품 GEO 세팅 진행</div>
+            <div class="td-text">내추럴 커버 파운데이션 PRO 등 신규 상품 추가 세팅 예정</div>
           </div>
           <div class="td-sep">AI 검증</div>
           <div class="td-item">
@@ -419,7 +416,7 @@
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
-            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+            <div class="td-text">3단계 — 외부 채널 확장 (PR · 백링크 · 콘텐츠) 후 AI 노출 재검증</div>
           </div>
         </div>
 
@@ -428,16 +425,24 @@
           <div class="tg-head">
             <span class="tg-label">홍콩</span>
             <span class="tg-sub">Shopline 2.0</span>
-            <span class="tg-count">1 / 5</span>
+            <span class="tg-count">2 / 7</span>
           </div>
           <div class="td-item is-done">
             <div class="td-dot dot-done"></div>
-            <div class="td-text done">앱사 개발팀 회신 완료 — .js 삽입 가능 (결제 SDK 미수정 조건), 충돌 시 자체 유지보수 필요</div>
+            <div class="td-text done">세팅 1단계 완료 — JS 충돌 테스트 + 상품 선정 (7/6)</div>
+          </div>
+          <div class="td-item is-done">
+            <div class="td-dot dot-done"></div>
+            <div class="td-text done">풀리 2개 (그린토마토·쌀세라) USP/키워드 기입 + 라이브 FAQ 적용 완료 (7/6)</div>
           </div>
           <div class="td-item is-now">
             <div class="td-dot dot-now"></div>
-            <div class="td-text now">기존 스크립트 충돌 여부 확인 후 schema-patch.js 배포 및 상품 세팅 착수</div>
+            <div class="td-text now">나머지 23개 FAQ 생성 및 시트 기입 진행 중 — 푸드 11개·오브제 7개·95P 4개·에이페 1개 (데드라인 7/24)</div>
             <div class="td-now">현재</div>
+          </div>
+          <div class="td-item">
+            <div class="td-dot dot-todo"></div>
+            <div class="td-text">전체 상품 라이브 테마 FAQ 적용 및 메타태그 기입</div>
           </div>
           <div class="td-sep">AI 검증</div>
           <div class="td-item">
@@ -450,7 +455,7 @@
           </div>
           <div class="td-item">
             <div class="td-dot dot-todo"></div>
-            <div class="td-text">3단계 — 실제 고객 질문 기반 테스트</div>
+            <div class="td-text">3단계 — 외부 채널 확장 (PR · 백링크 · 콘텐츠) 후 AI 노출 재검증</div>
           </div>
         </div>
 
@@ -508,281 +513,209 @@
   <!-- ── 브랜드 스캔 탭 ── -->
   <div class="panel" id="panel-scan">
 
-    <!-- 테스트 개요 카드 -->
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px;">
+    <!-- ── MGS26 컨퍼런스 인사이트 ── -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:20px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--accent);text-transform:uppercase;font-family:var(--mono)">GEO 검증 2단계</span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text3);text-transform:uppercase;font-family:var(--mono)">MGS26 컨퍼런스</span>
         <span style="flex:1;height:1px;background:var(--border);display:block"></span>
-        <span style="font-size:11px;color:var(--text3);font-family:var(--mono)">AI 노출 현황 스캔</span>
+        <span style="font-size:11px;color:var(--text3);font-family:var(--mono)">AI는 어떤 브랜드를 인용하는가</span>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
-
-        <div style="background:var(--bg3);border-radius:12px;padding:16px 18px;">
-          <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px;">목적</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.75;">
-            자사 미노출 상품 대상으로 AI 답변에서 어떤 타사 브랜드가 추천되는지 파악. AI가 타사를 추천하는 이유를 역추적해 자사가 AI에 노출되기 위한 구체적 개선 액션을 도출한다. (GEO 검증 2단계)
-          </div>
+      <!-- 핵심 수치 -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+        <div style="background:var(--bg3);border-radius:12px;padding:18px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:var(--text);line-height:1">40%+</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:8px;line-height:1.5;">구글 1위 URL의 LLM 인용 확률</div>
         </div>
-
-        <div style="background:var(--bg3);border-radius:12px;padding:16px 18px;">
-          <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px;">테스트 방법</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.75;">
-            <span style="color:var(--text3);font-family:var(--mono);font-size:12px;">1.</span> 상품별 쿼리를 직접 ChatGPT · Gemini에 검색<br>
-            <span style="color:var(--text3);font-family:var(--mono);font-size:12px;">2.</span> 자사 노출 순위 + 1위 타사 브랜드명 기록<br>
-            <span style="color:var(--text3);font-family:var(--mono);font-size:12px;">3.</span> 구글 시트 <code style="font-size:11px;background:var(--bg4);padding:1px 5px;border-radius:4px;">[검증] AI 노출 현황</code>에 입력 → 상태를 완료로 변경
-          </div>
+        <div style="background:var(--bg3);border-radius:12px;padding:18px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:var(--text);line-height:1">상위 30개</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:8px;line-height:1.5;">관리만으로 전체 인용의 70% 커버</div>
         </div>
-
-        <div style="background:var(--bg3);border-radius:12px;padding:16px 18px;">
-          <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px;">테스트 이후</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.75;">
-            미노출 상품에서 타깃 타사 확보 →<br>
-            타사 외부 언급량 조사 (블로그 · 유튜브 · 커뮤니티) →<br>
-            AI가 타사를 추천하는 이유 역추적 →<br>
-            자사 노출을 위한 구체적 개선 액션 도출
-          </div>
+        <div style="background:var(--bg3);border-radius:12px;padding:18px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:var(--text);line-height:1">4개</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:8px;line-height:1.5;">GEO 핵심 영역 (세일즈·마케팅·PR·기술)</div>
         </div>
-
       </div>
-    </div>
-
-    <div id="scan-wrap" style="margin-bottom:24px;"><div class="state-msg"><div class="spinner"></div></div></div>
-
-    <!-- 타사 스키마 분석 결과 -->
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--green);text-transform:uppercase;font-family:var(--mono)">타사 스키마 분석</span>
-        <span style="flex:1;height:1px;background:var(--border);display:block"></span>
-      </div>
-      <div style="font-size:12px;color:var(--text3);margin-bottom:20px;">라운드랩 · 다슈 맨즈 상품 페이지 JSON-LD 직접 확인</div>
 
       <!-- 핵심 결론 -->
-      <div style="background:var(--green-bg);border:1px solid rgba(14,169,110,0.25);border-radius:10px;padding:14px 18px;margin-bottom:20px;">
-        <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px;">핵심 결론</div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
-          타사 2개 모두 스키마가 최소 수준 (FAQPage·Organization·HowTo 전무, description 비어있거나 해시태그 4개) 임에도 모든 AI에서 1위.
-          <strong>스키마는 AI 추천의 결정적 요인이 아님.</strong> 외부 언급량(블로그·유튜브·커뮤니티)이 핵심 변수.
+      <div style="border-left:3px solid var(--accent);padding:12px 16px;margin-bottom:20px;background:var(--bg3);border-radius:0 8px 8px 0;">
+        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">핵심 결론</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.75;">
+          구글 랭킹과 LLM 인용 확률의 강한 상관관계를 근거로 <strong style="color:var(--text)">"좋은 콘텐츠를 만드는 것이 곧 GEO"</strong>라는 결론 제시.
+          GEO는 SEO·마케팅·콘텐츠 운영이 총체적으로 결합된 활동이며, 단순히 "GEO 최적화"를 표방하는 서비스들은 14개 체크리스트의 한두 항목만 다루는 수준.
         </div>
       </div>
 
-      <!-- 비교 테이블 -->
-      <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px;">
-          <thead>
-            <tr>
-              <th style="padding:8px 14px;text-align:center;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);min-width:160px;">항목</th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#fff;font-weight:600;border-bottom:2px solid var(--border);">풀리 선크림<br><span style="font-size:10px;opacity:.7;">vs 라운드랩</span></th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#fff;font-weight:600;border-bottom:2px solid var(--border);">라운드랩<br><span style="font-size:10px;opacity:.7;">타사</span></th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#fff;font-weight:600;border-bottom:2px solid var(--border);">오브제 피니셔<br><span style="font-size:10px;opacity:.7;">vs 다슈</span></th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#fff;font-weight:600;border-bottom:2px solid var(--border);">다슈 맨즈<br><span style="font-size:10px;opacity:.7;">타사</span></th>
-            </tr>
-          </thead>
-          <tbody id="schema-compare-tbody"></tbody>
-        </table>
+      <!-- 4개 영역 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px;">GEO 4개 영역</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">① 세일즈토크 — 매출 직결</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">네이버 쇼핑·구글 GMC·챗GPT 쇼핑 대응. 진단 → 채널화 → 운영 → 모니터링</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">② 마케팅 — 콘텐츠 허브</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">자동 생성 시 고유 데이터(리뷰·실시간) 결합 필수. 리뷰 반영 전후 전환율 8~9배 차이.</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">③ PR · 커뮤니케이션</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">"이제 기자는 LLM이고, 발행은 프롬프트마다 일어난다." 위키·블로그·리뷰사이트 등 인용 출처를 직접 확보·관리.</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">④ 기술 · 오퍼레이션</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">자체 체크리스트 14개 항목 3개 카테고리. 크롤링 접근성 / 인용 최적화 / 신뢰성 시그널</div>
+        </div>
       </div>
-      <div style="margin-top:12px;font-size:11px;color:var(--text3);">자사 O = 초록 · 타사 O = 주황 (우리보다 못함) · X = 빨강</div>
     </div>
 
-    <!-- 외부 언급량 비교 그리드 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
-
-      <!-- 풀리 vs 라운드랩 -->
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#a78bfa;text-transform:uppercase;font-family:var(--mono)">외부 언급량 비교</span>
-          <span style="flex:1;height:1px;background:var(--border);display:block"></span>
-        </div>
-        <div style="font-size:12px;color:var(--text3);margin-bottom:20px;">풀리 쌀 세라 수분 선크림 vs 라운드랩 자작나무 수분 선크림</div>
-        <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.25);border-radius:10px;padding:14px 18px;margin-bottom:20px;">
-          <div style="font-size:12px;font-weight:700;color:#a78bfa;margin-bottom:6px;">핵심 결론</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.7;">
-            풀리 제품 만족도(무신사 4.9점)는 높지만 <strong>자발적 UGC 볼륨이 거의 없다.</strong>
-            화해 리뷰 29,231개·올리브영 48,061건인 라운드랩과 모든 채널에서 격차가 압도적.
-            AI는 스키마가 아닌 <strong>웹상의 언급 빈도</strong>를 기반으로 추천하므로, 외부 콘텐츠 확보가 최우선 과제.
-          </div>
-        </div>
-        <div style="overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:12px;">
-            <thead>
-              <tr>
-                <th style="padding:8px 10px;text-align:center;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">플랫폼</th>
-                <th style="padding:8px 10px;text-align:center;background:rgba(14,169,110,0.12);color:var(--green);font-weight:700;border-bottom:2px solid var(--border);">풀리 (자사)</th>
-                <th style="padding:8px 10px;text-align:center;background:rgba(167,139,250,0.1);color:#a78bfa;font-weight:700;border-bottom:2px solid var(--border);">라운드랩 (타사)</th>
-                <th style="padding:8px 10px;text-align:center;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">판정</th>
-              </tr>
-            </thead>
-            <tbody id="mention-compare-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- 오브제 vs 다슈 -->
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#f5a623;text-transform:uppercase;font-family:var(--mono)">외부 언급량 비교</span>
-          <span style="flex:1;height:1px;background:var(--border);display:block"></span>
-        </div>
-        <div style="font-size:12px;color:var(--text3);margin-bottom:20px;">오브제 오일 컨트롤 피니셔 vs 다슈 맨즈 오일컷 노세범 파우더</div>
-        <div style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.25);border-radius:10px;padding:14px 18px;margin-bottom:20px;">
-          <div style="font-size:12px;font-weight:700;color:#f5a623;margin-bottom:6px;">핵심 결론</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.7;">
-            오브제는 올리브영 1위·무신사 821개로 <strong>제품 성과는 다슈를 앞서지만 AI에선 미노출.</strong>
-            다슈는 <strong>11년 연속 소비자만족지수 1위</strong>로 쌓인 누적 언급량이 AI에 이미 박혀있음.
-            제품 성과가 아닌 <strong>브랜드 누적 언급량</strong>이 AI 추천을 결정한다는 사실이 재확인됨.
-          </div>
-        </div>
-        <div style="overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:12px;">
-            <thead>
-              <tr>
-                <th style="padding:8px 10px;text-align:center;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">플랫폼</th>
-                <th style="padding:8px 10px;text-align:center;background:rgba(14,169,110,0.12);color:var(--green);font-weight:700;border-bottom:2px solid var(--border);">오브제 (자사)</th>
-                <th style="padding:8px 10px;text-align:center;background:rgba(245,166,35,0.1);color:#f5a623;font-weight:700;border-bottom:2px solid var(--border);">다슈 (타사)</th>
-                <th style="padding:8px 10px;text-align:center;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">판정</th>
-              </tr>
-            </thead>
-            <tbody id="mention-compare-2-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- PR·기사 비교 -->
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#e879f9;text-transform:uppercase;font-family:var(--mono)">PR · 기사 비교</span>
+    <!-- AI 인용 최적화 콘텐츠 원칙 -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:20px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text3);text-transform:uppercase;font-family:var(--mono)">AI 인용 최적화 콘텐츠 원칙</span>
         <span style="flex:1;height:1px;background:var(--border);display:block"></span>
       </div>
-      <div style="font-size:12px;color:var(--text3);margin-bottom:16px;">수상 이력 · 누적 기사 · 브랜드 역사 비교 — 고권위 뉴스 텍스트가 AI 학습 데이터의 핵심 신호</div>
-      <div style="background:rgba(232,121,249,0.07);border:1px solid rgba(232,121,249,0.2);border-radius:10px;padding:14px 18px;margin-bottom:20px;">
-        <div style="font-size:12px;font-weight:700;color:#e879f9;margin-bottom:6px;">핵심 결론</div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
-          라운드랩·다슈가 AI에서 1위인 구조: <strong>수상 → 수상 기사(고권위) → 블로그 반응(중권위) → 커뮤니티(중권위) → AI 학습 반복.</strong>
-          자사는 이 사이클 자체가 없다. 블로그·유튜브보다 뉴스 기사 권위가 높기 때문에 어워즈 수상 전략이 최우선.
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;">
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">① 결론을 문서 상단에</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6;">AI는 위에서 아래로 읽음. 앞부분에 답이 없으면 이탈.</div>
         </div>
-      </div>
-      <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px;">
-          <thead>
-            <tr>
-              <th style="padding:8px 14px;text-align:left;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);min-width:140px;">항목</th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#fff;font-weight:600;border-bottom:2px solid var(--border);">풀리 선크림<br><span style="font-size:10px;opacity:.7;">자사</span></th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#e879f9;font-weight:600;border-bottom:2px solid var(--border);">라운드랩<br><span style="font-size:10px;opacity:.5;color:#fff;">타사</span></th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#fff;font-weight:600;border-bottom:2px solid var(--border);">오브제 피니셔<br><span style="font-size:10px;opacity:.7;">자사</span></th>
-              <th style="padding:8px 14px;text-align:center;background:#1b2438;color:#f5a623;font-weight:600;border-bottom:2px solid var(--border);">다슈<br><span style="font-size:10px;opacity:.5;color:#fff;">타사</span></th>
-            </tr>
-          </thead>
-          <tbody id="pr-compare-tbody"></tbody>
-        </table>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">② 고유 데이터 활용</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6;">자사 리뷰·실시간 데이터 결합 필수. AI가 AI 콘텐츠를 재소비하는 루프 탈출.</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">③ 구체적 페르소나</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6;">예산·라이프스타일까지 구체화된 페르소나 대상으로 작성.</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">④ 엔티티 명시</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6;">단정적 언어·Q&A 형식·브랜드명·수치를 명확히 기재.</div>
+        </div>
       </div>
     </div>
 
-    <!-- 키워드 정합성 -->
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--blue);text-transform:uppercase;font-family:var(--mono)">키워드 정합성 분석</span>
+    <!-- ── 2단계 검증 인사이트 ── -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:20px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text3);text-transform:uppercase;font-family:var(--mono)">GEO 2단계 검증 테스트</span>
         <span style="flex:1;height:1px;background:var(--border);display:block"></span>
+        <span style="font-size:11px;color:var(--text3);font-family:var(--mono)">ChatGPT · Gemini · Perplexity 직접 검색</span>
       </div>
-      <div style="font-size:12px;color:var(--text3);margin-bottom:16px;">AI 추천을 위한 키워드 3각 정합: 쿼리 키워드 ↔ 자사몰 USP ↔ 외부 콘텐츠 반복</div>
 
-      <!-- 개념 시각화 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <div style="background:var(--red-bg);border:1px solid rgba(220,38,38,0.2);border-radius:10px;padding:16px 18px;">
-          <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:10px;letter-spacing:0.04em;">✕ 자사 현재 — 연결 끊김</div>
+      <!-- 핵심 결론 배너 -->
+      <div style="border-left:3px solid var(--accent);padding:12px 16px;margin-bottom:20px;background:var(--bg3);border-radius:0 8px 8px 0;">
+        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">핵심 결론</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.75;">
+          스키마·백링크는 AI 추천의 직접 결정 요인이 아님. <strong style="color:var(--text)">외부 언급량(블로그·유튜브·커뮤니티)과 브랜드 누적 언급 이력이 AI 추천을 결정한다.</strong>
+          자사가 AI에 등장하려면 제품 개선이 아닌 <strong style="color:var(--text)">외부 콘텐츠 볼륨 확보</strong>가 최우선 과제.
+        </div>
+      </div>
+
+      <!-- 검증 대상 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px;">검증 대상</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--text2);">풀리 UV365 선크림</span>
+        <span style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--text2);">풀리 세럼 2종 SET</span>
+        <span style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--text2);">에이페 세럼</span>
+        <span style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--text2);">95P EMS PRO</span>
+        <span style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--text2);">오브제 오일컨트롤 피니셔</span>
+        <span style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--text2);">푸드올로지</span>
+      </div>
+
+      <!-- 핵심 발견 4가지 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px;">핵심 발견</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">① 스키마 ≠ AI 추천 결정요인</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">타사(라운드랩·다슈) 스키마는 FAQPage·Organization·HowTo 전무, description도 해시태그 4개 수준. 그럼에도 모든 AI에서 1위 추천.</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);">→ 스키마 최적화는 AI 노출의 직접 해법이 아님</div>
+        </div>
+
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">② 외부 언급량 격차가 핵심</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">풀리 vs 라운드랩 — 화해 리뷰 454개 vs 29,231개, 유튜브 구독자 0 vs 127K. AI는 웹상의 언급 빈도 기반으로 추천.</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);">→ 자발적 UGC 볼륨 확보가 최우선 과제</div>
+        </div>
+
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">③ 제품 성과 ≠ AI 추천</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">오브제는 올리브영 1위·무신사 821개지만 AI에서 미노출. 다슈는 11년 연속 소비자만족지수 1위로 쌓인 누적 언급량이 AI에 학습됨.</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);">→ 브랜드 누적 언급량이 AI 추천을 결정</div>
+        </div>
+
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;">④ PR 사이클 부재</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;">타사: 수상 → 수상 기사(고권위) → 블로그 반응 → 커뮤니티 → AI 학습 사이클이 반복. 자사는 이 사이클 자체가 없음.</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);">→ 어워즈 수상 → PR 기사 확보가 출발점</div>
+        </div>
+
+      </div>
+
+      <!-- 키워드 정합성 & 백링크 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px;">키워드 3각 정합</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">
+            <div style="background:var(--bg2);border-radius:6px;padding:9px 12px;font-size:12px;color:var(--text3);">
+              <span style="color:var(--red);font-weight:700;">✕</span> <strong style="color:var(--text2);">자사</strong> — AI 쿼리 ↔ 외부 콘텐츠 매칭 없음. 연결 끊김.
+            </div>
+            <div style="background:var(--bg2);border-radius:6px;padding:9px 12px;font-size:12px;color:var(--text3);">
+              <span style="color:var(--green);font-weight:700;">✓</span> <strong style="color:var(--text2);">타사(라운드랩)</strong> — 쿼리·USP·외부 콘텐츠 수백 곳 공출현 → AI 1위.
+            </div>
+          </div>
+          <div style="font-size:11px;color:var(--text3);line-height:1.6;padding-top:8px;border-top:1px solid var(--border);">
+            <strong style="color:var(--text2);">실행 원칙:</strong> PR·체험단 작성 시 쿼리 키워드를 본문에 포함. "촉촉한 선크림"이 아닌 "건조한 피부에 촉촉한 선크림 풀리 쌀 세라"
+          </div>
+        </div>
+
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px;">백링크 인사이트</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.7;margin-bottom:10px;">오브제(DR 11) · 다슈(DR 11) — DR 동일인데도 AI 결과 역전: 다슈 1위, 오브제 미노출.</div>
           <div style="display:flex;flex-direction:column;gap:6px;">
-            <div style="background:var(--bg3);border-radius:6px;padding:7px 12px;font-size:12px;color:var(--text2);">
-              <span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px;">AI 쿼리</span>
-              "건조한 피부·촉촉한 선크림·수분감"
+            <div style="background:var(--bg2);border-radius:6px;padding:9px 12px;font-size:12px;color:var(--text3);">
+              <span style="color:var(--red);font-weight:700;">✕</span> 백링크·DR은 AI 추천의 직접 요인 아님. PBN 효과 없음.
             </div>
-            <div style="text-align:center;font-size:16px;color:var(--red);">↕ 매칭 없음</div>
-            <div style="background:var(--bg3);border-radius:6px;padding:7px 12px;font-size:12px;color:var(--text2);">
-              <span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px;">외부 콘텐츠 (기사·블로그)</span>
-              풀리 언급 거의 없음
+            <div style="background:var(--bg2);border-radius:6px;padding:9px 12px;font-size:12px;color:var(--text3);">
+              <span style="color:var(--green);font-weight:700;">✓</span> 수상·PR → 고권위 기사 → 자연 링크 누적 → AI 학습 포함 확률 상승. (간접 연관)
             </div>
           </div>
-          <div style="margin-top:10px;font-size:11px;color:var(--red);line-height:1.6;">→ AI가 쿼리와 풀리를 연결하는<br>학습 데이터가 없음</div>
         </div>
-        <div style="background:var(--green-bg);border:1px solid rgba(14,169,110,0.2);border-radius:10px;padding:16px 18px;">
-          <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:10px;letter-spacing:0.04em;">✓ 라운드랩 — 3각 정합</div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <div style="background:var(--bg3);border-radius:6px;padding:7px 12px;font-size:12px;color:var(--text2);">
-              <span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px;">AI 쿼리</span>
-              "건조한 피부·촉촉한 선크림·수분감"
-            </div>
-            <div style="text-align:center;font-size:16px;color:var(--green);">↕ 수백 곳에서 공출현</div>
-            <div style="background:var(--bg3);border-radius:6px;padding:7px 12px;font-size:12px;color:var(--text2);">
-              <span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px;">외부 콘텐츠 (기사·블로그·커뮤니티)</span>
-              "건조한 피부 자작나무 수분 선크림 추천"
-            </div>
-          </div>
-          <div style="margin-top:10px;font-size:11px;color:var(--green);line-height:1.6;">→ AI가 쿼리-라운드랩 연결을<br>반복 학습 → 1위 추천</div>
-        </div>
+
       </div>
 
-      <!-- 상품별 키워드 정합 테이블 -->
-      <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:640px;">
-          <thead>
-            <tr>
-              <th style="padding:8px 14px;text-align:left;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">상품</th>
-              <th style="padding:8px 14px;text-align:left;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">검증 쿼리 핵심 키워드</th>
-              <th style="padding:8px 14px;text-align:left;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">자사몰 USP 키워드</th>
-              <th style="padding:8px 14px;text-align:center;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">외부 콘텐츠 반복</th>
-              <th style="padding:8px 14px;text-align:center;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">AI 연결</th>
-            </tr>
-          </thead>
-          <tbody id="keyword-align-tbody"></tbody>
-        </table>
-      </div>
-      <div style="margin-top:12px;padding:12px 16px;background:var(--blue-bg);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;">
-        <strong style="color:var(--blue);">실행 원칙:</strong> 체험단·PR 기사·보도자료 작성 시 검증 쿼리의 핵심 키워드를 본문에 포함. 예시 — <span style="color:var(--text3);">"촉촉한 선크림"</span>이 아닌 <span style="color:var(--blue);font-weight:600;">"건조한 피부에 촉촉한 선크림 풀리 쌀 세라 수분 선크림"</span>으로 작성.
-      </div>
-    </div>
+      <!-- 액션 아이템 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px;">액션 아이템 (To Do)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
 
-    <!-- 백링크 프로파일 비교 -->
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#0d9488;text-transform:uppercase;font-family:var(--mono)">백링크 프로파일</span>
-        <span style="flex:1;height:1px;background:var(--border);display:block"></span>
-      </div>
-      <div style="font-size:12px;color:var(--text3);margin-bottom:20px;">Ahrefs 무료 체커 직접 조회 · 2026년 7월 기준</div>
-
-      <div style="background:rgba(13,148,136,0.07);border:1px solid rgba(13,148,136,0.22);border-radius:10px;padding:14px 18px;margin-bottom:20px;">
-        <div style="font-size:12px;font-weight:700;color:#0d9488;margin-bottom:6px;">핵심 결론</div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
-          오브제(DR 11)·다슈(DR 11) — DR 동일, dofollow 실효 참조 도메인도 유사(~40 vs ~58개).
-          그럼에도 AI 결과 역전: 다슈 1위, 오브제 미노출.
-          <strong>→ 백링크는 AI 추천의 직접 결정 요인이 아님.</strong>
-          고권위 링크 → 크롤러 수집 우선도 → AI 학습 포함 확률 증가라는 간접 경로만 존재.
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;">콘텐츠</div>
+          <ul style="margin:0;padding-left:16px;font-size:12px;color:var(--text3);line-height:1.9;">
+            <li>FAQ 콘텐츠 보강</li>
+            <li>쿼리 키워드를 USP 본문에 포함</li>
+            <li>결론·수치를 페이지 상단에 배치</li>
+          </ul>
         </div>
-      </div>
 
-      <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:500px;">
-          <thead>
-            <tr>
-              <th style="padding:8px 14px;text-align:left;background:var(--bg3);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border);">지표</th>
-              <th style="padding:8px 14px;text-align:center;background:rgba(14,169,110,0.1);color:var(--green);font-weight:700;border-bottom:2px solid var(--border);">풀리 (자사)</th>
-              <th style="padding:8px 14px;text-align:center;background:rgba(167,139,250,0.1);color:#a78bfa;font-weight:700;border-bottom:2px solid var(--border);">라운드랩 (타사)</th>
-              <th style="padding:8px 14px;text-align:center;background:rgba(14,169,110,0.1);color:var(--green);font-weight:700;border-bottom:2px solid var(--border);">오브제 (자사)</th>
-              <th style="padding:8px 14px;text-align:center;background:rgba(245,166,35,0.1);color:#f5a623;font-weight:700;border-bottom:2px solid var(--border);">다슈 (타사)</th>
-            </tr>
-          </thead>
-          <tbody id="backlink-compare-tbody"></tbody>
-        </table>
-      </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;">PR · 외부 언급</div>
+          <ul style="margin:0;padding-left:16px;font-size:12px;color:var(--text3);line-height:1.9;">
+            <li>어워즈 수상 → 뉴스 기사 확보 (최우선)</li>
+            <li>블로그·SNS 체험단 시딩</li>
+            <li>위키·커뮤니티 브랜드 언급 확보</li>
+          </ul>
+        </div>
 
-      <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-        <div style="padding:12px 16px;background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.15);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;">
-          <strong style="color:var(--red);display:block;margin-bottom:4px;">직접 연관 없음</strong>
-          AI는 링크 그래프 구조를 직접 학습하지 않음. 백링크 수치는 AI 추천 알고리즘의 입력 변수가 아님. PBN·스팸 링크 매입으로 DR을 높여도 GEO에 효과 없음.
+        <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;">기술 · 오퍼레이션</div>
+          <ul style="margin:0;padding-left:16px;font-size:12px;color:var(--text3);line-height:1.9;">
+            <li>자사몰 USP ↔ 외부 키워드 정합</li>
+            <li>AI 크롤링 가능한 페이지 구조 확인</li>
+            <li>3개 AI 주기적 모니터링</li>
+          </ul>
         </div>
-        <div style="padding:12px 16px;background:rgba(13,148,136,0.05);border:1px solid rgba(13,148,136,0.15);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;">
-          <strong style="color:#0d9488;display:block;margin-bottom:4px;">간접 연관 있음 (부산물)</strong>
-          수상·PR → 고권위 미디어 기사 → 자연 링크 누적 → 크롤러 수집 우선도 증가 → AI 학습 포함 확률 상승. 백링크는 외부 언급량 확대의 결과물.
-        </div>
+
       </div>
     </div>
 
@@ -805,14 +738,16 @@ const BRANDS = ['풀리','푸드올로지','95P','오브제','8APM','에이페',
 const COUNTRIES = [
   {name:'국내', flag:'🇰🇷', platform:'카페24', color:'#0ea96e', metricId:'m-kr'},
   {name:'미국', flag:'🇺🇸', platform:'쇼피파이', color:'#a78bfa', metricId:'m-us'},
-  {name:'대만', flag:'🇹🇼', platform:'카페24', color:'#60a5fa', metricId:'m-tw'},
-  {name:'일본', flag:'🇯🇵', platform:'카페24', color:'#f5a623', metricId:'m-jp'},
+  {name:'대만', flag:'🇹🇼', platform:'숍라인', color:'#60a5fa', metricId:'m-tw'},
+  {name:'일본', flag:'🇯🇵', platform:'쇼피파이', color:'#f5a623', metricId:'m-jp'},
+  {name:'홍콩', flag:'🇭🇰', platform:'쇼피파이', color:'#fb7185', metricId:'m-hk'},
 ];
 const COUNTRY_BRANDS = {
   '국내': ['풀리','푸드올로지','95P','오브제','8APM','에이페','듀오렉신'],
   '미국': ['풀리','푸드올로지','에이페','오브제'],
   '대만': ['풀리','푸드올로지','오브제','에이페'],
-  '일본': ['오브제','푸드올로지'],
+  '일본': ['오브제','푸드올로지','에이페','풀리'],
+  '홍콩': ['풀리','푸드올로지','오브제','95P','에이페'],
 };
 const TASKS_DEV = [
   {n:'1',name:'H1 / H2 태그',detail:'상품 페이지의 제목 계층 구조를 정의. 검색엔진·AI 모두가 콘텐츠 구조를 파악하는 핵심 요소.',party:'dev'},
@@ -978,7 +913,7 @@ function parseDevSheet(allData){
 function processAndRender(allData){
   const brandSheet=allData['GEO 진행 상황']||allData['브랜드별 진행 상황']||[];
   const devData=parseDevSheet(allData);
-  const countryData={국내:[],대만:[],일본:[],미국:[]};
+  const countryData={국내:[],대만:[],일본:[],미국:[],홍콩:[]};
   let currentCountry=null;
   brandSheet.forEach(row=>{
     const col0=String(row[0]||'').trim();
@@ -986,6 +921,7 @@ function processAndRender(allData){
     if(col0.includes('(대만)')){currentCountry='대만';return;}
     if(col0.includes('(일본)')){currentCountry='일본';return;}
     if(col0.includes('(미국)')){currentCountry='미국';return;}
+    if(col0.includes('(홍콩)')){currentCountry='홍콩';return;}
     if(col0==='브랜드'||!col0||!currentCountry)return;
     const product=String(row[1]||'').trim();
     const link=String(row[2]||'').trim();
@@ -1009,8 +945,8 @@ function processAndRender(allData){
       total++;
       if(!brandStats[item.brand])brandStats[item.brand]={done:0,partial:0,total:0};
       brandStats[item.brand].total++;
-      // 완료 기준: STEP2 메타태그(index 1)까지 done
-      const isCompleted = item.steps[1]==='done';
+      // 완료 기준: STEP1(FAQ/정보고시) AND STEP2(메타태그) 모두 done
+      const isCompleted = item.steps[0]==='done' && item.steps[1]==='done';
       const isPartial   = !isCompleted && item.steps[0]==='done';
       if(isCompleted){done++;brandStats[item.brand].done++;}
       else if(isPartial){partial+=0.5;brandStats[item.brand].partial+=0.5;}
@@ -1074,7 +1010,7 @@ function renderOverview(progress){
     BRANDS.forEach(b=>{
       const bi=items.filter(i=>i.brand===b);
       const total=bi.length;
-      const done=bi.filter(i=>i.steps[1]==='done').length;
+      const done=bi.filter(i=>i.steps[0]==='done'&&i.steps[1]==='done').length;
       brandDone[b]={done,total};
     });
     const cBrands=COUNTRY_BRANDS[c.name]||BRANDS;
@@ -1469,7 +1405,6 @@ function switchTab(name){
   document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
   document.getElementById('panel-'+name).classList.add('active');
   if(name==='ai') loadAiTraffic();
-  if(name==='scan'){ loadBrandScan(); renderSchemaCompare(); renderMentionCompare(); renderMentionCompare2(); renderPRCompare(); renderKeywordAlign(); renderBacklinkCompare(); }
   if(name==='matrix'||name==='overview') loadData();
 }
 
@@ -1694,7 +1629,7 @@ function renderRecentTable(){
   const wrap = document.getElementById('ai-recent-table-wrap');
   if(!wrap) return;
   const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
-  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
+  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본',hk:'홍콩'};
   const LINK_SVG=`<svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M7 2H10V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M5 3H2.5C2.22 3 2 3.22 2 3.5V9.5C2 9.78 2.22 10 2.5 10H8.5C8.78 10 9 9.78 9 9.5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 
   let rows = [...aiData];
@@ -1739,7 +1674,7 @@ function setAiPage(n){
 
 function buildPageRows(data){
   const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
-  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
+  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본',hk:'홍콩'};
   const map={};
   data.forEach(r=>{
     const label=cleanPageUrl(r.page_url);
@@ -1795,7 +1730,7 @@ let _chartLine=null, _chartBar=null;
 function updateAiSummary(data){
   const bySource={}, bySite={}, byDate={};
   const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
-  const GEO_FLAG={kr:'🇰🇷',us:'🇺🇸',tw:'🇹🇼',jp:'🇯🇵'};
+  const GEO_FLAG={kr:'🇰🇷',us:'🇺🇸',tw:'🇹🇼',jp:'🇯🇵',hk:'🇭🇰'};
   data.forEach(r=>{
     const s=normalizeSrc(r.ai_source)||'unknown'; bySource[s]=(bySource[s]||0)+1;
     const t=r.site||'unknown'; bySite[t]=(bySite[t]||0)+1;
@@ -1812,12 +1747,14 @@ function updateAiSummary(data){
   const vals=days.map(d=>byDate[d]||0);
 
   // 사이트 TOP 5
-  const siteList=sortedSite.slice(0,5).map(([site,cnt],i)=>{
-    const geoM=site.match(/-(kr|us|tw|jp)$/);
+  const _sites=sortedSite.slice(0,5);
+  const siteList=_sites.map(([site,cnt],i)=>{
+    const geoM=site.match(/-(kr|us|tw|jp|hk)$/);
     const flag=geoM?GEO_FLAG[geoM[1]]:'';
-    const name=site.replace(/-(kr|us|tw|jp)$/,'').replace(/-/g,' ');
+    const name=site.replace(/-(kr|us|tw|jp|hk)$/,'').replace(/-/g,' ');
     const pct=Math.round(cnt/total*100);
-    return `<div style="padding:8px 0;border-bottom:1px solid var(--border)">
+    const border=i<_sites.length-1?'border-bottom:1px solid var(--border);':'';
+    return `<div style="padding:8px 0;${border}">
       <div style="display:flex;align-items:center;gap:8px">
         <span style="font-size:11px;color:var(--text3);width:14px;text-align:right;font-family:var(--mono);flex-shrink:0">${i+1}</span>
         <span style="font-size:14px;line-height:1;flex-shrink:0">${flag}</span>
@@ -1838,17 +1775,13 @@ function updateAiSummary(data){
 
   el.style.cssText='display:flex;flex-direction:column;gap:12px;margin-bottom:20px';
   el.innerHTML=`
-    <div style="display:grid;grid-template-columns:minmax(140px,180px) 1fr;gap:12px;align-items:stretch">
-      <div class="metric" style="display:flex;flex-direction:column;justify-content:center">
-        <div class="metric-label">총 AI 유입</div>
-        <div class="metric-val" style="margin-top:6px">${total.toLocaleString()}</div>
-        <div class="metric-sub" style="margin-top:8px">전체 수집 건수</div>
+    <div class="metric">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;">
+        <div class="metric-label">최근 7일 추이</div>
+        <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1">${total.toLocaleString()}<span style="font-size:11px;font-weight:400;color:var(--text3);margin-left:5px;">건 수집</span></div>
       </div>
-      <div class="metric">
-        <div class="metric-label" style="margin-bottom:14px">최근 7일 추이</div>
-        <div style="position:relative;height:100px">
-          <canvas id="ai-line-chart"></canvas>
-        </div>
+      <div style="position:relative;height:100px">
+        <canvas id="ai-line-chart"></canvas>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
@@ -2004,7 +1937,7 @@ function renderAiTraffic(data){
   const maxSrc=sortedSrc[0]?sortedSrc[0][1]:1;
   const maxGeo=sortedGeo[0]?sortedGeo[0][1]:1;
   const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
-  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본'};
+  const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본',hk:'홍콩'};
   const recent=data.slice(0,30);
 
   document.getElementById('panel-ai').innerHTML=`
