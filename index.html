@@ -1579,7 +1579,7 @@ function renderRecentTable(){
 
   let rows = [...aiData];
   if(recentSort==='agent') rows.sort((a,b)=>(a.ai_source||'').localeCompare(b.ai_source||'','ko'));
-  else if(recentSort==='site') rows.sort((a,b)=>(a.site||'').localeCompare(b.site||'','ko'));
+  else if(recentSort==='geo') rows.sort((a,b)=>(a.geo||'').localeCompare(b.geo||'','ko'));
   // 'time' already sorted desc from fetch
 
   const total = rows.length;
@@ -1631,7 +1631,7 @@ function buildPageRows(data){
   });
   let rows=Object.values(map);
   if(aiSort==='agent') rows.sort((a,b)=>a.src.localeCompare(b.src,'ko')||b.total-a.total);
-  else if(aiSort==='site') rows.sort((a,b)=>a.site.localeCompare(b.site,'ko')||b.total-a.total);
+  else if(aiSort==='geo') rows.sort((a,b)=>a.geo.localeCompare(b.geo,'ko')||b.total-a.total);
   else if(aiSort==='count') rows.sort((a,b)=>b.total-a.total);
   else rows.sort((a,b)=>b.lastSeen.localeCompare(a.lastSeen));
   return {rows, SRC_COLOR, GEO_NAME};
@@ -1682,6 +1682,11 @@ function updateAiSummary(data){
     if(r.created_at){ const d=r.created_at.slice(0,10); byDate[d]=(byDate[d]||0)+1; }
   });
   const total=data.length;
+  const startEl=document.getElementById('ai-start-date');
+  if(startEl){
+    const dates=data.map(r=>r.created_at).filter(Boolean).sort();
+    if(dates.length) startEl.textContent='집계 시작일 '+dates[0].slice(0,10).replace(/-/g,'.');
+  }
   const sortedSrc=Object.entries(bySource).sort((a,b)=>b[1]-a[1]);
   const sortedSite=Object.entries(bySite).sort((a,b)=>b[1]-a[1]);
 
@@ -1895,11 +1900,14 @@ function renderAiTraffic(data){
 
     <div class="ai-chart-card" id="ai-page-card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-        <div class="ai-chart-title" style="margin-bottom:0">AI 유입 현황</div>
+        <div>
+          <div class="ai-chart-title" style="margin-bottom:2px">AI 유입 현황</div>
+          <div id="ai-start-date" style="font-size:11px;color:var(--text3)"></div>
+        </div>
         <div style="display:flex;gap:6px">
           <button class="ai-sort-btn active" data-sort="time" onclick="setAiSort('time')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">최신순</button>
           <button class="ai-sort-btn" data-sort="count" onclick="setAiSort('count')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">유입순</button>
-          <button class="ai-sort-btn" data-sort="site" onclick="setAiSort('site')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">사이트별</button>
+          <button class="ai-sort-btn" data-sort="geo" onclick="setAiSort('geo')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">국가별</button>
         </div>
       </div>
       <div id="ai-page-table-wrap" style="overflow-x:auto"></div>
