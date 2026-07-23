@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>GEO 외부 콘텐츠 업무 분류</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --sub: #595959;
+    --card: #f7f7f8;
+    --accent: #c81e4d;
+    --border: #e3e3e6;
+    --a-bg: #f0faf5; --a-text: #0e6b3d; --a-border: #a7d9bc;
+    --b-bg: #fffbeb; --b-text: #92400e; --b-border: #fcd34d;
+    --c-bg: #f8f9fa; --c-text: #475569; --c-border: #cbd5e1;
+    --tag-bg: #fef2f6; --tag-text: #9b1239;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15161a; --fg: #eaeaec; --sub: #a3a3ab; --card: #1f2025; --border: #2d2e34;
+      --a-bg: rgba(14,107,61,0.15); --a-text: #4ade80; --a-border: rgba(74,222,128,0.25);
+      --b-bg: rgba(146,64,14,0.15); --b-text: #fbbf24; --b-border: rgba(251,191,36,0.25);
+      --c-bg: rgba(71,85,105,0.15); --c-text: #94a3b8; --c-border: rgba(148,163,184,0.25);
+      --tag-bg: rgba(200,30,77,0.15); --tag-text: #f472b6;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15161a; --fg: #eaeaec; --sub: #a3a3ab; --card: #1f2025; --border: #2d2e34;
+    --a-bg: rgba(14,107,61,0.15); --a-text: #4ade80; --a-border: rgba(74,222,128,0.25);
+    --b-bg: rgba(146,64,14,0.15); --b-text: #fbbf24; --b-border: rgba(251,191,36,0.25);
+    --c-bg: rgba(71,85,105,0.15); --c-text: #94a3b8; --c-border: rgba(148,163,184,0.25);
+    --tag-bg: rgba(200,30,77,0.15); --tag-text: #f472b6;
+  }
+  :root[data-theme="light"] {
+    --bg: #ffffff; --fg: #1a1a1a; --sub: #595959; --card: #f7f7f8; --border: #e3e3e6;
+    --a-bg: #f0faf5; --a-text: #0e6b3d; --a-border: #a7d9bc;
+    --b-bg: #fffbeb; --b-text: #92400e; --b-border: #fcd34d;
+    --c-bg: #f8f9fa; --c-text: #475569; --c-border: #cbd5e1;
+    --tag-bg: #fef2f6; --tag-text: #9b1239;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* header */
+  .page-header { margin-bottom: 40px; }
+  .page-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .page-title { font-size: 1.75rem; font-weight: 800; line-height: 1.25; text-wrap: balance; }
+  .page-meta { font-size: 0.85rem; color: var(--sub); margin-top: 8px; }
+
+  /* criteria box */
+  .criteria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 28px 0 44px;
+  }
+  @media (max-width: 600px) { .criteria { grid-template-columns: 1fr; } }
+  .crit-card {
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid;
+  }
+  .crit-card.a { background: var(--a-bg); border-color: var(--a-border); }
+  .crit-card.b { background: var(--b-bg); border-color: var(--b-border); }
+  .crit-card.c { background: var(--c-bg); border-color: var(--c-border); }
+  .crit-grade {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+  }
+  .a .crit-grade { color: var(--a-text); }
+  .b .crit-grade { color: var(--b-text); }
+  .c .crit-grade { color: var(--c-text); }
+  .crit-desc { font-size: 0.82rem; color: var(--sub); line-height: 1.6; }
+
+  /* section */
+  .dept-section { margin-top: 48px; }
+  .dept-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .dept-name { font-size: 1.1rem; font-weight: 800; }
+  .dept-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border-radius: 20px;
+    padding: 2px 10px;
+  }
+  .dept-note { font-size: 0.82rem; color: var(--sub); margin-bottom: 14px; margin-top: 6px; line-height: 1.6; }
+
+  /* table */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  thead th {
+    background: var(--card);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sub);
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  tbody td {
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  tbody tr:hover { background: var(--card); }
+
+  /* grade badge */
+  .grade {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    border: 1.5px solid;
+  }
+  .grade.a { background: var(--a-bg); color: var(--a-text); border-color: var(--a-border); }
+  .grade.b { background: var(--b-bg); color: var(--b-text); border-color: var(--b-border); }
+  .grade.c { background: var(--c-bg); color: var(--c-text); border-color: var(--c-border); }
+
+  .task-name { font-weight: 600; color: var(--fg); }
+  .task-reason { font-size: 0.82rem; color: var(--sub); margin-top: 3px; }
+  .evidence {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  /* footer note */
+  .footer-note {
+    margin-top: 56px;
+    padding: 16px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.82rem;
+    color: var(--sub);
+    line-height: 1.75;
+  }
+  .footer-note strong { color: var(--fg); }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+  .source { font-size: 0.75rem; color: var(--sub); margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--sub);text-decoration:none;margin-bottom:24px;padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--card);transition:color 0.15s; line-height: 24px" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--sub)'">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" style="display:block;flex-shrink:0"><path d="M9 2L4 7l5 5"/></svg>
+  대시보드 메인
+</a>
+
+<header class="page-header">
+  <p class="page-eyebrow">GEO · Generative Engine Optimization</p>
+  <h1 class="page-title">외부 콘텐츠 업무 분류 — GEO 관점</h1>
+  <p class="page-meta">2026년 7월 · 내부 참고용 · 등급은 각 팀에서 검토 후 조정</p>
+</header>
+
+<!-- 등급 기준 -->
+<div class="criteria">
+  <div class="crit-card a">
+    <div class="crit-grade">A등급</div>
+    <div class="crit-desc">고신뢰도 도메인 게재 또는 AI가 직접 인용하는 형태의 정보 포함. GEO 효과 실증됨.</div>
+  </div>
+  <div class="crit-card b">
+    <div class="crit-grade">B등급</div>
+    <div class="crit-desc">중간 신뢰도 채널. 개별 효과는 낮지만 누적 시 AI 언급량 신호 강화.</div>
+  </div>
+  <div class="crit-card c">
+    <div class="crit-grade">C등급</div>
+    <div class="crit-desc">텍스트 기반 아님이거나 정보 밀도 낮음. AI 학습 데이터 반영 어려움.</div>
+  </div>
+</div>
+
+
+<!-- PR팀 -->
+<section class="dept-section">
+  <div class="dept-header">
+    <span class="dept-name">PR팀</span>
+    <span class="dept-tag">PR · 커뮤니케이션 영역</span>
+  </div>
+  <p class="dept-note">LLM이 참조하는 출처(언론사·전문지·위키)를 직접 확보하는 영역. 수상 기사 한 건이 AI 언급량을 수백% 끌어올린 실증 데이터 있음.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px;">등급</th>
+          <th style="width:220px;">업무</th>
+          <th>GEO 관점 이유</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">어워즈·수상 기사 확보</div>
+          </td>
+          <td>
+            <div class="task-reason">언론사 고권위 도메인. 수상 → AI 언급량 실증: 라운드랩 +1,059%, 다슈 +390%</div>
+            <span class="evidence">→ 내부 검증 완료</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">성분·효능 전문 매체 기고</div>
+          </td>
+          <td>
+            <div class="task-reason">AI가 정보성 전문지를 직접 인용하는 패턴. 결론·수치를 본문 상단에 배치할수록 인용률 높음</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">위키피디아 브랜드 페이지 관리</div>
+          </td>
+          <td>
+            <div class="task-reason">ChatGPT·Gemini·Perplexity 모두 위키피디아를 최우선 참조 출처로 활용. 브랜드 엔트리 없으면 AI 인식 불가</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">신규 상품 소구점 기사 (타깃 고객·특징 중심)</div>
+          </td>
+          <td>
+            <div class="task-reason">정보량은 있으나 언론사 전문지 수준 신뢰도 아님. 제품명·성분명 엔티티를 명확히 포함해야 효과</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">대표·연구원 인터뷰 기사</div>
+          </td>
+          <td>
+            <div class="task-reason">전문성 신호 부여. AI가 브랜드 배경 정보 인용 시 활용 가능. 누적 효과</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">보도자료 배포</div>
+          </td>
+          <td>
+            <div class="task-reason">단순 배포는 C등급. 소비자 검색 쿼리 키워드를 본문에 포함 시 B등급 인정</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade c">C</span></td>
+          <td>
+            <div class="task-name">이벤트·프로모션성 단순 보도</div>
+          </td>
+          <td>
+            <div class="task-reason">정보 밀도 낮음. AI가 참조하기에 콘텐츠 가치 부족</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- 바이럴파트 -->
+<section class="dept-section">
+  <div class="dept-header">
+    <span class="dept-name">바이럴파트</span>
+    <span class="dept-tag">마케팅 · 콘텐츠 영역</span>
+  </div>
+  <p class="dept-note">외부 언급량 볼륨을 직접 만드는 영역. 화해 리뷰 454개 vs 29,231개 격차가 AI 추천 차이로 직결된 사례 있음. 텍스트 기반 롱폼 콘텐츠 우선.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px;">등급</th>
+          <th style="width:220px;">업무</th>
+          <th>GEO 관점 이유</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">블로그 USP 롱폼 콘텐츠</div>
+          </td>
+          <td>
+            <div class="task-reason">성분·효능·섭취 대상을 구체화한 롱폼. 결론을 상단에 배치하는 구조가 AI 인용률 높음. 검색 상위 노출 시 AI 직접 참조</div>
+            <span class="evidence">→ AI 인용 패턴 확인됨</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">제품 비교 콘텐츠 (자사 vs 경쟁사)</div>
+          </td>
+          <td>
+            <div class="task-reason">AI가 "A vs B" 형태의 비교 정보를 자주 인용하는 패턴. 객관적 수치 포함 시 효과 극대화</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">리뷰 플랫폼 후기 대량 누적</div>
+          </td>
+          <td>
+            <div class="task-reason">화해·올리브영·무신사 등. 리뷰 수 자체가 AI 언급량 신호. 자사 vs 경쟁사 격차가 AI 추천 역전으로 이어진 실증 사례 있음</div>
+            <span class="evidence">→ 풀리 454건 vs 라운드랩 29,231건</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">커뮤니티 실사용 후기</div>
+          </td>
+          <td>
+            <div class="task-reason">네이버카페·디씨 등 중간 신뢰도 채널. 개별 효과는 낮지만 언급량 누적 시 신호 강화</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">블로그 체험단 후기</div>
+          </td>
+          <td>
+            <div class="task-reason">건수가 누적될수록 브랜드 언급량 신호 강해짐. 단발성이면 C등급 수준</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">인플루언서 협업</div>
+          </td>
+          <td>
+            <div class="task-reason">구독자 규모 = 언급 파급력. 영상 기반은 텍스트 자막 포함 필수. 텍스트 콘텐츠(블로그 병행) 동반 시 효과 상승</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade c">C</span></td>
+          <td>
+            <div class="task-name">숏폼·SNS 이벤트성 콘텐츠</div>
+          </td>
+          <td>
+            <div class="task-reason">텍스트 기반 아님 → AI 학습 데이터 반영 어려움. 브랜드 인지도 효과는 있으나 GEO 직접 기여는 낮음</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- 유튜브 -->
+<section class="dept-section">
+  <div class="dept-header">
+    <span class="dept-name">유튜브 채널</span>
+    <span class="dept-tag">마케팅 · 제안</span>
+  </div>
+  <p class="dept-note">유튜브 자막 텍스트가 AI 학습 데이터에 포함됨. 영상 자체보다 자막·설명의 정보 품질이 GEO 효과를 결정.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px;">등급</th>
+          <th style="width:220px;">업무</th>
+          <th>GEO 관점 이유</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">성분·효능 설명 영상 (한국어 자막 포함)</div>
+          </td>
+          <td>
+            <div class="task-reason">유튜브 자막이 텍스트 데이터로 AI 학습됨. 구독자 127K인 라운드랩 유튜브가 AI 추천에 기여하는 주요 경로</div>
+            <span class="evidence">→ 경쟁사 채널 분석 확인</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">제품 실사용 리뷰 영상</div>
+          </td>
+          <td>
+            <div class="task-reason">언급량 기여. 자막·설명란에 성분명·브랜드명 포함 필수. 자막 없으면 C등급 수준</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<hr>
+
+<!-- 자사몰팀 참고 -->
+<section class="dept-section">
+  <div class="dept-header">
+    <span class="dept-name">자사몰팀</span>
+    <span class="dept-tag">기술 · 오퍼레이션 · 참고용</span>
+  </div>
+  <p class="dept-note">외부 콘텐츠 영역은 아니지만, 내부 콘텐츠가 외부 언급량 효과를 증폭시키는 기반. 머천트센터 정보가 제미나이 인식에 직결됨.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px;">등급</th>
+          <th style="width:220px;">업무</th>
+          <th>GEO 관점 이유</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">FAQ "이 제품이 ○○에 좋은가?" 형식 콘텐츠</div>
+          </td>
+          <td>
+            <div class="task-reason">AI가 FAQ 형태를 직접 인용하는 패턴. 소비자 질문 형태로 작성 시 AI 답변에 채택될 확률 높음</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade a">A</span></td>
+          <td>
+            <div class="task-name">머천트센터 상품 설명 보강</div>
+          </td>
+          <td>
+            <div class="task-reason">구글 쇼핑 연동 → 제미나이 상품 인식 직결. 현재 일부 제품 설명 공란 확인됨</div>
+            <span class="evidence">→ 즉시 조치 필요</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="grade b">B</span></td>
+          <td>
+            <div class="task-name">AI 크롤링 가능 페이지 구조 점검</div>
+          </td>
+          <td>
+            <div class="task-reason">기술 기반 작업. 직접 GEO 효과보다 외부 콘텐츠 효과를 흡수하는 기반 역할</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<p class="source">출처: 내부 GEO 검증 리포트 · 2026년 7월 기준</p>
+
+</body>
+</html>
