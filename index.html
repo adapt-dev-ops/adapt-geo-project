@@ -1492,6 +1492,7 @@ const SB_URL = 'https://zsznmjvmbzqxtssqfrpj.supabase.co';
 const SB_KEY = 'sb_publishable_Dqx5699n2fgzAr3ijiiNCQ_WXavoaaD';
 let aiData = [];
 let aiSort = 'time';
+let aiGeoFilter = '';
 let aiPage = 1;
 let recentSort = 'time';
 let recentPage = 1;
@@ -1538,6 +1539,12 @@ function setAiSort(sort){
   aiSort = sort;
   aiPage = 1;
   document.querySelectorAll('.ai-sort-btn').forEach(b=>b.classList.toggle('active', b.dataset.sort===sort));
+  renderPageTable();
+}
+
+function setAiGeoFilter(geo){
+  aiGeoFilter = geo;
+  aiPage = 1;
   renderPageTable();
 }
 
@@ -1621,7 +1628,8 @@ function buildPageRows(data){
   const SRC_COLOR={'ChatGPT':'#10A37F','Perplexity':'#6496FF','Claude':'#FF9068','Copilot':'#38BDF8','Gemini':'#FBBC04'};
   const GEO_NAME={kr:'국내',us:'미국',tw:'대만',jp:'일본',hk:'홍콩'};
   const map={};
-  data.forEach(r=>{
+  const filtered = aiGeoFilter ? data.filter(r=>r.geo===aiGeoFilter) : data;
+  filtered.forEach(r=>{
     const label=cleanPageUrl(r.page_url);
     const src=normalizeSrc(r.ai_source);
     const key=label+'||'+(r.site||'')+'||'+(r.geo||'')+'||'+src;
@@ -1631,7 +1639,6 @@ function buildPageRows(data){
   });
   let rows=Object.values(map);
   if(aiSort==='agent') rows.sort((a,b)=>a.src.localeCompare(b.src,'ko')||b.total-a.total);
-  else if(aiSort==='geo') rows.sort((a,b)=>a.geo.localeCompare(b.geo,'ko')||b.total-a.total);
   else if(aiSort==='count') rows.sort((a,b)=>b.total-a.total);
   else rows.sort((a,b)=>b.lastSeen.localeCompare(a.lastSeen));
   return {rows, SRC_COLOR, GEO_NAME};
@@ -1904,10 +1911,17 @@ function renderAiTraffic(data){
           <div class="ai-chart-title" style="margin-bottom:2px">AI 유입 현황</div>
           <div id="ai-start-date" style="font-size:11px;color:var(--text3)"></div>
         </div>
-        <div style="display:flex;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px">
           <button class="ai-sort-btn active" data-sort="time" onclick="setAiSort('time')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">최신순</button>
           <button class="ai-sort-btn" data-sort="count" onclick="setAiSort('count')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">유입순</button>
-          <button class="ai-sort-btn" data-sort="geo" onclick="setAiSort('geo')" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer">국가별</button>
+          <select onchange="setAiGeoFilter(this.value)" style="padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer;outline:none">
+            <option value="">전체 국가</option>
+            <option value="kr">🇰🇷 국내</option>
+            <option value="us">🇺🇸 미국</option>
+            <option value="tw">🇹🇼 대만</option>
+            <option value="jp">🇯🇵 일본</option>
+            <option value="hk">🇭🇰 홍콩</option>
+          </select>
         </div>
       </div>
       <div id="ai-page-table-wrap" style="overflow-x:auto"></div>
